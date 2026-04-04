@@ -24,9 +24,9 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green: #16a34a;
-      --green-light: #dcfce7;
-      --green-dark: #15803d;
+      --indigo: #4f46e5;
+      --indigo-light: #ede9fe;
+      --indigo-dark: #3730a3;
       --purple: #7c3aed;
       --coral: #f97316;
       --text-head: #111827;
@@ -77,10 +77,10 @@
       font-weight: 600; cursor: pointer; transition: all 0.2s; border: 2px solid transparent;
       font-family: 'Inter', sans-serif;
     }
-    .btn-green {
-      background: var(--green); color: #fff;
+    .btn-indigo {
+      background: var(--indigo); color: #fff;
     }
-    .btn-green:hover { background: var(--green-dark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn-indigo:hover { background: var(--indigo-dark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
     .btn-ghost {
       background: transparent; color: var(--text-head); border-color: var(--border);
     }
@@ -99,7 +99,7 @@
       height: 64px; gap: 16px;
     }
     .nav-logo {
-      font-size: 1.3rem; font-weight: 900; color: var(--green);
+      font-size: 1.3rem; font-weight: 900; color: var(--indigo);
       letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px;
     }
     .nav-logo span { color: var(--text-head); }
@@ -142,16 +142,16 @@
     .hero-content { position: relative; z-index: 1; text-align: center; max-width: 780px; margin: 0 auto; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 6px;
-      background: var(--green-light); color: var(--green-dark);
+      background: var(--indigo-light); color: var(--indigo-dark);
       border-radius: 100px; padding: 5px 14px; font-size: 0.8rem; font-weight: 600;
       margin-bottom: 24px;
     }
-    .hero-badge::before { content: ""; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+    .hero-badge::before { content: ""; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--indigo); }
     .hero-headline {
       font-size: clamp(2.2rem, 5.5vw, 3.8rem); font-weight: 900; color: var(--text-head);
       line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px;
     }
-    .hero-headline em { font-style: normal; color: var(--green); }
+    .hero-headline em { font-style: normal; color: var(--indigo); }
     .hero-sub {
       font-size: 1.15rem; color: var(--text-body); max-width: 580px; margin: 0 auto 36px;
       line-height: 1.7;
@@ -180,7 +180,7 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 1.1rem; font-weight: 700; color: #fff;
     }
-    .slack-avatar-bot { background: linear-gradient(135deg, var(--green), #059669); }
+    .slack-avatar-bot { background: linear-gradient(135deg, #4f46e5, #7c3aed); }
     .slack-avatar-user { background: linear-gradient(135deg, #6366f1, #7c3aed); }
     .slack-msg-content {}
     .slack-msg-name { font-size: 0.8rem; font-weight: 700; color: var(--text-head); margin-bottom: 4px; }
@@ -190,7 +190,7 @@
       padding: 10px 14px; font-size: 0.85rem; color: var(--text-head);
       line-height: 1.5; margin-bottom: 4px; display: inline-block; max-width: 320px;
     }
-    .slack-bubble.question { border-left: 3px solid var(--green); background: #f0fdf4; }
+    .slack-bubble.question { border-left: 3px solid var(--indigo); background: #eef2ff; }
     .slack-bubble.answer { background: #ede9fe; border-radius: 10px 0 10px 10px; }
     .slack-input-bar {
       border-top: 1px solid var(--border); padding: 12px 16px;
@@ -202,7 +202,7 @@
       border-radius: 6px; padding: 8px 12px; font-size: 0.8rem; color: var(--text-light);
     }
     .slack-send-btn {
-      background: var(--green); color: #fff; border: none; border-radius: 5px;
+      background: var(--indigo); color: #fff; border: none; border-radius: 5px;
       width: 30px; height: 30px; cursor: pointer; display: flex; align-items: center; justify-content: center;
       font-size: 0.85rem;
     }
@@ -216,13 +216,13 @@
       background: var(--bg-cream); border: 1px solid var(--border);
       border-radius: 100px; padding: 6px 16px; font-size: 0.82rem; font-weight: 600; color: var(--text-head);
     }
-    .trust-pill .icon { color: var(--green); }
+    .trust-pill .icon { color: var(--indigo); }
 
     /* ===== HOW IT WORKS ===== */
     #how-it-works { background: var(--bg-cream); }
     .section-label {
       font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--green); margin-bottom: 12px;
+      color: var(--indigo); margin-bottom: 12px;
     }
     .section-head { margin-bottom: 16px; }
     .section-sub { font-size: 1.05rem; color: var(--text-body); max-width: 540px; }
@@ -232,16 +232,16 @@
     }
     .steps-grid::before {
       content: ""; position: absolute; top: 28px; left: calc(16.66% + 28px); right: calc(16.66% + 28px);
-      height: 2px; background: linear-gradient(90deg, var(--green), var(--green));
-      background: repeating-linear-gradient(90deg, var(--green) 0, var(--green) 8px, transparent 8px, transparent 16px);
+      height: 2px; background: linear-gradient(90deg, var(--indigo), var(--indigo));
+      background: repeating-linear-gradient(90deg, var(--indigo) 0, var(--indigo) 8px, transparent 8px, transparent 16px);
     }
     .step { text-align: center; padding: 0 24px; }
     .step-number-wrap {
       display: inline-flex; align-items: center; justify-content: center;
       width: 56px; height: 56px; border-radius: 50%;
-      background: var(--green); color: #fff;
+      background: var(--indigo); color: #fff;
       font-size: 1.2rem; font-weight: 800; margin: 0 auto 24px;
-      position: relative; z-index: 1; box-shadow: 0 0 0 6px var(--green-light);
+      position: relative; z-index: 1; box-shadow: 0 0 0 6px var(--indigo-light);
     }
     .step h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--text-head); }
     .step p { font-size: 0.92rem; line-height: 1.65; }
@@ -255,7 +255,7 @@
     }
     .timeline-track::before {
       content: ""; position: absolute; top: 36px; left: 48px; right: 48px; height: 3px;
-      background: linear-gradient(90deg, var(--green) 0%, var(--purple) 50%, var(--coral) 100%);
+      background: linear-gradient(90deg, var(--indigo) 0%, var(--purple) 50%, var(--coral) 100%);
       border-radius: 2px;
     }
     .tl-step { flex: 1; min-width: 180px; text-align: center; padding: 0 12px; position: relative; }
@@ -265,11 +265,11 @@
       font-size: 1.8rem; margin: 0 auto 20px; position: relative; z-index: 1;
       box-shadow: var(--shadow);
     }
-    .tl-step:nth-child(1) .tl-icon { border-color: var(--green); background: var(--green-light); }
+    .tl-step:nth-child(1) .tl-icon { border-color: var(--indigo); background: var(--indigo-light); }
     .tl-step:nth-child(2) .tl-icon { border-color: #a78bfa; background: #ede9fe; }
     .tl-step:nth-child(3) .tl-icon { border-color: #f97316; background: #fff7ed; }
     .tl-step:nth-child(4) .tl-icon { border-color: #06b6d4; background: #ecfeff; }
-    .tl-time { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+    .tl-time { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--indigo); margin-bottom: 6px; }
     .tl-title { font-size: 0.95rem; font-weight: 700; color: var(--text-head); margin-bottom: 6px; }
     .tl-desc { font-size: 0.82rem; color: var(--text-body); line-height: 1.55; }
 
@@ -288,7 +288,7 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 1.4rem; margin-bottom: 16px;
     }
-    .fi-green { background: var(--green-light); }
+    .fi-green { background: var(--indigo-light); }
     .fi-purple { background: #ede9fe; }
     .fi-orange { background: #fff7ed; }
     .fi-blue { background: #eff6ff; }
@@ -302,7 +302,7 @@
     .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
     .comparison-card { border-radius: var(--radius-lg); padding: 36px; }
     .comp-without { background: #fff1f2; border: 2px solid #fecdd3; }
-    .comp-with { background: #f0fdf4; border: 2px solid #bbf7d0; }
+    .comp-with { background: #eef2ff; border: 2px solid #c7d2fe; }
     .comp-title { font-size: 1.2rem; font-weight: 800; color: var(--text-head); margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
     .comp-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
     .comp-list li {
@@ -321,7 +321,7 @@
       padding: 32px 24px; box-shadow: var(--shadow);
     }
     .stat-number {
-      font-size: 2.8rem; font-weight: 900; color: var(--green); line-height: 1;
+      font-size: 2.8rem; font-weight: 900; color: var(--indigo); line-height: 1;
       margin-bottom: 8px; display: block;
     }
     .stat-label { font-size: 0.88rem; color: var(--text-body); font-weight: 500; }
@@ -338,7 +338,7 @@
     thead th:first-child { text-align: left; color: var(--text-body); }
     thead th:not(:first-child) { text-align: center; }
     .th-morgenruf {
-      background: var(--green); color: #fff !important;
+      background: var(--indigo); color: #fff !important;
       border-radius: 0;
     }
     tbody td {
@@ -356,10 +356,10 @@
     .pricing-card {
       background: var(--bg-white); border-radius: var(--radius-lg);
       box-shadow: var(--shadow-lg); padding: 48px 40px; margin-top: 40px;
-      border: 2px solid var(--green);
+      border: 2px solid var(--indigo);
     }
     .pricing-badge {
-      display: inline-block; background: var(--green); color: #fff;
+      display: inline-block; background: var(--indigo); color: #fff;
       border-radius: 100px; padding: 4px 16px; font-size: 0.78rem; font-weight: 700;
       letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 20px;
     }
@@ -391,7 +391,7 @@
     /* ===== FOOTER ===== */
     footer { background: var(--text-head); color: #9ca3af; padding: 64px 0 32px; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
-    .footer-brand .logo { font-size: 1.2rem; font-weight: 900; color: var(--green); margin-bottom: 12px; }
+    .footer-brand .logo { font-size: 1.2rem; font-weight: 900; color: var(--indigo); margin-bottom: 12px; }
     .footer-brand p { font-size: 0.85rem; line-height: 1.65; max-width: 220px; }
     .footer-col h4 { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; margin-bottom: 16px; }
     .footer-col a { display: block; font-size: 0.85rem; color: #9ca3af; margin-bottom: 10px; transition: color 0.15s; }
@@ -402,7 +402,7 @@
     .footer-bottom a:hover { color: #fff; }
     .footer-badge {
       display: inline-flex; align-items: center; gap: 5px;
-      background: rgba(22,163,74,0.15); color: var(--green);
+      background: rgba(79,70,229,0.12); color: var(--indigo);
       border-radius: 100px; padding: 3px 10px; font-size: 0.75rem; font-weight: 600;
     }
 
@@ -459,7 +459,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.4 7.9 10.9.58.1.79-.25.79-.55v-1.9c-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 2.9-.39c.98.01 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.07.78 2.15v3.19c0 .3.2.66.8.55A10.53 10.53 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
         GitHub
       </a>
-      <a href="https://slack.com/oauth/v2/authorize?client_id=10844948237158.10850614859732&scope=chat:write,chat:write.public,im:history,im:read,im:write,channels:read,channels:join,groups:read,users:read,users:read.email,team:read,app_mentions:read&redirect_uri=https://api.morgenruf.dev/oauth/callback" class="btn btn-green" style="padding:9px 18px;font-size:0.88rem;">
+      <a href="https://slack.com/oauth/v2/authorize?client_id=10844948237158.10850614859732&scope=chat:write,chat:write.public,im:history,im:read,im:write,channels:read,channels:join,groups:read,users:read,users:read.email,team:read,app_mentions:read&redirect_uri=https://api.morgenruf.dev/oauth/callback" class="btn btn-indigo" style="padding:9px 18px;font-size:0.88rem;">
         Add to Slack
       </a>
     </div>
@@ -473,7 +473,7 @@
     <a href="#pricing">Pricing</a>
     <a href="https://docs.morgenruf.dev">Docs</a>
     <a href="https://github.com/morgenruf/morgenruf">GitHub</a>
-    <a href="https://slack.com/oauth/v2/authorize?client_id=10844948237158.10850614859732&scope=chat:write,chat:write.public,im:history,im:read,im:write,channels:read,channels:join,groups:read,users:read,users:read.email,team:read,app_mentions:read&redirect_uri=https://api.morgenruf.dev/oauth/callback" class="btn btn-green">Add to Slack</a>
+    <a href="https://slack.com/oauth/v2/authorize?client_id=10844948237158.10850614859732&scope=chat:write,chat:write.public,im:history,im:read,im:write,channels:read,channels:join,groups:read,users:read,users:read.email,team:read,app_mentions:read&redirect_uri=https://api.morgenruf.dev/oauth/callback" class="btn btn-indigo">Add to Slack</a>
   </div>
 </nav>
 
@@ -743,7 +743,7 @@
         <tbody>
           <tr>
             <td>Price</td>
-            <td class="td-morgenruf" style="font-weight:700;color:var(--green);">$0 forever</td>
+            <td class="td-morgenruf" style="font-weight:700;color:var(--indigo);">$0 forever</td>
             <td>$2.50/user/mo</td>
             <td>$3/user/mo</td>
           </tr>
@@ -884,7 +884,7 @@
           <div style="font-weight:700;font-size:1rem;color:#111827;">Google Chat</div>
           <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Bring async standups to Google Workspace teams</div>
         </div>
-        <span style="background:#dcfce7;color:#16a34a;font-size:0.75rem;font-weight:600;padding:4px 12px;border-radius:99px;">Coming Soon</span>
+        <span style="background:#ede9fe;color:#4f46e5;font-size:0.75rem;font-weight:600;padding:4px 12px;border-radius:99px;">Coming Soon</span>
       </div>
 
       <!-- MCP / AI Integration -->
@@ -909,7 +909,7 @@
 
     </div>
     <p style="margin-top:40px;color:#9ca3af;font-size:0.9rem;">
-      Have a feature idea? <a href="https://github.com/morgenruf/morgenruf/discussions" style="color:#16a34a;font-weight:600;">Start a discussion →</a>
+      Have a feature idea? <a href="https://github.com/morgenruf/morgenruf/discussions" style="color:#4f46e5;font-weight:600;">Start a discussion →</a>
     </p>
   </div>
 </section>
