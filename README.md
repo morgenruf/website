@@ -1,10 +1,9 @@
 # morgenruf.dev
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a5b5a6ad-f21a-4909-8841-f564c5e50d9a/deploy-status)](https://app.netlify.com/sites/morgenruf/deploys)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 Marketing website for [Morgenruf](https://github.com/morgenruf/morgenruf) — deployed at [morgenruf.dev](https://morgenruf.dev) via Netlify.
-
-## Deploy
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/YOUR_BADGE_ID/deploy-status)](https://app.netlify.com/sites/morgenruf/deploys)
 
 Connect this repo to Netlify:
 - Build command: *(none)*
