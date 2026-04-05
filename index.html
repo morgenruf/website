@@ -440,6 +440,9 @@
     /* ===== FADE IN ===== */
     .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
     .fade-in.visible { opacity: 1; transform: none; }
+
+    .roadmap-shipped { background: #f0fdf4; border: 1.5px solid #bbf7d0; }
+    .badge-shipped { background: #dcfce7; color: #16a34a; font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 99px; }
   </style>
 </head>
 <body>
@@ -534,6 +537,13 @@
               <div class="slack-bubble question">2️⃣ What are you working on <strong>today</strong>?</div>
             </div>
           </div>
+          <div class="slack-msg">
+            <div class="slack-avatar slack-avatar-bot">🌅</div>
+            <div class="slack-msg-content">
+              <div class="slack-msg-name">Morgenruf <span class="slack-time" style="background:#e2e8f0;border-radius:3px;padding:1px 5px;font-size:0.7rem;">APP</span> <span class="slack-time">9:04 AM</span></div>
+              <div class="slack-bubble question">4️⃣ 🎭 How are you feeling today? <span style="opacity:0.7;font-size:0.88em;">😊 great · 😐 okay · 😔 rough</span></div>
+            </div>
+          </div>
         </div>
         <div class="slack-input-bar">
           <div class="slack-input-fake">Write a reply to Morgenruf…</div>
@@ -546,7 +556,7 @@
         <div class="trust-pill"><span class="icon">✦</span> Open Source</div>
         <div class="trust-pill"><span class="icon">🏠</span> Self-Hosted</div>
         <div class="trust-pill"><span class="icon">∞</span> Free Forever</div>
-        <div class="trust-pill"><span class="icon">⚖️</span> Apache 2.0</div>
+        <div class="trust-pill"><span class="icon">⚖️</span> MIT</div>
         <div class="trust-pill"><span class="icon">🔒</span> Your Data</div>
       </div>
     </div>
@@ -601,13 +611,13 @@
           <div class="tl-icon">📝</div>
           <div class="tl-time">9:05 AM</div>
           <div class="tl-title">Team answers</div>
-          <div class="tl-desc">Members reply with 3 quick answers — takes about 2 minutes, right from Slack.</div>
+          <div class="tl-desc">Members reply with 4 quick answers — takes about 2 minutes, right from Slack.</div>
         </div>
         <div class="tl-step">
           <div class="tl-icon">📊</div>
           <div class="tl-time">9:30 AM</div>
           <div class="tl-title">Summary posted</div>
-          <div class="tl-desc">A beautifully formatted summary lands in your #standup channel for the whole team to see.</div>
+          <div class="tl-desc">A beautifully formatted summary with mood indicators lands in your #standup channel for the whole team to see.</div>
         </div>
         <div class="tl-step">
           <div class="tl-icon">✅</div>
@@ -645,9 +655,9 @@
         <p>Grouped summaries with clear formatting posted to any channel. Your whole team gets a clean daily digest.</p>
       </div>
       <div class="feature-card fade-in">
-        <div class="feature-icon fi-blue">🔗</div>
-        <h3>Jira &amp; Zendesk</h3>
-        <p>Auto-link issues with <code style="background:#f3f4f6;border-radius:4px;padding:1px 5px;font-size:0.82rem;">{PROJ-123}</code> syntax. Standup answers become clickable tickets instantly.</p>
+        <div class="feature-icon fi-blue">⏭️</div>
+        <h3>Skip &amp; Remind</h3>
+        <p>DM <code style="background:#f3f4f6;border-radius:4px;padding:1px 5px;font-size:0.82rem;">skip</code> to opt out for the day. Configurable pre-standup reminder DMs keep everyone on time.</p>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon fi-cyan">🔔</div>
@@ -658,6 +668,26 @@
         <div class="feature-icon fi-rose">🏠</div>
         <h3>Dashboard</h3>
         <p>Full web UI to manage standups, team members, schedules, and reports — all in one place.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon fi-purple">🎭</div>
+        <h3>Mood Tracking</h3>
+        <p>After blockers, the bot asks how team members are feeling — 😊 great · 😐 okay · 😔 rough. Tracked in analytics over time.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon fi-orange">📈</div>
+        <h3>Participation Analytics</h3>
+        <p>Dashboard analytics tab shows per-member 7-day and 30-day participation rates, blockers count, and last standup date. Export to CSV anytime.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon fi-cyan">🌍</div>
+        <h3>Per-User Timezone</h3>
+        <p>Each team member can DM <code style="background:#f3f4f6;border-radius:4px;padding:1px 5px;font-size:0.82rem;">timezone Europe/London</code> to set their personal timezone independently of the workspace schedule.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon fi-rose">📧</div>
+        <h3>Weekly Digest</h3>
+        <p>Automatic Sunday email to the workspace admin summarising the week — total responses, participation rate, and per-member breakdown.</p>
       </div>
     </div>
   </div>
@@ -689,7 +719,7 @@
           <li><span class="check">✅</span> 100% free, forever — zero per-seat pricing</li>
           <li><span class="check">✅</span> Data stays on YOUR infrastructure, always</li>
           <li><span class="check">✅</span> Fully customizable — fork it, own it</li>
-          <li><span class="check">✅</span> Open source — Apache 2.0, no lock-in</li>
+          <li><span class="check">✅</span> Open source — MIT, no lock-in</li>
           <li><span class="check">✅</span> Async updates, zero meetings needed</li>
           <li><span class="check">✅</span> Scales to 1000s of users for $0</li>
         </ul>
@@ -789,6 +819,36 @@
             <td>✅</td>
             <td>✅</td>
           </tr>
+          <tr>
+            <td>Skip today</td>
+            <td class="td-morgenruf">✅</td>
+            <td>✅</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>Mood tracking</td>
+            <td class="td-morgenruf">✅</td>
+            <td>❌</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>Per-user timezone</td>
+            <td class="td-morgenruf">✅</td>
+            <td>✅</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>Participation analytics</td>
+            <td class="td-morgenruf">✅</td>
+            <td>✅</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>Weekly digest email</td>
+            <td class="td-morgenruf">✅</td>
+            <td>✅</td>
+            <td>❌</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -814,7 +874,7 @@
           <li>Unlimited team members</li>
           <li>All features included</li>
           <li>Self-hosted on your infrastructure</li>
-          <li>Apache 2.0 license</li>
+          <li>MIT license</li>
           <li>Full source code access</li>
         </ul>
         <a href="https://api.morgenruf.dev/install" class="btn btn-green btn-lg" style="width:100%;justify-content:center;">
@@ -867,7 +927,27 @@
     <p style="color:#6b7280;font-size:1.1rem;max-width:520px;margin:0 auto 48px;">We're building Morgenruf in public. Here's what's on the horizon.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;max-width:900px;margin:0 auto;">
 
-      <!-- Microsoft Teams -->
+      <!-- Shipped: Participation Analytics -->
+      <div class="roadmap-shipped" style="border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <div style="width:48px;height:48px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;">📊</div>
+        <div>
+          <div style="font-weight:700;font-size:1rem;color:#111827;">Analytics &amp; CSV Export</div>
+          <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Per-member participation dashboard with 7d/30d views and one-click CSV export</div>
+        </div>
+        <span class="badge-shipped">✅ Shipped</span>
+      </div>
+
+      <!-- Shipped: Mood Tracking -->
+      <div class="roadmap-shipped" style="border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <div style="width:48px;height:48px;background:linear-gradient(135deg,#f97316,#ec4899);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;">🎭</div>
+        <div>
+          <div style="font-weight:700;font-size:1rem;color:#111827;">Mood Tracking</div>
+          <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Emoji mood check-in after every standup — track team health over time</div>
+        </div>
+        <span class="badge-shipped">✅ Shipped</span>
+      </div>
+
+      <!-- Microsoft Teams — Coming Soon -->
       <div style="background:#fff;border-radius:16px;padding:32px 24px;box-shadow:0 1px 4px rgba(0,0,0,0.08);display:flex;flex-direction:column;align-items:center;gap:16px;">
         <img src="https://cdn.simpleicons.org/microsoftteams/6264A7" alt="Microsoft Teams" width="48" height="48" style="border-radius:10px;">
         <div>
@@ -877,7 +957,7 @@
         <span style="background:#ede9fe;color:#7c3aed;font-size:0.75rem;font-weight:600;padding:4px 12px;border-radius:99px;">Coming Soon</span>
       </div>
 
-      <!-- Google Chat -->
+      <!-- Google Chat — Coming Soon -->
       <div style="background:#fff;border-radius:16px;padding:32px 24px;box-shadow:0 1px 4px rgba(0,0,0,0.08);display:flex;flex-direction:column;align-items:center;gap:16px;">
         <img src="https://cdn.simpleicons.org/googlechat/00AC47" alt="Google Chat" width="48" height="48" style="border-radius:10px;">
         <div>
@@ -887,7 +967,7 @@
         <span style="background:#ede9fe;color:#4f46e5;font-size:0.75rem;font-weight:600;padding:4px 12px;border-radius:99px;">Coming Soon</span>
       </div>
 
-      <!-- MCP / AI Integration -->
+      <!-- MCP / AI Integration — Coming Soon -->
       <div style="background:#fff;border-radius:16px;padding:32px 24px;box-shadow:0 1px 4px rgba(0,0,0,0.08);display:flex;flex-direction:column;align-items:center;gap:16px;">
         <div style="width:48px;height:48px;background:linear-gradient(135deg,#f97316,#ec4899);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;">🤖</div>
         <div>
@@ -897,7 +977,7 @@
         <span style="background:#fff7ed;color:#f97316;font-size:0.75rem;font-weight:600;padding:4px 12px;border-radius:99px;">Coming Soon</span>
       </div>
 
-      <!-- AI Summary -->
+      <!-- AI Summary — Coming Soon -->
       <div style="background:#fff;border-radius:16px;padding:32px 24px;box-shadow:0 1px 4px rgba(0,0,0,0.08);display:flex;flex-direction:column;align-items:center;gap:16px;">
         <div style="width:48px;height:48px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;">✨</div>
         <div>
@@ -921,7 +1001,7 @@
       <div class="footer-brand">
         <div class="logo">🌅 morgenruf</div>
         <p>Free, open-source Slack standup bot. Self-host it, own your data, and say goodbye to per-seat pricing forever.</p>
-        <div style="margin-top:16px;"><span class="footer-badge">Apache 2.0</span></div>
+        <div style="margin-top:16px;"><span class="footer-badge">MIT</span></div>
       </div>
       <div class="footer-col">
         <h4>Product</h4>
@@ -948,7 +1028,7 @@
     </div>
     <hr class="footer-divider"/>
     <div class="footer-bottom">
-      <span>&copy; 2026 Morgenruf &mdash; Apache 2.0</span>
+      <span>&copy; 2026 Morgenruf &mdash; MIT</span>
       <div style="display:flex;gap:16px;">
         <a href="/privacy">Privacy</a>
         <a href="/terms">Terms</a>
