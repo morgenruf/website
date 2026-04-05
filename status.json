@@ -1,0 +1,35 @@
+{
+  "updated_at": "2026-04-05T15:00:00Z",
+  "overall": "operational",
+  "services": [
+    {
+      "name": "Slack Bot API",
+      "slug": "api",
+      "status": "operational",
+      "uptime_90d": 99.9,
+      "history": []
+    },
+    {
+      "name": "Web Dashboard",
+      "slug": "dashboard",
+      "status": "operational",
+      "uptime_90d": 99.9,
+      "history": []
+    },
+    {
+      "name": "Database",
+      "slug": "db",
+      "status": "operational",
+      "uptime_90d": 99.9,
+      "history": []
+    },
+    {
+      "name": "Scheduler",
+      "slug": "scheduler",
+      "status": "operational",
+      "uptime_90d": 99.9,
+      "history": []
+    }
+  ],
+  "incidents": []
+}

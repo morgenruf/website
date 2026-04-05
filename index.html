@@ -153,8 +153,38 @@
     }
     .hero-headline em { font-style: normal; color: var(--indigo); }
     .hero-sub {
-      font-size: 1.15rem; color: var(--text-body); max-width: 580px; margin: 0 auto 36px;
+      font-size: 1.15rem; color: var(--text-body); max-width: 580px; margin: 0 auto 28px;
       line-height: 1.7;
+    }
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(79,70,229,0.06);
+      border: 1px solid rgba(79,70,229,0.15);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      color: var(--text-head);
+      text-decoration: none;
+      margin-bottom: 24px;
+      backdrop-filter: blur(8px);
+      transition: background 0.2s, border-color 0.2s;
+      font-weight: 500;
+    }
+    .status-indicator:hover { background: rgba(79,70,229,0.1); border-color: rgba(79,70,229,0.25); }
+    .status-dot {
+      width: 8px; height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: statusPulse 2s infinite;
+    }
+    .status-dot.outage { background: #ef4444; animation: none; }
+    .status-dot.degraded { background: #f59e0b; animation: none; }
+    @keyframes statusPulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+      50% { opacity: 0.8; box-shadow: 0 0 0 5px rgba(34,197,94,0); }
     }
     .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
 
@@ -490,6 +520,12 @@
       <div class="hero-badge">Open Source &amp; Free Forever</div>
       <h1 class="hero-headline">Run standups your team<br/><em>actually love</em></h1>
       <p class="hero-sub">Free, open-source, self-hosted Slack standup bot. Your data, your servers, forever free.</p>
+      <div style="text-align:center;margin-bottom:0">
+        <a href="https://status.morgenruf.dev" class="status-indicator" id="site-status-badge">
+          <span class="status-dot" id="status-dot"></span>
+          <span id="status-text">All systems operational</span>
+        </a>
+      </div>
       <div class="hero-ctas">
         <a href="https://api.morgenruf.dev/install" class="btn btn-green btn-lg">
           <svg width="18" height="18" viewBox="0 0 54 54" fill="none" style="flex-shrink:0">
@@ -1093,6 +1129,32 @@
     }
   }, { threshold: 0.3 });
   statsObserver.observe(statsSection);
+</script>
+<script>
+  // Fetch status.json and update the hero badge
+  (function() {
+    fetch('./status.json?_=' + Date.now())
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .then(function(data) {
+        if (!data) return;
+        var dot = document.getElementById('status-dot');
+        var text = document.getElementById('status-text');
+        var badge = document.getElementById('site-status-badge');
+        if (!dot || !text) return;
+        var overall = data.overall || 'operational';
+        if (overall === 'operational') {
+          dot.className = 'status-dot';
+          text.textContent = 'All systems operational';
+        } else if (overall === 'degraded') {
+          dot.className = 'status-dot degraded';
+          text.textContent = 'Partial outage';
+        } else {
+          dot.className = 'status-dot outage';
+          text.textContent = 'Service disruption';
+        }
+      })
+      .catch(function() { /* silent fail — default badge stays */ });
+  })();
 </script>
 </body>
 </html>

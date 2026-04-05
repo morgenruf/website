@@ -1,0 +1,68 @@
+name: Status Check
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check and update status.json
+        run: |
+          python3 - << 'PYEOF'
+          import json, subprocess
+          from datetime import datetime, timezone
+
+          now = datetime.now(timezone.utc)
+          now_str = now.strftime('%Y-%m-%dT%H:%M:%SZ')
+          today_str = now.strftime('%Y-%m-%d')
+
+          # Check API health
+          result = subprocess.run(
+              ['curl', '-s', '-o', '/dev/null', '-w', '%{http_code}', '--max-time', '10',
+               'https://api.morgenruf.dev/healthz'],
+              capture_output=True, text=True
+          )
+          http_code = result.stdout.strip()
+          status = 'operational' if http_code == '200' else 'outage'
+          print(f'API health check: HTTP {http_code} → {status}')
+
+          with open('status.json') as f:
+              data = json.load(f)
+
+          data['updated_at'] = now_str
+          data['overall'] = status
+
+          for svc in data['services']:
+              svc['status'] = status
+              history = svc.get('history', [])
+              today_entry = next((h for h in history if h['date'] == today_str), None)
+              if today_entry:
+                  today_entry['status'] = status
+              else:
+                  history.append({'date': today_str, 'status': status})
+              svc['history'] = sorted(history, key=lambda x: x['date'])[-90:]
+              if svc['history']:
+                  up = sum(1 for h in svc['history'] if h['status'] == 'operational')
+                  svc['uptime_90d'] = round(up / len(svc['history']) * 100, 2)
+
+          with open('status.json', 'w') as f:
+              json.dump(data, f, indent=2)
+
+          print(f'Updated status.json: overall={status}, updated_at={now_str}')
+          PYEOF
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add status.json
+          git diff --staged --quiet || git commit -m "chore: status check $(date -u +'%Y-%m-%d %H:%M UTC') [skip ci]"
+          git push
