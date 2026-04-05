@@ -1133,7 +1133,7 @@
 <script>
   // Fetch status.json and update the hero badge
   (function() {
-    fetch('./status.json?_=' + Date.now())
+    fetch('https://status.morgenruf.dev/status.json?_=' + Date.now())
       .then(function(r) { return r.ok ? r.json() : null; })
       .then(function(data) {
         if (!data) return;
