@@ -17,6 +17,103 @@
   <meta name="twitter:description" content="Free, open-source, self-hosted Slack standup bot. No credit card, no per-user pricing, forever."/>
   <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>&#x1F305;</text></svg>"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Morgenruf",
+    "url": "https://morgenruf.dev",
+    "applicationCategory": "BusinessApplication",
+    "applicationSubCategory": "Project Management",
+    "operatingSystem": "Web, Docker, Kubernetes",
+    "description": "Free, open-source, self-hosted Slack standup bot. Replace Geekbot or Standup & Prosper with no credit card, no per-user pricing, forever.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "license": "https://opensource.org/licenses/MIT",
+    "isAccessibleForFree": true,
+    "creator": {
+      "@type": "Organization",
+      "name": "Morgenruf",
+      "url": "https://morgenruf.dev"
+    },
+    "featureList": [
+      "Custom standup questions",
+      "Timezone-aware scheduling",
+      "Per-user timezone support",
+      "Mood tracking",
+      "Participation analytics",
+      "CSV export",
+      "Webhooks",
+      "Web dashboard",
+      "Weekly digest email",
+      "Blocker detection",
+      "AI summaries",
+      "MCP server integration"
+    ],
+    "screenshot": "https://morgenruf.dev/og-image.png",
+    "softwareVersion": "1.0.0",
+    "releaseNotes": "https://github.com/morgenruf/morgenruf/releases"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is Morgenruf really free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Morgenruf is 100% free and open source under the MIT license. There are no paid tiers, no per-user pricing, and no credit card required. You self-host it on your own infrastructure, so the only cost is your server (as low as $5/month on most cloud providers)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does Morgenruf compare to Geekbot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Morgenruf offers all the core features of Geekbot — custom questions, scheduling, Slack DM collection, channel summaries, and analytics — but is completely free and self-hosted. Geekbot charges $2.50/user/month and stores your data on their servers. With Morgenruf, you own your data and pay nothing per user."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where is my standup data stored?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your data is stored in a PostgreSQL database on your own infrastructure. Morgenruf is fully self-hosted — your standup responses, team data, and analytics never leave your servers. There is zero telemetry or data collection by Morgenruf."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use Morgenruf with multiple Slack workspaces?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Morgenruf supports multi-workspace Slack OAuth out of the box. You can install it in as many Slack workspaces as you need, all managed from a single deployment."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take to set up Morgenruf?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "About 30 seconds for the Slack installation. Click 'Add to Slack', authorize the app, and configure your standup questions from the web dashboard. For self-hosted deployment, Docker Compose, Helm charts, and AWS CloudFormation templates are all provided."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Morgenruf support Microsoft Teams or Google Chat?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Google Chat support is currently in beta, and Microsoft Teams support is actively being developed. Slack is the primary and fully supported platform today."
+        }
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
@@ -420,7 +517,7 @@
 
     /* ===== FOOTER ===== */
     footer { background: var(--text-head); color: #9ca3af; padding: 64px 0 32px; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
     .footer-brand .logo { font-size: 1.2rem; font-weight: 900; color: var(--indigo); margin-bottom: 12px; }
     .footer-brand p { font-size: 0.85rem; line-height: 1.65; max-width: 220px; }
     .footer-col h4 { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; margin-bottom: 16px; }
@@ -485,6 +582,7 @@
       <a href="#features">Features</a>
       <a href="#how-it-works">How it works</a>
       <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
       <a href="https://docs.morgenruf.dev">Docs</a>
     </div>
     <div class="nav-cta">
@@ -504,6 +602,7 @@
     <a href="#features">Features</a>
     <a href="#how-it-works">How it works</a>
     <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
     <a href="https://docs.morgenruf.dev">Docs</a>
     <a href="https://github.com/morgenruf/morgenruf">GitHub</a>
     <a href="https://api.morgenruf.dev/install" class="btn btn-indigo">Add to Slack</a>
@@ -1030,6 +1129,73 @@
   </div>
 </section>
 
+<!-- ===== FAQ ===== -->
+<section id="faq" style="background:var(--bg-white);padding:80px 0;">
+  <div class="container" style="max-width:760px;">
+    <div class="text-center fade-in">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-head">Frequently asked questions</h2>
+      <p class="section-sub" style="margin:0 auto 48px;">Everything you need to know about Morgenruf.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <details class="fade-in" style="background:var(--bg-cream);border:1px solid var(--border);border-radius:var(--radius);padding:0;" open>
+        <summary style="padding:20px 24px;font-weight:700;font-size:1rem;color:var(--text-head);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          Is Morgenruf really free?
+          <span style="font-size:1.2rem;color:var(--text-light);transition:transform 0.2s;">+</span>
+        </summary>
+        <div style="padding:0 24px 20px;font-size:0.95rem;color:var(--text-body);line-height:1.7;">
+          Yes. Morgenruf is 100% free and open source under the MIT license. There are no paid tiers, no per-user pricing, and no credit card required. You self-host it on your own infrastructure, so the only cost is your server (as low as $5/month on most cloud providers).
+        </div>
+      </details>
+      <details class="fade-in" style="background:var(--bg-cream);border:1px solid var(--border);border-radius:var(--radius);padding:0;">
+        <summary style="padding:20px 24px;font-weight:700;font-size:1rem;color:var(--text-head);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          How does Morgenruf compare to Geekbot?
+          <span style="font-size:1.2rem;color:var(--text-light);transition:transform 0.2s;">+</span>
+        </summary>
+        <div style="padding:0 24px 20px;font-size:0.95rem;color:var(--text-body);line-height:1.7;">
+          Morgenruf offers all the core features of Geekbot &mdash; custom questions, scheduling, Slack DM collection, channel summaries, and analytics &mdash; but is completely free and self-hosted. Geekbot charges $2.50/user/month and stores your data on their servers. With Morgenruf, you own your data and pay nothing per user.
+        </div>
+      </details>
+      <details class="fade-in" style="background:var(--bg-cream);border:1px solid var(--border);border-radius:var(--radius);padding:0;">
+        <summary style="padding:20px 24px;font-weight:700;font-size:1rem;color:var(--text-head);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          Where is my standup data stored?
+          <span style="font-size:1.2rem;color:var(--text-light);transition:transform 0.2s;">+</span>
+        </summary>
+        <div style="padding:0 24px 20px;font-size:0.95rem;color:var(--text-body);line-height:1.7;">
+          Your data is stored in a PostgreSQL database on your own infrastructure. Morgenruf is fully self-hosted &mdash; your standup responses, team data, and analytics never leave your servers. There is zero telemetry or data collection.
+        </div>
+      </details>
+      <details class="fade-in" style="background:var(--bg-cream);border:1px solid var(--border);border-radius:var(--radius);padding:0;">
+        <summary style="padding:20px 24px;font-weight:700;font-size:1rem;color:var(--text-head);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          Can I use Morgenruf with multiple Slack workspaces?
+          <span style="font-size:1.2rem;color:var(--text-light);transition:transform 0.2s;">+</span>
+        </summary>
+        <div style="padding:0 24px 20px;font-size:0.95rem;color:var(--text-body);line-height:1.7;">
+          Yes. Morgenruf supports multi-workspace Slack OAuth out of the box. You can install it in as many Slack workspaces as you need, all managed from a single deployment.
+        </div>
+      </details>
+      <details class="fade-in" style="background:var(--bg-cream);border:1px solid var(--border);border-radius:var(--radius);padding:0;">
+        <summary style="padding:20px 24px;font-weight:700;font-size:1rem;color:var(--text-head);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          How long does it take to set up?
+          <span style="font-size:1.2rem;color:var(--text-light);transition:transform 0.2s;">+</span>
+        </summary>
+        <div style="padding:0 24px 20px;font-size:0.95rem;color:var(--text-body);line-height:1.7;">
+          About 30 seconds for the Slack installation. Click "Add to Slack", authorize the app, and configure your standup questions from the web dashboard. For self-hosted deployment, Docker Compose, Helm charts, and AWS CloudFormation templates are all provided.
+        </div>
+      </details>
+      <details class="fade-in" style="background:var(--bg-cream);border:1px solid var(--border);border-radius:var(--radius);padding:0;">
+        <summary style="padding:20px 24px;font-weight:700;font-size:1rem;color:var(--text-head);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          Does Morgenruf support Microsoft Teams or Google Chat?
+          <span style="font-size:1.2rem;color:var(--text-light);transition:transform 0.2s;">+</span>
+        </summary>
+        <div style="padding:0 24px 20px;font-size:0.95rem;color:var(--text-body);line-height:1.7;">
+          Google Chat support is currently in beta, and Microsoft Teams support is actively being developed. Slack is the primary and fully supported platform today.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
 <!-- ===== FOOTER ===== -->
 <footer>
   <div class="container">
@@ -1045,6 +1211,7 @@
         <a href="#pricing">Pricing</a>
         <a href="#compare-table">Comparison</a>
         <a href="#how-it-works">How it works</a>
+        <a href="#faq">FAQ</a>
       </div>
       <div class="footer-col">
         <h4>Resources</h4>
@@ -1052,6 +1219,14 @@
         <a href="https://github.com/morgenruf/morgenruf">GitHub</a>
         <a href="https://github.com/morgenruf/morgenruf/releases">Changelog</a>
         <a href="https://github.com/morgenruf/morgenruf/issues">Issues</a>
+      </div>
+      <div class="footer-col">
+        <h4>Compare</h4>
+        <a href="/geekbot-alternative">Geekbot Alternative</a>
+        <a href="/standup-prosper-alternative">Standup &amp; Prosper Alternative</a>
+        <a href="/slack-standup-bot">Slack Standup Bot</a>
+        <a href="/open-source-standup-bot">Open Source Standup Bot</a>
+        <a href="/self-hosted-standup-bot">Self-Hosted Standup Bot</a>
       </div>
       <div class="footer-col">
         <h4>Community &amp; Legal</h4>

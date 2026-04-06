@@ -60,3 +60,28 @@
   from = "/terms"
   to = "/terms.html"
   status = 200
+
+[[redirects]]
+  from = "/geekbot-alternative"
+  to = "/geekbot-alternative.html"
+  status = 200
+
+[[redirects]]
+  from = "/standup-prosper-alternative"
+  to = "/standup-prosper-alternative.html"
+  status = 200
+
+[[redirects]]
+  from = "/open-source-standup-bot"
+  to = "/open-source-standup-bot.html"
+  status = 200
+
+[[redirects]]
+  from = "/self-hosted-standup-bot"
+  to = "/self-hosted-standup-bot.html"
+  status = 200
+
+[[redirects]]
+  from = "/slack-standup-bot"
+  to = "/slack-standup-bot.html"
+  status = 200

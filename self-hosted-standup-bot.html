@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Self-Hosted Slack Standup Bot &mdash; Morgenruf (Free, Open Source)</title>
+  <meta name="description" content="Morgenruf is a free, self-hosted Slack standup bot. Keep your standup data on your own servers. Deploy with Docker, Kubernetes, or AWS. Open source, MIT licensed."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://morgenruf.dev/self-hosted-standup-bot"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://morgenruf.dev/self-hosted-standup-bot"/>
+  <meta property="og:title" content="Self-Hosted Slack Standup Bot &mdash; Morgenruf"/>
+  <meta property="og:description" content="Free, self-hosted Slack standup bot. Your data stays on your servers. Deploy with Docker, Helm, or AWS."/>
+  <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>&#x1F305;</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Self-Hosted Slack Standup Bot — Morgenruf",
+    "url": "https://morgenruf.dev/self-hosted-standup-bot",
+    "mainEntity": {
+      "@type": "SoftwareApplication",
+      "name": "Morgenruf",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Docker, Kubernetes, AWS",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "url": "https://morgenruf.dev"
+    }
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --indigo: #4f46e5; --indigo-light: #ede9fe; --indigo-dark: #3730a3;
+      --text-head: #111827; --text-body: #6b7280; --text-light: #9ca3af;
+      --bg-white: #ffffff; --bg-cream: #F8F7F4; --bg-gray: #f3f4f6;
+      --border: #e5e7eb; --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.07), 0 4px 6px rgba(0,0,0,0.05);
+      --radius: 12px; --radius-lg: 20px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg-white); color: var(--text-body); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { color: var(--text-head); font-weight: 700; line-height: 1.2; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.2s; border: 2px solid transparent; font-family: 'Inter', sans-serif; }
+    .btn-indigo { background: var(--indigo); color: #fff; }
+    .btn-indigo:hover { background: var(--indigo-dark); transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--text-head); border-color: var(--border); }
+    .btn-ghost:hover { border-color: #9ca3af; background: var(--bg-gray); }
+    .btn-lg { padding: 15px 30px; font-size: 1rem; }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-size: 1.3rem; font-weight: 900; color: var(--indigo); letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px; }
+    footer { background: var(--text-head); color: #9ca3af; padding: 40px 0; text-align: center; font-size: 0.85rem; }
+    footer a { color: var(--indigo); }
+    .hero-alt { padding: 80px 0 60px; text-align: center; }
+    .hero-alt h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 900; letter-spacing: -1px; margin-bottom: 20px; }
+    .hero-alt h1 em { font-style: normal; color: var(--indigo); }
+    .hero-alt p { font-size: 1.15rem; max-width: 620px; margin: 0 auto 32px; line-height: 1.7; }
+    .hero-alt .ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .compare-section { padding: 80px 0; }
+    .compare-section.alt { background: var(--bg-cream); }
+    .section-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--indigo); margin-bottom: 12px; }
+    .section-head { font-size: clamp(1.5rem, 3vw, 2.25rem); margin-bottom: 16px; }
+    .section-sub { font-size: 1.05rem; max-width: 540px; }
+    .text-center { text-align: center; }
+    .text-center .section-sub { margin: 0 auto; }
+    .deploy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .deploy-card { background: var(--bg-white); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); border: 1px solid var(--border); text-align: center; }
+    .deploy-card .icon { font-size: 2.5rem; margin-bottom: 16px; display: block; }
+    .deploy-card h3 { font-size: 1.15rem; margin-bottom: 8px; }
+    .deploy-card p { font-size: 0.9rem; margin-bottom: 16px; }
+    .deploy-card .price { font-size: 0.82rem; font-weight: 700; color: var(--indigo); background: var(--indigo-light); display: inline-block; padding: 4px 12px; border-radius: 100px; }
+    .deploy-card code { background: var(--bg-gray); border: 1px solid var(--border); border-radius: 4px; padding: 2px 7px; font-size: 0.82rem; font-family: monospace; color: var(--text-head); }
+    .security-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 48px; }
+    .security-card { background: var(--bg-white); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); border: 1px solid var(--border); display: flex; gap: 16px; align-items: flex-start; }
+    .security-card .icon { font-size: 1.8rem; flex-shrink: 0; }
+    .security-card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+    .security-card p { font-size: 0.9rem; }
+    .cta-section { padding: 80px 0; text-align: center; background: var(--bg-cream); }
+    @media (max-width: 768px) {
+      .deploy-grid, .security-grid { grid-template-columns: 1fr; }
+      .hero-alt .ctas { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">🌅 morgenruf</a>
+    <div style="display:flex;gap:12px;align-items:center;">
+      <a href="/" class="btn btn-ghost" style="padding:9px 18px;font-size:0.88rem;">Home</a>
+      <a href="https://api.morgenruf.dev/install" class="btn btn-indigo" style="padding:9px 18px;font-size:0.88rem;">Add to Slack</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero-alt">
+  <div class="container">
+    <div class="section-label">Self-Hosted</div>
+    <h1>The standup bot that<br/>lives on <em>your servers</em></h1>
+    <p>Morgenruf is a free, self-hosted Slack standup bot. Your standup data stays on your infrastructure &mdash; never on a vendor's cloud. Deploy with Docker, Kubernetes, or AWS in minutes.</p>
+    <div class="ctas">
+      <a href="https://api.morgenruf.dev/install" class="btn btn-indigo btn-lg">Add to Slack &mdash; it's free</a>
+      <a href="https://github.com/morgenruf/morgenruf" class="btn btn-ghost btn-lg">View on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<section class="compare-section alt">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">Deployment</div>
+      <h2 class="section-head">Three ways to deploy</h2>
+      <p class="section-sub">Pick the method that fits your infrastructure. All production-ready.</p>
+    </div>
+    <div class="deploy-grid">
+      <div class="deploy-card">
+        <span class="icon">🐳</span>
+        <h3>Docker Compose</h3>
+        <p>The simplest path. Clone, configure, and <code>docker compose up -d</code>. Runs on any machine with Docker.</p>
+        <span class="price">~$5/mo on a VPS</span>
+      </div>
+      <div class="deploy-card">
+        <span class="icon">☸️</span>
+        <h3>Kubernetes / Helm</h3>
+        <p>Production Helm chart with support for external PostgreSQL, Cloudflare Tunnel, and horizontal scaling.</p>
+        <span class="price">Your existing cluster</span>
+      </div>
+      <div class="deploy-card">
+        <span class="icon">☁️</span>
+        <h3>AWS CloudFormation</h3>
+        <p>One-click AWS deployment. Starter template (EC2) or production template (ECS Fargate + RDS + ALB).</p>
+        <span class="price">~$15&ndash;$25/mo on AWS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="compare-section">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-label">Security &amp; Privacy</div>
+      <h2 class="section-head">Why self-hosting your standup bot matters</h2>
+      <p class="section-sub">Standup responses contain sensitive project details, timelines, and team health data.</p>
+    </div>
+    <div class="security-grid">
+      <div class="security-card">
+        <span class="icon">🏠</span>
+        <div>
+          <h3>Complete data ownership</h3>
+          <p>Every standup response, mood check-in, and analytics data point lives in your PostgreSQL database. No vendor has access.</p>
+        </div>
+      </div>
+      <div class="security-card">
+        <span class="icon">🛡️</span>
+        <div>
+          <h3>Zero telemetry</h3>
+          <p>Morgenruf sends absolutely no data back to us. No analytics, no usage tracking, no phone-home. Verify it in the open-source code.</p>
+        </div>
+      </div>
+      <div class="security-card">
+        <span class="icon">🔑</span>
+        <div>
+          <h3>Your encryption keys</h3>
+          <p>Configure your own secrets, TLS certificates, and database encryption. You control the entire security posture.</p>
+        </div>
+      </div>
+      <div class="security-card">
+        <span class="icon">📋</span>
+        <div>
+          <h3>Compliance friendly</h3>
+          <p>Self-hosting means you decide where data is stored geographically. Meet GDPR, SOC 2, HIPAA, or internal compliance requirements.</p>
+        </div>
+      </div>
+      <div class="security-card">
+        <span class="icon">🔍</span>
+        <div>
+          <h3>Fully auditable</h3>
+          <p>MIT-licensed open source. Your security team can audit every line of code before deployment.</p>
+        </div>
+      </div>
+      <div class="security-card">
+        <span class="icon">🔒</span>
+        <div>
+          <h3>Network isolation</h3>
+          <p>Run Morgenruf inside your VPC or private network. Use Cloudflare Tunnel to avoid exposing ingress endpoints.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2 class="section-head">Self-host your standups today</h2>
+    <p style="font-size:1.1rem;max-width:500px;margin:0 auto 32px;">Deploy Morgenruf in minutes. Your data stays on your servers &mdash; forever.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://api.morgenruf.dev/install" class="btn btn-indigo btn-lg">Add to Slack &mdash; it's free</a>
+      <a href="https://github.com/morgenruf/morgenruf" class="btn btn-ghost btn-lg">View on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Morgenruf &mdash; MIT License &middot; <a href="/">Home</a> &middot; <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a> &middot; <a href="https://github.com/morgenruf/morgenruf">GitHub</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
