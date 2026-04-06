@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Page Not Found &mdash; Morgenruf</title>
+  <meta name="robots" content="noindex"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>&#x1F305;</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --indigo: #4f46e5;
+      --indigo-light: #ede9fe;
+      --indigo-dark: #3730a3;
+      --text-head: #111827;
+      --text-body: #6b7280;
+      --bg-white: #ffffff;
+      --bg-cream: #F8F7F4;
+      --bg-gray: #f3f4f6;
+      --border: #e5e7eb;
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-white);
+      color: var(--text-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3, h4 { color: var(--text-head); font-weight: 700; line-height: 1.2; }
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: 8px; font-size: 0.95rem;
+      font-weight: 600; cursor: pointer; transition: all 0.2s; border: 2px solid transparent;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-indigo { background: var(--indigo); color: #fff; }
+    .btn-indigo:hover { background: var(--indigo-dark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn-ghost { background: transparent; color: var(--text-head); border-color: var(--border); }
+    .btn-ghost:hover { border-color: #9ca3af; background: var(--bg-gray); }
+
+    /* ===== NAV ===== */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; gap: 16px;
+    }
+    .nav-logo {
+      font-size: 1.3rem; font-weight: 900; color: var(--indigo);
+      letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px;
+    }
+    .nav-cta { display: flex; align-items: center; gap: 12px; }
+
+    /* ===== 404 CONTENT ===== */
+    .error-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 60px 0;
+    }
+    .error-bg-dots {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: 0.45;
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
+    }
+    .error-content {
+      position: relative; z-index: 1;
+      text-align: center;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .error-code {
+      font-size: clamp(5rem, 15vw, 8rem);
+      font-weight: 900;
+      color: var(--indigo);
+      line-height: 1;
+      letter-spacing: -4px;
+      margin-bottom: 16px;
+    }
+    .error-heading {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      color: var(--text-head);
+      margin-bottom: 12px;
+    }
+    .error-sub {
+      font-size: 1.05rem;
+      color: var(--text-body);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .error-ctas {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--text-head);
+      color: #9ca3af;
+      padding: 28px 0;
+    }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px; font-size: 0.82rem;
+    }
+    .footer-bottom a { color: #9ca3af; transition: color 0.15s; }
+    .footer-bottom a:hover { color: #fff; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 480px) {
+      .error-ctas { flex-direction: column; }
+      .error-ctas .btn { width: 100%; justify-content: center; }
+      .nav-cta .btn-ghost-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">&#127749; morgenruf</a>
+    <div class="nav-cta">
+      <a href="https://github.com/morgenruf/morgenruf" class="btn btn-ghost btn-ghost-nav" style="padding:9px 18px;font-size:0.88rem;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.4 7.9 10.9.58.1.79-.25.79-.55v-1.9c-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 2.9-.39c.98.01 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.07.78 2.15v3.19c0 .3.2.66.8.55A10.53 10.53 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+        GitHub
+      </a>
+      <a href="https://api.morgenruf.dev/install" class="btn btn-indigo" style="padding:9px 18px;font-size:0.88rem;">
+        Add to Slack
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== 404 CONTENT ===== -->
+<section class="error-section">
+  <div class="error-bg-dots"></div>
+  <div class="error-content">
+    <div class="error-code">404</div>
+    <h1 class="error-heading">Page not found</h1>
+    <p class="error-sub">The page you're looking for doesn't exist or has been moved.</p>
+    <div class="error-ctas">
+      <a href="/" class="btn btn-indigo">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Go home
+      </a>
+      <a href="https://github.com/morgenruf/morgenruf" class="btn btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.4 7.9 10.9.58.1.79-.25.79-.55v-1.9c-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 2.9-.39c.98.01 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.07.78 2.15v3.19c0 .3.2.66.8.55A10.53 10.53 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+        View on GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>&copy; 2026 Morgenruf &mdash; MIT</span>
+      <div style="display:flex;gap:16px;">
+        <a href="/">Home</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="https://github.com/morgenruf/morgenruf">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
