@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Geekbot vs Morgenruf: An Honest Comparison &mdash; Morgenruf</title>
+  <meta name="description" content="Geekbot vs Morgenruf — an honest, side-by-side comparison of two Slack standup bots. Features, pricing, data ownership, and which one is right for your team."/>
+  <meta name="keywords" content="geekbot vs morgenruf, geekbot review, geekbot alternative comparison, slack standup bot comparison"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://morgenruf.dev/blog/geekbot-vs-morgenruf"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://morgenruf.dev/blog/geekbot-vs-morgenruf"/>
+  <meta property="og:title" content="Geekbot vs Morgenruf: An Honest Comparison"/>
+  <meta property="og:description" content="An honest, side-by-side comparison of Geekbot and Morgenruf — two Slack standup bots. Features, pricing, data ownership, and which one fits your team."/>
+  <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
+  <meta property="article:published_time" content="2026-04-05"/>
+  <meta property="article:author" content="Anmol"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Geekbot vs Morgenruf: An Honest Comparison"/>
+  <meta name="twitter:description" content="An honest, side-by-side comparison of Geekbot and Morgenruf — two Slack standup bots. Features, pricing, and which one is right for your team."/>
+  <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>&#x1F305;</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Geekbot vs Morgenruf: An Honest Comparison",
+    "description": "An honest, side-by-side comparison of Geekbot and Morgenruf — two Slack standup bots. Features, pricing, data ownership, and which one fits your team.",
+    "url": "https://morgenruf.dev/blog/geekbot-vs-morgenruf",
+    "datePublished": "2026-04-05",
+    "dateModified": "2026-04-05",
+    "author": {
+      "@type": "Person",
+      "name": "Anmol"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Morgenruf",
+      "url": "https://morgenruf.dev"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://morgenruf.dev/blog/geekbot-vs-morgenruf"
+    },
+    "image": "https://morgenruf.dev/og-image.png"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://morgenruf.dev"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://morgenruf.dev/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Geekbot vs Morgenruf: An Honest Comparison",
+        "item": "https://morgenruf.dev/blog/geekbot-vs-morgenruf"
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --indigo: #4f46e5; --indigo-light: #ede9fe; --indigo-dark: #3730a3;
+      --text-head: #111827; --text-body: #6b7280; --text-light: #9ca3af;
+      --bg-white: #ffffff; --bg-cream: #F8F7F4; --bg-gray: #f3f4f6;
+      --border: #e5e7eb; --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.07), 0 4px 6px rgba(0,0,0,0.05);
+      --radius: 12px; --radius-lg: 20px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg-white); color: var(--text-body); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { color: var(--text-head); font-weight: 700; line-height: 1.2; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.2s; border: 2px solid transparent; font-family: 'Inter', sans-serif; }
+    .btn-indigo { background: var(--indigo); color: #fff; }
+    .btn-indigo:hover { background: var(--indigo-dark); transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--text-head); border-color: var(--border); }
+    .btn-ghost:hover { border-color: #9ca3af; background: var(--bg-gray); }
+    .btn-lg { padding: 15px 30px; font-size: 1rem; }
+
+    /* Nav */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-size: 1.3rem; font-weight: 900; color: var(--indigo); letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px; }
+
+    /* Footer */
+    footer { background: var(--text-head); color: #9ca3af; padding: 40px 0; text-align: center; font-size: 0.85rem; }
+    footer a { color: var(--indigo); }
+
+    /* Article layout */
+    .article-wrapper { max-width: 700px; margin: 0 auto; padding: 0 24px; }
+
+    /* Article header */
+    .article-header { padding: 64px 0 40px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
+    .article-meta { font-size: 0.85rem; color: var(--text-light); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .article-meta span { display: flex; align-items: center; gap: 4px; }
+    .article-header h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 16px; }
+    .article-header .subtitle { font-size: 1.15rem; line-height: 1.7; color: var(--text-body); }
+
+    /* Article content */
+    .article-content { padding-bottom: 64px; }
+    .article-content h2 { font-size: 1.5rem; margin: 48px 0 16px; letter-spacing: -0.3px; }
+    .article-content h3 { font-size: 1.15rem; margin: 32px 0 12px; }
+    .article-content p { font-size: 1rem; line-height: 1.8; margin-bottom: 20px; }
+    .article-content ul, .article-content ol { margin: 0 0 20px 20px; }
+    .article-content li { font-size: 1rem; line-height: 1.8; margin-bottom: 8px; }
+    .article-content a { color: var(--indigo); text-decoration: underline; text-underline-offset: 2px; }
+    .article-content a:hover { color: var(--indigo-dark); }
+    .article-content strong { color: var(--text-head); }
+
+    /* Comparison table */
+    .table-wrap { margin: 32px 0 36px; overflow-x: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+    table { width: 100%; border-collapse: collapse; background: var(--bg-white); }
+    thead th { padding: 18px 24px; font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid var(--border); }
+    thead th:first-child { text-align: left; color: var(--text-body); }
+    thead th:not(:first-child) { text-align: center; }
+    .th-morgenruf { background: var(--indigo); color: #fff !important; }
+    tbody td { padding: 14px 24px; font-size: 0.9rem; border-bottom: 1px solid var(--border); }
+    tbody td:first-child { font-weight: 600; color: var(--text-head); }
+    tbody td:not(:first-child) { text-align: center; }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: var(--bg-cream); }
+    .td-morgenruf { background: rgba(22,163,74,0.04); }
+
+    /* CTA section */
+    .cta-section { padding: 80px 0; text-align: center; background: var(--bg-cream); }
+    .cta-section h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 16px; }
+    .cta-section p { font-size: 1.1rem; max-width: 520px; margin: 0 auto 32px; line-height: 1.7; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .article-header { padding: 40px 0 28px; margin-bottom: 32px; }
+      .article-content h2 { margin-top: 36px; }
+      thead th { padding: 14px 16px; font-size: 0.8rem; }
+      tbody td { padding: 12px 16px; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">&#x1F305; morgenruf</a>
+    <div style="display:flex;gap:12px;align-items:center;">
+      <a href="/blog" class="btn btn-ghost" style="padding:9px 18px;font-size:0.88rem;">Blog</a>
+      <a href="https://api.morgenruf.dev/install" class="btn btn-indigo" style="padding:9px 18px;font-size:0.88rem;">Add to Slack</a>
+    </div>
+  </div>
+</nav>
+
+<article>
+  <div class="article-wrapper">
+    <header class="article-header">
+      <div class="article-meta">
+        <span>By <strong style="color:var(--text-head);">Anmol</strong></span>
+        <span>&middot;</span>
+        <span>April 5, 2026</span>
+        <span>&middot;</span>
+        <span>6 min read</span>
+      </div>
+      <h1>Geekbot vs Morgenruf: An Honest Comparison</h1>
+      <p class="subtitle">Both are Slack standup bots. One costs $2.50/user/month. The other is open source and free forever. Here's an honest look at how they stack up &mdash; and which one is right for your team.</p>
+    </header>
+
+    <div class="article-content">
+
+      <h2>Quick overview</h2>
+      <p><a href="https://geekbot.com" target="_blank" rel="noopener">Geekbot</a> and <a href="https://morgenruf.dev">Morgenruf</a> both solve the same problem: asynchronous standups in Slack. They collect responses via DM, post summaries to a channel, and give you analytics on participation and blockers.</p>
+      <p>The key difference is the business model. Geekbot is a managed SaaS product priced at $2.50 per user per month. Morgenruf is an open-source, self-hosted alternative licensed under MIT &mdash; free forever, no per-user pricing, no credit card required.</p>
+      <p>Both are good products. This post is an honest look at where each one shines.</p>
+
+      <h2>Feature comparison</h2>
+      <p>Here's a side-by-side breakdown of what you get with each tool:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="th-morgenruf">Morgenruf</th>
+              <th>Geekbot</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Price</td><td class="td-morgenruf" style="font-weight:700;color:var(--indigo);">$0 forever</td><td>$2.50/user/mo</td></tr>
+            <tr><td>10-person team / year</td><td class="td-morgenruf" style="font-weight:700;color:var(--indigo);">$0</td><td>$300/year</td></tr>
+            <tr><td>50-person team / year</td><td class="td-morgenruf" style="font-weight:700;color:var(--indigo);">$0</td><td>$1,500/year</td></tr>
+            <tr><td>Self-hosted</td><td class="td-morgenruf">&#x2705;</td><td>&#x274C;</td></tr>
+            <tr><td>Open source</td><td class="td-morgenruf">&#x2705; MIT</td><td>&#x274C;</td></tr>
+            <tr><td>Data ownership</td><td class="td-morgenruf">&#x2705;</td><td>&#x274C;</td></tr>
+            <tr><td>Custom questions</td><td class="td-morgenruf">&#x2705;</td><td>&#x2705;</td></tr>
+            <tr><td>Slack DM collection</td><td class="td-morgenruf">&#x2705;</td><td>&#x2705;</td></tr>
+            <tr><td>Channel summaries</td><td class="td-morgenruf">&#x2705;</td><td>&#x2705;</td></tr>
+            <tr><td>Timezone scheduling</td><td class="td-morgenruf">&#x2705;</td><td>&#x2705;</td></tr>
+            <tr><td>Per-user timezone</td><td class="td-morgenruf">&#x2705;</td><td>&#x2705;</td></tr>
+            <tr><td>Mood tracking</td><td class="td-morgenruf">&#x2705;</td><td>&#x274C;</td></tr>
+            <tr><td>Webhooks</td><td class="td-morgenruf">&#x2705;</td><td>&#x2705; (paid tier)</td></tr>
+            <tr><td>CSV export</td><td class="td-morgenruf">&#x2705;</td><td>&#x2705; (paid tier)</td></tr>
+            <tr><td>Analytics</td><td class="td-morgenruf">&#x2705;</td><td>&#x2705;</td></tr>
+            <tr><td>Weekly digest</td><td class="td-morgenruf">&#x2705;</td><td>&#x2705;</td></tr>
+            <tr><td>MCP / AI integration</td><td class="td-morgenruf">&#x2705;</td><td>&#x274C;</td></tr>
+            <tr><td>Zero telemetry</td><td class="td-morgenruf">&#x2705;</td><td>&#x274C;</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Where Geekbot wins</h2>
+      <p>Let's be fair: Geekbot is a well-built product with real advantages.</p>
+      <ul>
+        <li><strong>Zero ops.</strong> Geekbot is fully managed. You install it from the Slack App Directory, configure your standup, and you're done. There's no server to provision, no database to back up, no Docker containers to monitor. For teams without DevOps capacity, that simplicity matters.</li>
+        <li><strong>Slack App Directory listing.</strong> Geekbot is listed in the official Slack App Directory, which makes discovery and installation trivially easy. IT admins can approve it through standard Slack governance workflows.</li>
+        <li><strong>Maturity and track record.</strong> Geekbot has been around for years and serves thousands of teams. It's battle-tested at scale, has a dedicated support team, and has a polished onboarding experience.</li>
+        <li><strong>Larger team behind it.</strong> With a funded team behind it, Geekbot can invest in product design, customer support, and enterprise features that a lean open-source project can't always match.</li>
+      </ul>
+      <p>If you want a standup bot you can set up in two minutes and never think about infrastructure, Geekbot is a solid choice.</p>
+
+      <h2>Where Morgenruf wins</h2>
+      <p>That said, Morgenruf has meaningful advantages for teams that care about cost, ownership, or flexibility.</p>
+      <ul>
+        <li><strong>Free forever.</strong> Morgenruf costs $0 regardless of team size. A 50-person team saves $1,500/year compared to Geekbot. A 200-person org saves $6,000/year. The only cost is the server you host it on &mdash; typically $5&ndash;$20/month.</li>
+        <li><strong>Full data ownership.</strong> Your standup responses, mood data, and analytics stay on your infrastructure. No third-party access, no data processing agreements to negotiate, no wondering where your team's daily updates end up.</li>
+        <li><strong>Open source (MIT).</strong> Fork it, customize it, audit the code, contribute back. You're never locked into a vendor's roadmap. If you need a custom integration or workflow, you can build it yourself.</li>
+        <li><strong>Mood tracking.</strong> Morgenruf includes built-in mood tracking that lets you monitor team health over time &mdash; a feature Geekbot doesn't offer at any tier.</li>
+        <li><strong>MCP / AI integration.</strong> Connect Morgenruf to AI tools like Claude, Cursor, or GitHub Copilot via the Model Context Protocol. Ask "what did my team work on this week?" in natural language and get answers from your standup data.</li>
+        <li><strong>No vendor lock-in.</strong> Your data is always yours. Export to CSV anytime. Migrate to another tool or build your own &mdash; the MIT license guarantees your freedom.</li>
+        <li><strong>Zero telemetry.</strong> Morgenruf collects no usage data, sends no analytics, and phones home to nobody. What happens on your server stays on your server.</li>
+      </ul>
+
+      <h2>Who should choose which</h2>
+      <h3>Choose Geekbot if...</h3>
+      <ul>
+        <li>You want zero infrastructure responsibility &mdash; no servers, no backups, no updates.</li>
+        <li>Budget isn't a primary concern and you're happy with SaaS pricing.</li>
+        <li>You need a Slack App Directory-listed tool for IT compliance reasons.</li>
+        <li>You prefer managed support with a dedicated team behind the product.</li>
+      </ul>
+
+      <h3>Choose Morgenruf if...</h3>
+      <ul>
+        <li>You want to eliminate per-user SaaS costs for your standup tool.</li>
+        <li>Data ownership and privacy matter to your organization.</li>
+        <li>You want the ability to customize, fork, or extend the tool.</li>
+        <li>You're interested in AI/MCP integration for standup insights.</li>
+        <li>You have basic infrastructure (a single server or container platform) and someone comfortable with Docker.</li>
+      </ul>
+
+      <h2>The bottom line</h2>
+      <p>Geekbot is a good product. We're not here to trash it. But for most teams, Morgenruf gives you everything Geekbot does &mdash; custom questions, Slack DM collection, channel summaries, timezone scheduling, analytics, weekly digests &mdash; at $0.</p>
+      <p>The only real trade-off is running your own infrastructure. If you have a server (or can spin up a $5/month VPS) and someone who can run <code style="background:var(--bg-gray);padding:2px 6px;border-radius:4px;font-size:0.9em;">docker compose up</code>, you get a standup bot that's free, private, and fully yours.</p>
+      <p>For most engineering teams, that's a trade-off worth making.</p>
+
+      <div style="margin-top:48px;padding:32px;background:var(--bg-cream);border-radius:var(--radius);text-align:center;">
+        <p style="font-size:1.1rem;font-weight:600;color:var(--text-head);margin-bottom:16px;">Ready to try Morgenruf?</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="https://api.morgenruf.dev/install" class="btn btn-indigo">Add to Slack &mdash; it's free</a>
+          <a href="https://github.com/morgenruf/morgenruf" class="btn btn-ghost">View on GitHub</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</article>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Morgenruf &mdash; MIT License &middot; <a href="/">Home</a> &middot; <a href="/blog">Blog</a> &middot; <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a> &middot; <a href="https://github.com/morgenruf/morgenruf">GitHub</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

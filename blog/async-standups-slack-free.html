@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How to Run Async Standups in Slack Without Paying Per User &mdash; Morgenruf</title>
+  <meta name="description" content="Learn how to run async standups in Slack for free using Morgenruf. Replace expensive standup bots like Geekbot with an open-source alternative — no per-user pricing, ever."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://morgenruf.dev/blog/async-standups-slack-free"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://morgenruf.dev/blog/async-standups-slack-free"/>
+  <meta property="og:title" content="How to Run Async Standups in Slack Without Paying Per User"/>
+  <meta property="og:description" content="Learn how to run async standups in Slack for free. Replace Geekbot with Morgenruf — open source, no per-user pricing."/>
+  <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
+  <meta property="article:published_time" content="2026-04-05"/>
+  <meta property="article:author" content="Anmol"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="How to Run Async Standups in Slack Without Paying Per User"/>
+  <meta name="twitter:description" content="Learn how to run async standups in Slack for free. Replace Geekbot with Morgenruf — open source, no per-user pricing."/>
+  <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>&#x1F305;</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "How to Run Async Standups in Slack Without Paying Per User",
+    "description": "Learn how to run async standups in Slack for free using Morgenruf. Replace expensive standup bots like Geekbot with an open-source alternative.",
+    "url": "https://morgenruf.dev/blog/async-standups-slack-free",
+    "datePublished": "2026-04-05",
+    "dateModified": "2026-04-05",
+    "author": {
+      "@type": "Person",
+      "name": "Anmol"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Morgenruf",
+      "url": "https://morgenruf.dev",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://morgenruf.dev/og-image.png"
+      }
+    },
+    "image": "https://morgenruf.dev/og-image.png",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://morgenruf.dev/blog/async-standups-slack-free"
+    },
+    "keywords": ["async standup slack", "slack standup bot free", "how to do async standups", "async standups", "slack standup bot"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://morgenruf.dev"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://morgenruf.dev/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "How to Run Async Standups in Slack Without Paying Per User",
+        "item": "https://morgenruf.dev/blog/async-standups-slack-free"
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --indigo: #4f46e5; --indigo-light: #ede9fe; --indigo-dark: #3730a3;
+      --text-head: #111827; --text-body: #6b7280; --text-light: #9ca3af;
+      --bg-white: #ffffff; --bg-cream: #F8F7F4; --bg-gray: #f3f4f6;
+      --border: #e5e7eb; --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.07), 0 4px 6px rgba(0,0,0,0.05);
+      --radius: 12px; --radius-lg: 20px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg-white); color: var(--text-body); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { color: var(--text-head); font-weight: 700; line-height: 1.2; }
+    a { color: inherit; text-decoration: none; }
+
+    /* Nav */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .nav-logo { font-size: 1.3rem; font-weight: 900; color: var(--indigo); letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px; }
+    .nav-links { display: flex; gap: 12px; align-items: center; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.2s; border: 2px solid transparent; font-family: 'Inter', sans-serif; }
+    .btn-indigo { background: var(--indigo); color: #fff; }
+    .btn-indigo:hover { background: var(--indigo-dark); transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--text-head); border-color: var(--border); }
+    .btn-ghost:hover { border-color: #9ca3af; background: var(--bg-gray); }
+    .btn-sm { padding: 9px 18px; font-size: 0.88rem; }
+
+    /* Article */
+    .article-header { padding: 64px 24px 40px; text-align: center; }
+    .article-header .breadcrumb { font-size: 0.82rem; color: var(--text-light); margin-bottom: 24px; }
+    .article-header .breadcrumb a { color: var(--indigo); }
+    .article-header .breadcrumb a:hover { text-decoration: underline; }
+    .article-header h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 900; letter-spacing: -0.5px; max-width: 700px; margin: 0 auto 16px; }
+    .article-meta { font-size: 0.88rem; color: var(--text-light); }
+    .article-meta span { margin: 0 6px; }
+
+    .article-body { max-width: 700px; margin: 0 auto; padding: 0 24px 80px; font-size: 1.05rem; line-height: 1.8; color: var(--text-body); }
+    .article-body h2 { font-size: 1.5rem; margin: 48px 0 16px; letter-spacing: -0.3px; }
+    .article-body p { margin-bottom: 20px; }
+    .article-body strong { color: var(--text-head); }
+    .article-body a { color: var(--indigo); text-decoration: underline; text-underline-offset: 3px; }
+    .article-body a:hover { color: var(--indigo-dark); }
+    .article-body ul, .article-body ol { margin: 0 0 20px 24px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body blockquote { border-left: 3px solid var(--indigo); padding: 16px 20px; margin: 24px 0; background: var(--bg-cream); border-radius: 0 8px 8px 0; font-style: italic; }
+
+    .callout { background: var(--indigo-light); border-radius: var(--radius); padding: 24px 28px; margin: 32px 0; }
+    .callout p { margin-bottom: 0; color: var(--text-head); font-weight: 500; }
+
+    .steps { counter-reset: step-counter; list-style: none; margin-left: 0; padding-left: 0; }
+    .steps li { counter-increment: step-counter; position: relative; padding-left: 48px; margin-bottom: 24px; }
+    .steps li::before { content: counter(step-counter); position: absolute; left: 0; top: 2px; width: 32px; height: 32px; background: var(--indigo); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; }
+
+    .math-box { background: var(--bg-cream); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; margin: 24px 0; }
+    .math-box .line { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; font-size: 0.95rem; }
+    .math-box .line.total { border-top: 2px solid var(--text-head); margin-top: 8px; padding-top: 12px; font-weight: 700; color: var(--text-head); font-size: 1.05rem; }
+
+    .cta-box { text-align: center; margin: 48px 0 0; padding: 40px 28px; background: var(--bg-cream); border-radius: var(--radius-lg); }
+    .cta-box h2 { font-size: 1.4rem; margin-bottom: 12px; }
+    .cta-box p { margin-bottom: 20px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-box .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-lg { padding: 15px 30px; font-size: 1rem; }
+
+    /* Footer */
+    footer { background: var(--text-head); color: #9ca3af; padding: 40px 0; text-align: center; font-size: 0.85rem; }
+    footer a { color: var(--indigo); }
+
+    @media (max-width: 600px) {
+      .article-header { padding: 48px 20px 32px; }
+      .article-body { padding: 0 20px 60px; font-size: 1rem; }
+      .cta-box .cta-buttons { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">&#x1F305; morgenruf</a>
+    <div class="nav-links">
+      <a href="/blog" class="btn btn-ghost btn-sm">Blog</a>
+      <a href="https://api.morgenruf.dev/install" class="btn btn-indigo btn-sm">Add to Slack</a>
+    </div>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="breadcrumb"><a href="/">Home</a> <span>&rsaquo;</span> <a href="/blog">Blog</a> <span>&rsaquo;</span> Async Standups in Slack</div>
+  <h1>How to Run Async Standups in Slack Without Paying Per User</h1>
+  <div class="article-meta">
+    By <strong style="color:var(--text-head)">Anmol</strong> <span>&middot;</span> April 5, 2026 <span>&middot;</span> 6 min read
+  </div>
+</header>
+
+<article class="article-body">
+
+  <p>Your daily standup meeting is eating more time than you think. What feels like a quick 15-minute sync actually costs your team hours every week &mdash; and breaks the focus time that matters most. There is a better way, and it does not require an expensive SaaS tool.</p>
+
+  <h2>The problem with synchronous standups</h2>
+
+  <p>A typical standup runs 15 minutes. Multiply that by 5 days, and each person on your team loses <strong>75 minutes per week</strong> just sitting in a meeting where they talk for 2 minutes and listen for 13.</p>
+
+  <p>For a 10-person team, that is <strong>12.5 hours per week</strong> gone. Over a year, you are looking at more than 600 hours of collective time spent in a meeting that could be a Slack message.</p>
+
+  <p>The real cost goes beyond the calendar block. Synchronous standups:</p>
+  <ul>
+    <li><strong>Interrupt deep work.</strong> A standup at 10 AM splits the morning into two unusable chunks.</li>
+    <li><strong>Punish distributed teams.</strong> Someone is always joining at an inconvenient hour when your team spans timezones.</li>
+    <li><strong>Encourage rambling.</strong> Without structure, updates drift into discussions that belong in a separate thread.</li>
+    <li><strong>Create false urgency.</strong> People rush to have something to say rather than sharing what actually matters.</li>
+  </ul>
+
+  <h2>What async standups are</h2>
+
+  <p>An async standup replaces the live meeting with structured written updates. At a scheduled time, each team member gets a prompt &mdash; usually via DM &mdash; and replies with short answers to a set of questions. Those responses are collected and posted to a shared Slack channel.</p>
+
+  <p>Everyone updates on their own schedule within a window that works for them. No one has to be online at the same time. A typical async update takes <strong>2 minutes instead of 15</strong>, and the written record is searchable, skimmable, and permanent.</p>
+
+  <p>The result: your team stays aligned without the meeting.</p>
+
+  <h2>What you need</h2>
+
+  <p>Just two things:</p>
+  <ol>
+    <li>A <strong>Slack workspace</strong> (free plan works fine)</li>
+    <li><strong><a href="https://morgenruf.dev">Morgenruf</a></strong> &mdash; a free, open-source Slack standup bot</li>
+  </ol>
+
+  <p>Morgenruf is completely free. No per-user pricing, no paid tiers, no credit card required. You can use the hosted version or self-host it on your own infrastructure.</p>
+
+  <h2>Step-by-step setup with Morgenruf</h2>
+
+  <p>You can go from nothing to a working async standup in under 5 minutes. Here is how.</p>
+
+  <ol class="steps">
+    <li>
+      <strong>Install Morgenruf.</strong> Go to <a href="https://morgenruf.dev">morgenruf.dev</a> and click "Add to Slack." Authorize the app in your workspace. The whole process takes about 30 seconds.
+    </li>
+    <li>
+      <strong>Configure your standup.</strong> Pick the questions you want to ask (the defaults are Yesterday, Today, Blockers, and Mood). Set your schedule, timezone, and the Slack channel where summaries should be posted.
+    </li>
+    <li>
+      <strong>Morgenruf DMs your team.</strong> At the scheduled time, Morgenruf sends a direct message to each team member with the standup questions. No app-switching &mdash; everything happens inside Slack.
+    </li>
+    <li>
+      <strong>Team members reply in DMs.</strong> Each person responds at their own pace. Answers are short and structured: what they did, what they are doing, any blockers, and optionally their mood.
+    </li>
+    <li>
+      <strong>A formatted summary hits your channel.</strong> Once responses are collected, Morgenruf posts a clean, formatted summary to your chosen channel (like <code>#standup</code>). The whole team can scan updates at a glance.
+    </li>
+  </ol>
+
+  <div class="callout">
+    <p>That is it. Five minutes of setup, and your team never sits through another unnecessary standup meeting.</p>
+  </div>
+
+  <h2>Advanced features worth knowing about</h2>
+
+  <p>Morgenruf is simple by default but has depth when you need it:</p>
+  <ul>
+    <li><strong>Mood tracking.</strong> Track team morale over time. Spot burnout early before it becomes a retention problem.</li>
+    <li><strong>Participation analytics.</strong> See who is consistently updating and who might need a nudge, without micromanaging.</li>
+    <li><strong>Per-user timezones.</strong> Each team member gets their DM at the right local time, even if your team spans New York to Tokyo.</li>
+    <li><strong>Webhooks.</strong> Push standup data to your own systems &mdash; pipe it into Notion, a dashboard, or your CI pipeline.</li>
+    <li><strong>CSV export.</strong> Download standup history for reporting, retrospectives, or compliance.</li>
+  </ul>
+
+  <h2>The math: why free matters</h2>
+
+  <p>Most Slack standup bots charge per user per month. That adds up fast.</p>
+
+  <div class="math-box">
+    <div class="line"><span>Geekbot pricing</span> <span>$2.50 / user / month</span></div>
+    <div class="line"><span>Team of 20 people</span> <span>$50 / month</span></div>
+    <div class="line"><span>Annual cost</span> <span>$600 / year</span></div>
+    <div class="line total"><span>Morgenruf cost</span> <span>$0 / year</span></div>
+  </div>
+
+  <p>At 50 people, Geekbot costs $1,500/year. At 100 people, $3,000. The per-user model means the bill grows as your team does &mdash; exactly when you should be spending on things that matter.</p>
+
+  <p>Morgenruf is free and open source under the MIT license. If you self-host, <strong>you own your data</strong>. No vendor lock-in, no surprise price hikes, no negotiating enterprise contracts just to run a standup.</p>
+
+  <h2>Get started today</h2>
+
+  <p>Async standups save your team hours every week, protect deep work, and work across timezones. You do not need an expensive SaaS tool to get started.</p>
+
+  <div class="cta-box">
+    <h2>Ready to ditch the daily standup meeting?</h2>
+    <p>Install Morgenruf in your Slack workspace. Free, open source, takes 30 seconds.</p>
+    <div class="cta-buttons">
+      <a href="https://api.morgenruf.dev/install" class="btn btn-indigo btn-lg">Add to Slack &mdash; free</a>
+      <a href="https://github.com/morgenruf/morgenruf" class="btn btn-ghost btn-lg">View on GitHub</a>
+    </div>
+  </div>
+
+</article>
+
+<footer>
+  <div>&copy; 2026 Morgenruf &mdash; Free, open-source Slack standup bot. <a href="https://github.com/morgenruf/morgenruf">GitHub</a></div>
+</footer>
+
+</body>
+</html>

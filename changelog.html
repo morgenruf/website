@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Changelog &mdash; Morgenruf</title>
+  <meta name="description" content="Release notes and changelog for Morgenruf, the free open-source Slack standup bot."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://morgenruf.dev/changelog"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://morgenruf.dev/changelog"/>
+  <meta property="og:title" content="Changelog &mdash; Morgenruf"/>
+  <meta property="og:description" content="Release notes and changelog for Morgenruf, the free open-source Slack standup bot."/>
+  <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Changelog &mdash; Morgenruf"/>
+  <meta name="twitter:description" content="Release notes and changelog for Morgenruf, the free open-source Slack standup bot."/>
+  <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>&#x1F305;</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --indigo: #4f46e5;
+      --indigo-dark: #3730a3;
+      --text-head: #111827;
+      --text-body: #6b7280;
+      --bg-white: #fff;
+      --bg-cream: #F8F7F4;
+      --border: #e5e7eb;
+      --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+      --radius: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-cream);
+      color: var(--text-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 { color: var(--text-head); font-weight: 700; line-height: 1.2; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1120px; margin: 0 auto; padding: 0 24px;
+      height: 64px; gap: 16px;
+    }
+    .nav-logo {
+      font-size: 1.3rem; font-weight: 900; color: var(--indigo);
+      letter-spacing: -0.02em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a {
+      font-size: 0.9rem; font-weight: 500; color: var(--text-body);
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text-head); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 18px; border-radius: 8px; font-size: 0.88rem;
+      font-weight: 600; cursor: pointer; transition: all 0.2s;
+      border: 2px solid transparent; font-family: 'Inter', sans-serif;
+    }
+    .btn-indigo { background: var(--indigo); color: #fff; }
+    .btn-indigo:hover { background: var(--indigo-dark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+
+    /* ===== MAIN ===== */
+    .page-header {
+      text-align: center;
+      padding: 64px 24px 32px;
+    }
+    .page-header h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .page-header p {
+      font-size: 1.05rem;
+      color: var(--text-body);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .changelog {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .release-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 36px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .release-version {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-head);
+      margin-bottom: 4px;
+    }
+
+    .release-date {
+      font-size: 0.88rem;
+      color: var(--text-body);
+      margin-bottom: 24px;
+    }
+
+    .release-section h3 {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: 12px;
+    }
+
+    .release-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .release-section ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      font-size: 0.93rem;
+      color: var(--text-body);
+      line-height: 1.55;
+    }
+
+    .release-section ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--indigo);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--text-head);
+      color: #9ca3af;
+      padding: 40px 0;
+      text-align: center;
+    }
+    .footer-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+      font-size: 0.85rem;
+    }
+    .footer-inner a {
+      color: #9ca3af;
+      transition: color 0.15s;
+    }
+    .footer-inner a:hover { color: #fff; }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .release-card { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">&#x1F305; morgenruf</a>
+    <div class="nav-links">
+      <a href="/blog">Blog</a>
+    </div>
+    <a href="https://api.morgenruf.dev/install" class="btn btn-indigo">Add to Slack</a>
+  </div>
+</nav>
+
+<!-- ===== HEADER ===== -->
+<div class="page-header">
+  <h1>Changelog</h1>
+  <p>New features, improvements, and fixes for Morgenruf.</p>
+</div>
+
+<!-- ===== CHANGELOG ===== -->
+<div class="changelog">
+
+  <div class="release-card">
+    <div class="release-version">v1.0.0</div>
+    <div class="release-date">April 5, 2026</div>
+
+    <div class="release-section">
+      <h3>Features</h3>
+      <ul>
+        <li>Configurable standup schedule per team (times, timezones, days)</li>
+        <li>DM-based collection &mdash; bot DMs each member individually</li>
+        <li>Custom questions &mdash; fully editable from the dashboard</li>
+        <li>Skip today &mdash; DM <code>skip</code> to opt out for the day</li>
+        <li>Pre-standup reminder &mdash; configurable minutes before standup time</li>
+        <li>Per-user timezone &mdash; DM <code>timezone America/New_York</code> to set personal timezone</li>
+        <li>Blocker detection &mdash; highlights blockers in summaries</li>
+        <li>Manual trigger &mdash; type <code>standup</code> in DM anytime</li>
+        <li>Mood tracking &mdash; 4th question captures team sentiment</li>
+        <li>Auto-linking &mdash; Jira/GitHub/Linear issue references become clickable</li>
+        <li>Webhooks &mdash; HMAC-signed HTTP webhooks on standup.completed</li>
+        <li>Edit window &mdash; members can edit responses within configurable time</li>
+        <li>Web dashboard with analytics</li>
+        <li>Participation analytics with 7d/30d views</li>
+        <li>CSV export</li>
+        <li>Weekly digest email to admins</li>
+        <li>Welcome email for new workspaces</li>
+        <li>Multi-workspace Slack OAuth</li>
+        <li>Role-based access control (admin/member)</li>
+        <li>25 pre-built question templates</li>
+        <li>Kudos/peer recognition system</li>
+        <li>Workflow automation rules</li>
+        <li>Optional AI summaries (OpenAI/Anthropic)</li>
+        <li>MCP server integration</li>
+        <li>Google Chat adapter (Beta)</li>
+        <li>Docker, Helm, and AWS CloudFormation deployment</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/blog">Blog</a>
+      <a href="/changelog">Changelog</a>
+      <a href="https://docs.morgenruf.dev">Docs</a>
+      <a href="https://github.com/morgenruf/morgenruf">GitHub</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+    </div>
+    <p>&copy; 2026 Morgenruf. Free and open source under the MIT license.</p>
+  </div>
+</footer>
+
+</body>
+</html>

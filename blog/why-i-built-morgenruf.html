@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Why I Built a Free Geekbot Alternative at Tim Hortons &mdash; Morgenruf</title>
+  <meta name="description" content="How a weekend at Tim Hortons turned into Morgenruf — a free, open-source Geekbot alternative. The origin story of a self-hosted Slack standup bot with no per-user pricing."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://morgenruf.dev/blog/why-i-built-morgenruf"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://morgenruf.dev/blog/why-i-built-morgenruf"/>
+  <meta property="og:title" content="Why I Built a Free Geekbot Alternative at Tim Hortons"/>
+  <meta property="og:description" content="How a weekend at Tim Hortons turned into Morgenruf — a free, open-source standup bot that replaces Geekbot for $0."/>
+  <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
+  <meta property="article:published_time" content="2026-04-05"/>
+  <meta property="article:author" content="Anmol"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Why I Built a Free Geekbot Alternative at Tim Hortons"/>
+  <meta name="twitter:description" content="How a weekend at Tim Hortons turned into Morgenruf — a free, open-source standup bot that replaces Geekbot for $0."/>
+  <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>&#x1F305;</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Why I Built a Free Geekbot Alternative at Tim Hortons",
+    "description": "How a weekend at Tim Hortons turned into Morgenruf — a free, open-source Geekbot alternative and self-hosted Slack standup bot.",
+    "url": "https://morgenruf.dev/blog/why-i-built-morgenruf",
+    "datePublished": "2026-04-05",
+    "dateModified": "2026-04-05",
+    "author": {
+      "@type": "Person",
+      "name": "Anmol"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Morgenruf",
+      "url": "https://morgenruf.dev",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://morgenruf.dev/og-image.png"
+      }
+    },
+    "image": "https://morgenruf.dev/og-image.png",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://morgenruf.dev/blog/why-i-built-morgenruf"
+    },
+    "keywords": ["geekbot alternative", "free standup bot", "open source standup bot", "slack standup bot", "self-hosted standup"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://morgenruf.dev"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://morgenruf.dev/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Why I Built a Free Geekbot Alternative at Tim Hortons",
+        "item": "https://morgenruf.dev/blog/why-i-built-morgenruf"
+      }
+    ]
+  }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --indigo: #4f46e5; --indigo-light: #ede9fe; --indigo-dark: #3730a3;
+      --text-head: #111827; --text-body: #6b7280; --text-light: #9ca3af;
+      --bg-white: #ffffff; --bg-cream: #F8F7F4; --bg-gray: #f3f4f6;
+      --border: #e5e7eb; --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.07), 0 4px 6px rgba(0,0,0,0.05);
+      --radius: 12px; --radius-lg: 20px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg-white); color: var(--text-body); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { color: var(--text-head); font-weight: 700; line-height: 1.2; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.2s; border: 2px solid transparent; font-family: 'Inter', sans-serif; }
+    .btn-indigo { background: var(--indigo); color: #fff; }
+    .btn-indigo:hover { background: var(--indigo-dark); transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--text-head); border-color: var(--border); }
+    .btn-ghost:hover { border-color: #9ca3af; background: var(--bg-gray); }
+
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-size: 1.3rem; font-weight: 900; color: var(--indigo); letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px; }
+
+    .article-wrapper { max-width: 700px; margin: 0 auto; padding: 60px 24px 80px; }
+
+    .breadcrumb { font-size: 0.82rem; color: var(--text-light); margin-bottom: 32px; }
+    .breadcrumb a { color: var(--text-body); }
+    .breadcrumb a:hover { color: var(--indigo); }
+    .breadcrumb span { margin: 0 6px; }
+
+    .article-meta { margin-bottom: 32px; }
+    .article-meta time { font-size: 0.85rem; color: var(--text-light); font-weight: 500; }
+    .article-meta .author { font-size: 0.85rem; color: var(--text-body); font-weight: 600; margin-left: 12px; }
+
+    article h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; letter-spacing: -0.8px; line-height: 1.15; margin-bottom: 16px; }
+
+    article h2 { font-size: 1.4rem; font-weight: 800; margin-top: 48px; margin-bottom: 16px; letter-spacing: -0.3px; }
+
+    article p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 24px; color: var(--text-body); }
+
+    article strong { color: var(--text-head); font-weight: 600; }
+
+    article a { color: var(--indigo); font-weight: 500; text-decoration: underline; text-decoration-color: rgba(79,70,229,0.3); text-underline-offset: 3px; }
+    article a:hover { text-decoration-color: var(--indigo); }
+
+    article ul, article ol { margin-bottom: 24px; padding-left: 24px; }
+    article li { font-size: 1.05rem; line-height: 1.8; margin-bottom: 8px; color: var(--text-body); }
+
+    article code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.9em; background: var(--bg-gray); padding: 2px 6px; border-radius: 4px; color: var(--text-head); }
+
+    article blockquote { border-left: 3px solid var(--indigo); padding: 16px 24px; margin: 32px 0; background: var(--bg-cream); border-radius: 0 8px 8px 0; }
+    article blockquote p { margin-bottom: 0; font-style: italic; color: var(--text-head); }
+
+    .cta-box { background: var(--bg-cream); border: 1px solid var(--border); border-radius: var(--radius); padding: 36px; text-align: center; margin-top: 48px; }
+    .cta-box h2 { font-size: 1.3rem; margin-top: 0; margin-bottom: 12px; }
+    .cta-box p { font-size: 0.95rem; margin-bottom: 24px; }
+    .cta-box .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    footer { background: var(--text-head); color: #9ca3af; padding: 40px 0; text-align: center; font-size: 0.85rem; }
+    footer a { color: var(--indigo); }
+
+    @media (max-width: 600px) {
+      .article-wrapper { padding: 40px 20px 60px; }
+      .cta-box .cta-buttons { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">🌅 morgenruf</a>
+    <div style="display:flex;gap:12px;align-items:center;">
+      <a href="/blog" class="btn btn-ghost" style="padding:9px 18px;font-size:0.88rem;">Blog</a>
+      <a href="https://api.morgenruf.dev/install" class="btn btn-indigo" style="padding:9px 18px;font-size:0.88rem;">Add to Slack</a>
+    </div>
+  </div>
+</nav>
+
+<div class="article-wrapper">
+
+  <div class="breadcrumb">
+    <a href="/">Home</a><span>/</span><a href="/blog">Blog</a><span>/</span>Why I Built a Free Geekbot Alternative
+  </div>
+
+  <article>
+    <div class="article-meta">
+      <time datetime="2026-04-05">April 5, 2026</time>
+      <span class="author">Anmol</span>
+    </div>
+
+    <h1>Why I Built a Free Geekbot Alternative at Tim Hortons</h1>
+
+    <p>I was sitting in a Tim Hortons in Toronto on a Saturday morning, double-double in hand, reviewing my team's monthly SaaS bill. One line jumped out at me: <strong>Geekbot &mdash; $2.50/user/month</strong>. For a 12-person team, that's $30/month. $360/year. For a bot that DMs people three questions and pastes the answers into a Slack channel.</p>
+
+    <p>Don't get me wrong &mdash; Geekbot is a solid product. It works. But staring at that line item while sipping mediocre coffee, I had a thought that wouldn't leave me alone:</p>
+
+    <blockquote><p>A standup bot is fundamentally simple. You DM people questions on a schedule, collect their answers, and post a summary. That's it.</p></blockquote>
+
+    <p>The core loop is almost embarrassingly straightforward. A cron job triggers at the right time for each person's timezone, sends them a few questions via Slack DM, waits for replies, and posts the collected answers to a channel. The whole thing could be a weekend project.</p>
+
+    <p>So I opened my laptop right there in the Tim Hortons and started building.</p>
+
+    <h2>The weekend build</h2>
+
+    <p>I picked the tools I knew would let me move fast: <strong>Python with Flask</strong> for the web layer, <strong>PostgreSQL</strong> for storage, and the <strong>Slack Bolt SDK</strong> for the Slack integration. Bolt is excellent &mdash; it handles all the OAuth, event subscriptions, and message formatting so you can focus on actual logic instead of wrestling with Slack's API quirks.</p>
+
+    <p>By Saturday evening I had the core working: a Slack app that could DM a list of users a set of questions on a schedule, collect responses, and post a formatted summary to a channel. The bones of a standup bot, running locally.</p>
+
+    <p>Sunday was about making it real. I added a web dashboard, persistent scheduling with timezone support, and the ability to customize questions per standup. By the time the Tim Hortons closed, I had something that could genuinely replace Geekbot for my team.</p>
+
+    <h2>Going beyond the basics</h2>
+
+    <p>Here's the thing about building your own tool &mdash; once the foundation is there, adding features that paid tools charge extra for (or just don't offer) becomes trivial. So I kept going:</p>
+
+    <ul>
+      <li><strong>Mood tracking</strong> &mdash; each standup response includes an optional mood indicator. Over time you can spot burnout patterns before they become problems. Geekbot charges extra for this.</li>
+      <li><strong>Webhooks</strong> &mdash; fire standup data to any URL. Pipe it into Notion, Airtable, your own analytics pipeline, whatever. Your data, your rules.</li>
+      <li><strong>CSV export</strong> &mdash; download raw standup data anytime. No "please contact sales for data export" nonsense.</li>
+      <li><strong>MCP server and AI integration</strong> &mdash; this one's genuinely new. Morgenruf exposes an MCP server so AI tools like Claude can query your standup data directly. Ask "what blockers came up this week?" and get an actual answer from your data. Try getting that from Geekbot.</li>
+      <li><strong>Blocker detection</strong> &mdash; automatic flagging when someone mentions a blocker, so nothing slips through the cracks.</li>
+      <li><strong>Weekly digest emails</strong> &mdash; a summary of the week's standups delivered to your inbox.</li>
+    </ul>
+
+    <h2>Self-hosted means you own your data</h2>
+
+    <p>This was a non-negotiable for me. With Geekbot, your standup responses &mdash; which often contain sensitive information about what your team is working on, what's blocked, and how people are feeling &mdash; live on someone else's servers. You're trusting a third party with your team's daily internal communications.</p>
+
+    <p>With Morgenruf, everything runs on <strong>your infrastructure</strong>. Your database. Your servers. Your network. The standup data never leaves your environment. For teams working on anything remotely sensitive &mdash; which is most teams &mdash; this matters.</p>
+
+    <h2>Production-ready, not just a hobby project</h2>
+
+    <p>I've seen too many "I built X in a weekend" posts where the project is a barely-working prototype. I didn't want Morgenruf to be that. So I invested the time to make it genuinely production-ready:</p>
+
+    <ul>
+      <li><strong>Docker</strong> &mdash; single <code>docker compose up</code> and you're running.</li>
+      <li><strong>Helm charts</strong> &mdash; for teams that run Kubernetes, proper Helm charts with all the configuration you'd expect.</li>
+      <li><strong>AWS deployment</strong> &mdash; CloudFormation templates for ECS + RDS if you want a managed setup on AWS.</li>
+      <li><strong>Health checks, logging, error handling</strong> &mdash; the boring stuff that makes the difference between a demo and something you can actually rely on.</li>
+    </ul>
+
+    <h2>Free forever. Actually.</h2>
+
+    <p>Morgenruf is <strong>MIT licensed</strong>. No open-core bait-and-switch where the useful features are behind a paywall. No "free for up to 5 users" limitations. No telemetry. No tracking. No "we'll figure out monetization later."</p>
+
+    <p>The entire codebase is open source. You can read every line, fork it, modify it, run it for a team of 5 or a team of 500. The only cost is the server you run it on &mdash; and a basic VPS or container runtime is a few dollars a month, flat, regardless of how many users you have.</p>
+
+    <p>Compare that to $2.50/user/month. For a 50-person engineering org, that's <strong>$1,500/year</strong> you could be saving.</p>
+
+    <h2>The name</h2>
+
+    <p><em>Morgenruf</em> is German for "morning call." It felt right &mdash; a standup bot is essentially a morning call that checks in with your team. Plus, most of the good English names for standup bots were already taken.</p>
+
+    <h2>Try it</h2>
+
+    <p>If you're paying for Geekbot, Standup &amp; Prosper, or any other standup SaaS, I'd genuinely encourage you to give Morgenruf a shot. The migration is straightforward, and you might be surprised how good it feels to own your tools.</p>
+
+    <div class="cta-box">
+      <h2>Ready to ditch per-user pricing?</h2>
+      <p>Install Morgenruf in your Slack workspace in under 2 minutes. Free, open source, self-hosted.</p>
+      <div class="cta-buttons">
+        <a href="https://api.morgenruf.dev/install" class="btn btn-indigo">Add to Slack</a>
+        <a href="https://github.com/morgenruf/morgenruf" class="btn btn-ghost">Star on GitHub</a>
+      </div>
+    </div>
+
+  </article>
+
+</div>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Morgenruf &middot; <a href="https://github.com/morgenruf/morgenruf">GitHub</a> &middot; <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

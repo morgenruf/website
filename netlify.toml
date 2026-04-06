@@ -85,3 +85,28 @@
   from = "/slack-standup-bot"
   to = "/slack-standup-bot.html"
   status = 200
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/why-i-built-morgenruf"
+  to = "/blog/why-i-built-morgenruf.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/async-standups-slack-free"
+  to = "/blog/async-standups-slack-free.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/geekbot-vs-morgenruf"
+  to = "/blog/geekbot-vs-morgenruf.html"
+  status = 200
+
+[[redirects]]
+  from = "/changelog"
+  to = "/changelog.html"
+  status = 200
