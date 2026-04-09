@@ -51,10 +51,19 @@
       "Weekly digest email",
       "Blocker detection",
       "AI summaries",
-      "MCP server integration"
+      "MCP server integration",
+      "Rich Slack App Home",
+      "Standup streaks",
+      "Vacation mode",
+      "Answer prefill",
+      "Previous standups viewer",
+      "Channel member sync",
+      "Gunicorn production server",
+      "Sentry error monitoring",
+      "Redis session persistence"
     ],
     "screenshot": "https://morgenruf.dev/og-image.png",
-    "softwareVersion": "1.0.0",
+    "softwareVersion": "1.2.0",
     "releaseNotes": "https://github.com/morgenruf/morgenruf/releases"
   }
   </script>
@@ -826,6 +835,36 @@
         <h3>Weekly Digest</h3>
         <p>Automatic Sunday email to the workspace admin summarising the week — total responses, participation rate, and per-member breakdown.</p>
       </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon fi-green">🏠</div>
+        <h3>Rich App Home</h3>
+        <p>A beautiful Slack App Home tab showing all your standups, streaks, timezone, and quick actions — start, pause, configure, or delete in one click.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon fi-purple">🔥</div>
+        <h3>Standup Streaks</h3>
+        <p>Track consecutive standup days per member. Builds healthy habits and keeps your team motivated with visible streak counts.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon fi-orange">🏖️</div>
+        <h3>Vacation Mode</h3>
+        <p>Click "I'm away" and the bot stops bothering you until you're back. No missed standups cluttering your inbox while you recharge.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon fi-blue">📋</div>
+        <h3>Answer Prefill</h3>
+        <p>Yesterday's answers pre-populate today's standup form, so you can quickly update what changed instead of starting from scratch.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon fi-cyan">📅</div>
+        <h3>Previous Standups</h3>
+        <p>Browse your last 10 standups right from the App Home. See your answers, mood, and dates at a glance — no dashboard needed.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon fi-rose">🔄</div>
+        <h3>Channel Sync</h3>
+        <p>Optionally sync standup participants with channel membership. New channel members automatically join the standup.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -986,6 +1025,42 @@
             <td>✅</td>
             <td>❌</td>
           </tr>
+          <tr>
+            <td>Slack App Home</td>
+            <td class="td-morgenruf">✅</td>
+            <td>✅</td>
+            <td>✅</td>
+          </tr>
+          <tr>
+            <td>Standup streaks</td>
+            <td class="td-morgenruf">✅</td>
+            <td>❌</td>
+            <td>✅</td>
+          </tr>
+          <tr>
+            <td>Vacation mode</td>
+            <td class="td-morgenruf">✅</td>
+            <td>❌</td>
+            <td>✅</td>
+          </tr>
+          <tr>
+            <td>Answer prefill</td>
+            <td class="td-morgenruf">✅</td>
+            <td>❌</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>Channel member sync</td>
+            <td class="td-morgenruf">✅</td>
+            <td>✅</td>
+            <td>❌</td>
+          </tr>
+          <tr>
+            <td>MCP / AI integration</td>
+            <td class="td-morgenruf">✅</td>
+            <td>❌</td>
+            <td>❌</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -1084,6 +1159,16 @@
         <span class="badge-shipped">✅ Shipped</span>
       </div>
 
+      <!-- Shipped: Rich App Home & Streaks -->
+      <div class="roadmap-shipped" style="border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <div style="width:48px;height:48px;background:linear-gradient(135deg,#06b6d4,#3b82f6);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;">🏠</div>
+        <div>
+          <div style="font-weight:700;font-size:1rem;color:#111827;">App Home &amp; Streaks</div>
+          <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Rich Slack App Home with standup cards, streaks, vacation mode, and one-click actions</div>
+        </div>
+        <span class="badge-shipped">✅ Shipped</span>
+      </div>
+
       <!-- Microsoft Teams — Coming Soon -->
       <div style="background:#fff;border-radius:16px;padding:32px 24px;box-shadow:0 1px 4px rgba(0,0,0,0.08);display:flex;flex-direction:column;align-items:center;gap:16px;">
         <img src="https://img.icons8.com/color/48/microsoft-teams.png" alt="Microsoft Teams" width="48" height="48" style="border-radius:10px;">
@@ -1104,14 +1189,14 @@
         <span style="background:#ede9fe;color:#4f46e5;font-size:0.75rem;font-weight:600;padding:4px 12px;border-radius:99px;">Coming Soon</span>
       </div>
 
-      <!-- MCP / AI Integration — Coming Soon -->
-      <div style="background:#fff;border-radius:16px;padding:32px 24px;box-shadow:0 1px 4px rgba(0,0,0,0.08);display:flex;flex-direction:column;align-items:center;gap:16px;">
+      <!-- Shipped: MCP / AI Integration -->
+      <div class="roadmap-shipped" style="border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;">
         <div style="width:48px;height:48px;background:linear-gradient(135deg,#f97316,#ec4899);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;">🤖</div>
         <div>
           <div style="font-weight:700;font-size:1rem;color:#111827;">MCP / AI Integration</div>
-          <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Ask your AI assistant "what did my team work on this week?"</div>
+          <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Ask your AI assistant "what did my team work on this week?" via the MCP server endpoint</div>
         </div>
-        <span style="background:#fff7ed;color:#f97316;font-size:0.75rem;font-weight:600;padding:4px 12px;border-radius:99px;">Coming Soon</span>
+        <span class="badge-shipped">✅ Shipped</span>
       </div>
 
       <!-- AI Summary — Coming Soon -->
