@@ -215,6 +215,39 @@
 <div class="changelog">
 
   <div class="release-card">
+    <div class="release-version">v1.3.0</div>
+    <div class="release-date">April 9, 2026</div>
+
+    <div class="release-section">
+      <h3>Features</h3>
+      <ul>
+        <li>Daily threaded reports &mdash; all standup reports and summaries post under a single daily thread per channel</li>
+        <li>Configure mode &mdash; dedicated admin view in App Home for managing standups</li>
+        <li>Help modal &mdash; quick-access guide with DM commands, feature docs, and support links</li>
+        <li>Rich create/edit modal &mdash; answer prepopulation toggle, edit-after-report toggle, active/inactive controls</li>
+        <li>Polished thread parent message matching competitor quality</li>
+      </ul>
+    </div>
+
+    <div class="release-section">
+      <h3>Improvements</h3>
+      <ul>
+        <li>Production WSGI server &mdash; switched from Flask dev server to Gunicorn</li>
+        <li>Enhanced App Home with richer standup cards and timezone display</li>
+      </ul>
+    </div>
+
+    <div class="release-section">
+      <h3>Bug Fixes</h3>
+      <ul>
+        <li>Fixed deployment registry mismatch causing stale code in production &mdash; all DM button errors resolved</li>
+        <li>Fixed <code>standup_overflow</code> handler to support both button and overflow menu clicks</li>
+        <li>Fixed <code>group_by</code> dropdown label in create modal</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="release-card">
     <div class="release-version">v1.2.0</div>
     <div class="release-date">April 9, 2026</div>
 
