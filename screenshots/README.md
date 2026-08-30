@@ -13,9 +13,20 @@ Every screenshot on this site is public. The production workspace contains real
 teammates' names, faces, email addresses and standup content, plus links to
 private repositories. None of that can ship.
 
-Capture from a dedicated demo Slack workspace with invented people and invented
-work. That workspace is also what onboarding should be tested against, so it
-pays for itself twice.
+## Dogfood instead of inventing
+
+Create a `Morgenruf Dev` Slack workspace (free tier is enough) and install the
+bot into it. Then run real standups about work on Morgenruf itself.
+
+Every repository in the morgenruf GitHub org is public, so standup answers can
+link to genuine issues and pull requests with nothing to redact. That removes
+the hardest part of a demo capture, which is inventing engineering work that
+does not read as invented. A Reports shot showing actual work on the product
+being demonstrated is more convincing than any mock, and it is honest.
+
+The same workspace pays for itself twice more: it is what onboarding should be
+tested against, and it is what reproduces issue morgenruf/morgenruf#53, since
+that needs a channel containing the bot plus a second app.
 
 ## Blocked on
 
@@ -46,12 +57,14 @@ Photograph it today and the bug ships as marketing. Capture after that lands.
 
 ## Content rules
 
-- Invented names that do not read as placeholders. "Priya Raman", not "User 1".
-- Real-shaped standup answers, two or three lines, with a blocker in at least
-  one so shot 3 shows the blocker styling.
+- Use real work on Morgenruf, linked to public issues in the morgenruf org.
+  Anything invented should still avoid placeholder names: "Priya Raman", not
+  "User 1".
+- Two or three lines per answer, with a blocker in at least one so shot 3 shows
+  the blocker styling.
 - Do not invent metrics that flatter the product. If the demo workspace sits at
   a 47% completion rate, ship 47%.
-- No links to private repositories. Point issue links at a public repo.
+- Nothing from the CloudDrove workspace, and no links to private repositories.
 
 ## Delivery
 
