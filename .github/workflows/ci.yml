@@ -9,7 +9,7 @@ jobs:
   link-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
@@ -25,7 +25,7 @@ jobs:
   validate-html:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Validate HTML
         run: |
           npm install -g html-validate
@@ -34,14 +34,14 @@ jobs:
   check-css-classes:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check every button class used in markup is defined in CSS
         run: ./scripts/check-css-classes.sh index.html
 
   lighthouse:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Audit with Lighthouse CI
         uses: treosh/lighthouse-ci-action@v12
         with:
