@@ -13,10 +13,13 @@ jobs:
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
-          # --root-dir is required for lychee to resolve root-relative hrefs like
-          # "/privacy" against local files. Without it every such link errors and
-          # this job has been failing on main regardless of the actual link health.
-          args: --verbose --no-progress --exclude-loopback --root-dir "$GITHUB_WORKSPACE" --exclude 'https://status.morgenruf.dev' '**/*.html'
+          # Two flags are needed for this job to report real link health:
+          #   --root-dir            resolve root-relative hrefs such as "/privacy"
+          #   --fallback-extensions try "<path>.html" for the extensionless pretty
+          #                         URLs Netlify serves (/blog/x -> blog/x.html)
+          # Without them every internal link errors and the job fails on main
+          # whether or not any link is actually broken.
+          args: --verbose --no-progress --exclude-loopback --root-dir "$GITHUB_WORKSPACE" --fallback-extensions html --exclude 'https://status.morgenruf.dev' '**/*.html'
           fail: true
 
   validate-html:
