@@ -25,6 +25,13 @@ jobs:
           npm install -g html-validate
           html-validate "*.html" || true
 
+  check-css-classes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check every button class used in markup is defined in CSS
+        run: ./scripts/check-css-classes.sh index.html
+
   lighthouse:
     runs-on: ubuntu-latest
     steps:

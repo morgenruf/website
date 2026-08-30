@@ -137,6 +137,8 @@
       --indigo-dark: #3730a3;
       --purple: #7c3aed;
       --coral: #f97316;
+      --green: #1d7f52;
+      --green-dark: #16613f;
       --text-head: #111827;
       --text-body: #6b7280;
       --text-light: #9ca3af;
@@ -193,6 +195,11 @@
       background: transparent; color: var(--text-head); border-color: var(--border);
     }
     .btn-ghost:hover { border-color: #9ca3af; background: var(--bg-gray); }
+    .btn-green {
+      background: var(--green); color: #fff;
+    }
+    .btn-green:hover { background: var(--green-dark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn:focus-visible { outline: 3px solid var(--indigo); outline-offset: 3px; }
     .btn-lg { padding: 15px 30px; font-size: 1rem; }
 
     /* ===== NAV ===== */
