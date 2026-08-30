@@ -13,3 +13,7 @@ Connect this repo to Netlify:
 ## Stack
 
 Plain HTML + [Tailwind CSS CDN](https://tailwindcss.com) + [Alpine.js](https://alpinejs.dev) — zero build step, instant deploy.
+
+---
+
+<sub>Part of [Morgenruf](https://github.com/morgenruf/morgenruf), the self-hosted Slack standup bot &middot; [morgenruf.dev](https://morgenruf.dev) &middot; [docs](https://docs.morgenruf.dev) &middot; [status](https://status.morgenruf.dev)</sub>
