@@ -78,10 +78,10 @@
   <details>
     <summary>How do I change the standup schedule or questions?</summary>
     <ol>
-      <li>Go to the <a href="https://app.morgenruf.dev">Morgenruf dashboard</a>.</li>
-      <li>Select your workspace and click <strong>Schedules</strong> in the sidebar.</li>
+      <li>Go to the <a href="https://api.morgenruf.dev/dashboard">Morgenruf dashboard</a>.</li>
+      <li>Click <strong>Schedules</strong> in the sidebar.</li>
       <li>Edit the schedule — change the time, timezone, days, channel, or questions.</li>
-      <li>Click <strong>Save changes</strong>. The next standup will use the new settings.</li>
+      <li>Click <strong>Save Standup</strong>. The next standup will use the new settings.</li>
     </ol>
     <p>You can also create multiple schedules for different teams or channels.</p>
   </details>
@@ -89,9 +89,10 @@
   <details>
     <summary>How do I add or remove team members from standups?</summary>
     <ol>
-      <li>Open the <a href="https://app.morgenruf.dev">dashboard</a> → <strong>Members</strong>.</li>
-      <li>To add: click <strong>Add members</strong> and select Slack users. They will receive a DM at the next standup time.</li>
-      <li>To remove: find the member and click <strong>Remove</strong>. They will no longer receive standup DMs.</li>
+      <li>Open the <a href="https://api.morgenruf.dev/dashboard">dashboard</a> → <strong>Standups</strong>.</li>
+      <li>Click <strong>Edit</strong> on the standup you want to change.</li>
+      <li>Use the <strong>Participants</strong> field to tick or untick people, then click <strong>Save Standup</strong>.</li>
+      <li>Only ticked people are DMed. Turn on <strong>Channel Sync</strong> in Advanced Settings to keep the list matched to the channel automatically.</li>
     </ol>
     <p>Members can also opt themselves out by replying <code>/standup skip</code> or <code>/standup leave</code> in Slack.</p>
   </details>
@@ -99,7 +100,7 @@
   <details>
     <summary>How do I export standup data?</summary>
     <ol>
-      <li>Open the <a href="https://app.morgenruf.dev">dashboard</a> → <strong>Analytics</strong>.</li>
+      <li>Open the <a href="https://api.morgenruf.dev/dashboard">dashboard</a> → <strong>Reports</strong>.</li>
       <li>Set the date range you want to export.</li>
       <li>Click <strong>Export CSV</strong>. A CSV file with all standup responses for the selected period will download.</li>
     </ol>

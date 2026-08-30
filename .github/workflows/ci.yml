@@ -13,7 +13,13 @@ jobs:
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --verbose --no-progress --exclude-loopback --exclude 'https://status.morgenruf.dev' '**/*.html'
+          # Two flags are needed for this job to report real link health:
+          #   --root-dir            resolve root-relative hrefs such as "/privacy"
+          #   --fallback-extensions try "<path>.html" for the extensionless pretty
+          #                         URLs Netlify serves (/blog/x -> blog/x.html)
+          # Without them every internal link errors and the job fails on main
+          # whether or not any link is actually broken.
+          args: --verbose --no-progress --exclude-loopback --root-dir "$GITHUB_WORKSPACE" --fallback-extensions html --exclude 'https://status.morgenruf.dev' '**/*.html'
           fail: true
 
   validate-html:
@@ -24,6 +30,13 @@ jobs:
         run: |
           npm install -g html-validate
           html-validate "*.html" || true
+
+  check-css-classes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check every button class used in markup is defined in CSS
+        run: ./scripts/check-css-classes.sh index.html
 
   lighthouse:
     runs-on: ubuntu-latest
