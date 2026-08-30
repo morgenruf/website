@@ -7,9 +7,9 @@ that costs credibility against Geekbot and the other named competitors.
 Replacing it needs real captures. This file is the spec so the capture session
 is short and the results are consistent.
 
-## Do not capture from the live CloudDrove workspace
+## Do not capture from the live production workspace
 
-Every screenshot on this site is public. The production workspace contains real
+Every screenshot on this site is public. A live customer workspace contains real
 teammates' names, faces, email addresses and standup content, plus links to
 private repositories. None of that can ship.
 
