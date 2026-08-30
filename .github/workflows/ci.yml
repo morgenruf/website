@@ -13,7 +13,10 @@ jobs:
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --verbose --no-progress --exclude-loopback --exclude 'https://status.morgenruf.dev' '**/*.html'
+          # --root-dir is required for lychee to resolve root-relative hrefs like
+          # "/privacy" against local files. Without it every such link errors and
+          # this job has been failing on main regardless of the actual link health.
+          args: --verbose --no-progress --exclude-loopback --root-dir "$GITHUB_WORKSPACE" --exclude 'https://status.morgenruf.dev' '**/*.html'
           fail: true
 
   validate-html:
