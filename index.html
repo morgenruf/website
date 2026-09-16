@@ -132,600 +132,227 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* CloudDrove brand. Values read off clouddrove.com, not approximated:
-         #4B54E0 primary, #14161B ink, #5E636D body, #9398A2 muted,
-         #2FD17A success, and the 120deg gradient they use on every CTA. */
+      /* CloudDrove brand plus a maple accent for the Kitchener story.
+         Bright colour is always a fill behind dark or white text, never body
+         copy: #D93636 measures 4.63:1 on white but 4.44 on the tinted ground,
+         so maple as type uses the deeper #B82828. */
       --indigo: #4B54E0;
-      --indigo-light: #EFF0FD;
-      --indigo-dark: #363DB0;
-      --brand-grad: linear-gradient(120deg, #4B54E0 0%, #2F5BFF 48%, #2FA8FF 100%);
+      --indigo-ink: #363DB0;
+      --indigo-soft: #EEEFFE;
+      --grad: linear-gradient(120deg, #4B54E0 0%, #2F5BFF 48%, #2FA8FF 100%);
       --sky: #2FA8FF;
-      --purple: #4B54E0;
-      --coral: #f97316;
+      --maple: #D93636;
+      --maple-ink: #B82828;
+      --maple-soft: #FFECEC;
       --green: #1B9A5B;
-      --green-dark: #157A47;
-      --text-head: #14161B;
-      --text-body: #5E636D;
-      --text-light: #9398A2;
-      --bg-white: #ffffff;
-      --bg-cream: #F7F8FB;
-      --bg-gray: #F3F5F8;
-      --border: #EAEDF2;
-      /* Donut's surfaces sit almost flat. Shadows here are a hairline lift,
-         not the stacked grey glow that makes a page look like a card kit. */
-      --shadow: 0 1px 2px rgba(20,22,27,0.05);
-      --shadow-md: 0 2px 8px rgba(20,22,27,0.06);
-      --shadow-lg: 0 12px 32px rgba(20,22,27,0.08);
-      --radius: 12px;
-      --radius-lg: 20px;
+
+      --ink: #14161B;
+      --body: #4A4F5A;
+      --muted: #6C7280;
+      --paper: #FFFFFF;
+      --ground: #FAFAFC;
+      --band: #F4F3FF;
+      --line: #E8EAF2;
+
+      --wide: 1200px;
+      --r-sm: 10px;
+      --r: 16px;
+      --r-lg: 22px;
+      --shadow: 0 1px 2px rgba(20,22,27,.05);
+      --shadow-lift: 0 22px 60px rgba(75,84,224,.14);
     }
 
-    html { scroll-behavior: smooth; }
-
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg-white);
-      color: var(--text-body);
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+      background: var(--paper);
+      color: var(--body);
+      font-size: 17px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
+    img, svg { max-width: 100%; }
+    a { color: var(--indigo-ink); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    :focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; border-radius: 6px; }
 
-    /* ===== SCROLLBAR ===== */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg-white); }
-    ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+    h1, h2, h3 { color: var(--ink); letter-spacing: -0.035em; line-height: 1.05; font-weight: 800; }
+    h1 { font-size: clamp(2.9rem, 6vw, 4.75rem); }
+    h2 { font-size: clamp(2rem, 3.6vw, 3rem); }
+    h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; }
+    p { max-width: 62ch; }
 
-    /* ===== TYPOGRAPHY ===== */
-    h1, h2, h3, h4 { color: var(--text-head); font-weight: 700; line-height: 1.2; }
-    h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; }
-    h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
-    h3 { font-size: 1.15rem; }
-    p { color: var(--text-body); }
-    a { color: inherit; text-decoration: none; }
+    .wrap { width: 100%; max-width: var(--wide); margin: 0 auto; padding: 0 24px; }
+    .band { background: var(--band); }
+    .ground { background: var(--ground); }
+    section { padding: 96px 0; }
+    @media (max-width: 860px) { section { padding: 62px 0; } }
 
-    /* ===== LAYOUT ===== */
-    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-    section { padding: 80px 0; }
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,.86);
+      backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-in { display: flex; align-items: center; gap: 28px; height: 66px; }
+    .brand { display: flex; align-items: center; gap: 9px; font-weight: 800; color: var(--ink); letter-spacing: -0.03em; font-size: 18px; }
+    .brand img { width: 26px; height: 26px; border-radius: 7px; }
+    .nav-links { display: flex; gap: 22px; margin-left: 8px; }
+    .nav-links a { color: var(--body); font-size: 15px; font-weight: 500; }
+    .nav-links a:hover { color: var(--ink); text-decoration: none; }
+    .nav-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+    @media (max-width: 860px) { .nav-links { display: none; } }
 
-    /* ===== BUTTONS ===== */
+    /* ── Buttons ── */
     .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      border: 1px solid transparent; border-radius: 12px;
+      padding: 12px 20px; font-size: 15px; font-weight: 600; letter-spacing: -0.01em;
+      cursor: pointer; transition: transform .12s, box-shadow .12s, background .12s;
+    }
+    .btn:hover { text-decoration: none; }
+    .btn-primary { background: var(--grad); color: #fff; box-shadow: 0 8px 22px rgba(75,84,224,.28); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 28px rgba(75,84,224,.34); }
+    .btn-ghost { background: #fff; color: var(--ink); border-color: var(--line); }
+    .btn-ghost:hover { border-color: #C9CEDA; }
+    .btn-lg { padding: 15px 26px; font-size: 16.5px; border-radius: 13px; }
+    .ic { width: 1em; height: 1em; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ── Hero ── */
+    .hero { padding: 76px 0 84px; position: relative; overflow: hidden; }
+    .hero::after {
+      content: ""; position: absolute; inset: -30% -10% auto auto;
+      width: 720px; height: 720px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(75,84,224,.10), transparent 62%);
+      pointer-events: none;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; position: relative; z-index: 1; }
+    @media (max-width: 980px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+    .pill {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 24px; border-radius: 8px; font-size: 0.95rem;
-      font-weight: 600; cursor: pointer; transition: all 0.2s; border: 2px solid transparent;
-      font-family: 'Inter', sans-serif;
+      background: var(--maple-soft); color: var(--maple-ink);
+      border: 1px solid rgba(217,54,54,.18); border-radius: 999px;
+      padding: 7px 15px; font-size: 13.5px; font-weight: 600;
     }
-    .btn-indigo {
-      background: var(--indigo); color: #fff;
-    }
-    .btn-indigo:hover { background: var(--indigo-dark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
-    .btn-ghost {
-      background: transparent; color: var(--text-head); border-color: var(--border);
-    }
-    .btn-ghost:hover { border-color: #9ca3af; background: var(--bg-gray); }
-    .btn-green {
-      background: var(--green); color: #fff;
-    }
-    .btn-green:hover { background: var(--green-dark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
-    .btn:focus-visible { outline: 3px solid var(--indigo); outline-offset: 3px; }
-    .btn-lg { padding: 15px 30px; font-size: 1rem; }
+    .hero h1 { margin: 20px 0 18px; }
+    .hero h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-sub { font-size: 1.2rem; color: var(--body); }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 30px 0 18px; }
+    .hero-note { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; color: var(--muted); }
+    .hero-note span { display: inline-flex; align-items: center; gap: 7px; }
+    .hero-note .ic { color: var(--green); }
 
-    /* ===== NAV ===== */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px; gap: 16px;
-    }
-    .nav-logo {
-      font-size: 1.3rem; font-weight: 900; color: var(--indigo);
-      letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px;
-    }
-    .nav-logo span { color: var(--text-head); }
-    .nav-links { display: flex; align-items: center; gap: 28px; }
-    .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-body); transition: color 0.15s; }
-    .nav-links a:hover { color: var(--text-head); }
-    .nav-cta { display: flex; align-items: center; gap: 12px; }
-    .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
-    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text-head); margin: 5px 0; border-radius: 2px; transition: all 0.2s; }
-    .nav-mobile { display: none; background: var(--bg-white); border-top: 1px solid var(--border); padding: 16px 24px 20px; }
-    .nav-mobile a { display: block; padding: 10px 0; font-weight: 500; color: var(--text-head); border-bottom: 1px solid var(--border); }
-    .nav-mobile a:last-child { border-bottom: none; }
-    .nav-mobile .btn { width: 100%; justify-content: center; margin-top: 12px; }
+    /* ── Slack mock ── */
+    .mock { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-lift); overflow: hidden; }
+    .mock-bar { display: flex; align-items: center; gap: 7px; padding: 12px 15px; background: #F7F7FA; border-bottom: 1px solid var(--line); }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .mock-title { margin-left: 8px; font-size: 12.5px; color: var(--muted); font-weight: 500; }
+    .mock-body { padding: 18px; display: grid; gap: 14px; }
+    .msg { display: flex; gap: 11px; }
+    .avatar { width: 30px; height: 30px; border-radius: 8px; flex: 0 0 auto; display: grid; place-items: center; font-size: 13px; font-weight: 700; color: #fff; }
+    .msg-name { font-size: 13.5px; font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 7px; }
+    .tag { background: #E9EAF0; color: #616773; border-radius: 4px; padding: 1px 5px; font-size: 10px; font-weight: 700; letter-spacing: .04em; }
+    .time { color: var(--muted); font-weight: 500; font-size: 11.5px; }
+    .bubble { margin-top: 4px; background: var(--indigo-soft); border-radius: 4px 12px 12px 12px; padding: 9px 13px; font-size: 14px; color: var(--ink); }
+    .bubble.own { background: #F2F3F6; }
 
-    /* ===== HERO ===== */
-    #hero {
-      background: var(--bg-white);
-      padding: 80px 0 60px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-bg-dots {
-      position: absolute; inset: 0; pointer-events: none;
-      background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px);
-      background-size: 28px 28px;
-      opacity: 0.45;
-      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 30%, transparent 70%);
-      mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 30%, transparent 70%);
-    }
-    .hero-blob-1 {
-      position: absolute; top: -120px; right: -80px; width: 480px; height: 480px;
-      background: radial-gradient(circle, rgba(22,163,74,0.08) 0%, transparent 70%);
-      border-radius: 50%; pointer-events: none;
-    }
-    .hero-blob-2 {
-      position: absolute; bottom: -80px; left: -100px; width: 380px; height: 380px;
-      background: radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 70%);
-      border-radius: 50%; pointer-events: none;
-    }
-    .hero-content { position: relative; z-index: 1; text-align: center; max-width: 780px; margin: 0 auto; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--indigo-light); color: var(--indigo-dark);
-      border-radius: 100px; padding: 5px 14px; font-size: 0.8rem; font-weight: 600;
-      margin-bottom: 24px;
-    }
-    .hero-badge::before { content: ""; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--indigo); }
-    .hero-headline {
-      font-size: clamp(2.2rem, 5.5vw, 3.8rem); font-weight: 900; color: var(--text-head);
-      line-height: 1.1; letter-spacing: -1px; margin-bottom: 20px;
-    }
-    .hero-headline em { font-style: normal; color: var(--indigo); }
-    .hero-sub {
-      font-size: 1.15rem; color: var(--text-body); max-width: 580px; margin: 0 auto 28px;
-      line-height: 1.7;
-    }
-    .status-indicator {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(79,70,229,0.06);
-      border: 1px solid rgba(79,70,229,0.15);
-      padding: 6px 16px;
-      border-radius: 100px;
-      font-size: 13px;
-      color: var(--text-head);
-      text-decoration: none;
-      margin-bottom: 24px;
-      backdrop-filter: blur(8px);
-      transition: background 0.2s, border-color 0.2s;
-      font-weight: 500;
-    }
-    .status-indicator:hover { background: rgba(79,70,229,0.1); border-color: rgba(79,70,229,0.25); }
-    .status-dot {
-      width: 8px; height: 8px;
-      background: #22c55e;
-      border-radius: 50%;
-      flex-shrink: 0;
-      animation: statusPulse 2s infinite;
-    }
-    .status-dot.outage { background: #ef4444; animation: none; }
-    .status-dot.degraded { background: #f59e0b; animation: none; }
-    @keyframes statusPulse {
-      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
-      50% { opacity: 0.8; box-shadow: 0 0 0 5px rgba(34,197,94,0); }
-    }
-    .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+    /* ── Proof strip ── */
+    .proof { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--ground); }
+    .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; padding: 30px 0; }
+    @media (max-width: 860px) { .proof-grid { grid-template-columns: repeat(2, 1fr); } }
+    .proof-grid strong { display: block; color: var(--ink); font-weight: 700; font-size: 15px; margin-bottom: 3px; letter-spacing: -0.01em; }
+    .proof-grid span { font-size: 14px; color: var(--muted); }
 
-    /* Slack Mock UI */
-    .slack-mock {
-      background: #fff; border-radius: 16px; box-shadow: var(--shadow-lg), 0 0 0 1px rgba(0,0,0,0.05);
-      max-width: 480px; margin: 0 auto; text-align: left; overflow: hidden;
-    }
-    .slack-mock-header {
-      background: #3f0e40; padding: 14px 20px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .slack-mock-dots { display: flex; gap: 6px; }
-    .slack-mock-dots span { width: 11px; height: 11px; border-radius: 50%; }
-    .slack-mock-dots span:nth-child(1) { background: #ff5f56; }
-    .slack-mock-dots span:nth-child(2) { background: #ffbd2e; }
-    .slack-mock-dots span:nth-child(3) { background: #27c93f; }
-    .slack-mock-title { color: rgba(255,255,255,0.8); font-size: 0.82rem; font-weight: 500; margin-left: 8px; }
-    .slack-mock-body { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
-    .slack-msg { display: flex; gap: 12px; align-items: flex-start; }
-    .slack-avatar {
-      width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; font-weight: 700; color: #fff;
-    }
-    .slack-avatar-bot { background: linear-gradient(135deg, #4f46e5, #7c3aed); }
-    .slack-avatar-user { background: linear-gradient(135deg, #6366f1, #7c3aed); }
-    .slack-msg-content {}
-    .slack-msg-name { font-size: 0.8rem; font-weight: 700; color: var(--text-head); margin-bottom: 4px; }
-    .slack-msg-name .slack-time { font-weight: 400; color: var(--text-light); font-size: 0.73rem; margin-left: 6px; }
-    .slack-bubble {
-      background: #f3f4f6; border-radius: 0 10px 10px 10px;
-      padding: 10px 14px; font-size: 0.85rem; color: var(--text-head);
-      line-height: 1.5; margin-bottom: 4px; display: inline-block; max-width: 320px;
-    }
-    .slack-bubble.question { border-left: 3px solid var(--indigo); background: #eef2ff; }
-    .slack-bubble.answer { background: #ede9fe; border-radius: 10px 0 10px 10px; }
-    .slack-input-bar {
-      border-top: 1px solid var(--border); padding: 12px 16px;
-      display: flex; align-items: center; gap: 10px;
-      background: #f9fafb;
-    }
-    .slack-input-fake {
-      flex: 1; background: var(--bg-white); border: 1px solid var(--border);
-      border-radius: 6px; padding: 8px 12px; font-size: 0.8rem; color: var(--text-light);
-    }
-    .slack-send-btn {
-      background: var(--indigo); color: #fff; border: none; border-radius: 5px;
-      width: 30px; height: 30px; cursor: pointer; display: flex; align-items: center; justify-content: center;
-      font-size: 0.85rem;
-    }
+    /* ── Alternating feature rows ── */
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .row + .row { margin-top: 104px; }
+    .row.flip .row-visual { order: -1; }
+    @media (max-width: 980px) { .row { grid-template-columns: 1fr; gap: 34px; } .row.flip .row-visual { order: 0; } .row + .row { margin-top: 64px; } }
+    .eyebrow { display: inline-block; background: var(--indigo-soft); color: var(--indigo-ink); border-radius: 999px; padding: 5px 13px; font-size: 13px; font-weight: 700; margin-bottom: 14px; }
+    .row h2 { margin-bottom: 14px; }
+    .checks { list-style: none; display: grid; gap: 11px; margin: 20px 0 0; }
+    .checks li { display: flex; gap: 11px; align-items: flex-start; color: var(--ink); font-size: 15.5px; }
+    .checks .ic { color: var(--indigo); margin-top: 4px; }
 
-    /* Trust bar */
-    .trust-bar {
-      display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 48px;
-    }
-    .trust-pill {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--bg-cream); border: 1px solid var(--border);
-      border-radius: 100px; padding: 6px 16px; font-size: 0.82rem; font-weight: 600; color: var(--text-head);
-    }
-    .trust-pill .icon { color: var(--indigo); }
+    /* ── Panel: a small product surface drawn in CSS ── */
+    .panel { background: #fff; border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow-lift); overflow: hidden; }
+    .panel-head { padding: 14px 18px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; }
+    .panel-head b { color: var(--ink); font-size: 14.5px; letter-spacing: -0.01em; }
+    .panel-body { padding: 18px; display: grid; gap: 12px; }
+    .prow { display: flex; align-items: center; gap: 12px; font-size: 14.5px; }
+    .prow .who { flex: 1; color: var(--ink); font-weight: 600; }
+    .chip { border-radius: 999px; padding: 3px 11px; font-size: 12.5px; font-weight: 600; background: #F1F2F6; color: #616773; }
+    .chip.good { background: #E7F7EF; color: #127145; }
+    .chip.warn { background: var(--maple-soft); color: var(--maple-ink); }
+    .chip.brand { background: var(--indigo-soft); color: var(--indigo-ink); }
+    .bar { height: 8px; border-radius: 99px; background: #EDEEF3; overflow: hidden; }
+    .bar i { display: block; height: 100%; border-radius: 99px; background: var(--grad); }
 
-    /* ===== HOW IT WORKS ===== */
-    #how-it-works { background: var(--bg-cream); }
-    .section-label {
-      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--indigo); margin-bottom: 12px;
-    }
-    .section-head { margin-bottom: 16px; }
-    .section-sub { font-size: 1.05rem; color: var(--text-body); max-width: 540px; }
-    .steps-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 56px;
-      position: relative;
-    }
-    .steps-grid::before {
-      content: ""; position: absolute; top: 28px; left: calc(16.66% + 28px); right: calc(16.66% + 28px);
-      height: 2px; background: linear-gradient(90deg, var(--indigo), var(--indigo));
-      background: repeating-linear-gradient(90deg, var(--indigo) 0, var(--indigo) 8px, transparent 8px, transparent 16px);
-    }
-    .step { text-align: center; padding: 0 24px; }
-    .step-number-wrap {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 56px; height: 56px; border-radius: 50%;
-      background: var(--indigo); color: #fff;
-      font-size: 1.2rem; font-weight: 800; margin: 0 auto 24px;
-      position: relative; z-index: 1; box-shadow: 0 0 0 6px var(--indigo-light);
-    }
-    .step h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--text-head); }
-    .step p { font-size: 0.92rem; line-height: 1.65; }
+    /* ── Feature grid ── */
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 44px; }
+    @media (max-width: 980px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 620px) { .cards { grid-template-columns: 1fr; } }
+    .card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 24px; transition: border-color .12s, box-shadow .12s; }
+    .card:hover { border-color: #C9CEDA; box-shadow: 0 10px 28px rgba(20,22,27,.06); }
+    .card .ic-box { width: 38px; height: 38px; border-radius: 11px; background: var(--indigo-soft); color: var(--indigo-ink); display: grid; place-items: center; margin-bottom: 14px; }
+    .card .ic-box .ic { width: 19px; height: 19px; }
+    .card h3 { margin-bottom: 7px; }
+    .card p { font-size: 14.8px; color: var(--body); }
 
-    /* ===== TIMELINE ===== */
-    #timeline { background: var(--bg-white); }
-    .timeline-wrap { margin-top: 48px; position: relative; }
-    .timeline-track {
-      display: flex; gap: 0; position: relative;
-      overflow-x: auto; padding-bottom: 8px;
-    }
-    .timeline-track::before {
-      content: ""; position: absolute; top: 36px; left: 48px; right: 48px; height: 3px;
-      background: linear-gradient(90deg, var(--indigo) 0%, var(--purple) 50%, var(--coral) 100%);
-      border-radius: 2px;
-    }
-    .tl-step { flex: 1; min-width: 180px; text-align: center; padding: 0 12px; position: relative; }
-    .tl-icon {
-      width: 72px; height: 72px; border-radius: 50%; background: var(--bg-white);
-      border: 3px solid var(--border); display: flex; align-items: center; justify-content: center;
-      font-size: 1.8rem; margin: 0 auto 20px; position: relative; z-index: 1;
-      box-shadow: var(--shadow);
-    }
-    .tl-step:nth-child(1) .tl-icon { border-color: var(--indigo); background: var(--indigo-light); }
-    .tl-step:nth-child(2) .tl-icon { border-color: #a78bfa; background: #ede9fe; }
-    .tl-step:nth-child(3) .tl-icon { border-color: #f97316; background: #fff7ed; }
-    .tl-step:nth-child(4) .tl-icon { border-color: #06b6d4; background: #ecfeff; }
-    .tl-time { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--indigo); margin-bottom: 6px; }
-    .tl-title { font-size: 0.95rem; font-weight: 700; color: var(--text-head); margin-bottom: 6px; }
-    .tl-desc { font-size: 0.82rem; color: var(--text-body); line-height: 1.55; }
+    /* ── Section heads ── */
+    .head { text-align: center; max-width: 720px; margin: 0 auto 8px; }
+    .head p { margin: 14px auto 0; font-size: 1.1rem; }
+    .head .eyebrow { margin-bottom: 16px; }
 
-    /* ===== FEATURES ===== */
-    #features { background: var(--bg-cream); }
-    .features-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px;
-    }
-    .feature-card {
-      background: var(--bg-white); border-radius: var(--radius); padding: 28px;
-      box-shadow: var(--shadow); border: 1px solid var(--border); transition: all 0.2s;
-    }
-    .feature-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-    .feature-icon {
-      width: 48px; height: 48px; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; margin-bottom: 16px;
-    }
-    .fi-green { background: var(--indigo-light); }
-    .fi-purple { background: #ede9fe; }
-    .fi-orange { background: #fff7ed; }
-    .fi-blue { background: #eff6ff; }
-    .fi-cyan { background: #ecfeff; }
-    .fi-rose { background: #fff1f2; }
-    .feature-card h3 { margin-bottom: 8px; }
-    .feature-card p { font-size: 0.9rem; }
+    /* ── Comparison ── */
+    .table-wrap { margin-top: 44px; border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; background: #fff; }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; }
+    th, td { padding: 15px 18px; text-align: left; border-bottom: 1px solid var(--line); }
+    thead th { background: var(--ground); font-size: 12.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+    tbody tr:last-child td { border-bottom: 0; }
+    td:first-child { color: var(--ink); font-weight: 600; }
+    .td-morgenruf { background: rgba(75,84,224,.045); }
+    .ic-yes { color: var(--green); }
+    .ic-no { color: #C2C7D0; }
 
-    /* ===== COMPARISON ===== */
-    #comparison { background: var(--bg-white); }
-    .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
-    .comparison-card { border-radius: var(--radius-lg); padding: 36px; }
-    .comp-without { background: #fff1f2; border: 2px solid #fecdd3; }
-    .comp-with { background: #eef2ff; border: 2px solid #c7d2fe; }
-    .comp-title { font-size: 1.2rem; font-weight: 800; color: var(--text-head); margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
-    .comp-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .comp-list li {
-      display: flex; align-items: flex-start; gap: 12px;
-      font-size: 0.92rem; color: var(--text-head); font-weight: 500;
-    }
-    .comp-list li .check { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+    /* ── Pricing ── */
+    .price-card { max-width: 560px; margin: 44px auto 0; background: #fff; border: 1px solid rgba(75,84,224,.22); border-radius: var(--r-lg); box-shadow: var(--shadow-lift); padding: 40px 34px; text-align: center; }
+    .price-num { font-size: clamp(3.6rem, 8vw, 5rem); font-weight: 800; letter-spacing: -0.05em; line-height: 1; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .price-list { list-style: none; display: grid; gap: 11px; margin: 26px 0; text-align: left; }
+    .price-list li { display: flex; gap: 11px; align-items: flex-start; font-size: 15.5px; color: var(--ink); }
+    .price-list .ic { color: var(--indigo); margin-top: 4px; }
+    .price-note { font-size: 14px; color: var(--muted); margin: 16px auto 0; }
+    code { background: #F1F2F6; border-radius: 6px; padding: 2px 7px; font-size: 13.5px; color: var(--ink); }
 
-    /* ===== STATS ===== */
-    #stats { background: var(--bg-gray); padding: 60px 0; }
-    .stats-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
-    }
-    .stat-card {
-      text-align: center; background: var(--bg-white); border-radius: var(--radius);
-      padding: 32px 24px; box-shadow: var(--shadow);
-    }
-    .stat-number {
-      font-size: 2.8rem; font-weight: 900; color: var(--indigo); line-height: 1;
-      margin-bottom: 8px; display: block;
-    }
-    .stat-label { font-size: 0.88rem; color: var(--text-body); font-weight: 500; }
+    /* ── Final CTA ── */
+    .cta { background: var(--ink); color: #fff; border-radius: 26px; padding: 64px 40px; text-align: center; position: relative; overflow: hidden; }
+    .cta::after { content: ""; position: absolute; inset: auto -12% -60% auto; width: 620px; height: 620px; border-radius: 50%; background: radial-gradient(circle, rgba(75,84,224,.42), transparent 62%); }
+    .cta h2, .cta p { color: #fff; position: relative; z-index: 1; }
+    .cta p { margin: 16px auto 28px; color: #C9CCD6; }
+    .cta .btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.28); }
+    .cta .btn-ghost:hover { border-color: rgba(255,255,255,.55); }
+    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
 
-    /* ===== COMPARISON TABLE ===== */
-    #compare-table { background: var(--bg-white); }
-    .table-wrap { margin-top: 48px; overflow-x: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
-    table { width: 100%; border-collapse: collapse; background: var(--bg-white); }
-    thead th {
-      padding: 18px 24px; font-size: 0.88rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.05em;
-      border-bottom: 2px solid var(--border);
-    }
-    thead th:first-child { text-align: left; color: var(--text-body); }
-    thead th:not(:first-child) { text-align: center; }
-    .th-morgenruf {
-      background: var(--indigo); color: #fff !important;
-      border-radius: 0;
-    }
-    tbody td {
-      padding: 14px 24px; font-size: 0.9rem; border-bottom: 1px solid var(--border);
-    }
-    tbody td:first-child { font-weight: 600; color: var(--text-head); }
-    tbody td:not(:first-child) { text-align: center; }
-    tbody tr:last-child td { border-bottom: none; }
-    tbody tr:hover { background: var(--bg-cream); }
-    .td-morgenruf { background: rgba(22,163,74,0.04); }
+    /* ── FAQ ── */
+    .faq-item { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 22px 24px; }
+    .faq-item + .faq-item { margin-top: 12px; }
+    .faq-item h3 { margin-bottom: 8px; }
+    .faq-item p { font-size: 15.2px; }
 
-    /* ===== PRICING ===== */
-    #pricing { background: var(--bg-cream); }
-    .pricing-center { max-width: 520px; margin: 0 auto; text-align: center; }
-    .pricing-card {
-      background: var(--bg-white); border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-lg); padding: 48px 40px; margin-top: 40px;
-      border: 2px solid var(--indigo);
-    }
-    .pricing-badge {
-      display: inline-block; background: var(--indigo); color: #fff;
-      border-radius: 100px; padding: 4px 16px; font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 20px;
-    }
-    .pricing-headline { font-size: 2.4rem; font-weight: 900; color: var(--text-head); margin-bottom: 6px; }
-    .pricing-sub { font-size: 1rem; color: var(--text-body); margin-bottom: 32px; }
-    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; text-align: left; margin-bottom: 36px; }
-    .pricing-features li { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; font-weight: 500; color: var(--text-head); }
-    .pricing-features li::before { content: "<svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg>"; flex-shrink: 0; }
-    .pricing-note { font-size: 0.82rem; color: var(--text-body); margin-top: 20px; }
-    .pricing-note code {
-      background: var(--bg-gray); border: 1px solid var(--border); border-radius: 4px;
-      padding: 2px 7px; font-size: 0.78rem; font-family: monospace; color: var(--text-head);
-    }
-    .pricing-tagline { font-size: 1rem; font-weight: 700; color: var(--text-head); margin-bottom: 24px; }
-
-    /* ===== SECURITY ===== */
-    #security { background: var(--bg-cream); }
-    .security-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px; }
-    .security-card {
-      background: var(--bg-white); border-radius: var(--radius); padding: 28px 24px;
-      box-shadow: var(--shadow); border: 1px solid var(--border); text-align: center;
-      transition: all 0.2s;
-    }
-    .security-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-    .sec-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
-    .security-card h3 { font-size: 1rem; margin-bottom: 8px; }
-    .security-card p { font-size: 0.85rem; }
-
-    /* ===== FOOTER ===== */
-    footer { background: var(--text-head); color: #9ca3af; padding: 64px 0 32px; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
-    .footer-brand .logo { font-size: 1.2rem; font-weight: 900; color: var(--indigo); margin-bottom: 12px; }
-    .footer-brand p { font-size: 0.85rem; line-height: 1.65; max-width: 220px; }
-    .footer-col h4 { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; margin-bottom: 16px; }
-    .footer-col a { display: block; font-size: 0.85rem; color: #9ca3af; margin-bottom: 10px; transition: color 0.15s; }
-    .footer-col a:hover { color: #fff; }
-    .footer-divider { border: none; border-top: 1px solid #374151; margin-bottom: 28px; }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.82rem; }
-    .footer-bottom a { color: #9ca3af; transition: color 0.15s; }
-    .footer-bottom a:hover { color: #fff; }
-    .footer-badge {
-      display: inline-flex; align-items: center; gap: 5px;
-      background: rgba(79,70,229,0.12); color: var(--indigo);
-      border-radius: 100px; padding: 3px 10px; font-size: 0.75rem; font-weight: 600;
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      section { padding: 56px 0; }
-      .nav-links, .nav-cta .btn { display: none; }
-      .nav-hamburger { display: block; }
-      .nav-mobile.open { display: block; }
-      .steps-grid { grid-template-columns: 1fr; gap: 40px; }
-      .steps-grid::before { display: none; }
-      .timeline-track::before { top: 36px; left: 36px; right: 36px; }
-      .features-grid { grid-template-columns: 1fr 1fr; }
-      .comparison-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .security-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .footer-brand { grid-column: span 2; }
-    }
-    @media (max-width: 480px) {
-      .features-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .security-grid { grid-template-columns: 1fr 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .footer-brand { grid-column: span 1; }
-      .hero-ctas .btn { width: 100%; justify-content: center; }
-      .hero-ctas { flex-direction: column; }
-      .slack-mock { max-width: 100%; }
-    }
-
-    /* ===== SECTION HEADER CENTER ===== */
-    .text-center { text-align: center; }
-    .text-center .section-sub { margin-left: auto; margin-right: auto; }
-
-    /* ===== FADE IN ===== */
-    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
-    .fade-in.visible { opacity: 1; transform: none; }
-
-    .roadmap-shipped { background: #f0fdf4; border: 1.5px solid #bbf7d0; }
-    .badge-shipped { background: #dcfce7; color: #16a34a; font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 99px; }
-
-    /* ===================================================================
-       Redesign layer. Warmth and rhythm follow Donut's marketing pages:
-       light ground, generous whitespace, a coloured two-line headline, a
-       checkmark list, one clear action. Colour is CloudDrove's.
-       Loaded last so it wins on equal specificity.
-       =================================================================== */
-
-    body { color: var(--text-body); font-size: 17px; line-height: 1.65; }
-
-    h1, h2, h3, h4 { letter-spacing: -0.02em; }
-    h1 { font-size: clamp(2.4rem, 5.4vw, 3.9rem); font-weight: 700; line-height: 1.08; }
-    h2 { font-size: clamp(1.7rem, 3.4vw, 2.6rem); font-weight: 700; line-height: 1.15; }
-    h3 { font-size: 1.2rem; font-weight: 600; letter-spacing: -0.01em; }
-
-    /* Section headings carry the brand colour, the way Donut's do, so the
-       page has a spine of colour without decorating every element. */
-    section > .container > h2,
-    section > .container > .section-head > h2 { color: var(--indigo-dark); }
-
-    section { padding: 92px 0; }
-    @media (max-width: 720px) { section { padding: 64px 0; } }
-
-    /* Buttons. The CloudDrove gradient marks the one action that matters on
-       each screen; everything else is quiet. */
-    .btn, .btn-primary, .btn-green, .btn-white, .btn-outline {
-      border-radius: 10px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
-    }
-    .btn-primary, .btn-green {
-      background: var(--brand-grad);
-      color: #fff;
-      border: none;
-      box-shadow: 0 2px 10px rgba(75,84,224,0.28);
-    }
-    .btn-primary:hover, .btn-green:hover {
-      filter: brightness(1.06);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(75,84,224,0.32);
-    }
-    .btn-outline, .btn-white {
-      background: #fff; color: var(--text-head);
-      border: 1px solid var(--border);
-    }
-    .btn-outline:hover, .btn-white:hover { border-color: #C9CEDA; background: #FCFCFE; }
-
-    /* Cards sit on hairlines rather than shadows, so a dense grid does not
-       read as a stack of identical tiles. */
-    .feature-card, .pricing-card, .compare-card, .step, .faq-item {
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      box-shadow: none;
-      background: #fff;
-    }
-    .feature-card:hover { border-color: #C9CEDA; box-shadow: var(--shadow-md); }
-
-    /* Eyebrow above a section heading, Donut's device for naming the module
-       being described. Sentence case, not tracked-out caps. */
-    .eyebrow {
-      display: inline-block;
-      font-size: 14px; font-weight: 600;
-      color: var(--indigo);
-      margin-bottom: 10px;
-      letter-spacing: 0;
-    }
-
-    .lead { font-size: 1.15rem; line-height: 1.6; color: var(--text-body); max-width: 62ch; }
-
-    /* Checkmark list, as on Donut's feature sections. */
-    .check-list { list-style: none; display: grid; gap: 12px; margin: 22px 0 28px; }
-    .check-list li { display: flex; gap: 11px; align-items: flex-start; color: var(--text-head); }
-    .check-list li::before {
-      content: "";
-      flex: 0 0 20px; height: 20px; margin-top: 2px;
-      background: var(--indigo-light);
-      border-radius: 50%;
-      box-shadow: inset 0 0 0 1px rgba(75,84,224,0.18);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%234B54E0' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.5 10.5l3 3 6-6'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: center;
-    }
-
-    /* The open-source line is the product's identity, so it gets a real
-       treatment rather than a badge in the corner. */
-    .oss-strip {
-      background: var(--bg-gray);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 26px 0;
-    }
-    .oss-strip .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 18px 32px;
-      align-items: start;
-      color: var(--text-body); font-size: 14.5px; line-height: 1.5;
-      max-width: 1120px;
-    }
-    .oss-strip .container > span { display: block; }
-    .oss-strip strong { display: block; margin-bottom: 2px; }
-    .oss-strip strong { color: var(--text-head); font-weight: 600; }
-
-    .maple { color: #D93636; font-style: normal; }
-
-    a { color: var(--indigo); }
-    a:hover { color: var(--indigo-dark); }
-
-    :focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; border-radius: 4px; }
+    /* ── Footer ── */
+    footer { border-top: 1px solid var(--line); padding: 54px 0 40px; background: var(--ground); }
+    .foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 34px; }
+    @media (max-width: 860px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
+    .foot-grid h4 { font-size: 12.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 12px; font-weight: 700; }
+    .foot-grid a { display: block; color: var(--body); font-size: 14.5px; margin-bottom: 9px; }
+    .foot-note { margin-top: 38px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 10px 20px; justify-content: space-between; }
+    .maple-leaf { color: var(--maple-ink); }   /* maple as type, not fill */
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
       html { scroll-behavior: auto; }
     }
-
-    /* Lucide icons replace the emoji that used to stand in for them. An emoji
-       renders differently on every platform and reads as decoration; these are
-       one stroke weight, inherit colour, and scale with the text. */
-    .ic {
-      width: 1em; height: 1em;
-      flex: 0 0 auto;
-      vertical-align: -0.125em;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .ic-yes { color: var(--green); }
-    .ic-no  { color: #C2C7D0; }
-    .ic-lg  { width: 1.35em; height: 1.35em; }
   </style>
 </head>
 <body>
@@ -854,650 +481,280 @@
   <path d="m6 6 12 12" /></symbol>
   </defs>
 </svg>
+<!-- Lucide v1.46.0 (ISC) plus one mark of our own: the mug the rooster is
+     already holding in the logo. Straight-sided with a handle, matching the
+     logo rather than a takeaway cup, and nothing borrowed from anyone else. -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <defs>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6" />
+  <path d="m8 6-6 6 6 6" /></symbol>
+    <symbol id="i-mug" viewBox="0 0 24 24">
+      <path d="M4 7h13v9a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7Z"/>
+      <path d="M17 10h2.2a2.8 2.8 0 0 1 0 5.6H17"/>
+      <path d="M4.6 10.4h11.8"/>
+      <path d="M8.5 2.6c0 1-.9 1.3-.9 2.2M12.5 2.2c0 1.1-1 1.4-1 2.4"/>
+    </symbol>
+  </defs>
+</svg>
 
-
-<!-- ===== NAV ===== -->
-<nav>
-  <div class="container nav-inner">
-    <a href="/" class="nav-logo"><img src="/icon-512.png" alt="" width="32" height="32" style="display:block;"/> morgenruf</a>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img src="/logo.png" alt=""/> morgenruf</a>
     <div class="nav-links">
+      <a href="#how">How it works</a>
       <a href="#features">Features</a>
-      <a href="#how-it-works">How it works</a>
+      <a href="#compare">Compare</a>
       <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
       <a href="/blog">Blog</a>
-      <a href="https://docs.morgenruf.dev">Docs</a>
     </div>
-    <div class="nav-cta">
-      <a href="https://github.com/morgenruf/morgenruf" class="btn btn-ghost" style="padding:9px 18px;font-size:0.88rem;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.4 7.9 10.9.58.1.79-.25.79-.55v-1.9c-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 2.9-.39c.98.01 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.07.78 2.15v3.19c0 .3.2.66.8.55A10.53 10.53 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-        GitHub
-      </a>
-      <a href="https://api.morgenruf.dev/install" class="btn btn-indigo" style="padding:9px 18px;font-size:0.88rem;">
-        Add to Slack
-      </a>
+    <div class="nav-right">
+      <a class="btn btn-ghost" href="https://github.com/morgenruf/morgenruf" rel="noopener">
+        <svg class="ic" aria-hidden="true"><use href="#i-code"/></svg> GitHub</a>
+      <a class="btn btn-primary" href="https://api.morgenruf.dev/install">Add to Slack</a>
     </div>
-    <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <div class="nav-mobile" id="navMobile">
-    <a href="#features">Features</a>
-    <a href="#how-it-works">How it works</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#faq">FAQ</a>
-    <a href="/blog">Blog</a>
-    <a href="https://docs.morgenruf.dev">Docs</a>
-    <a href="https://github.com/morgenruf/morgenruf">GitHub</a>
-    <a href="https://api.morgenruf.dev/install" class="btn btn-indigo">Add to Slack</a>
   </div>
 </nav>
 
-<!-- ===== HERO ===== -->
-<section id="hero">
-  <div class="hero-bg-dots"></div>
-  <div class="hero-blob-1"></div>
-  <div class="hero-blob-2"></div>
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge">Open source &middot; MIT &middot; Free forever</div>
-      <h1 class="hero-headline">Standups that run<br/><em>without you</em></h1>
-      <p class="hero-sub">Morgenruf asks your team the questions each morning, collects the answers in Slack, and posts one summary. Open source, self-hosted, and free with no seat count.</p>
-      <div style="text-align:center;margin-bottom:0">
-        <a href="https://status.morgenruf.dev" class="status-indicator" id="site-status-badge">
-          <span class="status-dot" id="status-dot"></span>
-          <span id="status-text">All systems operational</span>
-        </a>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill"><svg class="ic" aria-hidden="true"><use href="#i-mug"/></svg> Open source, MIT, free forever</span>
+      <h1>Standups, kudos and coffee chats.<br/><span class="grad">One bot. No seat fees.</span></h1>
+      <p class="hero-sub">Morgenruf asks your team the questions each morning, collects the answers in Slack and posts one summary. It also runs peer recognition and introduces people who never talk. Self-hosted, so the answers stay with you.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="https://api.morgenruf.dev/install">Add to Slack, it's free</a>
+        <a class="btn btn-ghost btn-lg" href="https://github.com/morgenruf/morgenruf" rel="noopener">
+          <svg class="ic" aria-hidden="true"><use href="#i-code"/></svg> Read the source</a>
       </div>
-      <div class="hero-ctas">
-        <a href="https://api.morgenruf.dev/install" class="btn btn-green btn-lg">
-          <svg width="18" height="18" viewBox="0 0 54 54" fill="none" style="flex-shrink:0">
-            <path d="M13.5 31.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-13.5a4.5 4.5 0 0 1 4.5-4.5v9a4.5 4.5 0 0 1-4.5-4.5z" fill="#fff"/>
-            <path d="M40.5 22.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 13.5a4.5 4.5 0 0 1-4.5 4.5v-9a4.5 4.5 0 0 1 4.5 4.5z" fill="#fff"/>
-            <path d="M22.5 40.5a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0zm13.5 0a4.5 4.5 0 0 1-4.5 4.5h-9v-4.5a4.5 4.5 0 0 1 4.5-4.5z" fill="#fff"/>
-            <path d="M31.5 13.5a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0zm-13.5 0a4.5 4.5 0 0 1 4.5-4.5h9v4.5a4.5 4.5 0 0 1-4.5 4.5z" fill="#fff"/>
-          </svg>
-          Add to Slack — it's free
-        </a>
-        <a href="https://github.com/morgenruf/morgenruf" class="btn btn-ghost btn-lg">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.4 7.9 10.9.58.1.79-.25.79-.55v-1.9c-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 2.9-.39c.98.01 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.07.78 2.15v3.19c0 .3.2.66.8.55A10.53 10.53 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
-          View on GitHub
-        </a>
+      <div class="hero-note">
+        <span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> No credit card</span>
+        <span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> No per-user pricing</span>
+        <span><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Runs on your servers</span>
       </div>
+    </div>
 
-      <!-- Slack Mock UI -->
-      <div class="slack-mock fade-in">
-        <div class="slack-mock-header">
-          <div class="slack-mock-dots">
-            <span></span><span></span><span></span>
-          </div>
-          <span class="slack-mock-title">Direct Messages — Morgenruf Bot</span>
-        </div>
-        <div class="slack-mock-body">
-          <div class="slack-msg">
-            <div class="slack-avatar slack-avatar-bot">🌅 </div>
-            <div class="slack-msg-content">
-              <div class="slack-msg-name">Morgenruf <span class="slack-time" style="background:#e2e8f0;border-radius:3px;padding:1px 5px;font-size:0.7rem;">APP</span> <span class="slack-time">9:00 AM</span></div>
-              <div class="slack-bubble question">👋 Good morning, Alex! Time for your daily standup.</div>
-              <div class="slack-bubble question" style="margin-top:6px;">1️⃣ What did you work on <strong>yesterday</strong>?</div>
-            </div>
-          </div>
-          <div class="slack-msg" style="flex-direction:row-reverse;">
-            <div class="slack-avatar slack-avatar-user">A</div>
-            <div class="slack-msg-content" style="text-align:right;">
-              <div class="slack-msg-name" style="text-align:right;">Alex <span class="slack-time">9:02 AM</span></div>
-              <div class="slack-bubble answer">Finished the auth refactor and reviewed 2 PRs from the team 🚀 </div>
-            </div>
-          </div>
-          <div class="slack-msg">
-            <div class="slack-avatar slack-avatar-bot">🌅 </div>
-            <div class="slack-msg-content">
-              <div class="slack-msg-name">Morgenruf <span class="slack-time" style="background:#e2e8f0;border-radius:3px;padding:1px 5px;font-size:0.7rem;">APP</span> <span class="slack-time">9:02 AM</span></div>
-              <div class="slack-bubble question">2️⃣ What are you working on <strong>today</strong>?</div>
-            </div>
-          </div>
-          <div class="slack-msg">
-            <div class="slack-avatar slack-avatar-bot">🌅 </div>
-            <div class="slack-msg-content">
-              <div class="slack-msg-name">Morgenruf <span class="slack-time" style="background:#e2e8f0;border-radius:3px;padding:1px 5px;font-size:0.7rem;">APP</span> <span class="slack-time">9:04 AM</span></div>
-              <div class="slack-bubble question">4️⃣ 🎭 How are you feeling today? <span style="opacity:0.7;font-size:0.88em;">🎭 great · <svg class="ic" aria-hidden="true"><use href="#i-meh"/></svg> okay · <svg class="ic" aria-hidden="true"><use href="#i-frown"/></svg> rough</span></div>
-            </div>
+    <div class="mock" aria-label="A standup conversation with the bot in Slack">
+      <div class="mock-bar">
+        <span class="dot" style="background:#FF5F57"></span>
+        <span class="dot" style="background:#FEBC2E"></span>
+        <span class="dot" style="background:#28C840"></span>
+        <span class="mock-title">Direct messages — Morgenruf</span>
+      </div>
+      <div class="mock-body">
+        <div class="msg">
+          <div class="avatar" style="background:var(--grad)">M</div>
+          <div>
+            <div class="msg-name">Morgenruf <span class="tag">APP</span> <span class="time">9:30 AM</span></div>
+            <div class="bubble">Morning Priya. What did you get done yesterday?</div>
           </div>
         </div>
-        <div class="slack-input-bar">
-          <div class="slack-input-fake">Write a reply to Morgenruf…</div>
-          <button class="slack-send-btn"><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
+        <div class="msg">
+          <div class="avatar" style="background:#8B5CF6">PR</div>
+          <div>
+            <div class="msg-name">Priya Raman <span class="time">9:32 AM</span></div>
+            <div class="bubble own">Shipped the retry logic for webhook delivery. Reviewing the migration plan with Marcus today.</div>
+          </div>
+        </div>
+        <div class="msg">
+          <div class="avatar" style="background:var(--grad)">M</div>
+          <div>
+            <div class="msg-name">Morgenruf <span class="tag">APP</span> <span class="time">9:32 AM</span></div>
+            <div class="bubble">Anything blocking you?</div>
+          </div>
         </div>
       </div>
-
     </div>
   </div>
-</section>
+</header>
 
-<!-- ===== HOW IT WORKS ===== -->
-
-<div class="oss-strip">
-  <div class="container">
-    <span><strong>MIT licensed.</strong> Read every line before you run it.</span>
-    <span><strong>Self-hosted.</strong> Standup answers never leave your servers.</span>
-    <span><strong>No per-seat pricing.</strong> Ten people or a thousand.</span>
-    <span>Built by <a href="https://clouddrove.com" rel="noopener">CloudDrove</a> in Toronto <span class="maple" aria-hidden="true">&#9733;</span></span>
+<div class="proof">
+  <div class="wrap proof-grid">
+    <div><strong>MIT licensed</strong><span>Read every line before you run it</span></div>
+    <div><strong>Self-hosted</strong><span>Answers never leave your servers</span></div>
+    <div><strong>No per-seat pricing</strong><span>Ten people or a thousand</span></div>
+    <div><strong>Built in Kitchener</strong><span>By CloudDrove, over a lot of coffee</span></div>
   </div>
 </div>
 
-<section id="how-it-works">
-  <div class="container">
-    <div class="text-center fade-in">
-      <div class="section-label">How it works</div>
-      <h2 class="section-head">Up and running in 30 seconds</h2>
-      <p class="section-sub">No complex setup, no DevOps degree required. Install, configure, and your team is async-first.</p>
-    </div>
-    <div class="steps-grid">
-      <div class="step fade-in">
-        <div class="step-number-wrap">1</div>
-        <h3>Install in 30 seconds</h3>
-        <p>Click "Add to Slack" and authorize Morgenruf in your workspace. One click, zero configuration needed to get started.</p>
-      </div>
-      <div class="step fade-in">
-        <div class="step-number-wrap">2</div>
-        <h3>Set your standup</h3>
-        <p>Choose your questions, schedule, timezone, and team members from the web dashboard. Fully customizable to your workflow.</p>
-      </div>
-      <div class="step fade-in">
-        <div class="step-number-wrap">3</div>
-        <h3>Get daily updates</h3>
-        <p>Morgenruf DMs each team member, collects answers, and posts a clean summary to your #standup channel automatically.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== TIMELINE ===== -->
-<section id="timeline">
-  <div class="container">
-    <div class="text-center fade-in">
-      <div class="section-label">Daily Flow</div>
-      <h2 class="section-head">How your team's day looks</h2>
-      <p class="section-sub">Async standup keeps everyone aligned — no meeting required, just 2 minutes of focused updates.</p>
-    </div>
-    <div class="timeline-wrap fade-in">
-      <div class="timeline-track">
-        <div class="tl-step">
-          <div class="tl-icon"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg></div>
-          <div class="tl-time">9:00 AM</div>
-          <div class="tl-title">Bot sends DMs</div>
-          <div class="tl-desc">Morgenruf automatically DMs each team member with your custom standup questions.</div>
-        </div>
-        <div class="tl-step">
-          <div class="tl-icon"><svg class="ic" aria-hidden="true"><use href="#i-square-pen"/></svg></div>
-          <div class="tl-time">9:05 AM</div>
-          <div class="tl-title">Team answers</div>
-          <div class="tl-desc">Members reply with 4 quick answers — takes about 2 minutes, right from Slack.</div>
-        </div>
-        <div class="tl-step">
-          <div class="tl-icon"><svg class="ic" aria-hidden="true"><use href="#i-chart-column"/></svg></div>
-          <div class="tl-time">9:30 AM</div>
-          <div class="tl-title">Summary posted</div>
-          <div class="tl-desc">A beautifully formatted summary with mood indicators lands in your #standup channel for the whole team to see.</div>
-        </div>
-        <div class="tl-step">
-          <div class="tl-icon"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></div>
-          <div class="tl-time">All day</div>
-          <div class="tl-title">Team stays in sync</div>
-          <div class="tl-desc">Everyone knows what's happening. No status meeting. No calendar invite. Just clarity.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FEATURES ===== -->
-<section id="features">
-  <div class="container">
-    <div class="text-center fade-in">
-      <div class="section-label">Features</div>
-      <h2 class="section-head">Everything your team needs</h2>
-      <p class="section-sub">Morgenruf packs every feature from paid tools — 100% free, because open source wins.</p>
-    </div>
-    <div class="features-grid">
-      <div class="feature-card fade-in">
-        <div class="feature-icon fi-green"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg></div>
-        <h3>Custom Questions</h3>
-        <p>Ask exactly what matters to your team. Create any questions, reorder them, and update anytime from the dashboard.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon fi-purple"><svg class="ic" aria-hidden="true"><use href="#i-alarm-clock"/></svg></div>
-        <h3>Smart Scheduling</h3>
-        <p>Timezone-aware scheduling that respects working hours and weekends. Each team member gets messages at the right time.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon fi-orange"><svg class="ic" aria-hidden="true"><use href="#i-chart-column"/></svg></div>
-        <h3>Beautiful Reports</h3>
-        <p>Grouped summaries with clear formatting posted to any channel. Your whole team gets a clean daily digest.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon fi-blue"><svg class="ic" aria-hidden="true"><use href="#i-skip-forward"/></svg></div>
-        <h3>Skip &amp; Remind</h3>
-        <p>DM <code style="background:#f3f4f6;border-radius:4px;padding:1px 5px;font-size:0.82rem;">skip</code> to opt out for the day. Configurable pre-standup reminder DMs keep everyone on time.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon fi-cyan"><svg class="ic" aria-hidden="true"><use href="#i-bell"/></svg></div>
-        <h3>Webhooks</h3>
-        <p>Push standup data to any endpoint. Integrate with your own tools, analytics, or automation pipelines.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon fi-rose"><svg class="ic" aria-hidden="true"><use href="#i-server"/></svg></div>
-        <h3>Dashboard</h3>
-        <p>Full web UI to manage standups, team members, schedules, and reports — all in one place.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon fi-purple"><svg class="ic" aria-hidden="true"><use href="#i-smile"/></svg></div>
-        <h3>Mood Tracking</h3>
-        <p>After blockers, the bot asks how team members are feeling — <svg class="ic" aria-hidden="true"><use href="#i-smile"/></svg> great · <svg class="ic" aria-hidden="true"><use href="#i-meh"/></svg> okay · <svg class="ic" aria-hidden="true"><use href="#i-frown"/></svg> rough. Tracked in analytics over time.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon fi-orange"><svg class="ic" aria-hidden="true"><use href="#i-trending-up"/></svg></div>
-        <h3>Participation Analytics</h3>
-        <p>Dashboard analytics tab shows per-member 7-day and 30-day participation rates, blockers count, and last standup date. Export to CSV anytime.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon fi-cyan"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg></div>
-        <h3>Per-User Timezone</h3>
-        <p>Each team member can DM <code style="background:#f3f4f6;border-radius:4px;padding:1px 5px;font-size:0.82rem;">timezone Europe/London</code> to set their personal timezone independently of the workspace schedule.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon fi-rose"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></div>
-        <h3>Weekly Digest</h3>
-        <p>Automatic Sunday email to the workspace admin summarising the week — total responses, participation rate, and per-member breakdown.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon fi-green"><svg class="ic" aria-hidden="true"><use href="#i-server"/></svg></div>
-        <h3>Rich App Home</h3>
-        <p>A beautiful Slack App Home tab showing all your standups, streaks, timezone, and quick actions — start, pause, configure, or delete in one click.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon fi-purple"><svg class="ic" aria-hidden="true"><use href="#i-flame"/></svg></div>
-        <h3>Standup Streaks</h3>
-        <p>Track consecutive standup days per member. Builds healthy habits and keeps your team motivated with visible streak counts.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon fi-orange"><svg class="ic" aria-hidden="true"><use href="#i-palmtree"/></svg></div>
-        <h3>Vacation Mode</h3>
-        <p>Click "I'm away" and the bot stops bothering you until you're back. No missed standups cluttering your inbox while you recharge.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon fi-blue"><svg class="ic" aria-hidden="true"><use href="#i-clipboard-list"/></svg></div>
-        <h3>Answer Prefill</h3>
-        <p>Yesterday's answers pre-populate today's standup form, so you can quickly update what changed instead of starting from scratch.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon fi-cyan"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg></div>
-        <h3>Previous Standups</h3>
-        <p>Browse your last 10 standups right from the App Home. See your answers, mood, and dates at a glance — no dashboard needed.</p>
-      </div>
-      <div class="feature-card fade-in">
-        <div class="feature-icon fi-rose"><svg class="ic" aria-hidden="true"><use href="#i-refresh-cw"/></svg></div>
-        <h3>Channel Sync</h3>
-        <p>Optionally sync standup participants with channel membership. New channel members automatically join the standup.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== WITHOUT / WITH ===== -->
-<section id="comparison">
-  <div class="container">
-    <div class="text-center fade-in">
-      <div class="section-label">The difference</div>
-      <h2 class="section-head">Why teams switch to Morgenruf</h2>
-      <p class="section-sub">Paid standup tools are great — until you see the invoice. Here's what changes.</p>
-    </div>
-    <div class="comparison-grid fade-in">
-      <div class="comparison-card comp-without">
-        <div class="comp-title"><svg class="ic" aria-hidden="true"><use href="#i-frown"/></svg> Without Morgenruf</div>
-        <ul class="comp-list">
-          <li><span class="check"><svg class="ic" aria-hidden="true"><use href="#i-banknote"/></svg></span> Paying $2.50+/user/month to Geekbot or similar</li>
-          <li><span class="check"><svg class="ic" aria-hidden="true"><use href="#i-cloud"/></svg></span> Your standup data living on vendor servers</li>
-          <li><span class="check"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg></span> No control over customization or export</li>
-          <li><span class="check"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg></span> Vendor lock-in with no easy exit</li>
-          <li><span class="check"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg></span> Meetings just to get status updates</li>
-          <li><span class="check"><svg class="ic" aria-hidden="true"><use href="#i-trending-up"/></svg></span> Bill grows as your team grows</li>
+<section id="how">
+  <div class="wrap">
+    <div class="row">
+      <div>
+        <span class="eyebrow">Standups</span>
+        <h2>The morning check-in, without the meeting</h2>
+        <p>Each person gets a direct message at a sensible local hour. Answers land in one formatted summary in your channel, so nobody sits through a call to hear what they could have read.</p>
+        <ul class="checks">
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Your own questions, not a fixed template</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Per-person timezones, so nobody is asked at midnight</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Blockers highlighted, vacations skipped</li>
         </ul>
       </div>
-      <div class="comparison-card comp-with">
-        <div class="comp-title"><svg class="ic" aria-hidden="true"><use href="#i-party-popper"/></svg> With Morgenruf</div>
-        <ul class="comp-list">
-          <li><span class="check"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></span> 100% free, forever — zero per-seat pricing</li>
-          <li><span class="check"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></span> Data stays on YOUR infrastructure, always</li>
-          <li><span class="check"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></span> Fully customizable — fork it, own it</li>
-          <li><span class="check"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></span> Open source — MIT, no lock-in</li>
-          <li><span class="check"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></span> Async updates, zero meetings needed</li>
-          <li><span class="check"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></span> Scales to 1000s of users for $0</li>
+      <div class="row-visual">
+        <div class="panel">
+          <div class="panel-head"><b>Platform daily</b><span class="chip brand">09:30 Toronto</span></div>
+          <div class="panel-body">
+            <div class="prow"><span class="who">Priya Raman</span><span class="chip good">Answered</span></div>
+            <div class="prow"><span class="who">Marcus Bell</span><span class="chip good">Answered</span></div>
+            <div class="prow"><span class="who">Sofia Almeida</span><span class="chip warn">Blocked</span></div>
+            <div class="prow"><span class="who">Hiro Tanaka</span><span class="chip good">Answered</span></div>
+            <div class="prow"><span class="who">Jonas Weber</span><span class="chip">On vacation</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row flip">
+      <div>
+        <span class="eyebrow">Recognition</span>
+        <h2>Praise that means something because it runs out</h2>
+        <p>Everyone gets a handful of tokens a day to give away, and unused ones do not carry over. Scarcity is the whole mechanic: unlimited praise is worth nothing, and a daily budget is what makes people actually spend it.</p>
+        <ul class="checks">
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Pick your own token and daily amount</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Resets at midnight in each person's timezone</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Leaderboards for giving, not just receiving</li>
         </ul>
       </div>
+      <div class="row-visual">
+        <div class="panel">
+          <div class="panel-head"><b>Most generous, last 30 days</b><span class="chip brand">3 left today</span></div>
+          <div class="panel-body">
+            <div class="prow"><span class="who">Marcus Bell</span><span class="chip brand">12 given</span></div>
+            <div class="prow"><span class="who">Amara Okafor</span><span class="chip brand">9 given</span></div>
+            <div class="prow"><span class="who">Priya Raman</span><span class="chip brand">7 given</span></div>
+            <div class="prow" style="margin-top:4px"><span class="who" style="font-weight:500;color:var(--body);font-size:14px">“caught a DST bug that would have hit every European user”</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <span class="eyebrow">Coffee chats</span>
+        <h2>Introduce the people who never talk</h2>
+        <p>Pick a channel and a cadence. Everyone in it gets paired and introduced in a group message. When the count is odd, one group of three forms, so nobody is left sitting out.</p>
+        <ul class="checks">
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Never repeats a pairing until everyone has met</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> One quiet nudge if the conversation stalls</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Asks afterwards whether you actually met</li>
+        </ul>
+      </div>
+      <div class="row-visual">
+        <div class="panel">
+          <div class="panel-head"><b>Coffee roulette</b><span class="chip brand">Every 2 weeks</span></div>
+          <div class="panel-body">
+            <div class="prow"><span class="who">Sofia &amp; Hiro</span><span class="chip good">Met</span></div>
+            <div class="prow"><span class="who">Priya &amp; Amara</span><span class="chip good">Met</span></div>
+            <div class="prow"><span class="who">Marcus, Jonas &amp; Dev</span><span class="chip brand">Introduced</span></div>
+            <div class="prow" style="margin-top:6px"><span class="who" style="font-weight:500;font-size:14px;color:var(--body)">Met rate</span><span class="chip good">78%</span></div>
+            <div class="bar"><i style="width:78%"></i></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== STATS ===== -->
-<section id="stats">
-  <div class="container">
-    <div class="stats-grid" id="statsGrid">
-      <div class="stat-card">
-        <span class="stat-number" data-target="0" data-suffix="">0</span>
-        <span class="stat-label">Meetings replaced by async</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-number" data-target="999" data-suffix="+" data-prefix="">∞</span>
-        <span class="stat-label">Workspaces supported</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-number" data-target="100" data-suffix="%" data-animated="true">0%</span>
-        <span class="stat-label">Data ownership — always yours</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-number" data-target="0" data-suffix="" data-prefix="$" data-animated="true">$0</span>
-        <span class="stat-label">Forever — no hidden costs</span>
-      </div>
+<section id="features" class="band">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Everything included</span>
+      <h2>The features other tools put behind a plan</h2>
+      <p>There is no paid tier here, so there is nothing to hold back.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg></div>
+        <h3>Per-person timezones</h3><p>A team across four continents is asked at a sensible local hour, not yours.</p></div>
+      <div class="card"><div class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-flame"/></svg></div>
+        <h3>Blockers and streaks</h3><p>Blockers stand out in the summary, and a repeated one gets surfaced before it festers.</p></div>
+      <div class="card"><div class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-chart-column"/></svg></div>
+        <h3>Participation analytics</h3><p>Who is answering, who has gone quiet, and how that has moved over time.</p></div>
+      <div class="card"><div class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-refresh-cw"/></svg></div>
+        <h3>Signed webhooks</h3><p>HMAC-signed HTTP callbacks on every completed standup, for whatever you build next.</p></div>
+      <div class="card"><div class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg></div>
+        <h3>MCP server</h3><p>Point Claude or Cursor at your standup history and ask it questions directly.</p></div>
+      <div class="card"><div class="ic-box"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg></div>
+        <h3>Your database</h3><p>Everything lives in Postgres you control. No third party sees a word of it.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ===== COMPARE TABLE ===== -->
-<section id="compare-table">
-  <div class="container">
-    <div class="text-center fade-in">
-      <div class="section-label">Comparison</div>
-      <h2 class="section-head">Morgenruf vs the alternatives</h2>
-      <p class="section-sub">See how Morgenruf stacks up against popular paid standup tools.</p>
+<section id="compare">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Compare</span>
+      <h2>Three tools, or one that costs nothing</h2>
+      <p>A thirty person team pays Geekbot for standups, Donut for introductions and HeyTaco for recognition. Morgenruf does all three.</p>
     </div>
-    <div class="table-wrap fade-in">
+    <div class="table-wrap">
       <table>
         <thead>
-          <tr>
-            <th>Feature</th>
-            <th class="th-morgenruf">Morgenruf</th>
-            <th>Geekbot</th>
-            <th>Standup &amp; Prosper</th>
-          </tr>
+          <tr><th>What you get</th><th>Morgenruf</th><th>Geekbot</th><th>Donut</th><th>HeyTaco</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Price</td>
-            <td class="td-morgenruf" style="font-weight:700;color:var(--indigo);">$0 forever</td>
-            <td>$2.50/user/mo</td>
-            <td>$3/user/mo</td>
-          </tr>
-          <tr>
-            <td>Self-hosted</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-          </tr>
-          <tr>
-            <td>Open source</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-          </tr>
-          <tr>
-            <td>Slack integration</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-          </tr>
-          <tr>
-            <td>Webhooks</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg> (paid tier)</td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-          </tr>
-          <tr>
-            <td>Custom questions</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-          </tr>
-          <tr>
-            <td>Full data ownership</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-          </tr>
-          <tr>
-            <td>Web dashboard</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-          </tr>
-          <tr>
-            <td>Skip today</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-          </tr>
-          <tr>
-            <td>Mood tracking</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-          </tr>
-          <tr>
-            <td>Per-user timezone</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-          </tr>
-          <tr>
-            <td>Participation analytics</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-          </tr>
-          <tr>
-            <td>Weekly digest email</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-          </tr>
-          <tr>
-            <td>Slack App Home</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-          </tr>
-          <tr>
-            <td>Standup streaks</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-          </tr>
-          <tr>
-            <td>Vacation mode</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-          </tr>
-          <tr>
-            <td>Answer prefill</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-          </tr>
-          <tr>
-            <td>Channel member sync</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-          </tr>
-          <tr>
-            <td>MCP / AI integration</td>
-            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
-          </tr>
+          <tr><td>Async standups</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-yes"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no"><use href="#i-x"/></svg></td>
+            <td><svg class="ic ic-no"><use href="#i-x"/></svg></td></tr>
+          <tr><td>Peer recognition</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no"><use href="#i-x"/></svg></td>
+            <td><svg class="ic ic-yes"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-yes"><use href="#i-check"/></svg></td></tr>
+          <tr><td>Coffee chat introductions</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no"><use href="#i-x"/></svg></td>
+            <td><svg class="ic ic-yes"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no"><use href="#i-x"/></svg></td></tr>
+          <tr><td>Self-hosted, your database</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no"><use href="#i-x"/></svg></td>
+            <td><svg class="ic ic-no"><use href="#i-x"/></svg></td>
+            <td><svg class="ic ic-no"><use href="#i-x"/></svg></td></tr>
+          <tr><td>Source code you can read</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no"><use href="#i-x"/></svg></td>
+            <td><svg class="ic ic-no"><use href="#i-x"/></svg></td>
+            <td><svg class="ic ic-no"><use href="#i-x"/></svg></td></tr>
+          <tr><td>Price for 30 people</td>
+            <td class="td-morgenruf"><strong style="color:var(--indigo-ink)">$0</strong></td>
+            <td>$75/mo</td>
+            <td>from $74/mo</td>
+            <td>$90/mo</td></tr>
         </tbody>
       </table>
     </div>
-  </div>
-</section>
-
-<!-- ===== PRICING ===== -->
-<section id="pricing">
-  <div class="container">
-    <div class="pricing-center">
-      <div class="fade-in">
-        <div class="section-label text-center" style="text-align:center;">Pricing</div>
-        <h2 class="section-head text-center" style="text-align:center;">Free, and open source about it</h2>
-        <p class="section-sub text-center" style="text-align:center;">The whole product is on GitHub under the MIT licence. There is no paid tier holding a feature back.</p>
-      </div>
-      <div class="pricing-card fade-in">
-        <div class="pricing-badge">Free forever</div>
-        <div class="pricing-headline">$0</div>
-        <div class="pricing-sub">Not per user. Not per workspace. Not after a trial.</div>
-        <div class="pricing-tagline">No credit card, because there is nothing to charge for.</div>
-        <ul class="pricing-features">
-          <li>Every feature, including the ones competitors put behind a plan</li>
-          <li>As many people and workspaces as you like</li>
-          <li>Run it on your own servers, so answers stay with you</li>
-          <li>MIT licence and the full source on GitHub</li>
-          <li>Or use the hosted instance CloudDrove runs, also free</li>
-        </ul>
-        <a href="https://api.morgenruf.dev/install" class="btn btn-green btn-lg" style="width:100%;justify-content:center;">
-          Add to Slack
-        </a>
-        <p class="pricing-note" style="margin-top:16px;">Prefer your own infrastructure? <code>helm install morgenruf morgenruf/morgenruf</code></p>
-      </div>
-      <p class="pricing-note" style="text-align:center;max-width:56ch;margin:22px auto 0;">
-        Geekbot charges $2.50 per person per month. Donut starts at $74 a month once
-        your free rounds outgrow 24 people. Morgenruf is the same job, run by you,
-        for nothing.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SECURITY ===== -->
-<section id="security">
-  <div class="container">
-    <div class="text-center fade-in">
-      <div class="section-label">Security &amp; Privacy</div>
-      <h2 class="section-head">Built for teams that care about data</h2>
-      <p class="section-sub">When you self-host Morgenruf, you're in complete control — no exceptions.</p>
-    </div>
-    <div class="security-grid">
-      <div class="security-card fade-in">
-        <span class="sec-icon"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg></span>
-        <h3>Self-Hosted</h3>
-        <p>Run Morgenruf on your own servers. Your standup data never leaves your infrastructure.</p>
-      </div>
-      <div class="security-card fade-in">
-        <span class="sec-icon"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg></span>
-        <h3>Zero Telemetry</h3>
-        <p>No analytics. No tracking. No data sent to us. Your usage is completely private.</p>
-      </div>
-      <div class="security-card fade-in">
-        <span class="sec-icon"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg></span>
-        <h3>Open Source</h3>
-        <p>Every line of code is public on GitHub. Audit it, verify it, and trust what you deploy.</p>
-      </div>
-      <div class="security-card fade-in">
-        <span class="sec-icon"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg></span>
-        <h3>Your Encryption Keys</h3>
-        <p>Configure your own secrets and encryption. You control access from top to bottom.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== COMING SOON ===== -->
-<section id="roadmap" style="background:#f8f7f4;padding:80px 0;">
-  <div class="container" style="text-align:center;">
-    <div class="section-label">Roadmap</div>
-    <h2 style="font-size:2rem;font-weight:800;color:#111827;margin:12px 0 12px;">What's coming next</h2>
-    <p style="color:#6b7280;font-size:1.1rem;max-width:520px;margin:0 auto 48px;">We're building Morgenruf in public. Here's what's on the horizon.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;max-width:900px;margin:0 auto;">
-
-      <!-- Shipped: Participation Analytics -->
-      <div class="roadmap-shipped" style="border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;">
-        <div style="width:48px;height:48px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;"><svg class="ic" aria-hidden="true"><use href="#i-chart-column"/></svg></div>
-        <div>
-          <div style="font-weight:700;font-size:1rem;color:#111827;">Analytics &amp; CSV Export</div>
-          <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Per-member participation dashboard with 7d/30d views and one-click CSV export</div>
-        </div>
-        <span class="badge-shipped"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg> Shipped</span>
-      </div>
-
-      <!-- Shipped: Mood Tracking -->
-      <div class="roadmap-shipped" style="border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;">
-        <div style="width:48px;height:48px;background:linear-gradient(135deg,#f97316,#ec4899);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;"><svg class="ic" aria-hidden="true"><use href="#i-smile"/></svg></div>
-        <div>
-          <div style="font-weight:700;font-size:1rem;color:#111827;">Mood Tracking</div>
-          <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Emoji mood check-in after every standup — track team health over time</div>
-        </div>
-        <span class="badge-shipped"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg> Shipped</span>
-      </div>
-
-      <!-- Shipped: Rich App Home & Streaks -->
-      <div class="roadmap-shipped" style="border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;">
-        <div style="width:48px;height:48px;background:linear-gradient(135deg,#06b6d4,#3b82f6);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;"><svg class="ic" aria-hidden="true"><use href="#i-server"/></svg></div>
-        <div>
-          <div style="font-weight:700;font-size:1rem;color:#111827;">App Home &amp; Streaks</div>
-          <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Rich Slack App Home with standup cards, streaks, vacation mode, and one-click actions</div>
-        </div>
-        <span class="badge-shipped"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg> Shipped</span>
-      </div>
-
-      <!-- Microsoft Teams — Coming Soon -->
-      <div style="background:#fff;border-radius:16px;padding:32px 24px;box-shadow:0 1px 4px rgba(0,0,0,0.08);display:flex;flex-direction:column;align-items:center;gap:16px;">
-        <img src="https://img.icons8.com/color/48/microsoft-teams.png" alt="Microsoft Teams" width="48" height="48" style="border-radius:10px;">
-        <div>
-          <div style="font-weight:700;font-size:1rem;color:#111827;">Microsoft Teams</div>
-          <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Full Teams support — same standups, different platform</div>
-        </div>
-        <span style="background:#ede9fe;color:#7c3aed;font-size:0.75rem;font-weight:600;padding:4px 12px;border-radius:99px;">Coming Soon</span>
-      </div>
-
-      <!-- Google Chat — Coming Soon -->
-      <div style="background:#fff;border-radius:16px;padding:32px 24px;box-shadow:0 1px 4px rgba(0,0,0,0.08);display:flex;flex-direction:column;align-items:center;gap:16px;">
-        <img src="https://cdn.simpleicons.org/googlechat/00AC47" alt="Google Chat" width="48" height="48" style="border-radius:10px;">
-        <div>
-          <div style="font-weight:700;font-size:1rem;color:#111827;">Google Chat</div>
-          <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Bring async standups to Google Workspace teams</div>
-        </div>
-        <span style="background:#ede9fe;color:#4f46e5;font-size:0.75rem;font-weight:600;padding:4px 12px;border-radius:99px;">Coming Soon</span>
-      </div>
-
-      <!-- Shipped: MCP / AI Integration -->
-      <div class="roadmap-shipped" style="border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;">
-        <div style="width:48px;height:48px;background:linear-gradient(135deg,#f97316,#ec4899);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg></div>
-        <div>
-          <div style="font-weight:700;font-size:1rem;color:#111827;">MCP / AI Integration</div>
-          <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Ask your AI assistant "what did my team work on this week?" via the MCP server endpoint</div>
-        </div>
-        <span class="badge-shipped"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg> Shipped</span>
-      </div>
-
-      <!-- AI Summary — Coming Soon -->
-      <div style="background:#fff;border-radius:16px;padding:32px 24px;box-shadow:0 1px 4px rgba(0,0,0,0.08);display:flex;flex-direction:column;align-items:center;gap:16px;">
-        <div style="width:48px;height:48px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;"><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg></div>
-        <div>
-          <div style="font-weight:700;font-size:1rem;color:#111827;">AI Summary</div>
-          <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Condense 10 standup responses into one sharp paragraph</div>
-        </div>
-        <span style="background:#ede9fe;color:#7c3aed;font-size:0.75rem;font-weight:600;padding:4px 12px;border-radius:99px;">Coming Soon</span>
-      </div>
-
-    </div>
-    <p style="margin-top:40px;color:#9ca3af;font-size:0.9rem;">
-      Have a feature idea? <a href="https://github.com/morgenruf/morgenruf/discussions" style="color:#4f46e5;font-weight:600;">Start a discussion <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    <p style="text-align:center;margin:20px auto 0;font-size:14px;color:var(--muted)">
+      Competitor pricing as published in September 2026. Geekbot and HeyTaco charge per person; Donut's free tier stops at 24 people per round.
     </p>
   </div>
 </section>
 
-<!-- ===== FAQ ===== -->
-<section id="faq" style="background:var(--bg-white);padding:80px 0;">
-  <div class="container" style="max-width:760px;">
+<section id="pricing" class="band">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Pricing</span>
+      <h2>Free, and open source about it</h2>
+      <p>The whole product is on GitHub under the MIT licence. There is no paid tier holding a feature back.</p>
+    </div>
+    <div class="price-card">
+      <span class="pill"><svg class="ic" aria-hidden="true"><use href="#i-mug"/></svg> Free forever</span>
+      <div class="price-num" style="margin:18px 0 6px">$0</div>
+      <p style="margin:0 auto;color:var(--muted)">Not per user. Not per workspace. Not after a trial.</p>
+      <ul class="price-list">
+        <li><svg class="ic"><use href="#i-check"/></svg> Every feature, including the ones competitors charge for</li>
+        <li><svg class="ic"><use href="#i-check"/></svg> As many people and workspaces as you like</li>
+        <li><svg class="ic"><use href="#i-check"/></svg> Run it on your own servers, so answers stay with you</li>
+        <li><svg class="ic"><use href="#i-check"/></svg> MIT licence and the full source on GitHub</li>
+        <li><svg class="ic"><use href="#i-check"/></svg> Or use the hosted instance CloudDrove runs, also free</li>
+      </ul>
+      <a class="btn btn-primary btn-lg" style="width:100%" href="https://api.morgenruf.dev/install">Add to Slack</a>
+      <p class="price-note">Prefer your own infrastructure? <code>helm install morgenruf morgenruf/morgenruf</code></p>
+    </div>
+  </div>
+</section>
+<section id="faq" class="ground">
+  <div class="wrap" style="max-width:760px;">
     <div class="text-center fade-in">
       <div class="section-label">FAQ</div>
       <h2 class="section-head">Frequently asked questions</h2>
@@ -1563,142 +820,83 @@
 </section>
 
 <!-- ===== FOOTER ===== -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo" style="display:flex;align-items:center;gap:8px;"><img src="/icon-512.png" alt="" width="28" height="28"/> morgenruf</div>
-        <p>Free, open-source Slack standup bot. Self-host it, own your data, and say goodbye to per-seat pricing forever.</p>
-        <p style="font-size:0.8rem;margin-top:10px;color:#6b7280;font-style:italic;">Built by <a href="https://clouddrove.com" rel="noopener" style="color:inherit;text-decoration:underline">CloudDrove</a> over a weekend at a Tim Hortons in Toronto 🇨🇦☕</p>
-        <div style="margin-top:12px;"><span class="footer-badge">MIT</span></div>
-      </div>
-      <div class="footer-col">
-        <h4>Product</h4>
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#compare-table">Comparison</a>
-        <a href="#how-it-works">How it works</a>
-        <a href="#faq">FAQ</a>
-      </div>
-      <div class="footer-col">
-        <h4>Resources</h4>
-        <a href="https://docs.morgenruf.dev">Documentation</a>
-        <a href="https://github.com/morgenruf/morgenruf">GitHub</a>
-        <a href="/blog">Blog</a>
-        <a href="/changelog">Changelog</a>
-        <a href="https://github.com/morgenruf/morgenruf/issues">Issues</a>
-      </div>
-      <div class="footer-col">
-        <h4>Compare</h4>
-        <a href="/geekbot-alternative">Geekbot Alternative</a>
-        <a href="/standup-prosper-alternative">Standup &amp; Prosper Alternative</a>
-        <a href="/slack-standup-bot">Slack Standup Bot</a>
-        <a href="/open-source-standup-bot">Open Source Standup Bot</a>
-        <a href="/self-hosted-standup-bot">Self-Hosted Standup Bot</a>
-      </div>
-      <div class="footer-col">
-        <h4>Community &amp; Legal</h4>
-        <a href="https://github.com/morgenruf/morgenruf/discussions">Discussions</a>
-        <a href="https://github.com/morgenruf/morgenruf/blob/main/CONTRIBUTING.md">Contributing</a>
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/terms">Terms of Service</a>
-        <a href="/support">Support</a>
-        <a href="https://github.com/morgenruf/morgenruf/security">Security</a>
+
+<section id="cta-band" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta">
+      <h2>Run tomorrow's standup without being in the room</h2>
+      <p>Install it in a minute, or read every line first. Both are reasonable.</p>
+      <div class="cta-btns">
+        <a class="btn btn-primary btn-lg" href="https://api.morgenruf.dev/install">Add to Slack</a>
+        <a class="btn btn-ghost btn-lg" href="https://github.com/morgenruf/morgenruf" rel="noopener">
+          <svg class="ic" aria-hidden="true"><use href="#i-code"/></svg> View the source</a>
       </div>
     </div>
-    <hr class="footer-divider"/>
-    <div class="footer-bottom">
-      <span>&copy; 2026 Morgenruf &mdash; MIT</span>
-      <div style="display:flex;gap:16px;">
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="/" style="margin-bottom:12px"><img src="/logo.png" alt=""/> morgenruf</a>
+        <p style="font-size:14.5px;max-width:34ch">A free, open source Slack bot for standups, recognition and coffee chats. Self-host it and keep your own data.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="/changelog">Changelog</a>
+      </div>
+      <div>
+        <h4>Compare</h4>
+        <a href="/geekbot-alternative">Geekbot alternative</a>
+        <a href="/standup-prosper-alternative">Standup Prosper alternative</a>
+        <a href="/open-source-standup-bot">Open source standup bot</a>
+        <a href="/self-hosted-standup-bot">Self-hosted standup bot</a>
+        <a href="/slack-standup-bot">Slack standup bot</a>
+      </div>
+      <div>
+        <h4>More</h4>
+        <a href="/blog">Blog</a>
+        <a href="https://github.com/morgenruf/morgenruf" rel="noopener">GitHub</a>
+        <a href="https://status.morgenruf.dev" rel="noopener">Status</a>
+        <a href="/support">Support</a>
         <a href="/privacy">Privacy</a>
         <a href="/terms">Terms</a>
-        <a href="https://github.com/morgenruf/morgenruf">GitHub</a>
       </div>
+    </div>
+    <div class="foot-note">
+      <span>MIT licensed. Built by <a href="https://clouddrove.com" rel="noopener">CloudDrove</a> over a weekend at a Tim Hortons in Kitchener <span class="maple-leaf" aria-hidden="true">&#9733;</span></span>
+      <span>Morgenruf is German for “morning call”.</span>
     </div>
   </div>
 </footer>
 
 <script>
-  // Mobile nav toggle
-  const toggle = document.getElementById('navToggle');
-  const mobileNav = document.getElementById('navMobile');
-  toggle.addEventListener('click', function() {
-    mobileNav.classList.toggle('open');
-  });
-  // Close mobile nav on link click
-  mobileNav.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() { mobileNav.classList.remove('open'); });
-  });
-
-  // Fade-in on scroll
-  var fadeEls = document.querySelectorAll('.fade-in');
-  var fadeObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        fadeObserver.unobserve(entry.target);
-      }
+  // Reveal sections as they come into view. Respects reduced motion by simply
+  // showing everything, since the animation is decoration rather than meaning.
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.row, .card, .price-card, .table-wrap, .head');
+    if (reduce || !('IntersectionObserver' in window)) return;
+    items.forEach(function (el) {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(14px)';
+      el.style.transition = 'opacity .5s ease, transform .5s ease';
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  fadeEls.forEach(function(el) { fadeObserver.observe(el); });
-
-  // Stats counter animation
-  function animateCounter(el, target, prefix, suffix, duration) {
-    var start = 0;
-    var startTime = null;
-    function step(timestamp) {
-      if (!startTime) startTime = timestamp;
-      var progress = Math.min((timestamp - startTime) / duration, 1);
-      var ease = 1 - Math.pow(1 - progress, 3);
-      var current = Math.floor(ease * target);
-      el.textContent = (prefix || '') + current + (suffix || '');
-      if (progress < 1) requestAnimationFrame(step);
-      else el.textContent = (prefix || '') + target + (suffix || '');
-    }
-    requestAnimationFrame(step);
-  }
-
-  var statsSection = document.getElementById('statsGrid');
-  var statsAnimated = false;
-  var statsObserver = new IntersectionObserver(function(entries) {
-    if (entries[0].isIntersecting && !statsAnimated) {
-      statsAnimated = true;
-      var counters = document.querySelectorAll('.stat-number[data-animated]');
-      counters.forEach(function(el) {
-        var target = parseInt(el.getAttribute('data-target'), 10);
-        var suffix = el.getAttribute('data-suffix') || '';
-        var prefix = el.getAttribute('data-prefix') || '';
-        animateCounter(el, target, prefix, suffix, 1200);
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'none';
+        io.unobserve(e.target);
       });
-    }
-  }, { threshold: 0.3 });
-  statsObserver.observe(statsSection);
-</script>
-<script>
-  // Fetch status.json and update the hero badge
-  (function() {
-    fetch('https://status.morgenruf.dev/status.json?_=' + Date.now())
-      .then(function(r) { return r.ok ? r.json() : null; })
-      .then(function(data) {
-        if (!data) return;
-        var dot = document.getElementById('status-dot');
-        var text = document.getElementById('status-text');
-        var badge = document.getElementById('site-status-badge');
-        if (!dot || !text) return;
-        var overall = data.overall || 'operational';
-        if (overall === 'operational') {
-          dot.className = 'status-dot';
-          text.textContent = 'All systems operational';
-        } else if (overall === 'degraded') {
-          dot.className = 'status-dot degraded';
-          text.textContent = 'Partial outage';
-        } else {
-          dot.className = 'status-dot outage';
-          text.textContent = 'Service disruption';
-        }
-      })
-      .catch(function() { /* silent fail — default badge stays */ });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    items.forEach(function (el) { io.observe(el); });
   })();
 </script>
+
 </body>
 </html>
