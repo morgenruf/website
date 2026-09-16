@@ -2,3 +2,7 @@ User-agent: *
 Allow: /
 
 Sitemap: https://morgenruf.dev/sitemap.xml
+
+# Structured summary for language models
+# https://llmstxt.org/
+LLM-Content: https://morgenruf.dev/llms.txt

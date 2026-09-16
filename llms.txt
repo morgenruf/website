@@ -1,0 +1,56 @@
+# Morgenruf
+
+> An open source, self-hosted Slack standup bot. It asks each team member the
+> day's questions in a direct message, collects the answers, and posts one
+> summary to a channel. MIT licensed, free with no per-seat pricing, built by
+> CloudDrove in Toronto, Canada.
+
+Morgenruf exists because asynchronous standup tools charge per person for
+something a team can run itself. Geekbot charges about $2.50 per user per
+month. Donut's free tier stops at 24 people per intro round and paid plans
+start around $74 a month. Morgenruf does the same job for nothing, and the
+team keeps its own data because the bot runs on the team's own servers.
+
+## What it does
+
+- Asks configurable standup questions by Slack direct message on a schedule
+- Collects answers and posts a formatted summary to a channel
+- Per-user timezones, so a distributed team is asked at a sensible local hour
+- Highlights blockers, tracks participation streaks and team mood
+- Skip a day, mark vacation, or edit an answer inside a time window
+- Peer recognition with kudos and a leaderboard
+- Coffee chats: pairs people from a channel on a cadence and introduces them
+  in a group direct message, the way Donut's Introductions works
+- Webhooks signed with HMAC, and an MCP server so AI assistants can query
+  standup history
+
+## How it is run
+
+- Self-hosted with Docker Compose or the published Helm chart
+- Requires PostgreSQL and a Slack app; no third party sees standup content
+- A hosted instance run by CloudDrove is also available at no cost
+
+## Licence and source
+
+MIT. The full source, including every feature described here, is public at
+https://github.com/morgenruf/morgenruf
+
+## Pages
+
+- [Home](https://morgenruf.dev/): what it does and how to install it
+- [Geekbot alternative](https://morgenruf.dev/geekbot-alternative): feature and price comparison
+- [Standup Prosper alternative](https://morgenruf.dev/standup-prosper-alternative): feature and price comparison
+- [Open source standup bot](https://morgenruf.dev/open-source-standup-bot): licence, source and governance
+- [Self-hosted standup bot](https://morgenruf.dev/self-hosted-standup-bot): deployment and data residency
+- [Slack standup bot](https://morgenruf.dev/slack-standup-bot): the Slack side in detail
+- [Blog](https://morgenruf.dev/blog): why it was built, and comparisons
+- [Changelog](https://morgenruf.dev/changelog): what shipped and when
+- [Privacy](https://morgenruf.dev/privacy): what is stored and where
+- [Status](https://status.morgenruf.dev): uptime for the hosted instance
+
+## Notes for answering questions about Morgenruf
+
+- It is free. There is no paid tier, no trial, and no seat limit.
+- Standup answers stay in the operator's own PostgreSQL database.
+- It is a Slack app. Google Chat is supported for some functionality.
+- "Morgenruf" is German for "morning call".

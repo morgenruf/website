@@ -132,23 +132,30 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --indigo: #4f46e5;
-      --indigo-light: #ede9fe;
-      --indigo-dark: #3730a3;
-      --purple: #7c3aed;
+      /* CloudDrove brand. Values read off clouddrove.com, not approximated:
+         #4B54E0 primary, #14161B ink, #5E636D body, #9398A2 muted,
+         #2FD17A success, and the 120deg gradient they use on every CTA. */
+      --indigo: #4B54E0;
+      --indigo-light: #EFF0FD;
+      --indigo-dark: #363DB0;
+      --brand-grad: linear-gradient(120deg, #4B54E0 0%, #2F5BFF 48%, #2FA8FF 100%);
+      --sky: #2FA8FF;
+      --purple: #4B54E0;
       --coral: #f97316;
-      --green: #1d7f52;
-      --green-dark: #16613f;
-      --text-head: #111827;
-      --text-body: #6b7280;
-      --text-light: #9ca3af;
+      --green: #1B9A5B;
+      --green-dark: #157A47;
+      --text-head: #14161B;
+      --text-body: #5E636D;
+      --text-light: #9398A2;
       --bg-white: #ffffff;
-      --bg-cream: #F8F7F4;
-      --bg-gray: #f3f4f6;
-      --border: #e5e7eb;
-      --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
-      --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
-      --shadow-lg: 0 10px 15px rgba(0,0,0,0.07), 0 4px 6px rgba(0,0,0,0.05);
+      --bg-cream: #F7F8FB;
+      --bg-gray: #F3F5F8;
+      --border: #EAEDF2;
+      /* Donut's surfaces sit almost flat. Shadows here are a hairline lift,
+         not the stacked grey glow that makes a page look like a card kit. */
+      --shadow: 0 1px 2px rgba(20,22,27,0.05);
+      --shadow-md: 0 2px 8px rgba(20,22,27,0.06);
+      --shadow-lg: 0 12px 32px rgba(20,22,27,0.08);
       --radius: 12px;
       --radius-lg: 20px;
     }
@@ -512,7 +519,7 @@
     .pricing-sub { font-size: 1rem; color: var(--text-body); margin-bottom: 32px; }
     .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; text-align: left; margin-bottom: 36px; }
     .pricing-features li { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; font-weight: 500; color: var(--text-head); }
-    .pricing-features li::before { content: "✅"; flex-shrink: 0; }
+    .pricing-features li::before { content: "<svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg>"; flex-shrink: 0; }
     .pricing-note { font-size: 0.82rem; color: var(--text-body); margin-top: 20px; }
     .pricing-note code {
       background: var(--bg-gray); border: 1px solid var(--border); border-radius: 4px;
@@ -588,9 +595,266 @@
 
     .roadmap-shipped { background: #f0fdf4; border: 1.5px solid #bbf7d0; }
     .badge-shipped { background: #dcfce7; color: #16a34a; font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 99px; }
+
+    /* ===================================================================
+       Redesign layer. Warmth and rhythm follow Donut's marketing pages:
+       light ground, generous whitespace, a coloured two-line headline, a
+       checkmark list, one clear action. Colour is CloudDrove's.
+       Loaded last so it wins on equal specificity.
+       =================================================================== */
+
+    body { color: var(--text-body); font-size: 17px; line-height: 1.65; }
+
+    h1, h2, h3, h4 { letter-spacing: -0.02em; }
+    h1 { font-size: clamp(2.4rem, 5.4vw, 3.9rem); font-weight: 700; line-height: 1.08; }
+    h2 { font-size: clamp(1.7rem, 3.4vw, 2.6rem); font-weight: 700; line-height: 1.15; }
+    h3 { font-size: 1.2rem; font-weight: 600; letter-spacing: -0.01em; }
+
+    /* Section headings carry the brand colour, the way Donut's do, so the
+       page has a spine of colour without decorating every element. */
+    section > .container > h2,
+    section > .container > .section-head > h2 { color: var(--indigo-dark); }
+
+    section { padding: 92px 0; }
+    @media (max-width: 720px) { section { padding: 64px 0; } }
+
+    /* Buttons. The CloudDrove gradient marks the one action that matters on
+       each screen; everything else is quiet. */
+    .btn, .btn-primary, .btn-green, .btn-white, .btn-outline {
+      border-radius: 10px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+    }
+    .btn-primary, .btn-green {
+      background: var(--brand-grad);
+      color: #fff;
+      border: none;
+      box-shadow: 0 2px 10px rgba(75,84,224,0.28);
+    }
+    .btn-primary:hover, .btn-green:hover {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(75,84,224,0.32);
+    }
+    .btn-outline, .btn-white {
+      background: #fff; color: var(--text-head);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover, .btn-white:hover { border-color: #C9CEDA; background: #FCFCFE; }
+
+    /* Cards sit on hairlines rather than shadows, so a dense grid does not
+       read as a stack of identical tiles. */
+    .feature-card, .pricing-card, .compare-card, .step, .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: none;
+      background: #fff;
+    }
+    .feature-card:hover { border-color: #C9CEDA; box-shadow: var(--shadow-md); }
+
+    /* Eyebrow above a section heading, Donut's device for naming the module
+       being described. Sentence case, not tracked-out caps. */
+    .eyebrow {
+      display: inline-block;
+      font-size: 14px; font-weight: 600;
+      color: var(--indigo);
+      margin-bottom: 10px;
+      letter-spacing: 0;
+    }
+
+    .lead { font-size: 1.15rem; line-height: 1.6; color: var(--text-body); max-width: 62ch; }
+
+    /* Checkmark list, as on Donut's feature sections. */
+    .check-list { list-style: none; display: grid; gap: 12px; margin: 22px 0 28px; }
+    .check-list li { display: flex; gap: 11px; align-items: flex-start; color: var(--text-head); }
+    .check-list li::before {
+      content: "";
+      flex: 0 0 20px; height: 20px; margin-top: 2px;
+      background: var(--indigo-light);
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 1px rgba(75,84,224,0.18);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%234B54E0' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5.5 10.5l3 3 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: center;
+    }
+
+    /* The open-source line is the product's identity, so it gets a real
+       treatment rather than a badge in the corner. */
+    .oss-strip {
+      background: var(--bg-gray);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 26px 0;
+    }
+    .oss-strip .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px 32px;
+      align-items: start;
+      color: var(--text-body); font-size: 14.5px; line-height: 1.5;
+      max-width: 1120px;
+    }
+    .oss-strip .container > span { display: block; }
+    .oss-strip strong { display: block; margin-bottom: 2px; }
+    .oss-strip strong { color: var(--text-head); font-weight: 600; }
+
+    .maple { color: #D93636; font-style: normal; }
+
+    a { color: var(--indigo); }
+    a:hover { color: var(--indigo-dark); }
+
+    :focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; border-radius: 4px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* Lucide icons replace the emoji that used to stand in for them. An emoji
+       renders differently on every platform and reads as decoration; these are
+       one stroke weight, inherit colour, and scale with the text. */
+    .ic {
+      width: 1em; height: 1em;
+      flex: 0 0 auto;
+      vertical-align: -0.125em;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .ic-yes { color: var(--green); }
+    .ic-no  { color: #C2C7D0; }
+    .ic-lg  { width: 1.35em; height: 1.35em; }
   </style>
 </head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <!-- Lucide v1.46.0, ISC licensed. https://lucide.dev -->
+  <defs>
+    <symbol id="i-alarm-clock" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8" />
+  <path d="M12 9v4l2 2" />
+  <path d="M5 3 2 6" />
+  <path d="m22 6-3-3" />
+  <path d="M6.38 18.7 4 21" />
+  <path d="M17.64 18.67 20 21" /></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" /></symbol>
+    <symbol id="i-banknote" viewBox="0 0 24 24"><rect width="20" height="12" x="2" y="6" rx="2" />
+  <circle cx="12" cy="12" r="2" />
+  <path d="M6 12h.01M18 12h.01" /></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M10.268 21a2 2 0 0 0 3.464 0" />
+  <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" /></symbol>
+    <symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 8V4H8" />
+  <rect width="16" height="12" x="4" y="8" rx="2" />
+  <path d="M2 14h2" />
+  <path d="M20 14h2" />
+  <path d="M15 13v2" />
+  <path d="M9 13v2" /></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v3" />
+  <path d="M16 2v3" />
+  <rect x="3" y="3" width="18" height="18" rx="2" />
+  <path d="M3 9h18" /></symbol>
+    <symbol id="i-chart-column" viewBox="0 0 24 24"><path d="M3 3v16a2 2 0 0 0 2 2h16" />
+  <path d="M18 17V9" />
+  <path d="M13 17V5" />
+  <path d="M8 17v-3" /></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" /></symbol>
+    <symbol id="i-clipboard-list" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+  <path d="M12 11h4" />
+  <path d="M12 16h4" />
+  <path d="M8 11h.01" />
+  <path d="M8 16h.01" /></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" /></symbol>
+    <symbol id="i-coffee" viewBox="0 0 24 24"><path d="M10 2v2" />
+  <path d="M14 2v2" />
+  <path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1" />
+  <path d="M6 2v2" /></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+  <circle cx="12" cy="12" r="3" /></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4" /></symbol>
+    <symbol id="i-frown" viewBox="0 0 24 24"><path d="M15 10V9" />
+  <path d="M9 10V9" />
+  <path d="M9 16a5 5 0 016 0" />
+  <circle cx="12" cy="12" r="10" /></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" />
+  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+  <path d="M2 12h20" /></symbol>
+    <symbol id="i-hand" viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2" />
+  <path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2" />
+  <path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8" />
+  <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" /></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><path d="m2 21 9.6-9.6" />
+  <path d="m7.5 15.5 2.3 2.3a1 1 0 0 1 0 1.4l-2.1 2.1a1 1 0 0 1-1.4 0L4 19" />
+  <circle cx="15.5" cy="7.5" r="5.5" /></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+  <path d="M7 11V7a5 5 0 0 1 10 0v4" /></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+  <rect x="2" y="4" width="20" height="16" rx="2" /></symbol>
+    <symbol id="i-meh" viewBox="0 0 24 24"><path d="M15 10V9" />
+  <path d="M8 16h8" />
+  <path d="M9 10V9" />
+  <circle cx="12" cy="12" r="10" /></symbol>
+    <symbol id="i-palmtree" viewBox="0 0 24 24"><path d="M13 8c0-2.76-2.46-5-5.5-5S2 5.24 2 8h2l1-1 1 1h4" />
+  <path d="M13 7.14A5.82 5.82 0 0 1 16.5 6c3.04 0 5.5 2.24 5.5 5h-3l-1-1-1 1h-3" />
+  <path d="M5.89 9.71c-2.15 2.15-2.3 5.47-.35 7.43l4.24-4.25.7-.7.71-.71 2.12-2.12c-1.95-1.96-5.27-1.8-7.42.35" />
+  <path d="M11 15.5c.5 2.5-.17 4.5-1 6.5h4c2-5.5-.5-12-1-14" /></symbol>
+    <symbol id="i-party-popper" viewBox="0 0 24 24"><path d="M5.8 11.3 2 22l10.7-3.79" />
+  <path d="M4 3h.01" />
+  <path d="M22 8h.01" />
+  <path d="M15 2h.01" />
+  <path d="M22 20h.01" />
+  <path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10" />
+  <path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17" />
+  <path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7" />
+  <path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z" /></symbol>
+    <symbol id="i-refresh-cw" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+  <path d="M21 3v5h-5" />
+  <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+  <path d="M8 16H3v5" /></symbol>
+    <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09" />
+  <path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z" />
+  <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05" /></symbol>
+    <symbol id="i-server" viewBox="0 0 24 24"><rect width="20" height="8" x="2" y="2" rx="2" ry="2" />
+  <rect width="20" height="8" x="2" y="14" rx="2" ry="2" />
+  <line x1="6" x2="6.01" y1="6" y2="6" />
+  <line x1="6" x2="6.01" y1="18" y2="18" /></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /></symbol>
+    <symbol id="i-skip-forward" viewBox="0 0 24 24"><path d="M21 4v16" />
+  <path d="M6.029 4.285A2 2 0 0 0 3 6v12a2 2 0 0 0 3.029 1.715l9.997-5.998a2 2 0 0 0 .003-3.432z" /></symbol>
+    <symbol id="i-smile" viewBox="0 0 24 24"><path d="M15 10V9" />
+  <path d="M16.472 15a6 6 0 01-8.943 0" />
+  <path d="M9 10V9" />
+  <circle cx="12" cy="12" r="10" /></symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
+  <path d="M20 2v4" />
+  <path d="M22 4h-4" />
+  <circle cx="4" cy="20" r="2" /></symbol>
+    <symbol id="i-square-pen" viewBox="0 0 24 24"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+  <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" /></symbol>
+    <symbol id="i-sunrise" viewBox="0 0 24 24"><path d="M12 2v8" />
+  <path d="m4.93 10.93 1.41 1.41" />
+  <path d="M2 18h2" />
+  <path d="M20 18h2" />
+  <path d="m19.07 10.93-1.41 1.41" />
+  <path d="M22 22H2" />
+  <path d="m8 6 4-4 4 4" />
+  <path d="M16 18a4 4 0 0 0-8 0" /></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" />
+  <circle cx="12" cy="12" r="6" />
+  <circle cx="12" cy="12" r="2" /></symbol>
+    <symbol id="i-trending-up" viewBox="0 0 24 24"><path d="M16 7h6v6" />
+  <path d="m22 7-8.5 8.5-5-5L2 17" /></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18" />
+  <path d="m6 6 12 12" /></symbol>
+  </defs>
+</svg>
+
 
 <!-- ===== NAV ===== -->
 <nav>
@@ -636,9 +900,9 @@
   <div class="hero-blob-2"></div>
   <div class="container">
     <div class="hero-content">
-      <div class="hero-badge">Open Source &amp; Free Forever</div>
-      <h1 class="hero-headline">Run standups your team<br/><em>actually love</em></h1>
-      <p class="hero-sub">Free, open-source, self-hosted Slack standup bot. Your data, your servers, forever free.</p>
+      <div class="hero-badge">Open source &middot; MIT &middot; Free forever</div>
+      <h1 class="hero-headline">Standups that run<br/><em>without you</em></h1>
+      <p class="hero-sub">Morgenruf asks your team the questions each morning, collects the answers in Slack, and posts one summary. Open source, self-hosted, and free with no seat count.</p>
       <div style="text-align:center;margin-bottom:0">
         <a href="https://status.morgenruf.dev" class="status-indicator" id="site-status-badge">
           <span class="status-dot" id="status-dot"></span>
@@ -671,7 +935,7 @@
         </div>
         <div class="slack-mock-body">
           <div class="slack-msg">
-            <div class="slack-avatar slack-avatar-bot">🌅</div>
+            <div class="slack-avatar slack-avatar-bot">🌅 </div>
             <div class="slack-msg-content">
               <div class="slack-msg-name">Morgenruf <span class="slack-time" style="background:#e2e8f0;border-radius:3px;padding:1px 5px;font-size:0.7rem;">APP</span> <span class="slack-time">9:00 AM</span></div>
               <div class="slack-bubble question">👋 Good morning, Alex! Time for your daily standup.</div>
@@ -682,43 +946,45 @@
             <div class="slack-avatar slack-avatar-user">A</div>
             <div class="slack-msg-content" style="text-align:right;">
               <div class="slack-msg-name" style="text-align:right;">Alex <span class="slack-time">9:02 AM</span></div>
-              <div class="slack-bubble answer">Finished the auth refactor and reviewed 2 PRs from the team 🚀</div>
+              <div class="slack-bubble answer">Finished the auth refactor and reviewed 2 PRs from the team 🚀 </div>
             </div>
           </div>
           <div class="slack-msg">
-            <div class="slack-avatar slack-avatar-bot">🌅</div>
+            <div class="slack-avatar slack-avatar-bot">🌅 </div>
             <div class="slack-msg-content">
               <div class="slack-msg-name">Morgenruf <span class="slack-time" style="background:#e2e8f0;border-radius:3px;padding:1px 5px;font-size:0.7rem;">APP</span> <span class="slack-time">9:02 AM</span></div>
               <div class="slack-bubble question">2️⃣ What are you working on <strong>today</strong>?</div>
             </div>
           </div>
           <div class="slack-msg">
-            <div class="slack-avatar slack-avatar-bot">🌅</div>
+            <div class="slack-avatar slack-avatar-bot">🌅 </div>
             <div class="slack-msg-content">
               <div class="slack-msg-name">Morgenruf <span class="slack-time" style="background:#e2e8f0;border-radius:3px;padding:1px 5px;font-size:0.7rem;">APP</span> <span class="slack-time">9:04 AM</span></div>
-              <div class="slack-bubble question">4️⃣ 🎭 How are you feeling today? <span style="opacity:0.7;font-size:0.88em;">😊 great · 😐 okay · 😔 rough</span></div>
+              <div class="slack-bubble question">4️⃣ 🎭 How are you feeling today? <span style="opacity:0.7;font-size:0.88em;">🎭 great · <svg class="ic" aria-hidden="true"><use href="#i-meh"/></svg> okay · <svg class="ic" aria-hidden="true"><use href="#i-frown"/></svg> rough</span></div>
             </div>
           </div>
         </div>
         <div class="slack-input-bar">
           <div class="slack-input-fake">Write a reply to Morgenruf…</div>
-          <button class="slack-send-btn">➤</button>
+          <button class="slack-send-btn"><svg class="ic" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
         </div>
       </div>
 
-      <!-- Trust bar -->
-      <div class="trust-bar">
-        <div class="trust-pill"><span class="icon">✦</span> Open Source</div>
-        <div class="trust-pill"><span class="icon">🏠</span> Self-Hosted</div>
-        <div class="trust-pill"><span class="icon">∞</span> Free Forever</div>
-        <div class="trust-pill"><span class="icon">⚖️</span> MIT</div>
-        <div class="trust-pill"><span class="icon">🔒</span> Your Data</div>
-      </div>
     </div>
   </div>
 </section>
 
 <!-- ===== HOW IT WORKS ===== -->
+
+<div class="oss-strip">
+  <div class="container">
+    <span><strong>MIT licensed.</strong> Read every line before you run it.</span>
+    <span><strong>Self-hosted.</strong> Standup answers never leave your servers.</span>
+    <span><strong>No per-seat pricing.</strong> Ten people or a thousand.</span>
+    <span>Built by <a href="https://clouddrove.com" rel="noopener">CloudDrove</a> in Toronto <span class="maple" aria-hidden="true">&#9733;</span></span>
+  </div>
+</div>
+
 <section id="how-it-works">
   <div class="container">
     <div class="text-center fade-in">
@@ -757,25 +1023,25 @@
     <div class="timeline-wrap fade-in">
       <div class="timeline-track">
         <div class="tl-step">
-          <div class="tl-icon">🤖</div>
+          <div class="tl-icon"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg></div>
           <div class="tl-time">9:00 AM</div>
           <div class="tl-title">Bot sends DMs</div>
           <div class="tl-desc">Morgenruf automatically DMs each team member with your custom standup questions.</div>
         </div>
         <div class="tl-step">
-          <div class="tl-icon">📝</div>
+          <div class="tl-icon"><svg class="ic" aria-hidden="true"><use href="#i-square-pen"/></svg></div>
           <div class="tl-time">9:05 AM</div>
           <div class="tl-title">Team answers</div>
           <div class="tl-desc">Members reply with 4 quick answers — takes about 2 minutes, right from Slack.</div>
         </div>
         <div class="tl-step">
-          <div class="tl-icon">📊</div>
+          <div class="tl-icon"><svg class="ic" aria-hidden="true"><use href="#i-chart-column"/></svg></div>
           <div class="tl-time">9:30 AM</div>
           <div class="tl-title">Summary posted</div>
           <div class="tl-desc">A beautifully formatted summary with mood indicators lands in your #standup channel for the whole team to see.</div>
         </div>
         <div class="tl-step">
-          <div class="tl-icon">✅</div>
+          <div class="tl-icon"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></div>
           <div class="tl-time">All day</div>
           <div class="tl-title">Team stays in sync</div>
           <div class="tl-desc">Everyone knows what's happening. No status meeting. No calendar invite. Just clarity.</div>
@@ -795,82 +1061,82 @@
     </div>
     <div class="features-grid">
       <div class="feature-card fade-in">
-        <div class="feature-icon fi-green">🎯</div>
+        <div class="feature-icon fi-green"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg></div>
         <h3>Custom Questions</h3>
         <p>Ask exactly what matters to your team. Create any questions, reorder them, and update anytime from the dashboard.</p>
       </div>
       <div class="feature-card fade-in">
-        <div class="feature-icon fi-purple">⏰</div>
+        <div class="feature-icon fi-purple"><svg class="ic" aria-hidden="true"><use href="#i-alarm-clock"/></svg></div>
         <h3>Smart Scheduling</h3>
         <p>Timezone-aware scheduling that respects working hours and weekends. Each team member gets messages at the right time.</p>
       </div>
       <div class="feature-card fade-in">
-        <div class="feature-icon fi-orange">📊</div>
+        <div class="feature-icon fi-orange"><svg class="ic" aria-hidden="true"><use href="#i-chart-column"/></svg></div>
         <h3>Beautiful Reports</h3>
         <p>Grouped summaries with clear formatting posted to any channel. Your whole team gets a clean daily digest.</p>
       </div>
       <div class="feature-card fade-in">
-        <div class="feature-icon fi-blue">⏭️</div>
+        <div class="feature-icon fi-blue"><svg class="ic" aria-hidden="true"><use href="#i-skip-forward"/></svg></div>
         <h3>Skip &amp; Remind</h3>
         <p>DM <code style="background:#f3f4f6;border-radius:4px;padding:1px 5px;font-size:0.82rem;">skip</code> to opt out for the day. Configurable pre-standup reminder DMs keep everyone on time.</p>
       </div>
       <div class="feature-card fade-in">
-        <div class="feature-icon fi-cyan">🔔</div>
+        <div class="feature-icon fi-cyan"><svg class="ic" aria-hidden="true"><use href="#i-bell"/></svg></div>
         <h3>Webhooks</h3>
         <p>Push standup data to any endpoint. Integrate with your own tools, analytics, or automation pipelines.</p>
       </div>
       <div class="feature-card fade-in">
-        <div class="feature-icon fi-rose">🏠</div>
+        <div class="feature-icon fi-rose"><svg class="ic" aria-hidden="true"><use href="#i-server"/></svg></div>
         <h3>Dashboard</h3>
         <p>Full web UI to manage standups, team members, schedules, and reports — all in one place.</p>
       </div>
       <div class="feature-card fade-in">
-        <div class="feature-icon fi-purple">🎭</div>
+        <div class="feature-icon fi-purple"><svg class="ic" aria-hidden="true"><use href="#i-smile"/></svg></div>
         <h3>Mood Tracking</h3>
-        <p>After blockers, the bot asks how team members are feeling — 😊 great · 😐 okay · 😔 rough. Tracked in analytics over time.</p>
+        <p>After blockers, the bot asks how team members are feeling — <svg class="ic" aria-hidden="true"><use href="#i-smile"/></svg> great · <svg class="ic" aria-hidden="true"><use href="#i-meh"/></svg> okay · <svg class="ic" aria-hidden="true"><use href="#i-frown"/></svg> rough. Tracked in analytics over time.</p>
       </div>
       <div class="feature-card fade-in">
-        <div class="feature-icon fi-orange">📈</div>
+        <div class="feature-icon fi-orange"><svg class="ic" aria-hidden="true"><use href="#i-trending-up"/></svg></div>
         <h3>Participation Analytics</h3>
         <p>Dashboard analytics tab shows per-member 7-day and 30-day participation rates, blockers count, and last standup date. Export to CSV anytime.</p>
       </div>
       <div class="feature-card fade-in">
-        <div class="feature-icon fi-cyan">🌍</div>
+        <div class="feature-icon fi-cyan"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg></div>
         <h3>Per-User Timezone</h3>
         <p>Each team member can DM <code style="background:#f3f4f6;border-radius:4px;padding:1px 5px;font-size:0.82rem;">timezone Europe/London</code> to set their personal timezone independently of the workspace schedule.</p>
       </div>
       <div class="feature-card fade-in">
-        <div class="feature-icon fi-rose">📧</div>
+        <div class="feature-icon fi-rose"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></div>
         <h3>Weekly Digest</h3>
         <p>Automatic Sunday email to the workspace admin summarising the week — total responses, participation rate, and per-member breakdown.</p>
       </div>
       <div class="feature-card fade-in">
-        <div class="feature-icon fi-green">🏠</div>
+        <div class="feature-icon fi-green"><svg class="ic" aria-hidden="true"><use href="#i-server"/></svg></div>
         <h3>Rich App Home</h3>
         <p>A beautiful Slack App Home tab showing all your standups, streaks, timezone, and quick actions — start, pause, configure, or delete in one click.</p>
       </div>
       <div class="feature-card fade-in">
-        <div class="feature-icon fi-purple">🔥</div>
+        <div class="feature-icon fi-purple"><svg class="ic" aria-hidden="true"><use href="#i-flame"/></svg></div>
         <h3>Standup Streaks</h3>
         <p>Track consecutive standup days per member. Builds healthy habits and keeps your team motivated with visible streak counts.</p>
       </div>
       <div class="feature-card fade-in">
-        <div class="feature-icon fi-orange">🏖️</div>
+        <div class="feature-icon fi-orange"><svg class="ic" aria-hidden="true"><use href="#i-palmtree"/></svg></div>
         <h3>Vacation Mode</h3>
         <p>Click "I'm away" and the bot stops bothering you until you're back. No missed standups cluttering your inbox while you recharge.</p>
       </div>
       <div class="feature-card fade-in">
-        <div class="feature-icon fi-blue">📋</div>
+        <div class="feature-icon fi-blue"><svg class="ic" aria-hidden="true"><use href="#i-clipboard-list"/></svg></div>
         <h3>Answer Prefill</h3>
         <p>Yesterday's answers pre-populate today's standup form, so you can quickly update what changed instead of starting from scratch.</p>
       </div>
       <div class="feature-card fade-in">
-        <div class="feature-icon fi-cyan">📅</div>
+        <div class="feature-icon fi-cyan"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg></div>
         <h3>Previous Standups</h3>
         <p>Browse your last 10 standups right from the App Home. See your answers, mood, and dates at a glance — no dashboard needed.</p>
       </div>
       <div class="feature-card fade-in">
-        <div class="feature-icon fi-rose">🔄</div>
+        <div class="feature-icon fi-rose"><svg class="ic" aria-hidden="true"><use href="#i-refresh-cw"/></svg></div>
         <h3>Channel Sync</h3>
         <p>Optionally sync standup participants with channel membership. New channel members automatically join the standup.</p>
       </div>
@@ -888,25 +1154,25 @@
     </div>
     <div class="comparison-grid fade-in">
       <div class="comparison-card comp-without">
-        <div class="comp-title">😩 Without Morgenruf</div>
+        <div class="comp-title"><svg class="ic" aria-hidden="true"><use href="#i-frown"/></svg> Without Morgenruf</div>
         <ul class="comp-list">
-          <li><span class="check">💸</span> Paying $2.50+/user/month to Geekbot or similar</li>
-          <li><span class="check">☁️</span> Your standup data living on vendor servers</li>
-          <li><span class="check">🔒</span> No control over customization or export</li>
-          <li><span class="check">⛓️</span> Vendor lock-in with no easy exit</li>
-          <li><span class="check">📅</span> Meetings just to get status updates</li>
-          <li><span class="check">📈</span> Bill grows as your team grows</li>
+          <li><span class="check"><svg class="ic" aria-hidden="true"><use href="#i-banknote"/></svg></span> Paying $2.50+/user/month to Geekbot or similar</li>
+          <li><span class="check"><svg class="ic" aria-hidden="true"><use href="#i-cloud"/></svg></span> Your standup data living on vendor servers</li>
+          <li><span class="check"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg></span> No control over customization or export</li>
+          <li><span class="check"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg></span> Vendor lock-in with no easy exit</li>
+          <li><span class="check"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg></span> Meetings just to get status updates</li>
+          <li><span class="check"><svg class="ic" aria-hidden="true"><use href="#i-trending-up"/></svg></span> Bill grows as your team grows</li>
         </ul>
       </div>
       <div class="comparison-card comp-with">
-        <div class="comp-title">🎉 With Morgenruf</div>
+        <div class="comp-title"><svg class="ic" aria-hidden="true"><use href="#i-party-popper"/></svg> With Morgenruf</div>
         <ul class="comp-list">
-          <li><span class="check">✅</span> 100% free, forever — zero per-seat pricing</li>
-          <li><span class="check">✅</span> Data stays on YOUR infrastructure, always</li>
-          <li><span class="check">✅</span> Fully customizable — fork it, own it</li>
-          <li><span class="check">✅</span> Open source — MIT, no lock-in</li>
-          <li><span class="check">✅</span> Async updates, zero meetings needed</li>
-          <li><span class="check">✅</span> Scales to 1000s of users for $0</li>
+          <li><span class="check"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></span> 100% free, forever — zero per-seat pricing</li>
+          <li><span class="check"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></span> Data stays on YOUR infrastructure, always</li>
+          <li><span class="check"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></span> Fully customizable — fork it, own it</li>
+          <li><span class="check"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></span> Open source — MIT, no lock-in</li>
+          <li><span class="check"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></span> Async updates, zero meetings needed</li>
+          <li><span class="check"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></span> Scales to 1000s of users for $0</li>
         </ul>
       </div>
     </div>
@@ -964,111 +1230,111 @@
           </tr>
           <tr>
             <td>Self-hosted</td>
-            <td class="td-morgenruf">✅</td>
-            <td>❌</td>
-            <td>❌</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
           </tr>
           <tr>
             <td>Open source</td>
-            <td class="td-morgenruf">✅</td>
-            <td>❌</td>
-            <td>❌</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
           </tr>
           <tr>
             <td>Slack integration</td>
-            <td class="td-morgenruf">✅</td>
-            <td>✅</td>
-            <td>✅</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
           </tr>
           <tr>
             <td>Webhooks</td>
-            <td class="td-morgenruf">✅</td>
-            <td>✅ (paid tier)</td>
-            <td>❌</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg> (paid tier)</td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
           </tr>
           <tr>
             <td>Custom questions</td>
-            <td class="td-morgenruf">✅</td>
-            <td>✅</td>
-            <td>✅</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
           </tr>
           <tr>
             <td>Full data ownership</td>
-            <td class="td-morgenruf">✅</td>
-            <td>❌</td>
-            <td>❌</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
           </tr>
           <tr>
             <td>Web dashboard</td>
-            <td class="td-morgenruf">✅</td>
-            <td>✅</td>
-            <td>✅</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
           </tr>
           <tr>
             <td>Skip today</td>
-            <td class="td-morgenruf">✅</td>
-            <td>✅</td>
-            <td>❌</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
           </tr>
           <tr>
             <td>Mood tracking</td>
-            <td class="td-morgenruf">✅</td>
-            <td>❌</td>
-            <td>❌</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
           </tr>
           <tr>
             <td>Per-user timezone</td>
-            <td class="td-morgenruf">✅</td>
-            <td>✅</td>
-            <td>❌</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
           </tr>
           <tr>
             <td>Participation analytics</td>
-            <td class="td-morgenruf">✅</td>
-            <td>✅</td>
-            <td>❌</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
           </tr>
           <tr>
             <td>Weekly digest email</td>
-            <td class="td-morgenruf">✅</td>
-            <td>✅</td>
-            <td>❌</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
           </tr>
           <tr>
             <td>Slack App Home</td>
-            <td class="td-morgenruf">✅</td>
-            <td>✅</td>
-            <td>✅</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
           </tr>
           <tr>
             <td>Standup streaks</td>
-            <td class="td-morgenruf">✅</td>
-            <td>❌</td>
-            <td>✅</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
+            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
           </tr>
           <tr>
             <td>Vacation mode</td>
-            <td class="td-morgenruf">✅</td>
-            <td>❌</td>
-            <td>✅</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
+            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
           </tr>
           <tr>
             <td>Answer prefill</td>
-            <td class="td-morgenruf">✅</td>
-            <td>❌</td>
-            <td>❌</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
           </tr>
           <tr>
             <td>Channel member sync</td>
-            <td class="td-morgenruf">✅</td>
-            <td>✅</td>
-            <td>❌</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
           </tr>
           <tr>
             <td>MCP / AI integration</td>
-            <td class="td-morgenruf">✅</td>
-            <td>❌</td>
-            <td>❌</td>
+            <td class="td-morgenruf"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
+            <td><svg class="ic ic-no" aria-hidden="true"><use href="#i-x"/></svg></td>
           </tr>
         </tbody>
       </table>
@@ -1082,27 +1348,31 @@
     <div class="pricing-center">
       <div class="fade-in">
         <div class="section-label text-center" style="text-align:center;">Pricing</div>
-        <h2 class="section-head text-center" style="text-align:center;">Simple pricing that makes sense</h2>
-        <p class="section-sub text-center" style="text-align:center;">No tiers. No per-seat charges. No surprises.</p>
+        <h2 class="section-head text-center" style="text-align:center;">Free, and open source about it</h2>
+        <p class="section-sub text-center" style="text-align:center;">The whole product is on GitHub under the MIT licence. There is no paid tier holding a feature back.</p>
       </div>
       <div class="pricing-card fade-in">
-        <div class="pricing-badge">Free Forever</div>
+        <div class="pricing-badge">Free forever</div>
         <div class="pricing-headline">$0</div>
-        <div class="pricing-sub">Per month. Per user. Per workspace. Always.</div>
-        <div class="pricing-tagline">No credit card. No trials. No limits.</div>
+        <div class="pricing-sub">Not per user. Not per workspace. Not after a trial.</div>
+        <div class="pricing-tagline">No credit card, because there is nothing to charge for.</div>
         <ul class="pricing-features">
-          <li>Unlimited workspaces</li>
-          <li>Unlimited team members</li>
-          <li>All features included</li>
-          <li>Self-hosted on your infrastructure</li>
-          <li>MIT license</li>
-          <li>Full source code access</li>
+          <li>Every feature, including the ones competitors put behind a plan</li>
+          <li>As many people and workspaces as you like</li>
+          <li>Run it on your own servers, so answers stay with you</li>
+          <li>MIT licence and the full source on GitHub</li>
+          <li>Or use the hosted instance CloudDrove runs, also free</li>
         </ul>
         <a href="https://api.morgenruf.dev/install" class="btn btn-green btn-lg" style="width:100%;justify-content:center;">
-          Add to Slack — it's free
+          Add to Slack
         </a>
-        <p class="pricing-note" style="margin-top:16px;">Or deploy with Helm: <code>helm install morgenruf morgenruf/morgenruf</code></p>
+        <p class="pricing-note" style="margin-top:16px;">Prefer your own infrastructure? <code>helm install morgenruf morgenruf/morgenruf</code></p>
       </div>
+      <p class="pricing-note" style="text-align:center;max-width:56ch;margin:22px auto 0;">
+        Geekbot charges $2.50 per person per month. Donut starts at $74 a month once
+        your free rounds outgrow 24 people. Morgenruf is the same job, run by you,
+        for nothing.
+      </p>
     </div>
   </div>
 </section>
@@ -1117,22 +1387,22 @@
     </div>
     <div class="security-grid">
       <div class="security-card fade-in">
-        <span class="sec-icon">🔒</span>
+        <span class="sec-icon"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg></span>
         <h3>Self-Hosted</h3>
         <p>Run Morgenruf on your own servers. Your standup data never leaves your infrastructure.</p>
       </div>
       <div class="security-card fade-in">
-        <span class="sec-icon">🛡️</span>
+        <span class="sec-icon"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg></span>
         <h3>Zero Telemetry</h3>
         <p>No analytics. No tracking. No data sent to us. Your usage is completely private.</p>
       </div>
       <div class="security-card fade-in">
-        <span class="sec-icon">👁️</span>
+        <span class="sec-icon"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg></span>
         <h3>Open Source</h3>
         <p>Every line of code is public on GitHub. Audit it, verify it, and trust what you deploy.</p>
       </div>
       <div class="security-card fade-in">
-        <span class="sec-icon">🔑</span>
+        <span class="sec-icon"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg></span>
         <h3>Your Encryption Keys</h3>
         <p>Configure your own secrets and encryption. You control access from top to bottom.</p>
       </div>
@@ -1150,32 +1420,32 @@
 
       <!-- Shipped: Participation Analytics -->
       <div class="roadmap-shipped" style="border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;">
-        <div style="width:48px;height:48px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;">📊</div>
+        <div style="width:48px;height:48px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;"><svg class="ic" aria-hidden="true"><use href="#i-chart-column"/></svg></div>
         <div>
           <div style="font-weight:700;font-size:1rem;color:#111827;">Analytics &amp; CSV Export</div>
           <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Per-member participation dashboard with 7d/30d views and one-click CSV export</div>
         </div>
-        <span class="badge-shipped">✅ Shipped</span>
+        <span class="badge-shipped"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg> Shipped</span>
       </div>
 
       <!-- Shipped: Mood Tracking -->
       <div class="roadmap-shipped" style="border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;">
-        <div style="width:48px;height:48px;background:linear-gradient(135deg,#f97316,#ec4899);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;">🎭</div>
+        <div style="width:48px;height:48px;background:linear-gradient(135deg,#f97316,#ec4899);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;"><svg class="ic" aria-hidden="true"><use href="#i-smile"/></svg></div>
         <div>
           <div style="font-weight:700;font-size:1rem;color:#111827;">Mood Tracking</div>
           <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Emoji mood check-in after every standup — track team health over time</div>
         </div>
-        <span class="badge-shipped">✅ Shipped</span>
+        <span class="badge-shipped"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg> Shipped</span>
       </div>
 
       <!-- Shipped: Rich App Home & Streaks -->
       <div class="roadmap-shipped" style="border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;">
-        <div style="width:48px;height:48px;background:linear-gradient(135deg,#06b6d4,#3b82f6);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;">🏠</div>
+        <div style="width:48px;height:48px;background:linear-gradient(135deg,#06b6d4,#3b82f6);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;"><svg class="ic" aria-hidden="true"><use href="#i-server"/></svg></div>
         <div>
           <div style="font-weight:700;font-size:1rem;color:#111827;">App Home &amp; Streaks</div>
           <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Rich Slack App Home with standup cards, streaks, vacation mode, and one-click actions</div>
         </div>
-        <span class="badge-shipped">✅ Shipped</span>
+        <span class="badge-shipped"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg> Shipped</span>
       </div>
 
       <!-- Microsoft Teams — Coming Soon -->
@@ -1200,17 +1470,17 @@
 
       <!-- Shipped: MCP / AI Integration -->
       <div class="roadmap-shipped" style="border-radius:16px;padding:32px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;">
-        <div style="width:48px;height:48px;background:linear-gradient(135deg,#f97316,#ec4899);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;">🤖</div>
+        <div style="width:48px;height:48px;background:linear-gradient(135deg,#f97316,#ec4899);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg></div>
         <div>
           <div style="font-weight:700;font-size:1rem;color:#111827;">MCP / AI Integration</div>
           <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Ask your AI assistant "what did my team work on this week?" via the MCP server endpoint</div>
         </div>
-        <span class="badge-shipped">✅ Shipped</span>
+        <span class="badge-shipped"><svg class="ic ic-yes" aria-hidden="true"><use href="#i-check"/></svg> Shipped</span>
       </div>
 
       <!-- AI Summary — Coming Soon -->
       <div style="background:#fff;border-radius:16px;padding:32px 24px;box-shadow:0 1px 4px rgba(0,0,0,0.08);display:flex;flex-direction:column;align-items:center;gap:16px;">
-        <div style="width:48px;height:48px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;">✨</div>
+        <div style="width:48px;height:48px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;"><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg></div>
         <div>
           <div style="font-weight:700;font-size:1rem;color:#111827;">AI Summary</div>
           <div style="color:#6b7280;font-size:0.875rem;margin-top:4px;">Condense 10 standup responses into one sharp paragraph</div>
@@ -1220,7 +1490,7 @@
 
     </div>
     <p style="margin-top:40px;color:#9ca3af;font-size:0.9rem;">
-      Have a feature idea? <a href="https://github.com/morgenruf/morgenruf/discussions" style="color:#4f46e5;font-weight:600;">Start a discussion →</a>
+      Have a feature idea? <a href="https://github.com/morgenruf/morgenruf/discussions" style="color:#4f46e5;font-weight:600;">Start a discussion <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
     </p>
   </div>
 </section>
@@ -1299,7 +1569,7 @@
       <div class="footer-brand">
         <div class="logo" style="display:flex;align-items:center;gap:8px;"><img src="/icon-512.png" alt="" width="28" height="28"/> morgenruf</div>
         <p>Free, open-source Slack standup bot. Self-host it, own your data, and say goodbye to per-seat pricing forever.</p>
-        <p style="font-size:0.8rem;margin-top:10px;color:#6b7280;font-style:italic;">Built over a weekend at a Tim Hortons in Toronto 🇨🇦☕</p>
+        <p style="font-size:0.8rem;margin-top:10px;color:#6b7280;font-style:italic;">Built by <a href="https://clouddrove.com" rel="noopener" style="color:inherit;text-decoration:underline">CloudDrove</a> over a weekend at a Tim Hortons in Toronto 🇨🇦☕</p>
         <div style="margin-top:12px;"><span class="footer-badge">MIT</span></div>
       </div>
       <div class="footer-col">
