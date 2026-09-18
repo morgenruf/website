@@ -13,16 +13,14 @@ from shell import INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, footer, head
 ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 
 
-def _extract(filename):
-    """Pull the body copy out of a legacy page, dropping its chrome."""
-    s = (ROOT / filename).read_text()
-    m = re.search(r"<main[^>]*>(.*?)</main>", s, re.S)
-    inner = m.group(1) if m else s
-    inner = re.sub(r"<style.*?</style>|<script.*?</script>", "", inner, flags=re.S)
-    inner = re.sub(r"<h1[^>]*>.*?</h1>", "", inner, flags=re.S, count=1)
-    inner = re.sub(r'\sclass="[^"]*"', "", inner)
-    inner = re.sub(r'\sstyle="[^"]*"', "", inner)
-    return inner.strip()
+def _extract(name):
+    """The prose for a legal page, kept beside the generator.
+
+    This used to read the old hand-written page and strip its chrome, which
+    worked exactly once: the build then deleted that file and could never run
+    again. The copy lives in content/ now.
+    """
+    return (pathlib.Path(__file__).resolve().parent / "content" / name).read_text().strip()
 
 
 def _page(*, path, title, description, h1, lede, prose, trail, noindex=False):

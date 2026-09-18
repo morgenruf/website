@@ -16,8 +16,26 @@ KIND = {"Added": "state done", "Fixed": "state", "Changed": "state", "Removed": 
         "Security": "state"}
 
 
+def _published_tags():
+    """Tags that have a GitHub release. The 0.x entries predate releases, and
+    linking them produced four 404s on a page about being well maintained."""
+    import subprocess
+    try:
+        out = subprocess.run(
+            ["gh", "release", "list", "--limit", "80", "--repo", "morgenruf/morgenruf",
+             "--json", "tagName", "-q", ".[].tagName"],
+            capture_output=True, text=True, timeout=30).stdout.split()
+        return {t.lstrip("v") for t in out}
+    except Exception:
+        return set()
+
+
 def _entries():
     text = SOURCE.read_text()
+    # Markdown link references at the foot of the file are not release notes.
+    # Left in, they arrived as a bullet reading "[0.1.0]: https://…" inside the
+    # oldest entry.
+    text = re.sub(r"^\[[^\]]+\]:\s*http\S+\s*$", "", text, flags=re.M)
     out = []
     for block in re.split(r"\n(?=## \[)", text):
         m = re.match(r"## \[([0-9]+\.[0-9]+\.[0-9]+)\][^\n]*?—\s*([0-9]{4}-[0-9]{2}-[0-9]{2})", block)
@@ -45,7 +63,10 @@ def _entries():
 def changelog():
     entries = _entries()
     rows = ""
+    published = _published_tags()
     for version, date, sections in entries:
+        link = (f'<a href="{REPO}/releases/tag/v{version}">Release notes ↗</a>'
+                if version in published else "")
         blocks = ""
         for headline, items in sections:
             lis = "".join(f"<li>{i}</li>" for i in items)
@@ -54,7 +75,7 @@ def changelog():
   <div class="release-meta">
     <h2 id="v{version}">{version}</h2>
     <time datetime="{date}">{date}</time>
-    <a href="{REPO}/releases/tag/v{version}">Release notes ↗</a>
+    {link}
   </div>
   <div class="release-body">{blocks}</div>
 </article>'''

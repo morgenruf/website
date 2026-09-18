@@ -339,7 +339,7 @@ you will run the previous release's migrations against the new code.</p>
 
 <div class="next">
   <a class="tile" href="/setup/slack-app"><h3>The Slack app</h3><p>The manifest, the scopes, and installing it.</p><span class="go">Read it →</span></a>
-  <a class="tile" href="https://charts.morgenruf.dev"><h3>Chart values</h3><p>Every value the chart takes, with defaults.</p><span class="go">Open the chart →</span></a>
+  <a class="tile" href="https://github.com/morgenruf/helm-charts"><h3>Chart values</h3><p>Every value the chart takes, with defaults.</p><span class="go">Open the chart →</span></a>
 </div>
 '''
     body = guide(prose, [("Install", "install"), ("Exposing it", "exposing-it"),

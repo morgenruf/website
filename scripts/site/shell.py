@@ -8,7 +8,7 @@ older landing pages ended up thin and inconsistent.
 from __future__ import annotations
 
 SITE = "https://morgenruf.dev"
-INSTALL = "https://api.morgenruf.dev/slack/install"
+INSTALL = "https://api.morgenruf.dev/install"
 REPO = "https://github.com/morgenruf/morgenruf"
 
 MARK = '<img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/>' 
