@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Open-source Slack standup bot, MIT licensed — Morgenruf</title>
+<meta name="description" content="An MIT-licensed, self-hosted Slack standup bot with coffee chats and peer recognition in the same app. Read the source, run it yourself, keep the data."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://morgenruf.dev/open-source-standup-bot"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://morgenruf.dev/open-source-standup-bot"/>
+<meta property="og:title" content="Open-source Slack standup bot, MIT licensed — Morgenruf"/>
+<meta property="og:description" content="An MIT-licensed, self-hosted Slack standup bot with coffee chats and peer recognition in the same app. Read the source, run it yourself, keep the data."/>
+<meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Open-source Slack standup bot, MIT licensed — Morgenruf"/>
+<meta name="twitter:description" content="An MIT-licensed, self-hosted Slack standup bot with coffee chats and peer recognition in the same app. Read the source, run it yourself, keep the data."/>
+<meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="theme-color" content="#12131f"/>
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" href="/icon-512.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/site.css"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is it really MIT, all of it?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. One repository, one licence, no open-core split and no feature held back for a paid tier."}}, {"@type": "Question", "name": "Can I run it commercially?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, including inside a company, without asking anyone."}}, {"@type": "Question", "name": "Who maintains it?", "acceptedAnswer": {"@type": "Answer", "text": "It is built and maintained at CloudDrove, who also offer paid setup and hosting. Paid work funds it but never gates it."}}, {"@type": "Question", "name": "What if the project stops?", "acceptedAnswer": {"@type": "Answer", "text": "You have the source and your database. That is the point of the arrangement."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Compare","item":"https://morgenruf.dev/compare"},{"@type":"ListItem","position":3,"name":"Open source"}]}</script>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <div class="nav-links"><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/setup">Set up</a><a href="/compare">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
+      <a class="btn btn-sun btn-sm" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+    </div>
+  </div>
+</nav>
+<div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <a href="/compare">Compare</a><span aria-hidden="true">›</span> <span>Open source</span></div><main>
+<header class="page-head"><div class="wrap"><h1>An open-source Slack standup bot, all of it</h1>
+<p class="lede">MIT licensed, self-hosted, and honest about what running it costs you in effort rather than money.</p>
+<div class="head-cta">
+  <a class="btn btn-sun" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+  <a class="btn btn-line" href="/setup">Set it up yourself</a>
+</div></div></header>
+<section class="section"><div class="wrap"><div class="guide"><nav class="toc" aria-label="On this page"><strong>On this page</strong><div class="toc-links"><a href="#what-open-source-buys-you">What open source buys</a><a href="#the-honest-trade">The honest trade</a><a href="#what-morgenruf-includes">What is in the box</a><a href="#other-options">Other options</a><a href="#getting-started">Getting started</a></div></nav><div class="prose"><h2 id="what-open-source-buys-you">What open source actually buys you here</h2>
+<p>Three things, and only one of them is the licence:</p>
+<ul>
+  <li><strong>You can read it.</strong> A standup bot sees everything your team is stuck on. Being
+  able to check what it does with that is not paranoia.</li>
+  <li><strong>You can change it.</strong> Summary format, question types, the wording of a nudge.</li>
+  <li><strong>It cannot be taken away.</strong> No price change, no acquisition, no sunset email.</li>
+</ul>
+
+<figure class="diagram">
+<svg viewBox="0 0 760 240" role="img" aria-label="Slack sends events to the Morgenruf app, which reads and writes your own Postgres database. A scheduler inside the app sends standups and coffee chat introductions.">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+<path d="M0 0 L10 5 L0 10 z" fill="#FFB23F"/></marker></defs>
+<rect x="20" y="80" width="170" height="80" rx="12" fill="#FFF7EA" stroke="#F0E4CE" stroke-width="1.5"/>
+<text x="105.0" y="116.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Slack</text>
+<text x="105.0" y="136.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">your workspace</text>
+<rect x="295" y="80" width="170" height="80" rx="12" fill="#fff" stroke="#E9E2D6" stroke-width="1.5"/>
+<text x="380.0" y="116.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Morgenruf</text>
+<text x="380.0" y="136.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">one process</text>
+<rect x="570" y="80" width="170" height="80" rx="12" fill="#FFF7EA" stroke="#F0E4CE" stroke-width="1.5"/>
+<text x="655.0" y="116.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Postgres</text>
+<text x="655.0" y="136.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">your database</text>
+<line x1="190" y1="105" x2="290" y2="105" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="240.0" y="96.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12" fill="#5A5E74">events</text>
+<line x1="290" y1="138" x2="192" y2="138" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="241.0" y="129.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12" fill="#5A5E74">messages</text>
+<line x1="465" y1="120" x2="566" y2="120" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="515.5" y="111.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12" fill="#5A5E74">reads and writes</text>
+<rect x="295" y="192" width="170" height="36" rx="10" fill="#12131F"/>
+<text x="380" y="215" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#F6F3EC">scheduler, inside the process</text>
+<line x1="380" y1="160" x2="380" y2="190" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/>
+<text x="380" y="30" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="#12131F">Three things, and nothing else</text>
+<text x="380" y="52" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">No queue, no third party, no telemetry</text>
+</svg>
+<figcaption>Everything runs in one process against one database. Nothing leaves your infrastructure except calls to Slack.</figcaption>
+</figure>
+
+<h2 id="the-honest-trade">The honest trade</h2>
+<p>Someone has to run it. That is one container, a Postgres and an HTTPS URL, with migrations that
+apply themselves. It is a small job, but it is not zero, and a hosted tool removes it entirely. Be
+clear which side of that you are on before switching.</p>
+
+<h2 id="what-morgenruf-includes">What is in the box</h2>
+<ul>
+  <li><a href="/standups">Async standups</a> with per-person timezones, blockers, nudges and an edit
+  window</li>
+  <li><a href="/coffee-chats">Random coffee chats</a> that agree a time and book a Zoom meeting</li>
+  <li><a href="/kudos">Peer recognition</a> with a daily allowance and your own emoji</li>
+  <li><a href="/insights">Insights</a> across both datasets</li>
+  <li>Signed webhooks, automation rules, an MCP server, CSV export, a Helm chart</li>
+</ul>
+<p>Every one of those is in the repository. There is no paid tier holding anything back.</p>
+
+<h2 id="other-options">Other open-source options</h2>
+<p>There are a few self-hosted standup tools around, mostly smaller scripts that post a message and
+collect replies. They are fine for one team and one question set. The things that usually run out
+are per-person timezones, vacation handling, a dashboard non-engineers will use, and anything beyond
+standups. Pick by which of those you need rather than by star count.</p>
+
+<div class="shot"><img src="/screenshots/members.jpg" width="1180" height="480" loading="lazy" alt="Member cards in the dashboard showing which features each person runs"/></div><p class="shot-cap">Per-feature admin grants, so the team lead runs standups without holding the API keys.</p>
+
+<h2 id="getting-started">Getting started</h2>
+<p><a href="/setup">The setup guides</a> cover Docker Compose, Kubernetes and the Slack app. The
+whole thing takes about twenty minutes, most of it in Slack's settings.</p></div></div></div></section><section class="section"><div class="wrap" style="max-width:820px">
+  <span class="eyebrow">Questions</span><h2>About the open-source side</h2>
+  <div style="margin-top:24px"><details open><summary>Is it really MIT, all of it?</summary><p>Yes. One repository, one licence, no open-core split and no feature held back for a paid tier.</p></details><details><summary>Can I run it commercially?</summary><p>Yes, including inside a company, without asking anyone.</p></details><details><summary>Who maintains it?</summary><p>It is built and maintained at CloudDrove, who also offer paid setup and hosting. Paid work funds it but never gates it.</p></details><details><summary>What if the project stops?</summary><p>You have the source and your database. That is the point of the arrangement.</p></details></div></div></section>
+</main><section class="section">
+  <div class="wrap">
+    <div class="band">
+      <h2>Free for every seat, and that is the whole pricing page</h2>
+      <p class="lede">MIT licensed, no paid tier, nothing held back from the repository. You pay for a server and a database, which you were paying for anyway.</p>
+      <div class="band-cta">
+        <a class="btn btn-sun" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+        <a class="btn btn-ghost" href="https://github.com/morgenruf/morgenruf">Read the source</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
+        chats and recognition. Self-host it and keep your own data.</p>
+        <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        Kitchener, Ontario 🇨🇦</p>
+      </div>
+      <div><h4>Product</h4><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h4>Set up</h4><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h4>Compare</h4><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h4>Project</h4><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
+      <span class="foot-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

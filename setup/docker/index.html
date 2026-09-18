@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Run a Slack standup bot with Docker Compose — Morgenruf setup</title>
+<meta name="description" content="Self-host Morgenruf with Docker Compose: environment variables, starting the containers, giving Slack an HTTPS URL with a Cloudflare tunnel, upgrades and backups."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://morgenruf.dev/setup/docker"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://morgenruf.dev/setup/docker"/>
+<meta property="og:title" content="Run a Slack standup bot with Docker Compose — Morgenruf setup"/>
+<meta property="og:description" content="Self-host Morgenruf with Docker Compose: environment variables, starting the containers, giving Slack an HTTPS URL with a Cloudflare tunnel, upgrades and backups."/>
+<meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Run a Slack standup bot with Docker Compose — Morgenruf setup"/>
+<meta name="twitter:description" content="Self-host Morgenruf with Docker Compose: environment variables, starting the containers, giving Slack an HTTPS URL with a Cloudflare tunnel, upgrades and backups."/>
+<meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="theme-color" content="#12131f"/>
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" href="/icon-512.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/site.css"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Set up Morgenruf with Docker Compose", "description": "Self-host an open-source Slack standup bot using Docker Compose.", "totalTime": "PT20M", "step": [{"@type": "HowToStep", "position": 1, "name": "Create the Slack app", "text": "Create an app from the manifest in the repository, add your redirect URL under OAuth and Permissions, and copy the client id, client secret and signing secret."}, {"@type": "HowToStep", "position": 2, "name": "Clone and configure", "text": "Clone the repository, copy .env.example to .env, and fill in the three Slack values, a Postgres URL, APP_URL and a generated FLASK_SECRET_KEY."}, {"@type": "HowToStep", "position": 3, "name": "Start the containers", "text": "Run docker compose up -d. Migrations apply themselves on first start, so an empty database is enough."}, {"@type": "HowToStep", "position": 4, "name": "Give Slack a URL it can reach", "text": "Expose the app over HTTPS, with a reverse proxy or a Cloudflare tunnel, and set that address as APP_URL."}, {"@type": "HowToStep", "position": 5, "name": "Install it into Slack", "text": "Open your app URL, authorise the workspace, and create your first standup. Whoever installs it becomes the first admin."}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I run this on a Mac mini or a Raspberry Pi?", "acceptedAnswer": {"@type": "Answer", "text": "A Mac mini yes, and it is a good home for it. On a Pi you would need an arm64 image; the published image is amd64, so build it yourself on the Pi or use a small cloud VM instead."}}, {"@type": "Question", "name": "Does Docker Compose bring its own Postgres?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the bundled compose file starts one for you. For anything you care about, point DATABASE_URL at a managed Postgres instead and keep backups out of the container's lifecycle."}}, {"@type": "Question", "name": "How do I upgrade?", "acceptedAnswer": {"@type": "Answer", "text": "Pull the new image and restart: docker compose pull && docker compose up -d. Migrations run on start, and they are written to be safe to run against a live database."}}, {"@type": "Question", "name": "How do I back it up?", "acceptedAnswer": {"@type": "Answer", "text": "It is one Postgres database, so pg_dump is the whole backup story. No state lives in the container."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Set up","item":"https://morgenruf.dev/setup"},{"@type":"ListItem","position":3,"name":"Docker"}]}</script>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <div class="nav-links"><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/setup" aria-current=page>Set up</a><a href="/compare">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
+      <a class="btn btn-sun btn-sm" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+    </div>
+  </div>
+</nav>
+<div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <a href="/setup">Set up</a><span aria-hidden="true">›</span> <span>Docker</span></div><main>
+<header class="page-head"><div class="wrap">
+  <h1>Set it up with Docker Compose</h1>
+  <p class="lede">The shortest path, and the one to use if you are trying it out. One compose file, one command, and a tunnel if you have nowhere public to put it.</p>
+</div></header>
+<section class="section"><div class="wrap"><div class="guide"><nav class="toc" aria-label="On this page"><strong>On this page</strong><div class="toc-links"><a href="#what-you-need">What you need</a><a href="#1-create-the-slack-app">1. Create the Slack app</a><a href="#2-clone-and-configure">2. Clone and configure</a><a href="#3-start-it">3. Start it</a><a href="#4-let-slack-reach-it">4. Let Slack reach it</a><a href="#5-install-it">5. Install it</a><a href="#keeping-it-running">Keeping it running</a></div></nav><div class="prose"><h2 id="what-you-need">What you need</h2>
+<ul>
+  <li>Docker and Docker Compose</li>
+  <li>A Slack workspace where you can install an app</li>
+  <li>A way to give Slack an HTTPS URL. A Cloudflare tunnel is fine and needs no open port.</li>
+</ul>
+
+<h2 id="1-create-the-slack-app">1. Create the Slack app</h2>
+<p>Do this first, because the next step wants three values from it. The
+<a href="/setup/slack-app">Slack app page</a> covers it properly; the short version is: create an
+app from the manifest, add <code>https://your-domain/oauth/callback</code> as a redirect URL, and
+copy the client id, client secret and signing secret.</p>
+
+<h2 id="2-clone-and-configure">2. Clone and configure</h2>
+<pre><code>git clone https://github.com/morgenruf/morgenruf.git
+cd morgenruf/app
+cp .env.example .env</code></pre>
+<p>Open <code>.env</code> and set at least these:</p>
+<pre><code>SLACK_CLIENT_ID=...
+SLACK_CLIENT_SECRET=...
+SLACK_SIGNING_SECRET=...
+DATABASE_URL=postgresql://morgenruf:password@db:5432/morgenruf
+APP_URL=https://standups.your-domain.com
+FLASK_SECRET_KEY=$(openssl rand -hex 32)</code></pre>
+
+<div class="note"><p><strong>APP_URL has to be the address Slack will call</strong>, not localhost.
+If you are using a tunnel, put the tunnel's URL here and restart after it changes.</p></div>
+
+<h2 id="3-start-it">3. Start it</h2>
+<pre><code>docker compose up -d
+docker compose logs -f app</code></pre>
+<p>The log will show migrations applying and then <code>Scheduler started</code>. That is the whole
+startup: there is no separate migration step and no seed data to load.</p>
+
+<h2 id="4-let-slack-reach-it">4. Let Slack reach it</h2>
+<p>Slack posts events to your app, so it needs a public HTTPS address. If you already run a reverse
+proxy, point it at port 3000. If you do not:</p>
+<pre><code>cloudflared tunnel --url http://localhost:3000</code></pre>
+<p>Copy the <code>https://….trycloudflare.com</code> address it prints, set it as
+<code>APP_URL</code>, and restart with <code>docker compose restart app</code>. For anything
+permanent, use a named tunnel rather than a quick one, because the quick URL changes each run.</p>
+
+<h2 id="5-install-it">5. Install it</h2>
+<p>Open your app URL in a browser and authorise the workspace. You become the first admin, and the
+dashboard opens on an empty Standups page. Create one: channel, questions, the hour, and who takes
+part.</p>
+
+<h2 id="keeping-it-running">Keeping it running</h2>
+<ul>
+  <li><strong>Upgrades:</strong> <code>docker compose pull &amp;&amp; docker compose up -d</code>.
+  Migrations apply on start.</li>
+  <li><strong>Backups:</strong> it is one Postgres database. <code>pg_dump</code> is the whole
+  story.</li>
+  <li><strong>Logs:</strong> <code>docker compose logs -f app</code>. Standups, coffee chat rounds
+  and delivery failures all appear there.</li>
+</ul>
+
+<div class="note"><p><strong>Stuck?</strong> The
+<a href="https://github.com/morgenruf/morgenruf/issues">issue tracker</a> and
+<a href="https://github.com/morgenruf/morgenruf/discussions">discussions</a> are where setup
+questions get answered, and <a href="/support">CloudDrove will do the whole thing for you</a> if you
+would rather not.</p></div>
+
+<div class="next">
+  <a class="tile" href="/setup/slack-app"><h3>The Slack app</h3><p>The manifest, the scopes and why each one is asked for.</p><span class="go">Read it →</span></a>
+  <a class="tile" href="/setup/kubernetes"><h3>Kubernetes instead</h3><p>The Helm chart, an external database, and ingress or tunnel.</p><span class="go">Read it →</span></a>
+</div>
+</div></div></div></section><section class="section"><div class="wrap" style="max-width:820px">
+  <span class="eyebrow">Questions</span><h2 id="running-it-with-docker">Running it with Docker</h2>
+  <div style="margin-top:24px"><details open><summary>Can I run this on a Mac mini or a Raspberry Pi?</summary><p>A Mac mini yes, and it is a good home for it. On a Pi you would need an arm64 image; the published image is amd64, so build it yourself on the Pi or use a small cloud VM instead.</p></details><details><summary>Does Docker Compose bring its own Postgres?</summary><p>Yes, the bundled compose file starts one for you. For anything you care about, point DATABASE_URL at a managed Postgres instead and keep backups out of the container's lifecycle.</p></details><details><summary>How do I upgrade?</summary><p>Pull the new image and restart: docker compose pull && docker compose up -d. Migrations run on start, and they are written to be safe to run against a live database.</p></details><details><summary>How do I back it up?</summary><p>It is one Postgres database, so pg_dump is the whole backup story. No state lives in the container.</p></details></div></div></section>
+</main><section class="section">
+  <div class="wrap">
+    <div class="band">
+      <h2>Free for every seat, and that is the whole pricing page</h2>
+      <p class="lede">MIT licensed, no paid tier, nothing held back from the repository. You pay for a server and a database, which you were paying for anyway.</p>
+      <div class="band-cta">
+        <a class="btn btn-sun" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+        <a class="btn btn-ghost" href="https://github.com/morgenruf/morgenruf">Read the source</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
+        chats and recognition. Self-host it and keep your own data.</p>
+        <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        Kitchener, Ontario 🇨🇦</p>
+      </div>
+      <div><h4>Product</h4><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h4>Set up</h4><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h4>Compare</h4><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h4>Project</h4><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
+      <span class="foot-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

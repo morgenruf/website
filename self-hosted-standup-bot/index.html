@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Self-hosted Slack standup bot on your own servers — Morgenruf</title>
+<meta name="description" content="Run your own Slack standup bot: one container, one Postgres, an HTTPS URL. Docker Compose or Kubernetes, no per-seat pricing, and the answers stay in your database."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://morgenruf.dev/self-hosted-standup-bot"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://morgenruf.dev/self-hosted-standup-bot"/>
+<meta property="og:title" content="Self-hosted Slack standup bot on your own servers — Morgenruf"/>
+<meta property="og:description" content="Run your own Slack standup bot: one container, one Postgres, an HTTPS URL. Docker Compose or Kubernetes, no per-seat pricing, and the answers stay in your database."/>
+<meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Self-hosted Slack standup bot on your own servers — Morgenruf"/>
+<meta name="twitter:description" content="Run your own Slack standup bot: one container, one Postgres, an HTTPS URL. Docker Compose or Kubernetes, no per-seat pricing, and the answers stay in your database."/>
+<meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="theme-color" content="#12131f"/>
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" href="/icon-512.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/site.css"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What are the minimum requirements?", "acceptedAnswer": {"@type": "Answer", "text": "One small container and a Postgres. A single vCPU with 512MB is enough for a team of dozens; the work is bursty and short."}}, {"@type": "Question", "name": "Does it need a public IP?", "acceptedAnswer": {"@type": "Answer", "text": "No. A Cloudflare tunnel gives Slack an HTTPS URL without opening a port or running an ingress controller."}}, {"@type": "Question", "name": "How do upgrades work?", "acceptedAnswer": {"@type": "Answer", "text": "Pull the new image and restart. Migrations run in an init container before the app starts, and are written to be safe against a live database."}}, {"@type": "Question", "name": "Is there a hosted version?", "acceptedAnswer": {"@type": "Answer", "text": "There is a demo, and CloudDrove will run it for you commercially, but the product is designed to be yours."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Compare","item":"https://morgenruf.dev/compare"},{"@type":"ListItem","position":3,"name":"Self-hosted"}]}</script>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <div class="nav-links"><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/setup">Set up</a><a href="/compare">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
+      <a class="btn btn-sun btn-sm" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+    </div>
+  </div>
+</nav>
+<div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <a href="/compare">Compare</a><span aria-hidden="true">›</span> <span>Self-hosted</span></div><main>
+<header class="page-head"><div class="wrap"><h1>A standup bot on your own servers</h1>
+<p class="lede">One container, one database, and an HTTPS URL Slack can reach. Here is exactly what that involves before you commit to it.</p>
+<div class="head-cta">
+  <a class="btn btn-sun" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+  <a class="btn btn-line" href="/setup">Set it up yourself</a>
+</div></div></header>
+<section class="section"><div class="wrap"><div class="guide"><nav class="toc" aria-label="On this page"><strong>On this page</strong><div class="toc-links"><a href="#why-teams-self-host-this">Why teams self-host</a><a href="#what-running-it-involves">What running it involves</a><a href="#what-it-costs">What it costs</a><a href="#where-it-runs">Where it runs</a><a href="#the-part-people-underestimate">The underestimated part</a></div></nav><div class="prose"><h2 id="why-teams-self-host-this">Why teams self-host a standup bot</h2>
+<p>Three reasons come up, in this order:</p>
+<ul>
+  <li><strong>The answers are sensitive.</strong> A standup is a daily log of what is broken, what is
+  late and who is stuck. Plenty of companies are fine with that in a vendor's cloud. Regulated ones
+  are not, and it is not a preference they can be argued out of.</li>
+  <li><strong>The bill grows with the team.</strong> Per-seat pricing means the cost of three
+  questions a morning rises every time you hire.</li>
+  <li><strong>They already run things.</strong> If you have a cluster and a Postgres, adding one more
+  small service is an afternoon.</li>
+</ul>
+
+<figure class="diagram">
+<svg viewBox="0 0 760 240" role="img" aria-label="Slack sends events to the Morgenruf app, which reads and writes your own Postgres database. A scheduler inside the app sends standups and coffee chat introductions.">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+<path d="M0 0 L10 5 L0 10 z" fill="#FFB23F"/></marker></defs>
+<rect x="20" y="80" width="170" height="80" rx="12" fill="#FFF7EA" stroke="#F0E4CE" stroke-width="1.5"/>
+<text x="105.0" y="116.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Slack</text>
+<text x="105.0" y="136.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">your workspace</text>
+<rect x="295" y="80" width="170" height="80" rx="12" fill="#fff" stroke="#E9E2D6" stroke-width="1.5"/>
+<text x="380.0" y="116.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Morgenruf</text>
+<text x="380.0" y="136.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">one process</text>
+<rect x="570" y="80" width="170" height="80" rx="12" fill="#FFF7EA" stroke="#F0E4CE" stroke-width="1.5"/>
+<text x="655.0" y="116.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Postgres</text>
+<text x="655.0" y="136.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">your database</text>
+<line x1="190" y1="105" x2="290" y2="105" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="240.0" y="96.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12" fill="#5A5E74">events</text>
+<line x1="290" y1="138" x2="192" y2="138" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="241.0" y="129.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12" fill="#5A5E74">messages</text>
+<line x1="465" y1="120" x2="566" y2="120" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="515.5" y="111.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12" fill="#5A5E74">reads and writes</text>
+<rect x="295" y="192" width="170" height="36" rx="10" fill="#12131F"/>
+<text x="380" y="215" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#F6F3EC">scheduler, inside the process</text>
+<line x1="380" y1="160" x2="380" y2="190" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/>
+<text x="380" y="30" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="#12131F">Three things, and nothing else</text>
+<text x="380" y="52" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">No queue, no third party, no telemetry</text>
+</svg>
+<figcaption>Everything runs in one process against one database. Nothing leaves your infrastructure except calls to Slack.</figcaption>
+</figure>
+
+<h2 id="what-running-it-involves">What running it actually involves</h2>
+<ul>
+  <li><strong>One container.</strong> A Python process. Not a queue, a worker pool and a cache.</li>
+  <li><strong>One database.</strong> Postgres 13 or newer. Migrations run themselves on start.</li>
+  <li><strong>An HTTPS URL.</strong> Slack posts events to it. A Cloudflare tunnel is enough and
+  needs no open port.</li>
+  <li><strong>Upgrades.</strong> Pull the image and restart, or <code>helm upgrade</code>.</li>
+  <li><strong>Backups.</strong> <code>pg_dump</code>. There is no other state.</li>
+</ul>
+
+<h2 id="what-it-costs">What it costs</h2>
+<p>A small VPS and a managed Postgres, or nothing extra if you already run both. There is no seat
+component at any size, which is the whole economic argument: the difference between hosted and
+self-hosted grows with your headcount, not with your usage.</p>
+
+<h2 id="where-it-runs">Where it runs</h2>
+<ul>
+  <li><a href="/setup/kubernetes">Kubernetes</a> with the published Helm chart, ingress, HTTPRoute or
+  a tunnel</li>
+  <li><a href="/setup/docker">Docker Compose</a> on a VPS, a homelab box or a spare Mac mini</li>
+  <li>Anywhere else a container and a Postgres can live</li>
+</ul>
+
+<div class="shot"><img src="/screenshots/standups.jpg" width="1180" height="530" loading="lazy" alt="Standups in the dashboard with completion sparklines"/></div><p class="shot-cap">The dashboard runs on your own domain, behind your own auth.</p>
+
+<h2 id="the-part-people-underestimate">The part people underestimate</h2>
+<p>Not the install. The Slack app: scopes, a redirect URL, and the fact that a workspace which
+installed before a feature existed has not granted that feature's scopes.
+<a href="/setup/slack-app">That page</a> exists because it is where setups actually stall.</p></div></div></div></section><section class="section"><div class="wrap" style="max-width:820px">
+  <span class="eyebrow">Questions</span><h2>About self-hosting</h2>
+  <div style="margin-top:24px"><details open><summary>What are the minimum requirements?</summary><p>One small container and a Postgres. A single vCPU with 512MB is enough for a team of dozens; the work is bursty and short.</p></details><details><summary>Does it need a public IP?</summary><p>No. A Cloudflare tunnel gives Slack an HTTPS URL without opening a port or running an ingress controller.</p></details><details><summary>How do upgrades work?</summary><p>Pull the new image and restart. Migrations run in an init container before the app starts, and are written to be safe against a live database.</p></details><details><summary>Is there a hosted version?</summary><p>There is a demo, and CloudDrove will run it for you commercially, but the product is designed to be yours.</p></details></div></div></section>
+</main><section class="section">
+  <div class="wrap">
+    <div class="band">
+      <h2>Free for every seat, and that is the whole pricing page</h2>
+      <p class="lede">MIT licensed, no paid tier, nothing held back from the repository. You pay for a server and a database, which you were paying for anyway.</p>
+      <div class="band-cta">
+        <a class="btn btn-sun" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+        <a class="btn btn-ghost" href="https://github.com/morgenruf/morgenruf">Read the source</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
+        chats and recognition. Self-host it and keep your own data.</p>
+        <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        Kitchener, Ontario 🇨🇦</p>
+      </div>
+      <div><h4>Product</h4><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h4>Set up</h4><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h4>Compare</h4><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h4>Project</h4><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
+      <span class="foot-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

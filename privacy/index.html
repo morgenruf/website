@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Privacy — what Morgenruf stores and what it never sends</title>
+<meta name="description" content="What Morgenruf stores, what leaves your infrastructure (almost nothing), and what self-hosting means for your team's standup data."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://morgenruf.dev/privacy"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://morgenruf.dev/privacy"/>
+<meta property="og:title" content="Privacy — what Morgenruf stores and what it never sends"/>
+<meta property="og:description" content="What Morgenruf stores, what leaves your infrastructure (almost nothing), and what self-hosting means for your team's standup data."/>
+<meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Privacy — what Morgenruf stores and what it never sends"/>
+<meta name="twitter:description" content="What Morgenruf stores, what leaves your infrastructure (almost nothing), and what self-hosting means for your team's standup data."/>
+<meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="theme-color" content="#12131f"/>
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" href="/icon-512.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/site.css"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Privacy"}]}</script>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <div class="nav-links"><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/setup">Set up</a><a href="/compare">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
+      <a class="btn btn-sun btn-sm" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+    </div>
+  </div>
+</nav>
+<div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <span>Privacy</span></div><main>
+<header class="page-head"><div class="wrap">
+  <h1>Privacy</h1>
+  <p class="lede">Short version: self-hosted, your database, no telemetry. The longer version is below, including the two optional services that do make outbound calls.</p>
+</div></header>
+<section class="section"><div class="wrap"><div class="prose"><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy — Morgenruf</title>
+  <meta name="description" content="Morgenruf Privacy Policy — how we collect, use and protect your data. GDPR compliant."/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>&#x1F305;</text></svg>"/>
+  
+  
+  <link rel="canonical" href="https://morgenruf.dev/privacy"/>
+  <meta name="robots" content="index, follow"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Morgenruf"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://morgenruf.dev/privacy"/>
+<meta property="og:title" content="Privacy — Morgenruf"/>
+<meta property="og:description" content="What Morgenruf stores, what it never sends anywhere, and what self-hosting means for your data."/>
+<meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
+</head>
+<body>
+  <a href="/">← Back to morgenruf.dev</a>
+  
+  <p>Effective date: April 5, 2026 · Last updated: April 5, 2026</p>
+
+  <p>Morgenruf ("we", "our", "us") operates the Slack application Morgenruf and the website at morgenruf.dev. This policy explains what personal data we collect, why, how we protect it, and your rights.</p>
+
+  <h2>1. Who We Are</h2>
+  <p>Morgenruf is an open-source Slack standup bot. The hosted cloud version is operated by the Morgenruf project. Source code is available at <a href="https://github.com/morgenruf/morgenruf">github.com/morgenruf/morgenruf</a> under the MIT license.</p>
+  <p>Privacy inquiries: <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a></p>
+
+  <h2>2. Data We Collect</h2>
+  <table>
+    <thead><tr><th>Data</th><th>Source</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>Slack workspace ID and name</td><td>Slack OAuth</td><td>Identify your workspace</td></tr>
+      <tr><td>Slack bot token</td><td>Slack OAuth</td><td>Authenticate API calls</td></tr>
+      <tr><td>Slack user IDs and display names</td><td>Slack API</td><td>Send DMs, display in dashboard</td></tr>
+      <tr><td>Email addresses (if scope granted)</td><td>Slack API</td><td>Transactional emails</td></tr>
+      <tr><td>User timezones</td><td>Slack API</td><td>Schedule standups correctly</td></tr>
+      <tr><td>Standup responses (text)</td><td>Users via bot DM</td><td>Core functionality</td></tr>
+      <tr><td>Standup configuration</td><td>Admin via dashboard</td><td>Core functionality</td></tr>
+      <tr><td>Kudos messages</td><td>Users via Slack</td><td>Kudos/recognition feature</td></tr>
+      <tr><td>Mood ratings (optional)</td><td>Users via bot DM</td><td>Mood analytics</td></tr>
+    </tbody>
+  </table>
+  <p>We do <strong>not</strong> read any Slack messages outside of direct messages sent to the Morgenruf bot. We do <strong>not</strong> collect payment information.</p>
+  <div><p><strong>Self-hosted:</strong> If you self-host Morgenruf, you are the data controller. We have no access to your data — it stays entirely on your infrastructure.</p></div>
+
+  <h2>3. How We Use Your Data</h2>
+  <ul>
+    <li>Deliver standup prompts to team members at scheduled times</li>
+    <li>Post formatted standup summaries to your Slack channel</li>
+    <li>Display analytics (participation, history) in the web dashboard</li>
+    <li>Send transactional emails: install confirmation, weekly digest, inactive nudges</li>
+    <li>Generate AI-powered standup summaries (only if you enable this feature — see §5)</li>
+    <li>Debug errors and maintain service reliability via Sentry</li>
+  </ul>
+  <p>We do <strong>not</strong> use your data for advertising, profiling, or selling to third parties.</p>
+
+  <h2>4. Legal Basis for Processing (GDPR)</h2>
+  <p>For users in the EEA, we process data under the following legal bases:</p>
+  <table>
+    <thead><tr><th>Processing activity</th><th>Legal basis</th></tr></thead>
+    <tbody>
+      <tr><td>Delivering standup prompts and summaries</td><td>Performance of contract (Art. 6(1)(b))</td></tr>
+      <tr><td>Analytics and dashboard</td><td>Legitimate interests (Art. 6(1)(f))</td></tr>
+      <tr><td>Transactional emails</td><td>Performance of contract / Legitimate interests</td></tr>
+
+      <tr><td>Security logging</td><td>Legitimate interests</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5. Third-Party Services</h2>
+  <h3>Always Active</h3>
+  <table>
+    <thead><tr><th>Sub-processor</th><th>Purpose</th><th>Location</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://slack.com/privacy">Slack Technologies</a></td><td>Slack API — message delivery</td><td>USA/EU</td></tr>
+      <tr><td><a href="https://railway.app/legal/privacy">Railway.app</a></td><td>Database and application hosting</td><td>USA</td></tr>
+      <tr><td><a href="https://resend.com/legal/privacy-policy">Resend</a></td><td>Transactional email delivery</td><td>USA</td></tr>
+      <tr><td><a href="https://www.netlify.com/privacy/">Netlify</a></td><td>Website hosting</td><td>USA</td></tr>
+      <tr><td><a href="https://sentry.io/privacy/">Sentry</a></td><td>Error monitoring (no standup content)</td><td>USA</td></tr>
+    </tbody>
+  </table>
+  <h2>6. Data Retention</h2>
+  <table>
+    <thead><tr><th>Data type</th><th>Retention period</th></tr></thead>
+    <tbody>
+      <tr><td>Standup responses</td><td>90 days (auto-deleted)</td></tr>
+      <tr><td>Analytics aggregates</td><td>12 months</td></tr>
+      <tr><td>Slack tokens</td><td>Until you uninstall Morgenruf</td></tr>
+      <tr><td>Request / error logs</td><td>30 days</td></tr>
+      <tr><td>Email send logs</td><td>90 days</td></tr>
+    </tbody>
+  </table>
+
+  <h2>7. Security</h2>
+  <ul>
+    <li>All data in transit is encrypted via TLS/HTTPS</li>
+    <li>Slack bot tokens are stored encrypted at rest (AES-256)</li>
+    <li>Sessions are backed by Redis with expiry</li>
+    <li>Signing secret validation on every Slack event</li>
+    <li>Access to production systems is restricted to authorised contributors</li>
+    <li>Periodic security reviews of infrastructure</li>
+  </ul>
+
+  <h2>8. Your Rights</h2>
+  <p>Depending on your location, you may have the right to: <strong>access</strong>, <strong>rectify</strong>, <strong>erase</strong>, receive a <strong>portable copy</strong> (CSV export available in dashboard), <strong>restrict processing</strong>, or <strong>object</strong> to processing. EEA users may also lodge a complaint with their national data protection authority.</p>
+  <p>To exercise any right, email <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a> with your Slack workspace ID. We will respond within 30 days.</p>
+
+  <h2>9. Data Deletion</h2>
+  <ul>
+    <li><strong>Uninstall Morgenruf</strong> from Slack (<em>Manage Apps → Remove Morgenruf</em>) — data is deleted within 30 days of the uninstall event.</li>
+    <li><strong>Immediate deletion:</strong> Email <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a> with your Slack team ID.</li>
+    <li><strong>Self-hosted:</strong> Drop your database or use the provided cleanup script.</li>
+  </ul>
+
+  <h2>10. International Data Transfers</h2>
+  <p>Our hosting is based in the United States. For EEA/UK users, data is transferred to the USA. We rely on Standard Contractual Clauses (SCCs) and the adequacy frameworks of our sub-processors. You can request transfer mechanism details at <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a>.</p>
+
+  <h2>11. Children's Privacy</h2>
+  <p>Morgenruf is not directed at children under 13. We do not knowingly collect data from children. If you believe a child has provided us data, please contact <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a>.</p>
+
+  <h2>12. Changes to This Policy</h2>
+  <p>We may update this policy for product changes or legal requirements. For material changes, workspace admins will be notified via Slack DM at least 14 days before the change takes effect. Continued use constitutes acceptance. The latest version is always at morgenruf.dev/privacy.</p>
+
+  <h2>13. Contact</h2>
+  <ul>
+    <li><strong>Privacy:</strong> <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a></li>
+    <li><strong>General support:</strong> <a href="mailto:hello@morgenruf.dev">hello@morgenruf.dev</a></li>
+    <li><strong>GitHub Issues:</strong> <a href="https://github.com/morgenruf/morgenruf/issues">github.com/morgenruf/morgenruf/issues</a></li>
+  </ul>
+
+  <hr/>
+  <p>This policy applies to the hosted cloud service. If you self-host Morgenruf, you are the data controller and this policy does not apply to your deployment.</p>
+  <p>© 2026 Morgenruf · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/support">Support</a></p>
+</body>
+</html></div></div></section>
+</main><footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
+        chats and recognition. Self-host it and keep your own data.</p>
+        <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        Kitchener, Ontario 🇨🇦</p>
+      </div>
+      <div><h4>Product</h4><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h4>Set up</h4><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h4>Compare</h4><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h4>Project</h4><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
+      <span class="foot-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

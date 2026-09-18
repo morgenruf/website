@@ -1,0 +1,262 @@
+/* ── Dawn ────────────────────────────────────────────────────────────────
+   The name means morning call, so the page is a sunrise: ink at the top,
+   amber where the sun comes up, paper for everything after. Colours are
+   sampled from the mascot rather than picked to look like software.
+   ------------------------------------------------------------------- */
+:root{
+  --ink:#12131F; --ink-2:#1B1D2E; --ink-soft:#2A2D42;
+  --paper:#FFFDF8; --paper-2:#FFF7EA; --line:#E9E2D6;
+  --amber:#FFB23F; --sun:#FFD166; --rooster:#E0322E;
+  --sky:#00A3DE; --violet:#4B3BD0; --leaf:#0E8A5F;
+  --text:#191B2A; --muted:#5A5E74; --dim:#82869B;
+  --on-ink:#F6F3EC; --on-ink-muted:#B9BCCD;
+  --radius:18px; --radius-s:11px;
+  --shadow:0 18px 50px rgba(18,19,31,.14);
+  --shadow-lift:0 30px 80px rgba(18,19,31,.22);
+  --wrap:1240px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{
+  margin:0; background:var(--paper); color:var(--text);
+  font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{font-family:'Bricolage Grotesque','Manrope',sans-serif; font-weight:800; letter-spacing:-.025em; line-height:1.04; margin:0}
+h1{font-size:clamp(38px,6.4vw,74px)}
+h2{font-size:clamp(28px,3.9vw,46px)}
+h3{font-size:20px; letter-spacing:-.015em; font-weight:700}
+p{margin:0 0 18px}
+a{color:inherit}
+.wrap{max-width:var(--wrap); margin:0 auto; padding:0 24px}
+.lede{font-size:clamp(17px,1.7vw,20px); color:var(--muted); max-width:62ch}
+.on-ink .lede{color:var(--on-ink-muted)}
+.eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:13.5px; font-weight:700; color:var(--rooster); margin-bottom:14px;
+}
+.eyebrow::before{content:""; width:22px; height:2px; background:currentColor; border-radius:2px}
+.section{padding:72px 0}
+.section + .section{padding-top:0}
+.page-head + .section{padding-top:34px}
+/* ── Top bar ─────────────────────────────────────────────────────────── */
+.nav{position:sticky; top:0; z-index:50; background:rgba(18,19,31,.88); backdrop-filter:blur(12px); border-bottom:1px solid rgba(255,255,255,.07)}
+.nav-in{display:flex; align-items:center; gap:28px; height:64px}
+.brand{display:flex; align-items:center; gap:10px; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:19px; color:var(--on-ink); text-decoration:none; letter-spacing:-.02em}
+.brand .mark{width:34px; height:34px; flex:0 0 34px; border-radius:7px}
+.nav-links{display:flex; gap:22px; margin-left:auto}
+.nav-links a{color:var(--on-ink-muted); text-decoration:none; font-size:15px; font-weight:500}
+.nav-links a:hover{color:var(--on-ink)}
+.nav-cta{display:flex; gap:10px; align-items:center}
+@media (max-width:900px){.nav-links{display:none}}
+
+/* ── Buttons ─────────────────────────────────────────────────────────── */
+.btn{display:inline-flex; align-items:center; gap:9px; padding:13px 22px; border-radius:999px; font-weight:700; font-size:15.5px; text-decoration:none; border:2px solid transparent; cursor:pointer; transition:transform .12s ease, box-shadow .12s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn:focus-visible{outline:3px solid var(--sky); outline-offset:3px}
+.btn-sun{background:var(--sun); color:#26190A; box-shadow:0 10px 26px rgba(255,178,63,.36)}
+.btn-sun:hover{box-shadow:0 14px 34px rgba(255,178,63,.48)}
+.btn-ghost{border-color:rgba(255,255,255,.28); color:var(--on-ink)}
+.btn-ghost:hover{border-color:var(--sun); color:var(--sun)}
+.btn-ink{background:var(--ink); color:var(--on-ink)}
+.btn-line{border-color:var(--line); color:var(--text); background:var(--paper)}
+.btn-sm{padding:9px 16px; font-size:14px}
+
+/* ── Hero: ink, with the sun coming up behind the rooster ────────────── */
+.hero{position:relative; background:var(--ink); color:var(--on-ink); overflow:hidden; padding:74px 0 0}
+.hero::before{
+  content:""; position:absolute; left:64%; top:-220px; width:980px; height:980px; transform:translateX(-50%);
+  background:radial-gradient(circle at 50% 50%, rgba(255,209,102,.38), rgba(224,50,46,.12) 42%, transparent 66%);
+  pointer-events:none;
+}
+.hero::after{
+  content:""; position:absolute; left:0; right:0; bottom:118px; height:1px;
+  background:linear-gradient(90deg, transparent, rgba(255,209,102,.34) 30%, rgba(255,209,102,.34) 70%, transparent);
+  pointer-events:none;
+}
+.hero h1{max-width:13ch}
+.hero-in{position:relative; display:grid; grid-template-columns:1.06fr .94fr; gap:54px; align-items:center}
+@media (max-width:980px){.hero-in{grid-template-columns:1fr; gap:38px}}
+.hero h1 .rise{color:var(--sun); display:inline-block}
+.hero .lede{margin-top:20px; font-size:19px}
+.hero-cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:28px}
+.hero-note{margin-top:18px; font-size:14px; color:var(--on-ink-muted); display:flex; flex-wrap:wrap; gap:8px 18px}
+.hero-note span{display:inline-flex; align-items:center; gap:7px}
+.hero-note span::before{content:""; width:5px; height:5px; border-radius:50%; background:var(--leaf)}
+.badge-os{display:inline-flex; align-items:center; gap:9px; padding:7px 15px; border-radius:999px; background:rgba(255,209,102,.13); border:1px solid rgba(255,209,102,.3); color:var(--sun); font-size:13.5px; font-weight:700; margin-bottom:22px}
+.mascot{width:min(330px,72%); display:block; margin:0 auto; filter:drop-shadow(0 22px 44px rgba(0,0,0,.45))}
+@media (prefers-reduced-motion:no-preference){
+  .mascot{animation:rise 1.1s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes rise{from{opacity:0; transform:translateY(26px) rotate(-3deg)} to{opacity:1; transform:none}}
+}
+
+/* ── Proof strip ─────────────────────────────────────────────────────── */
+.proof{border-top:1px solid rgba(255,255,255,.08); margin-top:64px; background:rgba(0,0,0,.18)}
+.proof-in{display:grid; grid-template-columns:repeat(4,1fr); gap:6px; padding:26px 0}
+@media (max-width:760px){.proof-in{grid-template-columns:repeat(2,1fr); gap:20px}}
+.proof-n{font-family:'Bricolage Grotesque',sans-serif; font-size:30px; font-weight:800; color:var(--sun); letter-spacing:-.02em}
+.proof-l{font-size:13.5px; color:var(--on-ink-muted)}
+/* ── Module rows: the product, alternating with what it does ─────────── */
+.mod{display:grid; grid-template-columns:.78fr 1.22fr; gap:52px; align-items:center; padding:74px 0; border-bottom:1px solid var(--line)}
+.mod:nth-child(even) .mod-copy{order:2}
+@media (max-width:980px){.mod{grid-template-columns:1fr; gap:28px; padding:54px 0}.mod:nth-child(even) .mod-copy{order:0}}
+.mod h2{margin-bottom:14px}
+.mod ul{list-style:none; padding:0; margin:22px 0 0}
+.mod li{position:relative; padding-left:28px; margin-bottom:11px; color:var(--muted)}
+.mod li::before{content:""; position:absolute; left:0; top:9px; width:15px; height:9px; border-left:2.5px solid var(--leaf); border-bottom:2.5px solid var(--leaf); transform:rotate(-45deg)}
+.shot{border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow-lift); background:var(--ink); line-height:0}
+.shot img{display:block; width:100%; height:auto}
+.shot-cap{font-size:13.5px; color:var(--dim); margin-top:11px}
+.tag{display:inline-block; font-size:12.5px; font-weight:700; padding:4px 11px; border-radius:999px; margin-bottom:12px}
+.tag-standup{background:rgba(0,163,222,.12); color:#0A6E93}
+.tag-connect{background:rgba(75,59,208,.12); color:var(--violet)}
+.tag-kudos{background:rgba(224,50,46,.10); color:var(--rooster)}
+.tag-people{background:rgba(14,138,95,.12); color:var(--leaf)}
+.tag-soon{background:rgba(255,178,63,.18); color:#8A5B00}
+
+/* ── Slack, rebuilt in markup ────────────────────────────────────────── */
+.slack{background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow-lift); overflow:hidden; max-width:520px}
+.slack-top{display:flex; align-items:center; gap:8px; padding:11px 15px; background:#3F0E40; color:#fff; font-size:13px; font-weight:600}
+.slack-dots{display:flex; gap:5px}
+.slack-dots i{width:9px; height:9px; border-radius:50%; display:block}
+.slack-body{padding:16px 18px; background:#fff}
+.msg{display:flex; gap:10px; margin-bottom:15px}
+.msg:last-child{margin-bottom:0}
+.av{width:34px; height:34px; border-radius:8px; flex:0 0 34px; display:grid; place-items:center; font-weight:800; font-size:13px; color:#fff; object-fit:cover; background:#fff}
+.msg-who{font-size:13.5px; font-weight:800; color:#1D1C1D; display:flex; align-items:center; gap:7px}
+.msg-who small{font-size:10.5px; font-weight:700; background:#E8E8E8; color:#616061; padding:1px 5px; border-radius:3px}
+.msg-who time{font-weight:500; color:#A0A0A2; font-size:12px}
+.msg-text{font-size:14.5px; color:#1D1C1D; line-height:1.5; margin-top:2px}
+.msg-text .quiet{color:#616061}
+.slack-btns{display:flex; gap:8px; margin-top:9px; flex-wrap:wrap}
+.slack-btn{font-size:13px; font-weight:700; padding:6px 13px; border-radius:5px; border:1px solid #C9C9C9; background:#fff; color:#1D1C1D}
+.slack-btn.primary{background:#007A5A; border-color:#007A5A; color:#fff}
+.slack-row{display:grid; grid-template-columns:repeat(3,1fr); gap:22px}
+.slack-row .slack{max-width:none}
+@media (max-width:1000px){.slack-row{grid-template-columns:1fr; max-width:520px}}
+
+/* ── Cards, steps, tables ────────────────────────────────────────────── */
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:20px}
+@media (max-width:900px){.grid3{grid-template-columns:1fr}}
+.card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:26px}
+.card h3{margin-bottom:8px}
+.card p{color:var(--muted); font-size:15.5px; margin:0}
+.step{display:flex; gap:18px; align-items:flex-start; padding:22px 0; border-bottom:1px dashed var(--line)}
+.step-n{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:21px; color:var(--amber); flex:0 0 42px}
+.step h3{margin-bottom:5px}
+.step p{margin:0; color:var(--muted)}
+table{width:100%; border-collapse:collapse; font-size:15.5px; background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden}
+th,td{padding:14px 16px; text-align:left; border-bottom:1px solid var(--line)}
+thead th{background:var(--paper-2); font-weight:700; font-size:14px}
+td.yes{color:var(--leaf); font-weight:700}
+td.no{color:var(--dim)}
+tbody tr:last-child td{border-bottom:none}
+.us{background:rgba(255,209,102,.13); font-weight:700}
+.logos{display:flex; flex-wrap:wrap; gap:12px}
+.logo-chip{display:inline-flex; align-items:center; gap:10px; padding:11px 18px; background:#fff; border:1px solid var(--line); border-radius:999px; font-weight:600; font-size:15px}
+.logo-chip svg{width:22px; height:22px; flex:0 0 22px}
+.scroll-x{overflow-x:auto; -webkit-overflow-scrolling:touch}
+
+/* ── Roadmap ─────────────────────────────────────────────────────────── */
+.road{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+@media (max-width:900px){.road{grid-template-columns:1fr}}
+.road-item{background:#fff; border:1px solid var(--line); border-left:4px solid var(--amber); border-radius:var(--radius-s); padding:20px 22px}
+.road-item.shipped{border-left-color:var(--leaf)}
+.road-item h3{font-size:17.5px; margin-bottom:6px}
+.road-item p{font-size:14.5px; color:var(--muted); margin:0 0 12px}
+.state{font-size:12.5px; font-weight:700; padding:3px 10px; border-radius:999px; background:rgba(255,178,63,.18); color:#8A5B00}
+.state.done{background:rgba(14,138,95,.13); color:var(--leaf)}
+
+/* ── Bands and footer ────────────────────────────────────────────────── */
+.band{background:var(--ink); color:var(--on-ink); border-radius:26px; padding:56px 44px; text-align:center}
+.band h2{margin-bottom:14px}
+.band .lede{margin:0 auto 26px; color:var(--on-ink-muted)}
+.band-cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+details{background:#fff; border:1px solid var(--line); border-radius:var(--radius-s); padding:18px 22px; margin-bottom:10px}
+details summary{font-weight:700; cursor:pointer; list-style:none; font-size:16.5px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+"; float:right; color:var(--amber); font-weight:800}
+details[open] summary::after{content:"–"}
+details p{margin:12px 0 0; color:var(--muted); font-size:15.5px}
+footer{background:var(--ink); color:var(--on-ink-muted); margin-top:96px; padding:56px 0 34px; font-size:14.5px}
+.foot-grid{display:grid; grid-template-columns:1.5fr repeat(3,1fr); gap:30px}
+@media (max-width:820px){.foot-grid{grid-template-columns:1fr 1fr}}
+footer h4{font-size:13px; text-transform:none; color:var(--on-ink); margin:0 0 12px; font-weight:700}
+footer a{display:block; color:var(--on-ink-muted); text-decoration:none; margin-bottom:8px}
+footer a:hover{color:var(--sun)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.09); margin-top:36px; padding-top:22px; display:flex; justify-content:space-between; align-items:center; gap:10px 22px; flex-wrap:wrap; font-size:13.5px}
+.foot-bottom a{display:inline; margin:0}
+.foot-legal{display:flex; gap:18px}
+
+/* ── Breadcrumbs ─────────────────────────────────────────────────────── */
+.crumbs{padding:18px 24px 0; font-size:13.5px; color:var(--dim); display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+.crumbs a{color:var(--muted); text-decoration:none}
+.crumbs a:hover{color:var(--rooster)}
+
+/* ── Page header, for everything that is not the home page ───────────── */
+.page-head{padding:40px 0 4px}
+.page-head .head-in{display:grid; grid-template-columns:1.05fr .95fr; gap:48px; align-items:center}
+@media (max-width:980px){.page-head .head-in{grid-template-columns:1fr; gap:26px}}
+.page-head .shot{margin-top:0}
+.page-head h1{font-size:clamp(32px,4.6vw,54px); max-width:20ch}
+.page-head .lede{margin-top:18px; font-size:19px}
+.page-head .head-cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:26px}
+
+/* ── Prose, for setup guides and long pages ──────────────────────────────
+   A guide is read, so it gets a measure. It sits beside a contents list
+   rather than against a blank half-screen: 74ch of text in a 1240px page
+   left the right side empty and the page looking broken.
+   ------------------------------------------------------------------- */
+.guide{display:grid; grid-template-columns:210px minmax(0,72ch); gap:56px; align-items:start}
+@media (max-width:1000px){.guide{grid-template-columns:1fr; gap:26px}}
+.toc{position:sticky; top:88px; font-size:14.5px; border-left:2px solid var(--line); padding-left:16px}
+.toc strong{display:block; font-size:12.5px; color:var(--dim); margin-bottom:10px; font-weight:700}
+.toc a{display:block; color:var(--muted); text-decoration:none; padding:5px 0; line-height:1.35}
+.toc a:hover{color:var(--rooster)}
+@media (max-width:1000px){.toc{position:static; border-left:0; border-top:1px solid var(--line); padding:18px 0 0}
+  .toc-links{display:flex; flex-wrap:wrap; gap:8px 18px}}
+.prose{max-width:72ch; line-height:1.68}
+.prose h2{margin:40px 0 12px; font-size:clamp(23px,2.5vw,30px)}
+.prose h3{margin:28px 0 9px; font-size:19px}
+.prose ul,.prose ol{padding-left:22px; color:var(--muted)}
+.prose li{margin-bottom:9px}
+.prose code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:14px; background:var(--paper-2); border:1px solid var(--line); border-radius:6px; padding:1px 6px}
+.prose pre{background:var(--ink); color:#E9E6DF; padding:18px 20px; border-radius:var(--radius-s); overflow-x:auto; font-size:14px; line-height:1.6}
+.prose pre code{background:none; border:0; padding:0; color:inherit; font-size:14px}
+.prose blockquote{margin:22px 0; padding:14px 20px; border-left:3px solid var(--amber); background:var(--paper-2); border-radius:0 var(--radius-s) var(--radius-s) 0}
+.prose blockquote p:last-child{margin:0}
+.note{background:var(--paper-2); border:1px solid var(--line); border-left:3px solid var(--sky); border-radius:0 var(--radius-s) var(--radius-s) 0; padding:16px 20px; margin:24px 0}
+.note p{margin:0; font-size:15.5px; color:var(--muted)}
+
+/* ── Page index, for the setup hub and compare hub ───────────────────── */
+.tiles{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+@media (max-width:900px){.tiles{grid-template-columns:1fr}}
+.tile{display:block; background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:24px; text-decoration:none; transition:border-color .12s, transform .12s}
+.tile:hover{border-color:var(--amber); transform:translateY(-2px)}
+.tile h3{margin-bottom:7px}
+.tile p{color:var(--muted); font-size:15px; margin:0}
+.tile .go{display:inline-block; margin-top:14px; color:var(--rooster); font-weight:700; font-size:14.5px}
+
+/* ── Next steps at the foot of a guide ───────────────────────────────── */
+.next{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:44px}
+@media (max-width:760px){.next{grid-template-columns:1fr}}
+@media (max-width:760px){.support-grid{grid-template-columns:1fr!important}}
+
+/* ── Diagrams ────────────────────────────────────────────────────────── */
+.diagram{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:26px 24px; margin:28px 0}
+.diagram svg{width:100%; height:auto; display:block}
+.diagram figcaption{font-size:13.5px; color:var(--dim); margin-top:14px; text-align:center}
+
+/* ── Changelog ───────────────────────────────────────────────────────── */
+.release{display:grid; grid-template-columns:190px minmax(0,1fr); gap:40px; padding:34px 0; border-top:1px solid var(--line)}
+@media (max-width:820px){.release{grid-template-columns:1fr; gap:12px}}
+.release-meta{position:sticky; top:88px; align-self:start}
+.release-meta h2{font-size:26px; margin:0 0 4px}
+.release-meta time{display:block; font-size:13.5px; color:var(--dim); margin-bottom:8px}
+.release-meta a{font-size:13.5px; color:var(--rooster); text-decoration:none; font-weight:600}
+.release-body h3{font-size:14px; letter-spacing:.01em; color:var(--muted); margin:18px 0 8px; font-weight:700}
+.release-body h3:first-child{margin-top:0}
+.release-body ul{margin:0; padding-left:20px; color:var(--muted)}
+.release-body li{margin-bottom:8px}
+.release-body code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13.5px; background:var(--paper-2); border:1px solid var(--line); border-radius:5px; padding:1px 5px}

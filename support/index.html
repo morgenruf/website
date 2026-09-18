@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Support: issues, discussions and commercial help — Morgenruf</title>
+<meta name="description" content="Where to get help with Morgenruf: the GitHub issue tracker, discussions, documentation, and paid setup and hosting from CloudDrove, who build it."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://morgenruf.dev/support"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://morgenruf.dev/support"/>
+<meta property="og:title" content="Support: issues, discussions and commercial help — Morgenruf"/>
+<meta property="og:description" content="Where to get help with Morgenruf: the GitHub issue tracker, discussions, documentation, and paid setup and hosting from CloudDrove, who build it."/>
+<meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Support: issues, discussions and commercial help — Morgenruf"/>
+<meta name="twitter:description" content="Where to get help with Morgenruf: the GitHub issue tracker, discussions, documentation, and paid setup and hosting from CloudDrove, who build it."/>
+<meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="theme-color" content="#12131f"/>
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" href="/icon-512.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/site.css"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is there paid support?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, from CloudDrove, who build and maintain Morgenruf. Installation, a managed cluster, upgrades and a contracted response time. Write to hello@clouddrove.com."}}, {"@type": "Question", "name": "Does paying get me features other people do not have?", "acceptedAnswer": {"@type": "Answer", "text": "No. Everything is MIT and everything is in the repository. Paid work funds the project and buys you somebody else's time, never a private build."}}, {"@type": "Question", "name": "How fast do community issues get answered?", "acceptedAnswer": {"@type": "Answer", "text": "Usually within a day or two, by one person who also has a job. Bugs with a clear reproduction get fixed fastest, because the hard part is already done."}}, {"@type": "Question", "name": "Something is broken in production. What do I do first?", "acceptedAnswer": {"@type": "Answer", "text": "Check the app logs and the migrate init container's logs; they say more than the dashboard does. Then open an issue with the version, how it is deployed, and what the logs said. If you have a support agreement, email instead and include the same three things."}}, {"@type": "Question", "name": "Can I ask for a feature?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in Discussions under Ideas. The roadmap order follows what people ask for, and a well-argued request from one person has moved it before."}}, {"@type": "Question", "name": "Is there a security contact?", "acceptedAnswer": {"@type": "Answer", "text": "Report privately through the security policy in the repository rather than opening an issue."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Support"}]}</script>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <div class="nav-links"><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/setup">Set up</a><a href="/compare">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
+      <a class="btn btn-sun btn-sm" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+    </div>
+  </div>
+</nav>
+<div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <span>Support</span></div><main>
+<header class="page-head"><div class="wrap">
+  <h1>Getting help</h1>
+  <p class="lede">Two routes, and both are real: a public issue tracker where the maintainer answers,
+  and a company that will run the whole thing for you.</p>
+  <div class="head-cta">
+    <a class="btn btn-ink" href="https://github.com/morgenruf/morgenruf/issues">Open an issue</a>
+    <a class="btn btn-line" href="mailto:hello@clouddrove.com?subject=Morgenruf%20support">Ask about paid support</a>
+  </div>
+</div></header>
+<section class="section"><div class="wrap">
+  <div class="tiles">
+    <a class="tile" href="https://github.com/morgenruf/morgenruf/issues"><h3>Report a bug</h3>
+      <p>The issue tracker. Templates for bugs, and the fastest route to a fix if you can say how to
+      reproduce it.</p><span class="go">Open an issue →</span></a>
+    <a class="tile" href="https://github.com/morgenruf/morgenruf/discussions"><h3>Ask a question</h3>
+      <p>Discussions, for "how do I", "should this work like this", and feature ideas. Searchable,
+      so the answer helps the next person.</p><span class="go">Start a discussion →</span></a>
+    <a class="tile" href="https://docs.morgenruf.dev"><h3>Read the docs</h3>
+      <p>Configuration, every environment variable, the webhook payloads and the MCP tools.</p>
+      <span class="go">Open the documentation →</span></a>
+  </div>
+
+  <div class="prose" style="margin-top:54px">
+    <h2>Before you open an issue</h2>
+    <p>Three things turn a report into a fix, and leaving them out is what makes a thread take a
+    week:</p>
+    <ul>
+      <li><strong>The version.</strong> The footer of your dashboard, or the image tag you deployed.</li>
+      <li><strong>How it is running.</strong> Docker Compose, Helm, or from source.</li>
+      <li><strong>What the logs said.</strong> The app container, and the migrate init container if
+      it happened during a deploy.</li>
+    </ul>
+    <p>If it is a Slack message that went wrong, the timestamp helps, because the log line for that
+    send will be next to it.</p>
+
+    <h2>Where things get answered</h2>
+    <ul>
+      <li><a href="https://github.com/morgenruf/morgenruf/issues">Issues</a> — bugs, and anything with a reproduction.</li>
+      <li><a href="https://github.com/morgenruf/morgenruf/discussions">Discussions</a> — questions, ideas, and "is this supposed to happen".</li>
+      <li><a href="https://status.morgenruf.dev">Status</a> — for the hosted demo. Self-hosted
+      instances are yours to monitor.</li>
+      <li><a href="https://github.com/morgenruf/morgenruf/security/policy">Security policy</a> — please report privately, not in an
+      issue.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="band" style="text-align:left">
+    <span class="eyebrow" style="color:var(--sun)">Commercial support</span>
+    <h2>Or have CloudDrove run it</h2>
+    <p class="lede" style="margin:14px 0 22px">Morgenruf is built and maintained at
+    <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>, a DevOps consultancy
+    that runs Kubernetes for other people for a living. If you would rather not run this yourself,
+    they will.</p>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-bottom:26px" class="support-grid">
+      <div>
+        <h3 style="color:var(--on-ink);margin-bottom:8px">What they do</h3>
+        <ul style="list-style:none;padding:0;margin:0;color:var(--on-ink-muted);font-size:15.5px">
+          <li style="margin-bottom:7px">Install it in your cloud account, on your infrastructure</li>
+          <li style="margin-bottom:7px">Run the cluster and the database, with backups</li>
+          <li style="margin-bottom:7px">Upgrades and migrations, so a release is not your evening</li>
+          <li style="margin-bottom:7px">Slack app setup, scopes and workspace rollout</li>
+          <li style="margin-bottom:7px">A contracted response time rather than best effort</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="color:var(--on-ink);margin-bottom:8px">What does not change</h3>
+        <ul style="list-style:none;padding:0;margin:0;color:var(--on-ink-muted);font-size:15.5px">
+          <li style="margin-bottom:7px">The licence: MIT, every feature, nothing held back</li>
+          <li style="margin-bottom:7px">The data: your cloud account, your database</li>
+          <li style="margin-bottom:7px">The code: same repository everybody else gets</li>
+          <li style="margin-bottom:7px">Leaving: it is already yours, so there is nothing to migrate</li>
+        </ul>
+      </div>
+    </div>
+    <div class="band-cta" style="justify-content:flex-start">
+      <a class="btn btn-sun" href="mailto:hello@clouddrove.com?subject=Morgenruf%20support">Email hello@clouddrove.com</a>
+      <a class="btn btn-ghost" href="https://clouddrove.com">About CloudDrove</a>
+    </div>
+    <p style="margin:22px 0 0;font-size:14px;color:var(--on-ink-muted)">Paid support funds the work
+    but never gates it. A bug is a bug, and it gets fixed for everybody.</p>
+  </div>
+</div></section>
+<section class="section"><div class="wrap" style="max-width:820px">
+  <span class="eyebrow">Questions</span><h2>Getting help</h2>
+  <div style="margin-top:24px"><details open><summary>Is there paid support?</summary><p>Yes, from CloudDrove, who build and maintain Morgenruf. Installation, a managed cluster, upgrades and a contracted response time. Write to hello@clouddrove.com.</p></details><details><summary>Does paying get me features other people do not have?</summary><p>No. Everything is MIT and everything is in the repository. Paid work funds the project and buys you somebody else's time, never a private build.</p></details><details><summary>How fast do community issues get answered?</summary><p>Usually within a day or two, by one person who also has a job. Bugs with a clear reproduction get fixed fastest, because the hard part is already done.</p></details><details><summary>Something is broken in production. What do I do first?</summary><p>Check the app logs and the migrate init container's logs; they say more than the dashboard does. Then open an issue with the version, how it is deployed, and what the logs said. If you have a support agreement, email instead and include the same three things.</p></details><details><summary>Can I ask for a feature?</summary><p>Yes, in Discussions under Ideas. The roadmap order follows what people ask for, and a well-argued request from one person has moved it before.</p></details><details><summary>Is there a security contact?</summary><p>Report privately through the security policy in the repository rather than opening an issue.</p></details></div></div></section>
+</main><section class="section">
+  <div class="wrap">
+    <div class="band">
+      <h2>Free for every seat, and that is the whole pricing page</h2>
+      <p class="lede">MIT licensed, no paid tier, nothing held back from the repository. You pay for a server and a database, which you were paying for anyway.</p>
+      <div class="band-cta">
+        <a class="btn btn-sun" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+        <a class="btn btn-ghost" href="https://github.com/morgenruf/morgenruf">Read the source</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
+        chats and recognition. Self-host it and keep your own data.</p>
+        <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        Kitchener, Ontario 🇨🇦</p>
+      </div>
+      <div><h4>Product</h4><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h4>Set up</h4><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h4>Compare</h4><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h4>Project</h4><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
+      <span class="foot-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
