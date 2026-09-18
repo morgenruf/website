@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Why I Built a Free Geekbot Alternative at Tim Hortons — Morgenruf</title>
+<meta name="description" content="What was annoying enough about per-seat standup pricing to spend a weekend building the alternative."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://morgenruf.dev/blog/why-i-built-morgenruf"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://morgenruf.dev/blog/why-i-built-morgenruf"/>
+<meta property="og:title" content="Why I Built a Free Geekbot Alternative at Tim Hortons — Morgenruf"/>
+<meta property="og:description" content="What was annoying enough about per-seat standup pricing to spend a weekend building the alternative."/>
+<meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Why I Built a Free Geekbot Alternative at Tim Hortons — Morgenruf"/>
+<meta name="twitter:description" content="What was annoying enough about per-seat standup pricing to spend a weekend building the alternative."/>
+<meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="theme-color" content="#12131f"/>
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" href="/icon-512.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/site.css"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://morgenruf.dev/blog"},{"@type":"ListItem","position":3,"name":"Why I Built a Free Geekbot A"}]}</script>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <div class="nav-links"><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/setup">Set up</a><a href="/compare">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
+      <a class="btn btn-sun btn-sm" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+    </div>
+  </div>
+</nav>
+<div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <a href="/blog">Blog</a><span aria-hidden="true">›</span> <span>Why I Built a Free Geekbot A</span></div><main>
+<header class="page-head"><div class="wrap"><h1>Why I Built a Free Geekbot Alternative at Tim Hortons</h1></div></header>
+<section class="section"><div class="wrap"><div class="prose"><div>
+      <time datetime="2026-04-05">April 5, 2026</time>
+      <span>Anmol</span>
+    </div>
+
+    
+
+    <p>I was sitting in a Tim Hortons in Kitchener on a Saturday morning, double-double in hand, reviewing my team's monthly SaaS bill. One line jumped out at me: <strong>Geekbot &mdash; $2.50/user/month</strong>. For a 12-person team, that's $30/month. $360/year. For a bot that DMs people three questions and pastes the answers into a Slack channel.</p>
+
+    <p>Don't get me wrong &mdash; Geekbot is a solid product. It works. But staring at that line item while sipping mediocre coffee, I had a thought that wouldn't leave me alone:</p>
+
+    <blockquote><p>A standup bot is fundamentally simple. You DM people questions on a schedule, collect their answers, and post a summary. That's it.</p></blockquote>
+
+    <p>The core loop is almost embarrassingly straightforward. A cron job triggers at the right time for each person's timezone, sends them a few questions via Slack DM, waits for replies, and posts the collected answers to a channel. The whole thing could be a weekend project.</p>
+
+    <p>So I opened my laptop right there in the Tim Hortons and started building.</p>
+
+    <h2>The weekend build</h2>
+
+    <p>I picked the tools I knew would let me move fast: <strong>Python with Flask</strong> for the web layer, <strong>PostgreSQL</strong> for storage, and the <strong>Slack Bolt SDK</strong> for the Slack integration. Bolt is excellent &mdash; it handles all the OAuth, event subscriptions, and message formatting so you can focus on actual logic instead of wrestling with Slack's API quirks.</p>
+
+    <p>By Saturday evening I had the core working: a Slack app that could DM a list of users a set of questions on a schedule, collect responses, and post a formatted summary to a channel. The bones of a standup bot, running locally.</p>
+
+    <p>Sunday was about making it real. I added a web dashboard, persistent scheduling with timezone support, and the ability to customize questions per standup. By the time the Tim Hortons closed, I had something that could genuinely replace Geekbot for my team.</p>
+
+    <h2>Going beyond the basics</h2>
+
+    <p>Here's the thing about building your own tool &mdash; once the foundation is there, adding features that paid tools charge extra for (or just don't offer) becomes trivial. So I kept going:</p>
+
+    <ul>
+      <li><strong>Mood tracking</strong> &mdash; each standup response includes an optional mood indicator. Over time you can spot burnout patterns before they become problems. Geekbot charges extra for this.</li>
+      <li><strong>Webhooks</strong> &mdash; fire standup data to any URL. Pipe it into Notion, Airtable, your own analytics pipeline, whatever. Your data, your rules.</li>
+      <li><strong>CSV export</strong> &mdash; download raw standup data anytime. No "please contact sales for data export" nonsense.</li>
+      <li><strong>MCP server and AI integration</strong> &mdash; this one's genuinely new. Morgenruf exposes an MCP server so AI tools like Claude can query your standup data directly. Ask "what blockers came up this week?" and get an actual answer from your data. Try getting that from Geekbot.</li>
+      <li><strong>Blocker detection</strong> &mdash; automatic flagging when someone mentions a blocker, so nothing slips through the cracks.</li>
+      <li><strong>Weekly digest emails</strong> &mdash; a summary of the week's standups delivered to your inbox.</li>
+    </ul>
+
+    <h2>Self-hosted means you own your data</h2>
+
+    <p>This was a non-negotiable for me. With Geekbot, your standup responses &mdash; which often contain sensitive information about what your team is working on, what's blocked, and how people are feeling &mdash; live on someone else's servers. You're trusting a third party with your team's daily internal communications.</p>
+
+    <p>With Morgenruf, everything runs on <strong>your infrastructure</strong>. Your database. Your servers. Your network. The standup data never leaves your environment. For teams working on anything remotely sensitive &mdash; which is most teams &mdash; this matters.</p>
+
+    <h2>Production-ready, not just a hobby project</h2>
+
+    <p>I've seen too many "I built X in a weekend" posts where the project is a barely-working prototype. I didn't want Morgenruf to be that. So I invested the time to make it genuinely production-ready:</p>
+
+    <ul>
+      <li><strong>Docker</strong> &mdash; single <code>docker compose up</code> and you're running.</li>
+      <li><strong>Helm charts</strong> &mdash; for teams that run Kubernetes, proper Helm charts with all the configuration you'd expect.</li>
+      <li><strong>AWS deployment</strong> &mdash; CloudFormation templates for ECS + RDS if you want a managed setup on AWS.</li>
+      <li><strong>Health checks, logging, error handling</strong> &mdash; the boring stuff that makes the difference between a demo and something you can actually rely on.</li>
+    </ul>
+
+    <h2>Free forever. Actually.</h2>
+
+    <p>Morgenruf is <strong>MIT licensed</strong>. No open-core bait-and-switch where the useful features are behind a paywall. No "free for up to 5 users" limitations. No telemetry. No tracking. No "we'll figure out monetization later."</p>
+
+    <p>The entire codebase is open source. You can read every line, fork it, modify it, run it for a team of 5 or a team of 500. The only cost is the server you run it on &mdash; and a basic VPS or container runtime is a few dollars a month, flat, regardless of how many users you have.</p>
+
+    <p>Compare that to $2.50/user/month. For a 50-person engineering org, that's <strong>$1,500/year</strong> you could be saving.</p>
+
+    <h2>The name</h2>
+
+    <p><em>Morgenruf</em> is German for "morning call." It felt right &mdash; a standup bot is essentially a morning call that checks in with your team. Plus, most of the good English names for standup bots were already taken.</p>
+
+    <h2>Try it</h2>
+
+    <p>If you're paying for Geekbot, Standup &amp; Prosper, or any other standup SaaS, I'd genuinely encourage you to give Morgenruf a shot. The migration is straightforward, and you might be surprised how good it feels to own your tools.</p>
+
+    <div>
+      <h2>Ready to ditch per-user pricing?</h2>
+      <p>Install Morgenruf in your Slack workspace in under 2 minutes. Free, open source, self-hosted.</p>
+      <div>
+        <a href="https://api.morgenruf.dev/install">Add to Slack</a>
+        <a href="https://github.com/morgenruf/morgenruf">Star on GitHub</a>
+      </div>
+    </div></div></div></section>
+</main><section class="section">
+  <div class="wrap">
+    <div class="band">
+      <h2>Free for every seat, and that is the whole pricing page</h2>
+      <p class="lede">MIT licensed, no paid tier, nothing held back from the repository. You pay for a server and a database, which you were paying for anyway.</p>
+      <div class="band-cta">
+        <a class="btn btn-sun" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+        <a class="btn btn-ghost" href="https://github.com/morgenruf/morgenruf">Read the source</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
+        chats and recognition. Self-host it and keep your own data.</p>
+        <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        Kitchener, Ontario 🇨🇦</p>
+      </div>
+      <div><h4>Product</h4><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h4>Set up</h4><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h4>Compare</h4><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h4>Project</h4><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
+      <span class="foot-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

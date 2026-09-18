@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Open-source Donut alternative for Slack coffee chats — Morgenruf</title>
+<meta name="description" content="A self-hosted alternative to Donut for random coffee chats in Slack, with standups and recognition in the same app. MIT licensed, free for every seat, your pairing data in your own database."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://morgenruf.dev/donut-alternative"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://morgenruf.dev/donut-alternative"/>
+<meta property="og:title" content="Open-source Donut alternative for Slack coffee chats — Morgenruf"/>
+<meta property="og:description" content="A self-hosted alternative to Donut for random coffee chats in Slack, with standups and recognition in the same app. MIT licensed, free for every seat, your pairing data in your own database."/>
+<meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Open-source Donut alternative for Slack coffee chats — Morgenruf"/>
+<meta name="twitter:description" content="A self-hosted alternative to Donut for random coffee chats in Slack, with standups and recognition in the same app. MIT licensed, free for every seat, your pairing data in your own database."/>
+<meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="theme-color" content="#12131f"/>
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" href="/icon-512.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/site.css"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Morgenruf a drop-in Donut replacement?", "acceptedAnswer": {"@type": "Answer", "text": "For random pairings from a Slack channel, yes. For Teams, journeys or Gatheround's video facilitation, no, and pretending otherwise would waste your afternoon."}}, {"@type": "Question", "name": "Can I import our Donut history?", "acceptedAnswer": {"@type": "Answer", "text": "No. Run both for a couple of weeks instead and let the new pairings build their own history."}}, {"@type": "Question", "name": "Does it need Zoom?", "acceptedAnswer": {"@type": "Answer", "text": "No. Without it a pairing uses whatever room link you set on the programme, or none. Zoom only adds a real meeting at the agreed hour."}}, {"@type": "Question", "name": "What does it cost for 200 people?", "acceptedAnswer": {"@type": "Answer", "text": "Nothing per seat. The server and database you run it on, which for 200 people is a small instance."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Compare","item":"https://morgenruf.dev/compare"},{"@type":"ListItem","position":3,"name":"vs Donut"}]}</script>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <div class="nav-links"><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/setup">Set up</a><a href="/compare" aria-current=page>Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
+      <a class="btn btn-sun btn-sm" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+    </div>
+  </div>
+</nav>
+<div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <a href="/compare">Compare</a><span aria-hidden="true">›</span> <span>vs Donut</span></div><main>
+<header class="page-head"><div class="wrap">
+  <h1>An open-source Donut alternative you host yourself</h1>
+  <p class="lede">Random introductions from a channel, a time both people actually pick, and the meeting booked at that hour. Plus standups and kudos in the same app.</p>
+  <div class="head-cta">
+    <a class="btn btn-sun" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+    <a class="btn btn-line" href="/setup">Set it up yourself</a>
+  </div>
+</div></header>
+<section class="section"><div class="wrap">
+<div class="scroll-x"><table><thead><tr><th></th><th class="us">Morgenruf</th><th>Donut</th></tr></thead><tbody><tr><td>Random pairings from a channel</td><td class="us yes">Yes</td><td class="yes">Yes</td></tr><tr><td>Avoids repeat matches</td><td class="us yes">Yes</td><td class="yes">Yes</td></tr><tr><td>Suggests a time both people can make</td><td class="us yes">Yes, voted on in the message</td><td class="no">Varies</td></tr><tr><td>Creates the meeting</td><td class="us yes">Zoom, at the agreed hour</td><td class="no">Varies by plan</td></tr><tr><td>Async standups in the same app</td><td class="us yes">Yes</td><td class="no">No</td></tr><tr><td>Peer recognition in the same app</td><td class="us yes">Yes</td><td class="yes">Shoutouts</td></tr><tr><td>Runs on your own servers</td><td class="us yes">Yes</td><td class="no">No</td></tr><tr><td>Source you can read</td><td class="us yes">MIT</td><td class="no">Closed</td></tr><tr><td>Your pairing data lives in</td><td class="us yes">your database</td><td class="no">their cloud</td></tr><tr><td>Microsoft Teams</td><td class="us no">In progress</td><td class="yes">Yes</td></tr><tr><td>Price</td><td class="us yes">Free, any team size</td><td class="no">Per seat, monthly</td></tr></tbody></table></div>
+<p class="shot-cap" style="margin-top:12px">Checked against Donut's public pages in September 2026.
+Their plans change; if something here is out of date, please
+<a href="https://github.com/morgenruf/morgenruf/issues/new/choose">tell me and I will fix it</a>.</p>
+</div></section>
+
+<section class="section"><div class="wrap"><div class="prose">
+<h2 id="the-honest-version">The honest version</h2>
+<p>Donut is a good product and the one that made this category. It has years of polish, a Teams
+version that works today, and a wider surface than this: journeys for onboarding, channel prompts,
+video facilitation.</p>
+<div class="note"><p><strong>Where they win.</strong> If you need Microsoft Teams today, or onboarding journeys, or you simply do not want to run software, Donut is the better answer and you should use it.</p></div>
+
+<h2 id="where-this-is-different">Where this is different</h2>
+<h3>It is one app, not three subscriptions</h3>
+<p>Most teams that pay for pairing also pay for standups and recognition. Morgenruf runs all three
+against one database, which is also what makes the cross-signal questions possible: who answers
+every standup and is thanked by nobody.</p>
+
+<h3>The introduction carries a meeting</h3>
+<p>Two people being told to meet is the easy part. This proposes hours that fall inside both working
+days, each of them presses one, and a matching pair becomes a Zoom meeting at that hour, hosted on
+the account of whoever connected theirs.</p>
+
+<h3>Your data stays yours</h3>
+<p>Who met whom, and who quietly opted out, lives in Postgres you control. Nothing is sent anywhere
+else, and leaving is not a migration because it is already yours.</p>
+
+<h3>The price</h3>
+<p>Free for every seat, at any size, because you run it. A thirty person team pays for a small server
+and a database instead of a per-seat subscription that grows with hiring.</p>
+
+<h2 id="switching">Switching</h2>
+<p>There is no importer, and pairing history is the one thing worth not losing, so the sensible move
+is to run both for a fortnight: point Morgenruf at the same channel with a different cadence, see
+whether the introductions land, then turn Donut off. Nothing here needs a contract to be cancelled.</p>
+</div></div></section>
+<section class="section"><div class="wrap" style="max-width:820px">
+  <span class="eyebrow">Questions</span><h2 id="morgenruf-and-donut">Morgenruf and Donut</h2>
+  <div style="margin-top:24px"><details open><summary>Is Morgenruf a drop-in Donut replacement?</summary><p>For random pairings from a Slack channel, yes. For Teams, journeys or Gatheround's video facilitation, no, and pretending otherwise would waste your afternoon.</p></details><details><summary>Can I import our Donut history?</summary><p>No. Run both for a couple of weeks instead and let the new pairings build their own history.</p></details><details><summary>Does it need Zoom?</summary><p>No. Without it a pairing uses whatever room link you set on the programme, or none. Zoom only adds a real meeting at the agreed hour.</p></details><details><summary>What does it cost for 200 people?</summary><p>Nothing per seat. The server and database you run it on, which for 200 people is a small instance.</p></details></div></div></section>
+</main><section class="section">
+  <div class="wrap">
+    <div class="band">
+      <h2>Free for every seat, and that is the whole pricing page</h2>
+      <p class="lede">MIT licensed, no paid tier, nothing held back from the repository. You pay for a server and a database, which you were paying for anyway.</p>
+      <div class="band-cta">
+        <a class="btn btn-sun" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+        <a class="btn btn-ghost" href="https://github.com/morgenruf/morgenruf">Read the source</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
+        chats and recognition. Self-host it and keep your own data.</p>
+        <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        Kitchener, Ontario 🇨🇦</p>
+      </div>
+      <div><h4>Product</h4><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h4>Set up</h4><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h4>Compare</h4><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h4>Project</h4><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
+      <span class="foot-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Changelog — every Morgenruf release, currently 1.8.4</title>
+<meta name="description" content="Every Morgenruf release with what changed: features, fixes and the occasional removal. Generated from the repository's own changelog."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://morgenruf.dev/changelog"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://morgenruf.dev/changelog"/>
+<meta property="og:title" content="Changelog — every Morgenruf release, currently 1.8.4"/>
+<meta property="og:description" content="Every Morgenruf release with what changed: features, fixes and the occasional removal. Generated from the repository's own changelog."/>
+<meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Changelog — every Morgenruf release, currently 1.8.4"/>
+<meta name="twitter:description" content="Every Morgenruf release with what changed: features, fixes and the occasional removal. Generated from the repository's own changelog."/>
+<meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="theme-color" content="#12131f"/>
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" href="/icon-512.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/site.css"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How often are there releases?", "acceptedAnswer": {"@type": "Answer", "text": "Whenever something is ready. Recent months have averaged several a week, including fixes that went out within an hour of being reported."}}, {"@type": "Question", "name": "How do I upgrade?", "acceptedAnswer": {"@type": "Answer", "text": "Pull the new image and restart, or helm upgrade. Migrations run themselves before the app starts."}}, {"@type": "Question", "name": "Do you follow semantic versioning?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Breaking changes would move the major, and there have not been any since 1.0."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Changelog"}]}</script>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <div class="nav-links"><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/setup">Set up</a><a href="/compare">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
+      <a class="btn btn-sun btn-sm" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+    </div>
+  </div>
+</nav>
+<div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <span>Changelog</span></div><main>
+<header class="page-head"><div class="wrap">
+  <h1>Changelog</h1>
+  <p class="lede">Every release, what changed in it, and why. Currently on
+  <strong>1.8.4</strong>, with 17 releases documented.</p>
+</div></header>
+<section class="section"><div class="wrap">
+  <div class="note" style="margin-bottom:34px"><p>Every release is tagged, published with notes, and
+  built from the same commit that is on <a href="https://github.com/morgenruf/morgenruf">GitHub</a>. Docker images carry the
+  revision they were built from, so you can check what you are running matches what you read here.</p></div>
+  <article class="release">
+  <div class="release-meta">
+    <h2 id="v1.8.4">1.8.4</h2>
+    <time datetime="2026-09-18">2026-09-18</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.8.4">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.8.4-fixed">Fixed</h3><ul><li><strong>The Members page offered grants for two features with nothing to administer.</strong> Insights only reads and MCP keys are workspace-wide, so either grant sat in the table and changed nothing while the card showed a switch that looked live. A module now declares whether it can be delegated.</li></ul><h3 id="v1.8.4-changed">Changed</h3><ul><li>The README shows the product: four screenshots, one badge row, and a quick start that leads with Helm and Docker Compose.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.8.3">1.8.3</h2>
+    <time datetime="2026-09-18">2026-09-18</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.8.3">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.8.3-fixed">Fixed</h3><ul><li><strong>A standup dialog reopened on whatever tab it was left on.</strong> Panes are toggled in place, so leaving it on Advanced and pressing Edit again showed Advanced: one collapsed accordion and none of the fields somebody came back for. Both openers start on Basics now.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.8.2">1.8.2</h2>
+    <time datetime="2026-09-18">2026-09-18</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.8.2">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.8.2-fixed">Fixed</h3><ul><li><strong>The coffee chat member table showed Slack ids instead of names.</strong> Every row read U06CRLYF72L with no face. The table asked each person for <code>real_name</code> and <code>avatar</code>, and the roster record carries neither: the field is <code>name</code>, and there was no picture on it at all. Both silently became empty strings, so the name fell back to the id. Present since that table shipped. The roster record now carries the name and the picture, falling back to the Slack handle.</li></ul><h3 id="v1.8.2-changed">Changed</h3><ul><li>The coffee chat settings preview moves below the controls at 1080px rather than 900px, so the form is not squeezed into half a narrow window, and every modal is capped by the window as well as by its own maximum.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.8.1">1.8.1</h2>
+    <time datetime="2026-09-18">2026-09-18</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.8.1">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.8.1-fixed">Fixed</h3><ul><li><strong>Every modal and every toast was invisible.</strong> The coffee chat settings modal never closed its body, so the forty-eight elements after it in the file became its children, including the create/edit standup modal, the new coffee chat modal and the toast container. That parent is hidden until the settings modal opens, so pressing Edit on a standup did nothing, New Standup did nothing, New coffee chat did nothing, and no action ever confirmed itself. Shipped in 1.8.0.</li><li><strong>The coffee chat sub-navigation bounced back to Standups.</strong> Every sidebar row was bound to its own section, and the three sub-items name none, so each click opened Coffee chats and was immediately sent back to the fallback.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.8.0">1.8.0</h2>
+    <time datetime="2026-09-18">2026-09-18</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.8.0">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.8.0-added">Added</h3><ul><li><strong>Per-feature admins.</strong> Roles were workspace-wide and binary, so putting a team lead in charge of the standups meant handing them webhooks, API keys and the public feed as well. A grant is now one row per person per feature: the lead runs standups, someone else runs coffee chats and kudos, and neither can mint a key or publish the workspace's standups. A workspace admin still implies every feature, so no existing permission changed.</li><li><strong>Coffee chats settle on a time.</strong> A pairing proposes slots in both people's working hours, they vote, and the winning slot becomes the meeting. With Zoom linked, the meeting is created at the agreed time.</li><li><strong>Zoom account linking</strong>, group sizes from 2 to 8, re-match requests, opt-out and snooze, and a coffee chat settings page with a live preview of the Slack message.</li><li><strong>Standup nudge.</strong> Whoever has not filed by report time gets a private reminder.</li><li><strong>Per-standup digest email</strong>, replacing the single workspace-wide address.</li><li><strong>A standup's health on its card</strong>: fourteen days of completion as a sparkline, with a badge when it starts slipping.</li><li><strong>Feature switches in Settings</strong>, and an icon per page.</li></ul><h3 id="v1.8.0-fixed">Fixed</h3><ul><li><strong>A plain member could publish the workspace's standups and mint an API key.</strong> Fourteen mutating routes had no role check, including deleting a standup and rotating a webhook secret.</li><li><strong>A workspace could lock itself out of its own settings permanently.</strong> Demoting the last admin left nobody who could promote anyone. Thirteen of twenty workspaces had exactly one admin.</li><li><strong>No workspace-level setting could ever be saved.</strong> The upsert named a conflict target with no matching constraint, so every write raised since the feature shipped.</li><li><strong>Settings that saved and did nothing</strong>: report channel, AI provider, video mode, nudge-on-skip, and ten fields the schedule form discarded on the way to the server.</li><li><strong>Turning the standup nudge on did nothing until a restart.</strong> The job reconciler compared triggers without the nudge fields, so it never noticed the change.</li><li><strong>A coffee chat round that did not run was advertised as still coming</strong>, and a programme that had never run was reported as due today whatever day it was.</li><li><strong>Zoom could not be switched on by any Helm install</strong>: the credentials were read by the code and never passed by the chart.</li></ul><h3 id="v1.8.0-removed">Removed</h3><ul><li>Twenty automation rules that had no effect, ten orphaned settings columns, and a column added and never read in the same week.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.7.5">1.7.5</h2>
+    <time datetime="2026-09-17">2026-09-17</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.7.5">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.7.5-fixed">Fixed</h3><ul><li><strong>A module that defaults to off could never be turned on.</strong> The workspace toggle had no control anywhere: the API endpoint existed, was well-formed, and had no caller. A workspace that granted the Connect scopes landed on a Coffee chats page that looked ready, with a programme listed, and nothing would ever run, because scheduled jobs are only planned for active modules.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.7.4">1.7.4</h2>
+    <time datetime="2026-09-17">2026-09-17</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.7.4">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.7.4-added">Added</h3><ul><li><strong>Coffee chat programmes can be edited.</strong> They could be created and deleted but never changed, so altering a time meant deleting the programme and losing its round history with it.</li><li><strong>Meeting options</strong>: a room the whole programme shares, and a chat length. Both appear in the introduction, so finding somewhere to meet is no longer left entirely to the pair.</li><li><strong>Proposed times with calendar links.</strong> Where two people's working days overlap, the introduction offers hours that suit both, each opening Google Calendar with the event filled in. The message says plainly that no calendars were checked: without calendar access we can say an hour suits their zones, never that they are free.</li><li><strong>Run a round now</strong>, so a programme can be tried before its scheduled day.</li><li><strong>Snooze for two weeks</strong> from the App Home. <code>paused_until</code> had been in the schema and honoured by the eligibility query since the table existed, and nothing ever wrote one.</li><li><strong>Working-hours matching</strong>, off by default. A nine-to-five in Toronto and one in Kolkata share no hours at all, so enforcing it everywhere would quietly stop matching the teams that most need introducing.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.7.3">1.7.3</h2>
+    <time datetime="2026-09-17">2026-09-17</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.7.3">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.7.3-added">Added</h3><ul><li><strong>Coffee chats on the Slack App Home.</strong> When your next introduction is, and a way to pause and resume yourself. The only way to pause had been a button on a round message, which is no use between rounds.</li><li><strong>A welcome when you join a coffee chat channel</strong>, naming the cadence and the date of the next introduction. Slack shows nothing about a bot's schedule, so people joined and waited without knowing anything was coming.</li><li><strong>A digest per standup.</strong> The workspace-level one sends every standup to a single address, so a workspace running several could not give each team's lead their own team's answers. Each standup can now name its own recipient.</li><li><strong>Starter templates on the Automation page</strong>, covering what the existing triggers and actions were built for. Picking one fills the form and saves nothing.</li></ul><h3 id="v1.7.3-fixed">Fixed</h3><ul><li><strong>The mcp 2.x bump broke the stdio MCP server</strong> and no test noticed, because nothing imported it. Rewritten on the new API, and it now builds its tools from the HTTP endpoint rather than keeping a second list that had drifted.</li><li><strong>"Next coffee chat: today"</strong> on any day, for a programme that had never run. It ignored the programme's own weekday.</li><li><strong>"No standups yet" above a list of ten standups</strong>, for an admin who takes part in none of them.</li><li><strong>Ten stacked Configure buttons</strong> on the App Home, costing two blocks each against the hundred a Slack view may contain.</li><li><strong>The Slack preview rendered <code>:morgenruf:</code> as literal text</strong> in the one panel whose job is showing what Slack shows.</li><li><strong>Coffee chats had no timezone control</strong>, and the picker it eventually got was a native datalist four hundred entries deep spilling out of the modal. One picker component serves both forms now.</li><li><strong>Editing the kudos allowance switched off the branded token</strong>, because the settings form submits every field and any save counted as choosing a token.</li><li><strong>The coffee chat pool counted the whole workspace</strong> rather than the channel.</li><li>Twenty-odd names on the Today page were rendered as full-size pills.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.7.2">1.7.2</h2>
+    <time datetime="2026-09-16">2026-09-16</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.7.2">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.7.2-fixed">Fixed</h3><ul><li><strong>Editing the kudos allowance switched off the branded token.</strong> The settings form submits every field, and any save was treated as the admin choosing a token, so changing the allowance silently opted a workspace out of the emoji it had just imported. Automation now stops only when the token changes.</li><li><strong>The token field was sized for a single character</strong>, so a shortcode such as <code>:morgenruf:</code> overflowed and read as broken. It fits now, beside a preview of what Slack will actually render.</li><li><strong>The coffee chat pool counted the whole workspace</strong>, so a channel with two people in it advertised twenty-three. The round itself was always correct; only the number was wrong.</li><li><strong>Coffee chats had no timezone control</strong> and silently used the browser's.</li><li><code>schedule_days</code> parsing no longer leaves braces on the first and last day when the column holds a Postgres array literal.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.7.1">1.7.1</h2>
+    <time datetime="2026-09-16">2026-09-16</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.7.1">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.7.1-fixed">Fixed</h3><ul><li><strong>Coffee chats could never be enabled.</strong> The scopes the module requires were never requested: <code>mpim:write</code>, <code>mpim:history</code> and <code>users.profile:read</code> appeared nowhere except its own declaration, so the dashboard reported them missing, the re-authorise button asked Slack for the same scopes as before, and the workspace landed back on the same screen. Adds them to the install URL and both manifests, and a guard asserting that every module's required scopes are actually requested.</li><li><strong>Insights showed names without faces.</strong> The avatar component was written for the coffee chat attendance rows and named for them, so no other page could use it. > Updating the Slack app's own manifest at api.slack.com is a separate step: > the file in this repository is not live configuration, and Slack refuses an > install that requests scopes the app does not declare.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.7.0">1.7.0</h2>
+    <time datetime="2026-09-16">2026-09-16</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.7.0">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.7.0-added">Added</h3><ul><li><strong>Coffee chats.</strong> Pairings from a channel on a cadence, history-aware so the same two people are not matched twice running. Odd numbers form one group of three so nobody sits out. The bot nudges pairs who have not met and asks whether they did. Off until enabled: it needs <code>mpim:write</code>, <code>mpim:history</code> and <code>users.profile:read</code>, so an existing workspace must re-authorise.</li><li><strong>Attendance</strong>, reported four ways rather than two. "Not met" hides three different situations: they said no, they never answered, or the invite never reached them. Only the last is a delivery failure, and folding it into "did not meet" blames people for it.</li><li><strong>Kudos allowance</strong>, resetting at midnight in each person's own timezone, with leaderboards for who is recognised and for who does the recognising.</li><li><strong>Insights</strong>: a blocker nobody has cleared in days, someone who answers every standup and is thanked by nobody. Neither is visible in one dataset alone.</li><li><strong>MCP goes from 8 tools to 17.</strong> Modules contribute their own, and the tool list runs the same activation gates as the dashboard, so a workspace is never offered a tool for a feature it has not enabled.</li><li>Slack profile pictures and handles on the roster, and a Today overview page.</li></ul><h3 id="v1.7.0-fixed">Fixed</h3><ul><li><strong>A workspace could read another workspace's coffee chat rounds.</strong> The rounds route never read the session's team, and its query had no team filter, so any signed-in user could page through another workspace's history by guessing a programme id. Unexploited: nothing called it yet.</li><li><strong>The bundled PostgreSQL could not start at all.</strong> <code>postgresql.enabled=true</code> pulled <code>bitnami/postgresql:16</code>, which Docker Hub now returns 404 for. It is a StatefulSet running the official image now, which is what production has always used. Also fixes values.yaml claiming the password was auto-generated when nothing generated it.</li><li><strong>A large standup summary posted nothing at all.</strong> Slack rejects messages over 50 blocks.</li><li><strong>Light theme</strong>: six colours left hardcoded from the dark-only era, including kudos mentions at 2.98:1 and a lavender-on-lavender sidebar item.</li><li><strong>A dead Slack avatar URL showed a broken image on every row.</strong> They 404 as soon as someone changes their profile picture.</li><li><strong>Reports ran to thirty screens</strong> at a hundred people. It paged by day, but a day is a hundred rows at that size.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.6.0">1.6.0</h2>
+    <time datetime="2026-09-03">2026-09-03</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.6.0">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.6.0-fixed">Fixed</h3><ul><li><strong>The daily channel summary could not be turned on by anyone</strong> (#117). Migration 021 defaulted <code>post_summary</code> to <code>FALSE</code> and promised a dashboard control to re-enable it; that control was never built, so <code>post_summary</code> appeared in no Slack modal and no dashboard markup, and every schedule in every install had the roll-up permanently off. The toggle now exists in both places, new standups default to posting, and migration 028 restores the column default.</li><li><strong>The report job ran in the same second as the standup DMs</strong> (#118). With no explicit <code>report_time</code> the fallback was <code>schedule_time</code> itself, putting both jobs on the same cron minute. The report therefore found nothing in <code>standups</code> and skipped, every single day. It now defaults to an hour after the standup.</li><li><strong>The timezone picker silently substituted UTC</strong> (#121). It offered 63 curated zones; anyone whose Slack timezone was one of the other 370 could not select it, could not search for it, and was quietly preselected UTC on a required, prefilled field. Every valid zone is now selectable, a real zone preselects as itself, and when no usable zone is known the field forces a deliberate choice instead of letting UTC pass as one. Timezone aliases (<code>ist</code>, <code>pst</code>) now rank first in the dropdown.</li></ul><h3 id="v1.6.0-changed">Changed</h3><ul><li>The Slack modal field that sets the DM time was labelled "Report time", so people set it believing it controlled when the summary posts. It is now <strong>Standup time</strong>, and the report time is its own optional input defaulting an hour later. A modal opened before this change still submits correctly.</li><li>Saving a standup now DMs its creator with the channel, standup time, timezone, active days, participant count and next run, and <strong>warns when the creator is not on the participant list</strong> — the case that produced the original report. It also explains that answers reach the channel through the DM, so a quiet channel is accounted for rather than mysterious.</li></ul><h3 id="v1.6.0-added">Added</h3><ul><li>Next run time on the App Home standup list and the dashboard standup cards, derived from each schedule's own cron trigger so it reads the same in the dashboard's forked worker as in the process holding the live jobs.</li></ul><h3 id="v1.6.0-notes for upgraders">Notes for upgraders</h3><ul><li>Migration 028 changes only the <code>post_summary</code> <strong>column default</strong>. Existing schedules keep whatever value they hold. Some were set to <code>FALSE</code> by migration 021 rather than by their owner, but flipping them on automatically would start posting to live channels unannounced, so that stays the owner's call via the new toggle.</li><li>Schedules with no <code>report_time</code> will see their report job move one hour later. With <code>post_summary</code> off, which is every pre-upgrade schedule, this changes nothing visible.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.0.0">1.0.0</h2>
+    <time datetime="2026-04-05">2026-04-05</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.0.0">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.0.0-added">Added</h3><ul><li>🔐 Full OAuth 2.0 install flow with persistent token store</li><li>📊 Web dashboard (React) — manage standups, schedules, team settings</li><li>🤖 MCP server at <code>/mcp</code> — connect Claude, Cursor, Copilot directly</li><li>📡 Public status page at <a href="https://status.morgenruf.dev">status.morgenruf.dev</a> with live service health checks</li><li>📖 Full documentation site at <a href="https://docs.morgenruf.dev">docs.morgenruf.dev</a></li><li>🧪 80-test Playwright E2E suite (smoke + full) running on every push</li><li>🔄 Dependabot enabled for pip, Docker, GitHub Actions, Helm</li></ul><h3 id="v1.0.0-infrastructure">Infrastructure</h3><ul><li>Kubernetes (k3s) production deployment with Helm chart</li><li>Cloudflare-proxied custom domains with enforced HTTPS</li><li>GitHub Actions CI/CD: Docker build → DockerHub push → k8s rollout</li><li>Netlify-hosted marketing website</li></ul><h3 id="v1.0.0-fixed">Fixed</h3><ul><li>Status page HTTPS certificate provisioned (Cloudflare DNS-only mode)</li><li>Dashboard 302 redirect now correctly reported as "operational" in health checks</li><li>Microsoft Teams icon CDN 404 (cdn.simpleicons.org removed the slug)</li><li>Dependabot config not activating (<code>.yaml</code> → <code>.yml</code> rename)</li><li>Node.js 20 deprecation warnings in CI (upgraded to Node.js 22)</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v0.4.0">0.4.0</h2>
+    <time datetime="2026-04-05">2026-04-05</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v0.4.0">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v0.4.0-added">Added</h3><ul><li>⚡ Workflow automation rules engine (blocker/participation triggers → post/DM/webhook)</li><li>🏆 Kudos / peer recognition system with leaderboard</li><li>🔐 Role-based access control (admin/member)</li><li>🤖 AI standup summary (OpenAI GPT-4o-mini / Anthropic Claude Haiku)</li><li>📅 Multiple standup schedules per workspace</li><li>📝 25 pre-built question templates</li><li>🔗 Jira / GitHub / Linear auto-linking in summaries</li><li>🌐 Google Chat adapter (Beta)</li><li>🔧 MCP server for AI assistant integration (Claude, Cursor, Copilot)</li><li>📊 Public standup feed URL (shareable read-only page)</li><li>📧 Manager digest email (daily HTML summary)</li><li>🛡️ Redis-backed sessions (survives pod restarts)</li><li>🚨 Sentry error monitoring</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v0.3.0">0.3.0</h2>
+    <time datetime="2026-03-20">2026-03-20</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v0.3.0">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v0.3.0-added">Added</h3><ul><li>🏠 Slack App Home tab</li><li>⏭️ Skip today command</li><li>⏰ Reminder notifications</li><li>🌍 Per-user timezone support</li><li>📈 Analytics dashboard with participation charts</li><li>📤 CSV export</li><li>😊 Mood tracking</li><li>📬 Weekly digest</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v0.2.0">0.2.0</h2>
+    <time datetime="2026-03-01">2026-03-01</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v0.2.0">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v0.2.0-added">Added</h3><ul><li>🌐 Web dashboard for workspace configuration</li><li>🔗 Webhook integrations</li><li>✏️ Edit window for standup responses</li><li>📧 Welcome email on install</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v0.1.0">0.1.0</h2>
+    <time datetime="2026-02-15">2026-02-15</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v0.1.0">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v0.1.0-added">Added</h3><ul><li>Initial release</li><li>Slack OAuth install flow</li><li>Daily standup DM flow (3 questions)</li><li>Standup summary posted to channel</li><li>PostgreSQL persistence</li><li>Helm chart [Unreleased]: https://github.com/morgenruf/morgenruf/compare/v1.0.0...HEAD [1.0.0]: https://github.com/morgenruf/morgenruf/compare/v0.4.0...v1.0.0 [0.4.0]: https://github.com/morgenruf/morgenruf/compare/v0.3.0...v0.4.0 [0.3.0]: https://github.com/morgenruf/morgenruf/compare/v0.2.0...v0.3.0 [0.2.0]: https://github.com/morgenruf/morgenruf/compare/v0.1.0...v0.2.0 [0.1.0]: https://github.com/morgenruf/morgenruf/releases/tag/v0.1.0</li></ul></div>
+</article>
+</div></section><section class="section"><div class="wrap" style="max-width:820px">
+  <span class="eyebrow">Questions</span><h2>About releases</h2>
+  <div style="margin-top:24px"><details open><summary>How often are there releases?</summary><p>Whenever something is ready. Recent months have averaged several a week, including fixes that went out within an hour of being reported.</p></details><details><summary>How do I upgrade?</summary><p>Pull the new image and restart, or helm upgrade. Migrations run themselves before the app starts.</p></details><details><summary>Do you follow semantic versioning?</summary><p>Yes. Breaking changes would move the major, and there have not been any since 1.0.</p></details></div></div></section>
+</main><section class="section">
+  <div class="wrap">
+    <div class="band">
+      <h2>Free for every seat, and that is the whole pricing page</h2>
+      <p class="lede">MIT licensed, no paid tier, nothing held back from the repository. You pay for a server and a database, which you were paying for anyway.</p>
+      <div class="band-cta">
+        <a class="btn btn-sun" href="https://api.morgenruf.dev/slack/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+        <a class="btn btn-ghost" href="https://github.com/morgenruf/morgenruf">Read the source</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
+        chats and recognition. Self-host it and keep your own data.</p>
+        <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        Kitchener, Ontario 🇨🇦</p>
+      </div>
+      <div><h4>Product</h4><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h4>Set up</h4><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h4>Compare</h4><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h4>Project</h4><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
+      <span class="foot-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
