@@ -36,6 +36,8 @@ SUPPORT_FAQ = [
 
 def support():
     body = f'''<section class="section"><div class="wrap">
+  <span class="eyebrow">Free routes</span>
+  <h2 id="where-to-start" style="margin-bottom:24px">Three places to start</h2>
   <div class="tiles">
     <a class="tile" href="{ISSUES}"><h3>Report a bug</h3>
       <p>The issue tracker. Templates for bugs, and the fastest route to a fix if you can say how to
@@ -63,11 +65,11 @@ def support():
 
     <h2>Where things get answered</h2>
     <ul>
-      <li><a href="{ISSUES}">Issues</a> — bugs, and anything with a reproduction.</li>
-      <li><a href="{DISCUSSIONS}">Discussions</a> — questions, ideas, and "is this supposed to happen".</li>
-      <li><a href="https://status.morgenruf.dev">Status</a> — for the hosted demo. Self-hosted
+      <li><a href="{ISSUES}">Issues</a>, for bugs and anything with a reproduction.</li>
+      <li><a href="{DISCUSSIONS}">Discussions</a>, for questions, ideas, and "is this supposed to happen".</li>
+      <li><a href="https://status.morgenruf.dev">Status</a>, for the hosted demo. Self-hosted
       instances are yours to monitor.</li>
-      <li><a href="{REPO}/security/policy">Security policy</a> — please report privately, not in an
+      <li><a href="{REPO}/security/policy">Security policy</a>. Please report privately rather than in an
       issue.</li>
     </ul>
   </div>
@@ -115,10 +117,10 @@ def support():
     body += f'''<section class="section"><div class="wrap" style="max-width:820px">
   <span class="eyebrow">Questions</span><h2>Getting help</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
-    return (head(title="Support: issues, discussions and commercial help — Morgenruf",
+    return (head(title="Morgenruf support: issues, discussions and paid help",
                  description="Where to get help with Morgenruf: the GitHub issue tracker, "
-                             "discussions, documentation, and paid setup and hosting from "
-                             "CloudDrove, who build it.",
+                             "discussions, the documentation, and paid setup, hosting and upgrades "
+                             "from CloudDrove, who build it.",
                  path="/support", schema=[faq_schema, breadcrumbs(
                      [("Home", "/"), ("Support", None)])[1]])
             + nav() + breadcrumbs([("Home", "/"), ("Support", None)])[0]

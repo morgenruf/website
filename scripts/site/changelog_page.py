@@ -100,9 +100,9 @@ def changelog():
   <span class="eyebrow">Questions</span><h2>About releases</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     crumb_html, crumb_schema = breadcrumbs([("Home", "/"), ("Changelog", None)])
-    return (head(title=f"Changelog — every Morgenruf release, currently {latest}",
-                 description="Every Morgenruf release with what changed: features, fixes and the "
-                             "occasional removal. Generated from the repository's own changelog.",
+    return (head(title=f"Changelog: every Morgenruf release, currently {latest}",
+                 description="Every Morgenruf release and what changed in it: new modules, fixes and the "
+                             "occasional removal, generated straight from the repository's own changelog file.",
                  path="/changelog", schema=[faq_schema, crumb_schema])
             + nav() + crumb_html
             + f'''<main>

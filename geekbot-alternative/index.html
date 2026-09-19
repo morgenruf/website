@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Open-source Geekbot alternative, self-hosted — Morgenruf</title>
-<meta name="description" content="A self-hosted, MIT-licensed alternative to Geekbot for async standups in Slack, with coffee chats and recognition in the same app. No per-seat pricing, your data in your own Postgres."/>
+<title>Open-source Geekbot alternative, self-hosted | Morgenruf</title>
+<meta name="description" content="A self-hosted, MIT-licensed Geekbot alternative for async Slack standups, with coffee chats and recognition in the same app. No per-seat fee, your Postgres."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/geekbot-alternative"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/geekbot-alternative"/>
-<meta property="og:title" content="Open-source Geekbot alternative, self-hosted — Morgenruf"/>
-<meta property="og:description" content="A self-hosted, MIT-licensed alternative to Geekbot for async standups in Slack, with coffee chats and recognition in the same app. No per-seat pricing, your data in your own Postgres."/>
+<meta property="og:title" content="Open-source Geekbot alternative, self-hosted | Morgenruf"/>
+<meta property="og:description" content="A self-hosted, MIT-licensed Geekbot alternative for async Slack standups, with coffee chats and recognition in the same app. No per-seat fee, your Postgres."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Open-source Geekbot alternative, self-hosted — Morgenruf"/>
-<meta name="twitter:description" content="A self-hosted, MIT-licensed alternative to Geekbot for async standups in Slack, with coffee chats and recognition in the same app. No per-seat pricing, your data in your own Postgres."/>
+<meta name="twitter:title" content="Open-source Geekbot alternative, self-hosted | Morgenruf"/>
+<meta name="twitter:description" content="A self-hosted, MIT-licensed Geekbot alternative for async Slack standups, with coffee chats and recognition in the same app. No per-seat fee, your Postgres."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="theme-color" content="#12131f"/>
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
@@ -53,9 +53,12 @@
 <section class="section"><div class="wrap"><div class="guide"><nav class="toc" aria-label="On this page"><strong>On this page</strong><div class="toc-links"><a href="#what-you-are-actually-comparing">What you are comparing</a><a href="#where-geekbot-wins">Where Geekbot wins</a><a href="#where-this-is-different">Where this is different</a><a href="#the-things-that-decide-it-in-practice">What decides it</a><a href="#moving-across">Moving across</a></div></nav><div class="prose"><h2 id="what-you-are-actually-comparing">What you are actually comparing</h2>
 <p>Geekbot is a hosted async standup bot. It is mature, it works, and for a lot of teams the monthly
 per-person fee is the right trade for never thinking about a server. Morgenruf is the same job done
-on your own infrastructure, plus coffee chats and recognition, for nothing per seat.</p>
+on your own infrastructure, plus coffee chats and recognition, for nothing per seat. There is
+<a href="/blog/geekbot-vs-morgenruf">a longer and less tidy version of this comparison</a> on the
+blog, written while switching a team across.</p>
 <p>The decision is rarely about features. It is about where your team's answers live and whether you
-want a subscription that grows with headcount.</p>
+want a subscription that grows with headcount. The same question applies to Donut, HeyTaco and
+Standup &amp; Prosper, which is what <a href="/compare">the comparison pages</a> work through.</p>
 
 <figure class="diagram">
 <svg viewBox="0 0 700 180" role="img" aria-label="A standup morning: the bot sends a direct message at the scheduled hour, people answer in their own time, whoever has not filed gets a private nudge, and one summary posts to the channel.">
@@ -87,7 +90,8 @@ want a subscription that grows with headcount.</p>
   tracker and a maintainer's evening.</li>
 </ul>
 <p>If you have no appetite for running anything, stop here and use Geekbot. Everything below assumes
-you are willing to run one container and a Postgres.</p>
+you are willing to run <a href="/self-hosted-standup-bot">one container and a Postgres of your
+own</a>.</p>
 
 <h2 id="where-this-is-different">Where this is different</h2>
 <h3>The price does not scale with hiring</h3>
@@ -155,7 +159,7 @@ right. Nothing here has a contract to cancel.</p>
         <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
         Kitchener, Ontario 🇨🇦</p>
       </div>
-      <div><h4>Product</h4><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h4>Set up</h4><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h4>Compare</h4><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h4>Project</h4><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
+      <div><h3>Product</h3><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h3>Set up</h3><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
     </div>
     <div class="foot-bottom">
       <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>

@@ -65,7 +65,9 @@ HUB_FAQ = [
 
 def hub():
     body = '''<section class="section"><div class="wrap">
-  <div class="tiles">
+  <span class="eyebrow">Three ways in</span>
+  <h2 id="pick-a-way-to-run-it">Pick a way to run it</h2>
+  <div class="tiles" style="margin-top:24px">
     <a class="tile" href="/setup/docker">
       <h3>Docker Compose</h3>
       <p>The shortest path. One file, one command, runs on a laptop, a VPS or a spare Mac mini.</p>
@@ -109,8 +111,10 @@ def hub():
     <h2 id="after-it-is-running">After it is running</h2>
     <ol>
       <li>Open your app URL and sign in with Slack. You are the first admin.</li>
-      <li>Create a standup: pick a channel, the questions, the hour, and who takes part.</li>
-      <li>Turn on coffee chats and kudos when you want them. Both are off until you say so.</li>
+      <li>Create <a href="/standups">a standup</a>: pick a channel, the questions, the hour, and
+      who takes part.</li>
+      <li>Turn on <a href="/coffee-chats">coffee chats</a> and <a href="/kudos">kudos</a> when you
+      want them. Both are off until you say so.</li>
       <li>Optional: connect Zoom so coffee chats book a real meeting, and set up a digest email.</li>
     </ol>
   </div>
@@ -126,8 +130,7 @@ def hub():
         path="/setup",
         title="Set up a self-hosted Slack standup bot — Morgenruf",
         description="Three ways to run Morgenruf yourself: Docker Compose, Kubernetes with Helm, or "
-                    "from source. What you need, what it costs, and the Slack app setup, in about "
-                    "twenty minutes.",
+                    "from source. What you need, and the Slack app, in about twenty minutes.",
         h1="Set it up yourself, in about twenty minutes",
         lede="Morgenruf is one process and a Postgres database. Pick whichever of these you already "
              "have, and the Slack side is the same either way.",
@@ -171,6 +174,8 @@ def docker():
   <li>A Slack workspace where you can install an app</li>
   <li>A way to give Slack an HTTPS URL. A Cloudflare tunnel is fine and needs no open port.</li>
 </ul>
+<p>Nothing on this page costs money beyond the machine it runs on, which is the point of
+<a href="/blog/async-standups-slack-free">running async standups in Slack for free</a>.</p>
 
 <h2 id="1-create-the-slack-app">1. Create the Slack app</h2>
 <p>Do this first, because the next step wants three values from it. The
@@ -210,7 +215,8 @@ permanent, use a named tunnel rather than a quick one, because the quick URL cha
 <h2 id="5-install-it">5. Install it</h2>
 <p>Open your app URL in a browser and authorise the workspace. You become the first admin, and the
 dashboard opens on an empty Standups page. Create one: channel, questions, the hour, and who takes
-part.</p>
+part. What <a href="/standups">a standup does once it is running</a> is described separately, as are
+<a href="/coffee-chats">coffee chats</a>, which stay off until you turn them on.</p>
 
 <h2 id="keeping-it-running">Keeping it running</h2>
 <ul>
@@ -243,10 +249,9 @@ would rather not.</p></div>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/setup/docker",
-        title="Run a Slack standup bot with Docker Compose — Morgenruf setup",
+        title="Run a Slack standup bot with Docker Compose | Morgenruf",
         description="Self-host Morgenruf with Docker Compose: environment variables, starting the "
-                    "containers, giving Slack an HTTPS URL with a Cloudflare tunnel, upgrades and "
-                    "backups.",
+                    "containers, giving Slack an HTTPS URL with a tunnel, upgrades and backups.",
         h1="Set it up with Docker Compose",
         lede="The shortest path, and the one to use if you are trying it out. One compose file, one "
              "command, and a tunnel if you have nowhere public to put it.",
@@ -312,7 +317,8 @@ intend to keep. The data outliving the release is the point.</p></div>
 </ul>
 
 <h2 id="one-replica-on-purpose">One replica, on purpose</h2>
-<p>The scheduler that fires standups and coffee chat rounds runs inside the app process. Two
+<p>The scheduler that fires <a href="/standups">standups</a>, <a href="/coffee-chats">coffee chat
+rounds</a> and the midnight <a href="/kudos">kudos</a> reset runs inside the app process. Two
 replicas would both wake up at nine and both send the morning message. Until that moves behind a
 shared lock, run one replica and let Kubernetes restart it; a restart mid-round resumes rather than
 repeating, because delivery is recorded per person as it happens.</p>
@@ -351,10 +357,10 @@ you will run the previous release's migrations against the new code.</p>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/setup/kubernetes",
-        title="Kubernetes and Helm setup for a self-hosted Slack standup bot — Morgenruf",
-        description="Install Morgenruf on Kubernetes with the published Helm chart: values, external "
-                    "Postgres, ingress or Cloudflare tunnel, migrations in an init container, and why "
-                    "it runs one replica.",
+        title="Kubernetes and Helm setup for a Slack standup bot",
+        description="Install Morgenruf on Kubernetes with the published Helm chart: values, "
+                    "external Postgres, ingress or Cloudflare tunnel, migrations, and why one "
+                    "replica.",
         h1="Set it up on Kubernetes",
         lede="A published chart, an external Postgres, and whichever way you already expose things. "
              "Migrations run themselves on every rollout.",
@@ -431,9 +437,11 @@ it every event is rejected.</p>
   <li><code>users:read</code>, <code>users:read.email</code> — names and email, for the dashboard and
   the digest.</li>
   <li><code>users.profile:read</code> — timezones, so nobody is asked at midnight.</li>
-  <li><code>mpim:write</code>, <code>mpim:history</code> — the group DM a coffee chat introduction
-  happens in. Only needed if you turn coffee chats on.</li>
-  <li><code>emoji:read</code> — so kudos can use a custom token from your workspace.</li>
+  <li><code>mpim:write</code>, <code>mpim:history</code> — the group DM a
+  <a href="/coffee-chats">coffee chat</a> introduction happens in. Only needed if you turn coffee
+  chats on.</li>
+  <li><code>emoji:read</code> — so <a href="/kudos">kudos</a> can use a custom token from your
+  workspace.</li>
   <li><code>commands</code> — the slash commands.</li>
 </ul>
 <p>There is no scope for reading channel history, because the app never does.</p>
@@ -444,7 +452,8 @@ failing at runtime, and the dashboard tells you which scopes are missing.</p></d
 
 <h2 id="5-install-and-invite">5. Install and invite</h2>
 <p>Open your app URL, authorise, and you are the first admin. Then invite the bot to the channel the
-summary posts in, and to any channel you want coffee chats to pair from:</p>
+summary posts in, and to any channel you want coffee chats to pair from. The bot has to be in the
+channel before <a href="/standups">a standup</a> can post there:</p>
 <pre><code>/invite @Morgenruf</code></pre>
 
 <h2 id="slash-commands-you-get">Slash commands you get</h2>
@@ -472,10 +481,9 @@ summary posts in, and to any channel you want coffee chats to pair from:</p>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/setup/slack-app",
-        title="Create the Slack app: manifest, scopes and install — Morgenruf setup",
-        description="Create a Slack app from the Morgenruf manifest, add the redirect URL, and "
-                    "understand every scope it asks for and why, including the three extra ones "
-                    "coffee chats need.",
+        title="Create the Slack app: manifest, scopes, install | Morgenruf",
+        description="Create a Slack app from the Morgenruf manifest, add the redirect URL, and see "
+                    "every scope it asks for, including the three extra ones coffee chats need.",
         h1="Create the Slack app",
         lede="Ten minutes, and the only part that touches Slack's settings. The manifest does most "
              "of it; the rest is three values and an invite.",

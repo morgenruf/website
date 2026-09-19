@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Self-hosted Standup & Prosper alternative — Morgenruf</title>
-<meta name="description" content="An open-source, self-hosted alternative to Standup & Prosper for Slack standups, with coffee chats and kudos in the same app and no per-seat pricing."/>
+<title>Self-hosted Standup &amp; Prosper alternative | Morgenruf</title>
+<meta name="description" content="An open-source, self-hosted Standup &amp; Prosper alternative for Slack standups, with coffee chats and kudos in the same app and no per-seat bill as you hire."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/standup-prosper-alternative"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/standup-prosper-alternative"/>
-<meta property="og:title" content="Self-hosted Standup & Prosper alternative — Morgenruf"/>
-<meta property="og:description" content="An open-source, self-hosted alternative to Standup & Prosper for Slack standups, with coffee chats and kudos in the same app and no per-seat pricing."/>
+<meta property="og:title" content="Self-hosted Standup &amp; Prosper alternative | Morgenruf"/>
+<meta property="og:description" content="An open-source, self-hosted Standup &amp; Prosper alternative for Slack standups, with coffee chats and kudos in the same app and no per-seat bill as you hire."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Self-hosted Standup & Prosper alternative — Morgenruf"/>
-<meta name="twitter:description" content="An open-source, self-hosted alternative to Standup & Prosper for Slack standups, with coffee chats and kudos in the same app and no per-seat pricing."/>
+<meta name="twitter:title" content="Self-hosted Standup &amp; Prosper alternative | Morgenruf"/>
+<meta name="twitter:description" content="An open-source, self-hosted Standup &amp; Prosper alternative for Slack standups, with coffee chats and kudos in the same app and no per-seat bill as you hire."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="theme-color" content="#12131f"/>
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
@@ -49,7 +49,8 @@
 <p>Standup &amp; Prosper is a hosted Slack standup bot with a generous free tier and a simple, well
 made product. Morgenruf does the same job on your own infrastructure and adds coffee chats and
 recognition. If the hosted free tier covers you and you have no interest in running software, that
-is a perfectly good answer.</p>
+is a perfectly good answer, and <a href="/compare">the other comparisons</a> will not tell you
+anything different.</p>
 
 <figure class="diagram">
 <svg viewBox="0 0 700 180" role="img" aria-label="A standup morning: the bot sends a direct message at the scheduled hour, people answer in their own time, whoever has not filed gets a private nudge, and one summary posts to the channel.">
@@ -83,6 +84,8 @@ is a perfectly good answer.</p>
 <h2 id="where-this-is-different">Where this is different</h2>
 <ul>
   <li><strong>Your data.</strong> Answers, blockers and participation live in Postgres you control.</li>
+  <li><strong>The same day-to-day in Slack</strong>: DMs, a channel summary, slash commands and an
+  App Home tab. <a href="/slack-standup-bot">What the Slack app does</a> is the page for that.</li>
   <li><strong>No seat maths.</strong> The bill does not move when you hire.</li>
   <li><strong>Three rituals in one app</strong> rather than a standup tool plus two more
   subscriptions later.</li>
@@ -92,8 +95,10 @@ is a perfectly good answer.</p>
 
 <h2 id="what-you-take-on">What you take on</h2>
 <p>Running it is the trade. In practice that means one container, one database, an HTTPS URL, and
-<code>docker compose pull</code> when there is a release. Migrations apply themselves on start. If
-that sounds like a chore rather than a Tuesday, the hosted option is cheaper than your time.</p>
+<code>docker compose pull</code> when there is a release. Migrations apply themselves on start.
+<a href="/self-hosted-standup-bot">Running it on your own servers</a> sets out the requirements, the
+upgrade path and the backups in full. If that sounds like a chore rather than a Tuesday, the hosted
+option is cheaper than your time.</p>
 
 <div class="shot"><img src="/screenshots/today.jpg" width="1182" height="600" loading="lazy" alt="The Today page showing answered, waiting and blocked counts"/></div><p class="shot-cap">What the morning looks like once it is running.</p>
 
@@ -127,7 +132,7 @@ that sounds like a chore rather than a Tuesday, the hosted option is cheaper tha
         <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
         Kitchener, Ontario 🇨🇦</p>
       </div>
-      <div><h4>Product</h4><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h4>Set up</h4><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h4>Compare</h4><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h4>Project</h4><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
+      <div><h3>Product</h3><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h3>Set up</h3><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
     </div>
     <div class="foot-bottom">
       <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>

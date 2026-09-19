@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Create the Slack app: manifest, scopes and install — Morgenruf setup</title>
-<meta name="description" content="Create a Slack app from the Morgenruf manifest, add the redirect URL, and understand every scope it asks for and why, including the three extra ones coffee chats need."/>
+<title>Create the Slack app: manifest, scopes, install | Morgenruf</title>
+<meta name="description" content="Create a Slack app from the Morgenruf manifest, add the redirect URL, and see every scope it asks for, including the three extra ones coffee chats need."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/setup/slack-app"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/setup/slack-app"/>
-<meta property="og:title" content="Create the Slack app: manifest, scopes and install — Morgenruf setup"/>
-<meta property="og:description" content="Create a Slack app from the Morgenruf manifest, add the redirect URL, and understand every scope it asks for and why, including the three extra ones coffee chats need."/>
+<meta property="og:title" content="Create the Slack app: manifest, scopes, install | Morgenruf"/>
+<meta property="og:description" content="Create a Slack app from the Morgenruf manifest, add the redirect URL, and see every scope it asks for, including the three extra ones coffee chats need."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Create the Slack app: manifest, scopes and install — Morgenruf setup"/>
-<meta name="twitter:description" content="Create a Slack app from the Morgenruf manifest, add the redirect URL, and understand every scope it asks for and why, including the three extra ones coffee chats need."/>
+<meta name="twitter:title" content="Create the Slack app: manifest, scopes, install | Morgenruf"/>
+<meta name="twitter:description" content="Create a Slack app from the Morgenruf manifest, add the redirect URL, and see every scope it asks for, including the three extra ones coffee chats need."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="theme-color" content="#12131f"/>
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
@@ -74,9 +74,11 @@ it every event is rejected.</p>
   <li><code>users:read</code>, <code>users:read.email</code> — names and email, for the dashboard and
   the digest.</li>
   <li><code>users.profile:read</code> — timezones, so nobody is asked at midnight.</li>
-  <li><code>mpim:write</code>, <code>mpim:history</code> — the group DM a coffee chat introduction
-  happens in. Only needed if you turn coffee chats on.</li>
-  <li><code>emoji:read</code> — so kudos can use a custom token from your workspace.</li>
+  <li><code>mpim:write</code>, <code>mpim:history</code> — the group DM a
+  <a href="/coffee-chats">coffee chat</a> introduction happens in. Only needed if you turn coffee
+  chats on.</li>
+  <li><code>emoji:read</code> — so <a href="/kudos">kudos</a> can use a custom token from your
+  workspace.</li>
   <li><code>commands</code> — the slash commands.</li>
 </ul>
 <p>There is no scope for reading channel history, because the app never does.</p>
@@ -87,7 +89,8 @@ failing at runtime, and the dashboard tells you which scopes are missing.</p></d
 
 <h2 id="5-install-and-invite">5. Install and invite</h2>
 <p>Open your app URL, authorise, and you are the first admin. Then invite the bot to the channel the
-summary posts in, and to any channel you want coffee chats to pair from:</p>
+summary posts in, and to any channel you want coffee chats to pair from. The bot has to be in the
+channel before <a href="/standups">a standup</a> can post there:</p>
 <pre><code>/invite @Morgenruf</code></pre>
 
 <h2 id="slash-commands-you-get">Slash commands you get</h2>
@@ -127,7 +130,7 @@ summary posts in, and to any channel you want coffee chats to pair from:</p>
         <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
         Kitchener, Ontario 🇨🇦</p>
       </div>
-      <div><h4>Product</h4><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h4>Set up</h4><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h4>Compare</h4><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h4>Project</h4><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
+      <div><h3>Product</h3><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h3>Set up</h3><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
     </div>
     <div class="foot-bottom">
       <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>

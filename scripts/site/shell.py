@@ -114,7 +114,7 @@ def footer():
     cols = ""
     for heading, links in FOOTER:
         rows = "".join(f'<a href="{href}">{label}</a>' for label, href in links)
-        cols += f'<div><h4>{heading}</h4>{rows}</div>'
+        cols += f'<div><h3>{heading}</h3>{rows}</div>'
     return f'''<footer>
   <div class="wrap">
     <div class="foot-grid">

@@ -57,9 +57,12 @@ def geekbot():
     prose = f'''<h2 id="what-you-are-actually-comparing">What you are actually comparing</h2>
 <p>Geekbot is a hosted async standup bot. It is mature, it works, and for a lot of teams the monthly
 per-person fee is the right trade for never thinking about a server. Morgenruf is the same job done
-on your own infrastructure, plus coffee chats and recognition, for nothing per seat.</p>
+on your own infrastructure, plus coffee chats and recognition, for nothing per seat. There is
+<a href="/blog/geekbot-vs-morgenruf">a longer and less tidy version of this comparison</a> on the
+blog, written while switching a team across.</p>
 <p>The decision is rarely about features. It is about where your team's answers live and whether you
-want a subscription that grows with headcount.</p>
+want a subscription that grows with headcount. The same question applies to Donut, HeyTaco and
+Standup &amp; Prosper, which is what <a href="/compare">the comparison pages</a> work through.</p>
 
 {diagrams.standup_flow()}
 
@@ -73,7 +76,8 @@ want a subscription that grows with headcount.</p>
   tracker and a maintainer's evening.</li>
 </ul>
 <p>If you have no appetite for running anything, stop here and use Geekbot. Everything below assumes
-you are willing to run one container and a Postgres.</p>
+you are willing to run <a href="/self-hosted-standup-bot">one container and a Postgres of your
+own</a>.</p>
 
 <h2 id="where-this-is-different">Where this is different</h2>
 <h3>The price does not scale with hiring</h3>
@@ -140,10 +144,10 @@ right. Nothing here has a contract to cancel.</p>
   <span class="eyebrow">Questions</span><h2>Morgenruf and Geekbot</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/geekbot-alternative",
-                title="Open-source Geekbot alternative, self-hosted — Morgenruf",
-                description="A self-hosted, MIT-licensed alternative to Geekbot for async standups "
-                            "in Slack, with coffee chats and recognition in the same app. No "
-                            "per-seat pricing, your data in your own Postgres.",
+                title="Open-source Geekbot alternative, self-hosted | Morgenruf",
+                description="A self-hosted, MIT-licensed Geekbot alternative for async Slack "
+                            "standups, with coffee chats and recognition in the same app. No "
+                            "per-seat fee, your Postgres.",
                 h1="An open-source Geekbot alternative you host yourself",
                 lede="The same morning questions and channel summary, on your own servers, with "
                      "coffee chats and kudos included rather than sold separately.",
@@ -157,7 +161,8 @@ def standup_prosper():
 <p>Standup &amp; Prosper is a hosted Slack standup bot with a generous free tier and a simple, well
 made product. Morgenruf does the same job on your own infrastructure and adds coffee chats and
 recognition. If the hosted free tier covers you and you have no interest in running software, that
-is a perfectly good answer.</p>
+is a perfectly good answer, and <a href="/compare">the other comparisons</a> will not tell you
+anything different.</p>
 
 {diagrams.standup_flow()}
 
@@ -173,6 +178,8 @@ is a perfectly good answer.</p>
 <h2 id="where-this-is-different">Where this is different</h2>
 <ul>
   <li><strong>Your data.</strong> Answers, blockers and participation live in Postgres you control.</li>
+  <li><strong>The same day-to-day in Slack</strong>: DMs, a channel summary, slash commands and an
+  App Home tab. <a href="/slack-standup-bot">What the Slack app does</a> is the page for that.</li>
   <li><strong>No seat maths.</strong> The bill does not move when you hire.</li>
   <li><strong>Three rituals in one app</strong> rather than a standup tool plus two more
   subscriptions later.</li>
@@ -182,8 +189,10 @@ is a perfectly good answer.</p>
 
 <h2 id="what-you-take-on">What you take on</h2>
 <p>Running it is the trade. In practice that means one container, one database, an HTTPS URL, and
-<code>docker compose pull</code> when there is a release. Migrations apply themselves on start. If
-that sounds like a chore rather than a Tuesday, the hosted option is cheaper than your time.</p>
+<code>docker compose pull</code> when there is a release. Migrations apply themselves on start.
+<a href="/self-hosted-standup-bot">Running it on your own servers</a> sets out the requirements, the
+upgrade path and the backups in full. If that sounds like a chore rather than a Tuesday, the hosted
+option is cheaper than your time.</p>
 
 {shot("/screenshots/today.jpg", "The Today page showing answered, waiting and blocked counts", "What the morning looks like once it is running.")}
 
@@ -212,10 +221,10 @@ that sounds like a chore rather than a Tuesday, the hosted option is cheaper tha
   <span class="eyebrow">Questions</span><h2>Morgenruf and Standup &amp; Prosper</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/standup-prosper-alternative",
-                title="Self-hosted Standup & Prosper alternative — Morgenruf",
-                description="An open-source, self-hosted alternative to Standup & Prosper for Slack "
+                title="Self-hosted Standup &amp; Prosper alternative | Morgenruf",
+                description="An open-source, self-hosted Standup &amp; Prosper alternative for Slack "
                             "standups, with coffee chats and kudos in the same app and no per-seat "
-                            "pricing.",
+                            "bill as you hire.",
                 h1="A self-hosted Standup &amp; Prosper alternative",
                 lede="Same async standups, run on your own infrastructure, with two more team "
                      "rituals included rather than sold separately.",
@@ -224,21 +233,29 @@ that sounds like a chore rather than a Tuesday, the hosted option is cheaper tha
 
 
 def open_source():
-    prose = f'''<h2 id="what-open-source-buys-you">What open source actually buys you here</h2>
-<p>Three things, and only one of them is the licence:</p>
+    prose = f'''<h2 id="what-open-source-buys-you">What the licence actually says</h2>
+<p>MIT, on the whole repository. Not open core, not source available, not a community edition with
+the useful half behind a sales call. One licence file, one repository, and the same code in the
+image that runs in production. Read it in about a minute: you may use, copy, modify, merge, publish,
+distribute, sublicense and sell it, including inside a company, as long as the copyright notice
+travels with it. There is no contributor agreement assigning your changes to anyone.</p>
+<p>In practice that buys three things:</p>
 <ul>
   <li><strong>You can read it.</strong> A standup bot sees everything your team is stuck on. Being
   able to check what it does with that is not paranoia.</li>
-  <li><strong>You can change it.</strong> Summary format, question types, the wording of a nudge.</li>
+  <li><strong>You can change it.</strong> Summary format, question types, the wording of a nudge.
+  Fork it and run your fork; nothing checks that you did.</li>
   <li><strong>It cannot be taken away.</strong> No price change, no acquisition, no sunset email.</li>
 </ul>
 
 {diagrams.architecture()}
 
 <h2 id="the-honest-trade">The honest trade</h2>
-<p>Someone has to run it. That is one container, a Postgres and an HTTPS URL, with migrations that
-apply themselves. It is a small job, but it is not zero, and a hosted tool removes it entirely. Be
-clear which side of that you are on before switching.</p>
+<p>A licence does not run anything. Someone has to, and that is one container, a Postgres and an
+HTTPS URL, with migrations that apply themselves.
+<a href="/self-hosted-standup-bot">What running it on your own servers involves</a> is a page of its
+own, down to the backups. It is a small job, but it is not zero, and a hosted tool removes it
+entirely. Be clear which side of that you are on before switching.</p>
 
 <h2 id="what-morgenruf-includes">What is in the box</h2>
 <ul>
@@ -249,22 +266,36 @@ clear which side of that you are on before switching.</p>
   <li><a href="/insights">Insights</a> across both datasets</li>
   <li>Signed webhooks, automation rules, an MCP server, CSV export, a Helm chart</li>
 </ul>
-<p>Every one of those is in the repository. There is no paid tier holding anything back.</p>
+<p>Every one of those is in the repository. There is no paid tier holding anything back, and
+<a href="/slack-standup-bot">what the bot does inside Slack</a> is the same whether you run the
+published image or your own build of it.</p>
+
+<h2 id="who-maintains-it">Who maintains it</h2>
+<p>It is built and maintained at CloudDrove, who also sell setup and hosting. Paid work funds the
+project; it does not gate any of it. Issues and pull requests go to the same repository the releases
+are cut from, and the Helm chart is published from it too.
+<a href="/blog/why-i-built-morgenruf">The weekend that produced it</a> explains why it is arranged
+this way.</p>
+<p>If that arrangement ends tomorrow, you keep the source, the chart and your own database. That is
+the whole point of the licence, and it is worth checking a project can say the same before you put
+a daily ritual on it.</p>
 
 <h2 id="other-options">Other open-source options</h2>
 <p>There are a few self-hosted standup tools around, mostly smaller scripts that post a message and
 collect replies. They are fine for one team and one question set. The things that usually run out
 are per-person timezones, vacation handling, a dashboard non-engineers will use, and anything beyond
-standups. Pick by which of those you need rather than by star count.</p>
+standups. Pick by which of those you need rather than by star count. Against the hosted products,
+<a href="/compare">the comparison pages</a> are the more useful read.</p>
 
 {shot("/screenshots/members.jpg", "Member cards in the dashboard showing which features each person runs", "Per-feature admin grants, so the team lead runs standups without holding the API keys.")}
 
 <h2 id="getting-started">Getting started</h2>
 <p><a href="/setup">The setup guides</a> cover Docker Compose, Kubernetes and the Slack app. The
 whole thing takes about twenty minutes, most of it in Slack's settings.</p>'''
-    body = guide(prose, [("What open source buys", "what-open-source-buys-you"),
+    body = guide(prose, [("What the licence says", "what-open-source-buys-you"),
                          ("The honest trade", "the-honest-trade"),
                          ("What is in the box", "what-morgenruf-includes"),
+                         ("Who maintains it", "who-maintains-it"),
                          ("Other options", "other-options"), ("Getting started", "getting-started")])
     faq_html, faq_schema = faq([
         ("Is it really MIT, all of it?",
@@ -282,24 +313,26 @@ whole thing takes about twenty minutes, most of it in Slack's settings.</p>'''
   <span class="eyebrow">Questions</span><h2>About the open-source side</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/open-source-standup-bot",
-                title="Open-source Slack standup bot, MIT licensed — Morgenruf",
-                description="An MIT-licensed, self-hosted Slack standup bot with coffee chats and "
-                            "peer recognition in the same app. Read the source, run it yourself, "
-                            "keep the data.",
-                h1="An open-source Slack standup bot, all of it",
-                lede="MIT licensed, self-hosted, and honest about what running it costs you in "
-                     "effort rather than money.",
+                title="Open-source Slack standup bot, MIT licensed | Morgenruf",
+                description="An MIT-licensed Slack standup bot: one repository, no open-core split, "
+                            "no paid tier. Read the source, fork it, and keep running it if the "
+                            "project stops.",
+                h1="An open-source standup bot: MIT, one repository, no paid tier",
+                lede="What the licence covers, who maintains it, and what you are left holding if "
+                     "the project ever stops. The hosting question has its own page.",
                 body=body, schema=[faq_schema],
                 trail=[("Home", "/"), ("Compare", "/compare"), ("Open source", None)])
 
 
 def self_hosted():
     prose = f'''<h2 id="why-teams-self-host-this">Why teams self-host a standup bot</h2>
-<p>Three reasons come up, in this order:</p>
+<p>Self-hosting decides one thing before anything else: which machine, in which country, holds the
+answers. Everything else on this page follows from that. Three reasons come up, in this order:</p>
 <ul>
   <li><strong>The answers are sensitive.</strong> A standup is a daily log of what is broken, what is
   late and who is stuck. Plenty of companies are fine with that in a vendor's cloud. Regulated ones
-  are not, and it is not a preference they can be argued out of.</li>
+  are not, and it is not a preference they can be argued out of. Here the answers sit in whatever
+  Postgres you point it at, in whatever region that database is in.</li>
   <li><strong>The bill grows with the team.</strong> Per-seat pricing means the cost of three
   questions a morning rises every time you hire.</li>
   <li><strong>They already run things.</strong> If you have a cluster and a Postgres, adding one more
@@ -318,10 +351,23 @@ def self_hosted():
   <li><strong>Backups.</strong> <code>pg_dump</code>. There is no other state.</li>
 </ul>
 
+<h2 id="what-leaves-your-network">What leaves your network</h2>
+<p>Slack's API, and nothing else. The app calls <code>slack.com</code> to read channel membership,
+open DMs and post the summary, and Slack calls your HTTPS URL back with events. Answers, blockers,
+participation, coffee chat pairings and kudos are written to your Postgres and stay there. No
+telemetry, no analytics endpoint, no licence check phoning home. You can watch that on the egress
+rules, and since it is <a href="/open-source-standup-bot">MIT licensed and readable end to end</a>
+you can check the claim rather than take it.</p>
+<p>Which makes the residency answer short. The data lives in the region your database lives in,
+under the retention your backups already have, and a deletion or subject access request is a query
+against a schema you own.</p>
+
 <h2 id="what-it-costs">What it costs</h2>
 <p>A small VPS and a managed Postgres, or nothing extra if you already run both. There is no seat
 component at any size, which is the whole economic argument: the difference between hosted and
-self-hosted grows with your headcount, not with your usage.</p>
+self-hosted grows with your headcount, not with your usage.
+<a href="/compare">What the hosted standup bots charge per person</a> is on the comparison pages, if
+you want to do the arithmetic for your own team.</p>
 
 <h2 id="where-it-runs">Where it runs</h2>
 <ul>
@@ -330,15 +376,20 @@ self-hosted grows with your headcount, not with your usage.</p>
   <li><a href="/setup/docker">Docker Compose</a> on a VPS, a homelab box or a spare Mac mini</li>
   <li>Anywhere else a container and a Postgres can live</li>
 </ul>
+<p>The same image and the same database either way. <a href="/setup">Every way of running it</a> is
+written up step by step, and the choice is mostly about what your team already operates.</p>
 
 {shot("/screenshots/standups.jpg", "Standups in the dashboard with completion sparklines", "The dashboard runs on your own domain, behind your own auth.")}
 
 <h2 id="the-part-people-underestimate">The part people underestimate</h2>
 <p>Not the install. The Slack app: scopes, a redirect URL, and the fact that a workspace which
 installed before a feature existed has not granted that feature's scopes.
-<a href="/setup/slack-app">That page</a> exists because it is where setups actually stall.</p>'''
+<a href="/setup/slack-app">That page</a> exists because it is where setups actually stall. It helps
+to read <a href="/slack-standup-bot">what the bot does inside Slack</a> first, because the scopes
+follow from it and half of them are for features you may not switch on.</p>'''
     body = guide(prose, [("Why teams self-host", "why-teams-self-host-this"),
                          ("What running it involves", "what-running-it-involves"),
+                         ("What leaves your network", "what-leaves-your-network"),
                          ("What it costs", "what-it-costs"), ("Where it runs", "where-it-runs"),
                          ("The underestimated part", "the-part-people-underestimate")])
     faq_html, faq_schema = faq([
@@ -359,20 +410,28 @@ installed before a feature existed has not granted that feature's scopes.
   <span class="eyebrow">Questions</span><h2>About self-hosting</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/self-hosted-standup-bot",
-                title="Self-hosted Slack standup bot on your own servers — Morgenruf",
-                description="Run your own Slack standup bot: one container, one Postgres, an HTTPS "
-                            "URL. Docker Compose or Kubernetes, no per-seat pricing, and the answers "
-                            "stay in your database.",
-                h1="A standup bot on your own servers",
-                lede="One container, one database, and an HTTPS URL Slack can reach. Here is exactly "
-                     "what that involves before you commit to it.",
+                title="Self-hosted standup bot: where your data lives | Morgenruf",
+                description="Run the standup bot on your own servers: one container, one Postgres, "
+                            "one HTTPS URL. Docker or Kubernetes, in your region, answers in your "
+                            "own database.",
+                h1="A standup bot on your own servers, in your own region",
+                lede="One container, one database, one HTTPS URL Slack can reach. Where the answers "
+                     "physically sit, and what it takes to keep them there.",
                 body=body, schema=[faq_schema],
                 trail=[("Home", "/"), ("Compare", "/compare"), ("Self-hosted", None)])
 
 
 def slack_bot():
-    prose = f'''<h2 id="what-it-does-in-slack">What it does inside Slack</h2>
-<p>Everything a person needs happens in Slack. The dashboard is for whoever sets it up.</p>
+    prose = f'''<h2 id="what-it-does-in-slack">What a Slack standup bot does, and what this one does</h2>
+<p>A standup bot asks each person the same few questions every working morning and puts the answers
+somewhere the team will actually read them. That is the whole category. This one does it entirely
+inside Slack: a direct message at your local hour, a summary in the channel an hour later, and
+nothing to log into. The dashboard is for whoever sets it up, and most weeks they do not open it
+either.</p>
+<p>This page is the general one. The two questions that follow it usually are the licence and the
+hosting, which have pages of their own:
+<a href="/open-source-standup-bot">what the MIT licence covers</a> and
+<a href="/self-hosted-standup-bot">where the container and the database end up</a>.</p>
 <ul>
   <li><strong>A direct message</strong> at your local hour with your team's questions.</li>
   <li><strong>A summary in the channel</strong>, grouped by person or by question, blockers pulled
@@ -403,8 +462,11 @@ scope for reading channel history, because it never does.
 
 <h2 id="adding-it">Adding it to your workspace</h2>
 <p>Create the app from the manifest, install it, invite the bot to a channel, and make your first
-standup. <a href="/setup">The whole thing is about twenty minutes.</a></p>'''
-    body = guide(prose, [("What it does in Slack", "what-it-does-in-slack"),
+standup. <a href="/setup">The whole thing is about twenty minutes.</a> The ten minutes after that go
+on <a href="/standups">the standup itself</a>: questions, hour, timezones, who is in it, what
+happens when someone is on leave. If you are still deciding,
+<a href="/compare">how this lines up against the hosted standup bots</a> is the page for that.</p>'''
+    body = guide(prose, [("What a standup bot does", "what-it-does-in-slack"),
                          ("The scopes", "the-scopes-it-asks-for"),
                          ("What it is not", "what-it-is-not"), ("Adding it", "adding-it")])
     faq_html, faq_schema = faq([
@@ -422,13 +484,13 @@ standup. <a href="/setup">The whole thing is about twenty minutes.</a></p>'''
   <span class="eyebrow">Questions</span><h2>About the Slack app</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/slack-standup-bot",
-                title="Slack standup bot: DMs, summaries and slash commands — Morgenruf",
-                description="A Slack standup bot that DMs your questions at each person's local "
-                            "hour and posts one summary to the channel, with coffee chats and kudos "
-                            "in the same app. Self-hosted and MIT licensed.",
-                h1="A Slack standup bot that lives where your team already is",
-                lede="Questions by DM, one summary in the channel, slash commands and an App Home "
-                     "tab. Nobody has to open a dashboard to take part.",
+                title="Slack standup bot: DMs, summaries, commands | Morgenruf",
+                description="A Slack standup bot that DMs each person their questions at their own "
+                            "local hour and posts one summary to the channel. Slash commands, App "
+                            "Home, MIT licensed.",
+                h1="A Slack standup bot, from the morning DM to the summary",
+                lede="Questions by DM at each person's local hour, one summary in the channel, "
+                     "slash commands and an App Home tab. Nobody opens a dashboard to take part.",
                 body=body, schema=[faq_schema],
                 hero=shot("/screenshots/today.jpg", "The Today page showing the morning's answers and blockers", "The dashboard is for whoever runs it. Everyone else stays in Slack."),
                 trail=[("Home", "/"), ("Slack standup bot", None)])

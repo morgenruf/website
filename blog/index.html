@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Blog — async standups, self-hosting and team rituals</title>
-<meta name="description" content="Writing about async standups, self-hosting Slack tools, and building an open-source alternative to per-seat team software."/>
+<title>Blog: async standups, self-hosting and team rituals</title>
+<meta name="description" content="Writing about async standups, self-hosting Slack tools and building an open-source alternative to per-seat team software. Three posts so far, no listicles."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/blog"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/blog"/>
-<meta property="og:title" content="Blog — async standups, self-hosting and team rituals"/>
-<meta property="og:description" content="Writing about async standups, self-hosting Slack tools, and building an open-source alternative to per-seat team software."/>
+<meta property="og:title" content="Blog: async standups, self-hosting and team rituals"/>
+<meta property="og:description" content="Writing about async standups, self-hosting Slack tools and building an open-source alternative to per-seat team software. Three posts so far, no listicles."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Blog — async standups, self-hosting and team rituals"/>
-<meta name="twitter:description" content="Writing about async standups, self-hosting Slack tools, and building an open-source alternative to per-seat team software."/>
+<meta name="twitter:title" content="Blog: async standups, self-hosting and team rituals"/>
+<meta name="twitter:description" content="Writing about async standups, self-hosting Slack tools and building an open-source alternative to per-seat team software. Three posts so far, no listicles."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="theme-color" content="#12131f"/>
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
@@ -42,10 +42,28 @@
   <h1>Writing</h1>
   <p class="lede">On async standups, self-hosting, and what building the alternative actually involves.</p>
 </div></header>
-<section class="section"><div class="wrap"><div class="prose"><div class="tiles" style="margin-bottom:34px"><a class="tile" href="/blog/why-i-built-morgenruf"><h3>Why I built a free Geekbot alternative</h3><p>What was annoying enough about per-seat standup pricing to spend a weekend on it.</p><span class="go">Read →</span></a><a class="tile" href="/blog/async-standups-slack-free"><h3>Async standups in Slack, for free</h3><p>How to run a daily standup that people actually fill in, without paying per person.</p><span class="go">Read →</span></a><a class="tile" href="/blog/geekbot-vs-morgenruf"><h3>Geekbot and Morgenruf, compared honestly</h3><p>Where the hosted product is the better answer, and where self-hosting wins.</p><span class="go">Read →</span></a></div>
-<p>Occasional writing about running team rituals without a per-seat subscription, and about the
-parts of building this that turned out to be harder than expected. New posts are announced in
-<a href="https://github.com/morgenruf/morgenruf/discussions">discussions</a>.</p></div></div></section>
+<section class="section"><div class="wrap"><div class="prose"><p>Three posts so far. They get written when something is concrete enough to be
+worth a stranger's time: a decision with a number behind it, a cost that turned out to be real, or
+a comparison that is easier to make in long form than in a table. Nothing here is on a schedule,
+which is why there are three of them and not thirty.</p>
+
+<h2 id="the-posts">The posts</h2>
+<div class="tiles" style="margin:24px 0 8px"><a class="tile" href="/blog/why-i-built-morgenruf"><h3>Why I built a free Geekbot alternative</h3><p>A Saturday at a Tim Hortons in Kitchener, a monthly SaaS bill, and one line on it: $2.50 per person per month for a bot that DMs three questions and pastes the answers into a channel. The post works through how small the core loop really is, what the weekend produced, and which features went in afterwards because they cost nothing once the foundation existed: mood tracking, webhooks, CSV export and an MCP server.</p><span class="go">Read the post →</span></a><a class="tile" href="/blog/async-standups-slack-free"><h3>Async standups in Slack, for free</h3><p>The arithmetic first: a quarter hour a day is 75 minutes a week per person, and 12.5 hours a week for a team of ten, most of it spent listening. Then what replaces it. A scheduled DM, short written answers, one summary in a channel, and the five steps to get there. It ends on the per-seat maths, which is where the case for async stops being about meetings.</p><span class="go">Read the post →</span></a><a class="tile" href="/blog/geekbot-vs-morgenruf"><h3>Geekbot and Morgenruf, compared honestly</h3><p>A feature table, then the section that matters: where Geekbot wins. Zero operations, a Slack App Directory listing your IT admin already knows how to approve, years of edge cases, and a funded team behind it. After that, the parts self-hosting wins, and a straight answer on who should choose which. If you only read one of these before switching, read this one.</p><span class="go">Read the post →</span></a></div>
+
+<h2 id="what-gets-written">What gets written here, and what does not</h2>
+<p>The subjects are the ones this project keeps running into: async standups and whether they
+actually replace the meeting, what self-hosting a small Slack app costs in money and in evenings,
+and the parts of building an alternative to per-seat software that turned out harder than expected.
+Where a post compares Morgenruf with something people pay for, it says where the paid tool wins,
+for the same reason the <a href="/compare">comparison pages</a> do: a page that claims the
+competitor is bad at everything convinces nobody.</p>
+<p>What you will not find is a list of the ten best standup bots of the year, a post written to
+hold a keyword, or an announcement dressed as an essay. Releases go in the
+<a href="/changelog">changelog</a>, and how each part of the app behaves is documented on the
+<a href="/standups">standups</a>, <a href="/coffee-chats">coffee chats</a> and
+<a href="/kudos">kudos</a> pages rather than being rewritten here.</p>
+<p>New posts are announced in <a href="https://github.com/morgenruf/morgenruf/discussions">GitHub discussions</a>, which is also
+where to say that one of them is wrong.</p></div></div></section>
 </main><footer>
   <div class="wrap">
     <div class="foot-grid">
@@ -56,7 +74,7 @@ parts of building this that turned out to be harder than expected. New posts are
         <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
         Kitchener, Ontario 🇨🇦</p>
       </div>
-      <div><h4>Product</h4><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h4>Set up</h4><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h4>Compare</h4><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h4>Project</h4><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
+      <div><h3>Product</h3><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h3>Set up</h3><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
     </div>
     <div class="foot-bottom">
       <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
