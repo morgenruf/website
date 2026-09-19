@@ -8,11 +8,20 @@
 set -euo pipefail
 
 status=0
+CSS="${CSS:-assets/site.css}"
+
+if [ ! -f "$CSS" ]; then
+  echo "stylesheet not found: $CSS" >&2
+  exit 1
+fi
+
 for file in "$@"; do
   used=$(grep -oE 'class="[^"]*"' "$file" \
     | grep -oE 'btn-[a-z0-9]+' | sort -u || true)
   # Base rule only: the selector must be followed by "{" or "," , not ":" .
-  defined=$(grep -oE '\.btn-[a-z0-9]+[[:space:]]*[,{]' "$file" \
+  # Definitions live in the stylesheet, not in the markup being scanned. This
+  # read "$file" and so reported every class as missing on every run.
+  defined=$(grep -ohE '\.btn-[a-z0-9]+[[:space:]]*[,{]' "$CSS" \
     | grep -oE 'btn-[a-z0-9]+' | sort -u || true)
 
   missing=$(comm -23 <(printf '%s\n' "$used") <(printf '%s\n' "$defined") || true)
