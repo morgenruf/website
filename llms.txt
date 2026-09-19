@@ -3,7 +3,8 @@
 > An open source, self-hosted Slack bot for async standups, random coffee
 > chats and peer recognition. It asks each team member the day's questions in
 > a direct message, collects the answers, and posts one summary to a channel.
-> MIT licensed, free with no per-seat pricing, built by CloudDrove in Canada.
+> MIT licensed, free with no per-seat pricing, built by CloudDrove in
+> Toronto, Canada.
 
 Morgenruf exists because the tools that do this charge per person for
 something a team can run itself. Geekbot charges about $2.50 per user per
