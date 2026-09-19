@@ -19,8 +19,17 @@ def _extract(name):
     This used to read the old hand-written page and strip its chrome, which
     worked exactly once: the build then deleted that file and could never run
     again. The copy lives in content/ now.
+
+    The stored copy is still a whole HTML document, head and all. Returning it
+    whole put a second <title>, a second meta description and a second
+    canonical inside the body of the built page, so only the body comes back,
+    without the back-link that the real nav and breadcrumbs already provide.
     """
-    return (pathlib.Path(__file__).resolve().parent / "content" / name).read_text().strip()
+    raw = (pathlib.Path(__file__).resolve().parent / "content" / name).read_text()
+    body = re.search(r"<body[^>]*>(.*)</body>", raw, re.S)
+    inner = body[1] if body else raw
+    inner = re.sub(r'\s*<a href="/">[^<]*morgenruf\.dev</a>\s*', "\n", inner, count=1)
+    return inner.strip()
 
 
 def _page(*, path, title, description, h1, lede, prose, trail, noindex=False):

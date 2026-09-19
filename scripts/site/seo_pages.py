@@ -144,7 +144,7 @@ right. Nothing here has a contract to cancel.</p>
   <span class="eyebrow">Questions</span><h2>Morgenruf and Geekbot</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/geekbot-alternative",
-                title="Open-source Geekbot alternative, self-hosted | Morgenruf",
+                title="Open-source Geekbot alternative, self-hosted",
                 description="A self-hosted, MIT-licensed Geekbot alternative for async Slack "
                             "standups, with coffee chats and recognition in the same app. No "
                             "per-seat fee, your Postgres.",
@@ -221,7 +221,7 @@ option is cheaper than your time.</p>
   <span class="eyebrow">Questions</span><h2>Morgenruf and Standup &amp; Prosper</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/standup-prosper-alternative",
-                title="Self-hosted Standup &amp; Prosper alternative | Morgenruf",
+                title="Self-hosted Standup &amp; Prosper alternative",
                 description="An open-source, self-hosted Standup &amp; Prosper alternative for Slack "
                             "standups, with coffee chats and kudos in the same app and no per-seat "
                             "bill as you hire.",
@@ -313,7 +313,7 @@ whole thing takes about twenty minutes, most of it in Slack's settings.</p>'''
   <span class="eyebrow">Questions</span><h2>About the open-source side</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/open-source-standup-bot",
-                title="Open-source Slack standup bot, MIT licensed | Morgenruf",
+                title="Open-source Slack standup bot, MIT licensed",
                 description="An MIT-licensed Slack standup bot: one repository, no open-core split, "
                             "no paid tier. Read the source, fork it, and keep running it if the "
                             "project stops.",
@@ -410,7 +410,7 @@ follow from it and half of them are for features you may not switch on.</p>'''
   <span class="eyebrow">Questions</span><h2>About self-hosting</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/self-hosted-standup-bot",
-                title="Self-hosted standup bot: where your data lives | Morgenruf",
+                title="Self-hosted standup bot: where your data lives",
                 description="Run the standup bot on your own servers: one container, one Postgres, "
                             "one HTTPS URL. Docker or Kubernetes, in your region, answers in your "
                             "own database.",
@@ -484,7 +484,7 @@ happens when someone is on leave. If you are still deciding,
   <span class="eyebrow">Questions</span><h2>About the Slack app</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/slack-standup-bot",
-                title="Slack standup bot: DMs, summaries, commands | Morgenruf",
+                title="Slack standup bot: DMs, summaries, commands",
                 description="A Slack standup bot that DMs each person their questions at their own "
                             "local hour and posts one summary to the channel. Slash commands, App "
                             "Home, MIT licensed.",

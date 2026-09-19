@@ -128,7 +128,7 @@ def hub():
 </div></section>'''
     return page(
         path="/setup",
-        title="Set up a self-hosted Slack standup bot — Morgenruf",
+        title="Set up a self-hosted Slack standup bot",
         description="Three ways to run Morgenruf yourself: Docker Compose, Kubernetes with Helm, or "
                     "from source. What you need, and the Slack app, in about twenty minutes.",
         h1="Set it up yourself, in about twenty minutes",
@@ -249,7 +249,7 @@ would rather not.</p></div>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/setup/docker",
-        title="Run a Slack standup bot with Docker Compose | Morgenruf",
+        title="Run a Slack standup bot with Docker Compose",
         description="Self-host Morgenruf with Docker Compose: environment variables, starting the "
                     "containers, giving Slack an HTTPS URL with a tunnel, upgrades and backups.",
         h1="Set it up with Docker Compose",
@@ -481,7 +481,7 @@ channel before <a href="/standups">a standup</a> can post there:</p>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/setup/slack-app",
-        title="Create the Slack app: manifest, scopes, install | Morgenruf",
+        title="Create the Slack app: manifest, scopes, install",
         description="Create a Slack app from the Morgenruf manifest, add the redirect URL, and see "
                     "every scope it asks for, including the three extra ones coffee chats need.",
         h1="Create the Slack app",

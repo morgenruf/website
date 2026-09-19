@@ -38,7 +38,9 @@ def _entries():
     text = re.sub(r"^\[[^\]]+\]:\s*http\S+\s*$", "", text, flags=re.M)
     out = []
     for block in re.split(r"\n(?=## \[)", text):
-        m = re.match(r"## \[([0-9]+\.[0-9]+\.[0-9]+)\][^\n]*?—\s*([0-9]{4}-[0-9]{2}-[0-9]{2})", block)
+        # Older entries separate version and date with an em dash, newer ones
+        # with a plain hyphen. Both parse.
+        m = re.match(r"## \[([0-9]+\.[0-9]+\.[0-9]+)\][^\n]*?[—–-]\s*([0-9]{4}-[0-9]{2}-[0-9]{2})", block)
         if not m:
             continue
         sections = []

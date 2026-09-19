@@ -142,7 +142,7 @@ write-up on running async standups in Slack for free</a> is the shorter version 
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/standups",
-        title="Async standups in Slack, self-hosted — Morgenruf",
+        title="Async standups in Slack, self-hosted",
         description="Async daily standups in Slack: your own questions, per-person timezones, "
                     "blockers highlighted, and one summary in the channel. Open source and "
                     "self-hosted.",
@@ -236,7 +236,7 @@ which is the question the attendance table exists to answer.</p>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/coffee-chats",
-        title="Random coffee chats for Slack, self-hosted — Morgenruf",
+        title="Random coffee chats for Slack, self-hosted",
         description="Pair people from a Slack channel on a cadence, avoid repeat matches, suggest "
                     "hours that suit both timezones, and let Zoom book the meeting. Self-hosted.",
         h1="Introduce the people who never talk",
@@ -311,7 +311,7 @@ visible in a way neither dataset shows alone.</p>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/kudos",
-        title="Peer recognition in Slack, self-hosted — Morgenruf kudos",
+        title="Kudos: peer recognition in Slack, self-hosted",
         description="Peer recognition in Slack with a daily allowance that resets at midnight in "
                     "each person's own timezone, your own emoji as the token, and two "
                     "leaderboards.",
@@ -372,7 +372,7 @@ place</a>.</p>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/insights",
-        title="Standup and recognition insights, self-hosted — Morgenruf",
+        title="Standup and recognition insights, self-hosted",
         description="Questions that need two datasets at once: blockers nobody has cleared in days, "
                     "and people who answer every standup and are thanked by nobody. No scores.",
         h1="The questions that need two datasets",

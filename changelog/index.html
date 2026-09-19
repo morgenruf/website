@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Changelog: every Morgenruf release, currently 1.8.4</title>
+<title>Changelog: every Morgenruf release, currently 1.8.5</title>
 <meta name="description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/changelog"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/changelog"/>
-<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.8.4"/>
+<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.8.5"/>
 <meta property="og:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.8.4"/>
+<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.8.5"/>
 <meta name="twitter:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="theme-color" content="#12131f"/>
@@ -42,13 +42,20 @@
 <header class="page-head"><div class="wrap">
   <h1>Changelog</h1>
   <p class="lede">Every release, what changed in it, and why. Currently on
-  <strong>1.8.4</strong>, with 17 releases documented.</p>
+  <strong>1.8.5</strong>, with 18 releases documented.</p>
 </div></header>
 <section class="section"><div class="wrap">
   <div class="note" style="margin-bottom:34px"><p>Every release is tagged, published with notes, and
   built from the same commit that is on <a href="https://github.com/morgenruf/morgenruf">GitHub</a>. Docker images carry the
   revision they were built from, so you can check what you are running matches what you read here.</p></div>
   <article class="release">
+  <div class="release-meta">
+    <h2 id="v1.8.5">1.8.5</h2>
+    <time datetime="2026-09-18">2026-09-18</time>
+    
+  </div>
+  <div class="release-body"><h3 id="v1.8.5-added">Added</h3><ul><li><strong>Consent is recorded rather than assumed.</strong> The welcome email now carries an opt-in block that says plainly that nobody is subscribed to anything yet. Clicking it validates an HMAC token, writes the grant with its source and IP address, and syncs the contact to a Resend audience. Unsubscribing reverses both halves. The <code>email_consents</code> table is the record CASL asks for, and the copy every downstream list gets rebuilt from.</li><li><strong>A farewell email when a workspace leaves.</strong> Eleven of the first twenty installs removed the app without ever running a standup, and not one said why. The message confirms the data is gone, shows how long they had it and how many standups they ran, asks one question, and does not argue. It runs before the delete, because the address and the history it needs are in the rows about to be removed.</li><li><strong>An operator alert when a workspace arrives or leaves.</strong> <code>MORGENRUF_ALERT_WEBHOOK</code> takes a Slack incoming webhook in the operator's own workspace. The install alert carries the running workspace count, the uninstall alert carries the days installed and standups run. Unset means silence, which is the right default for a self-hosted install.</li><li><strong>Bounce and spam-complaint handling.</strong> <code>/webhooks/resend</code> accepts Resend's Svix-signed deliveries, verified with HMAC-SHA256 in constant time inside a five-minute window, and checking every signature in the header so a secret rotation does not drop events. A bounce or a complaint alerts the operator and suppresses the address locally, which is the list the send path actually consults. Opens and clicks are deliberately ignored.</li></ul><h3 id="v1.8.5-changed">Changed</h3><ul><li><code>RESEND_AUDIENCE_ID</code> and <code>RESEND_WEBHOOK_SECRET</code> are both optional. Without them, consent is still recorded locally and nothing is sent anywhere.</li></ul></div>
+</article><article class="release">
   <div class="release-meta">
     <h2 id="v1.8.4">1.8.4</h2>
     <time datetime="2026-09-18">2026-09-18</time>
