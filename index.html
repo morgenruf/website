@@ -24,6 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="/assets/site.css"/>
+<script src="/assets/analytics.js" defer></script>
 </head>
 <body>
 
@@ -506,7 +507,7 @@
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"Is Morgenruf really free?","acceptedAnswer":{"@type":"Answer","text":"Yes, for any number of people. It is MIT licensed with no hosted tier. You pay for the server and database you run it on."}},
 {"@type":"Question","name":"Can I run it without Kubernetes?","acceptedAnswer":{"@type":"Answer","text":"Yes. Docker Compose works on a small VPS or a spare Mac mini. The Helm chart is for teams who already have a cluster."}},
-{"@type":"Question","name":"Where does my standup data live?","acceptedAnswer":{"@type":"Answer","text":"In your own Postgres database. No telemetry is sent anywhere. Outbound calls go only to Slack, an optional AI provider, and Resend if digest email is enabled."}},
+{"@type":"Question","name":"Where does my standup data live?","acceptedAnswer":{"@type":"Answer","text":"In your own Postgres database. No telemetry is sent unless you set a PostHog key yourself. Outbound calls go only to Slack, an optional AI provider, and Resend if digest email is enabled."}},
 {"@type":"Question","name":"Is this a Geekbot, Donut or HeyTaco alternative?","acceptedAnswer":{"@type":"Answer","text":"It covers async standups, random coffee chats and peer recognition in one self-hosted app rather than three subscriptions."}},
 {"@type":"Question","name":"Does it work with Microsoft Teams or Google Chat?","acceptedAnswer":{"@type":"Answer","text":"Google Chat is in beta. Microsoft Teams as a platform is in progress. Slack is the first-class platform."}}]}
 </script>

@@ -53,11 +53,12 @@ def privacy():
     return _page(path="/privacy",
                  title="Privacy: what Morgenruf stores and what it never sends",
                  description="What Morgenruf stores, what leaves your infrastructure (almost "
-                             "nothing), the two optional services that do make outbound calls, and "
-                             "the sub-processors involved.",
+                             "nothing), the three optional services that do make outbound calls, "
+                             "and the sub-processors involved.",
                  h1="Privacy",
-                 lede="Short version: self-hosted, your database, no telemetry. The longer version "
-                      "is below, including the two optional services that do make outbound calls.",
+                 lede="Short version: self-hosted, your database, and no telemetry unless you "
+                      "switch it on yourself. The longer version is below, including the three "
+                      "optional services that do make outbound calls.",
                  prose=_extract("privacy.html"),
                  trail=[("Home", "/"), ("Privacy", None)])
 

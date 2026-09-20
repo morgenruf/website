@@ -4,17 +4,17 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Privacy: what Morgenruf stores and what it never sends</title>
-<meta name="description" content="What Morgenruf stores, what leaves your infrastructure (almost nothing), the two optional services that do make outbound calls, and the sub-processors involved."/>
+<meta name="description" content="What Morgenruf stores, what leaves your infrastructure (almost nothing), the three optional services that do make outbound calls, and the sub-processors involved."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/privacy"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/privacy"/>
 <meta property="og:title" content="Privacy: what Morgenruf stores and what it never sends"/>
-<meta property="og:description" content="What Morgenruf stores, what leaves your infrastructure (almost nothing), the two optional services that do make outbound calls, and the sub-processors involved."/>
+<meta property="og:description" content="What Morgenruf stores, what leaves your infrastructure (almost nothing), the three optional services that do make outbound calls, and the sub-processors involved."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Privacy: what Morgenruf stores and what it never sends"/>
-<meta name="twitter:description" content="What Morgenruf stores, what leaves your infrastructure (almost nothing), the two optional services that do make outbound calls, and the sub-processors involved."/>
+<meta name="twitter:description" content="What Morgenruf stores, what leaves your infrastructure (almost nothing), the three optional services that do make outbound calls, and the sub-processors involved."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="theme-color" content="#12131f"/>
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
@@ -24,6 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="/assets/site.css"/>
+<script src="/assets/analytics.js" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Privacy"}]}</script>
 </head>
 <body>
@@ -40,7 +41,7 @@
 <div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <span>Privacy</span></div><main>
 <header class="page-head"><div class="wrap">
   <h1>Privacy</h1>
-  <p class="lede">Short version: self-hosted, your database, no telemetry. The longer version is below, including the two optional services that do make outbound calls.</p>
+  <p class="lede">Short version: self-hosted, your database, and no telemetry unless you switch it on yourself. The longer version is below, including the three optional services that do make outbound calls.</p>
 </div></header>
 <section class="section"><div class="wrap"><div class="prose"><p>Effective date: April 5, 2026 · Last updated: April 5, 2026</p>
 
@@ -86,6 +87,7 @@
     <tbody>
       <tr><td>Delivering standup prompts and summaries</td><td>Performance of contract (Art. 6(1)(b))</td></tr>
       <tr><td>Analytics and dashboard</td><td>Legitimate interests (Art. 6(1)(f))</td></tr>
+      <tr><td>Website and product usage counts</td><td>Legitimate interests (Art. 6(1)(f))</td></tr>
       <tr><td>Transactional emails</td><td>Performance of contract / Legitimate interests</td></tr>
 
       <tr><td>Security logging</td><td>Legitimate interests</td></tr>
@@ -103,6 +105,7 @@
       <tr><td><a href="https://www.netlify.com/privacy/">Netlify</a></td><td>Website hosting</td><td>USA</td></tr>
       <tr><td><a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a></td><td>CDN, and privacy-preserving page view counts (no cookies, no cross-site tracking)</td><td>USA</td></tr>
       <tr><td><a href="https://sentry.io/privacy/">Sentry</a></td><td>Error monitoring (no standup content)</td><td>USA</td></tr>
+      <tr><td><a href="https://posthog.com/privacy">PostHog</a></td><td>Product and website analytics. Site pages are counted without cookies. Product events are counted per workspace and carry no Slack user ID and no standup content</td><td>USA</td></tr>
     </tbody>
   </table>
   <h2>6. Data Retention</h2>
@@ -111,6 +114,7 @@
     <tbody>
       <tr><td>Standup responses</td><td>90 days (auto-deleted)</td></tr>
       <tr><td>Analytics aggregates</td><td>12 months</td></tr>
+      <tr><td>Website and product usage events</td><td>12 months</td></tr>
       <tr><td>Slack tokens</td><td>Until you uninstall Morgenruf</td></tr>
       <tr><td>Request / error logs</td><td>30 days</td></tr>
       <tr><td>Email send logs</td><td>90 days</td></tr>
