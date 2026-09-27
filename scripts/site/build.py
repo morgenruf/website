@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import pathlib
+import re
 import sys
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -15,6 +16,7 @@ import legal_pages  # noqa: E402
 import product_pages  # noqa: E402
 import seo_pages  # noqa: E402
 import setup_pages  # noqa: E402
+import shell  # noqa: E402
 import support_page  # noqa: E402
 
 PAGES = {
@@ -42,6 +44,23 @@ PAGES = {
     "404.html": legal_pages.not_found,
 }
 
+# Written by hand, but they carry the same nav, closing band and footer as
+# every generated page. Those parts are refreshed from shell.py on each build,
+# so a footer link added there reaches the posts too. Everything between the
+# nav and </main> is left alone.
+HAND_WRITTEN = [
+    "blog/why-i-built-morgenruf/index.html",
+    "blog/async-standups-slack-free/index.html",
+    "blog/geekbot-vs-morgenruf/index.html",
+]
+
+
+def refresh_chrome(html):
+    html = re.sub(r'<nav class="nav">.*?</nav>\n', lambda _: shell.nav(), html, count=1, flags=re.S)
+    html = re.sub(r"</main>.*\Z", lambda _: "</main>" + shell.cta_band() + shell.footer(), html,
+                  count=1, flags=re.S)
+    return html
+
 
 def main():
     for rel, render in PAGES.items():
@@ -50,6 +69,13 @@ def main():
         html = render()
         out.write_text(html)
         print(f"{rel:38s} {len(html.split()):5d} words")
+    for rel in HAND_WRITTEN:
+        path = ROOT / rel
+        before = path.read_text()
+        after = refresh_chrome(before)
+        if after != before:
+            path.write_text(after)
+        print(f"{rel:38s} chrome {'refreshed' if after != before else 'unchanged'}")
 
 
 if __name__ == "__main__":

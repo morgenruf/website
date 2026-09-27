@@ -51,26 +51,26 @@ def _page(*, path, title, description, h1, lede, prose, trail, noindex=False):
 
 def privacy():
     return _page(path="/privacy/",
-                 title="Privacy: what Morgenruf stores and what it never sends",
-                 description="What Morgenruf stores, what leaves your infrastructure (almost "
-                             "nothing), the three optional services that do make outbound calls, "
-                             "and the sub-processors involved.",
+                 title="Privacy: what hosted Morgenruf stores, and where",
+                 description="What the free hosted Morgenruf instance stores, where, for how "
+                             "long, and which sub-processors are involved. Self-hosted installs "
+                             "are governed by their operator.",
                  h1="Privacy",
-                 lede="Short version: self-hosted, your database, and no telemetry unless you "
-                      "switch it on yourself. The longer version is below, including the three "
-                      "optional services that do make outbound calls.",
+                 lede="This covers the free hosted instance and this website. If you self-host "
+                      "Morgenruf, you are the data controller and this policy does not apply to "
+                      "your deployment.",
                  prose=_extract("privacy.html"),
                  trail=[("Home", "/"), ("Privacy", None)])
 
 
 def terms():
     return _page(path="/terms/",
-                 title="Terms: morgenruf.dev and the hosted demo",
-                 description="Terms covering this website and the hosted demo, including what the "
-                             "demo is for and what it is not. The software itself is MIT licensed "
-                             "and yours to run.",
+                 title="Terms: morgenruf.dev and the free hosted instance",
+                 description="Terms covering this website and the free hosted Morgenruf instance. "
+                             "The software itself is MIT licensed and yours to run on your own "
+                             "servers.",
                  h1="Terms",
-                 lede="These cover this website and the hosted demo. The software is MIT licensed, "
+                 lede="These cover this website and the free hosted instance. The software is MIT licensed, "
                       "and running it yourself is governed by that licence, not by this page.",
                  prose=_extract("terms.html"),
                  trail=[("Home", "/"), ("Terms", None)])

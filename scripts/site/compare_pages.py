@@ -65,8 +65,8 @@ Their plans change; if something here is out of date, please
 <p>Donut is a good product and the one that made this category. It has years of polish, a Teams
 version that works today, and a wider surface than this: journeys for onboarding, channel prompts,
 video facilitation.</p>
-{HONEST % ("If you need Microsoft Teams today, or onboarding journeys, or you simply do not want to run "
-           "software, Donut is the better answer and you should use it.")}
+{HONEST % ("If you need Microsoft Teams today, or onboarding journeys, or a video facilitation layer, "
+           "Donut is the better answer and you should use it.")}
 
 <h2 id="where-this-is-different">Where this is different</h2>
 <h3>It is one app, not three subscriptions</h3>
@@ -85,8 +85,9 @@ talks to Slack only, plus Zoom, email (Resend), an AI provider or PostHog analyt
 turns those on. Leaving is not a migration because the data is already yours.</p>
 
 <h3>The price</h3>
-<p>Free for every seat, at any size, because you run it. A thirty person team pays for a small server
-and a database instead of a per-seat subscription that grows with hiring.</p>
+<p>Free for every seat, at any size: on the free hosted instance, or self-hosted, where a thirty
+person team pays for a small server and a database instead of a subscription that grows with
+hiring.</p>
 
 <h2 id="switching">Switching</h2>
 <p>There is no importer, and pairing history is the one thing worth not losing, so the sensible move
@@ -104,8 +105,8 @@ whether the introductions land, then turn Donut off. Nothing here needs a contra
          "No. Without it a pairing uses whatever room link you set on the programme, or none. Zoom "
          "only adds a real meeting at the agreed hour."),
         ("What does it cost for 200 people?",
-         "Nothing per seat. The server and database you run it on, which for 200 people is a small "
-         "instance."),
+         "Nothing per seat. On the hosted instance, nothing at all. Self-hosted, the server and "
+         "database you run it on, which for 200 people is a small instance."),
     ])
     body += f'''<section class="section"><div class="wrap" style="max-width:820px">
   <span class="eyebrow">Questions</span><h2 id="morgenruf-and-donut">Morgenruf and Donut</h2>
@@ -164,8 +165,8 @@ custom emoji and the bot picks it up on its own.</p>
 contributing and being thanked by nobody, which is the question worth acting on.</p>
 
 <h3>The price, again</h3>
-<p>Free for every seat. Recognition tools are usually priced per person per month, which means the
-cost of thanking people grows exactly as you hire them.</p>
+<p>Free for every seat, hosted or self-hosted. Recognition tools are usually priced per person per
+month, which means the cost of thanking people grows exactly as you hire them.</p>
 </div></div></section>
 '''
     faq_html, faq_schema = faq([
@@ -207,8 +208,8 @@ PRICE_ROWS = [
     ("Standup &amp; Prosper", "Async standups",
      "A free tier that genuinely fits a small team, then per person per month above it."),
     ("Morgenruf", "Standups, coffee chats and kudos in one app",
-     "No seat component at any size. You pay for a small server and a Postgres, which is a fixed "
-     "line whether you are twelve people or three hundred."),
+     "Free on the hosted instance CloudDrove runs. Self-hosted, no seat component at any size: a "
+     "small server and a Postgres, a fixed line whether you are twelve people or three hundred."),
 ]
 
 
@@ -293,8 +294,9 @@ def hub():
     Counting somebody's attention as well, later than that.</p>
 
     <h2 id="what-self-hosting-costs">What self-hosting costs you in effort</h2>
-    <p>The money argument is easy and slightly dishonest on its own, because the time is real. Here
-    is the whole of it:</p>
+    <p>None of this applies on the free hosted instance. It applies when you self-host, which is
+    the route for keeping the data in your own database. The money argument is easy and slightly
+    dishonest on its own, because the time is real. Here is the whole of it:</p>
     <ul>
       <li><strong>The install.</strong> One container and a Postgres 13 or newer, about twenty
       minutes, most of which is <a href="/setup/">creating the Slack app</a> rather than deploying
@@ -320,10 +322,11 @@ def hub():
       Donut and HeyTaco both ship it now.</li>
       <li><strong>Anyone who needs a rewards catalogue.</strong> Gift cards, budgets, redemption.
       HeyTaco or Bonusly, not this.</li>
-      <li><strong>Teams with nowhere to run a container</strong> and no appetite to find one. A
-      per-seat bill is cheaper than an afternoon of somebody's attention every month.</li>
+      <li><strong>Teams that need their data in-house but have nowhere to run a container</strong>
+      and no appetite to find one. The hosted instance is free, but it is CloudDrove's database,
+      not yours.</li>
       <li><strong>Anyone who needs an App Directory listing</strong> for procurement or IT
-      governance. A self-hosted app you installed yourself does not have one.</li>
+      governance. Morgenruf is not listed there today, hosted or self-hosted.</li>
       <li><strong>Teams that need a contracted response time</strong> and will not buy it
       separately. Community support is one maintainer who also has a job.</li>
       <li><strong>Teams already happy on a free tier.</strong> If Standup &amp; Prosper covers your

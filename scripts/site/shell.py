@@ -122,7 +122,8 @@ def footer():
       <div>
         <a class="brand" href="/" style="margin-bottom:12px">{MARK} morgenruf</a>
         <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
-        chats and recognition. Self-host it and keep your own data.</p>
+        chats and recognition. Free on the hosted instance, or self-host it and keep your own
+        data.</p>
         <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
         Kitchener, Ontario 🇨🇦</p>
       </div>
@@ -140,8 +141,9 @@ def footer():
 
 
 def cta_band(title="Free for every seat, and that is the whole pricing page",
-             body="MIT licensed, no paid tier, nothing held back from the repository. You pay for a "
-                  "server and a database, which you were paying for anyway."):
+             body="Add to Slack puts Morgenruf on the free hosted instance CloudDrove runs, in about "
+                  "two minutes. Or self-host the same MIT code with Docker Compose or Helm and pay "
+                  "only for the server."):
     return f'''<section class="section">
   <div class="wrap">
     <div class="band">

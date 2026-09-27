@@ -56,8 +56,10 @@ HUB_FAQ = [
      "A machine that can run Docker or a Kubernetes cluster, a Postgres database, and an HTTPS URL "
      "Slack can reach. A Cloudflare tunnel covers the last one without opening a port."),
     ("Can I try it without a server?",
-     "Yes. Run it on your laptop with Docker Compose and expose it with a tunnel while you try it. "
-     "Nothing about that is different from the production path except where it runs."),
+     "Yes. Add to Slack installs it on the free hosted instance CloudDrove runs, in about two "
+     "minutes. To try the self-hosted route, run it on your laptop with Docker Compose and expose it "
+     "with a tunnel. Nothing about that is different from the production path except where it "
+     "runs."),
     ("Do I need a paid Slack plan?",
      "No. Morgenruf uses the standard Slack app APIs available on the free plan."),
 ]
@@ -134,7 +136,9 @@ def hub():
                     "from source. What you need, and the Slack app, in about twenty minutes.",
         h1="Set it up yourself, in about twenty minutes",
         lede="Morgenruf is one process and a Postgres database. Pick whichever of these you already "
-             "have, and the Slack side is the same either way.",
+             "have, and the Slack side is the same either way. Would rather not run anything? "
+             f'<a href="{INSTALL}">Add to Slack</a> puts it on the free hosted instance in about two '
+             "minutes.",
         body=body, schema=[faq_schema],
         trail=[("Home", "/"), ("Set up", None)], current="/setup/")
 

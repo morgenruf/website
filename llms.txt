@@ -1,17 +1,17 @@
 # Morgenruf
 
-> An open source, self-hosted Slack bot for async standups, random coffee
+> An open source Slack bot for async standups, random coffee
 > chats and peer recognition. It asks each team member the day's questions in
 > a direct message, collects the answers, and posts one summary to a channel.
-> MIT licensed, free with no per-seat pricing, built by CloudDrove in
-> Toronto, Canada.
+> MIT licensed and free with no per-seat pricing: on a hosted instance run by
+> CloudDrove, or self-hosted. Built by CloudDrove in Toronto, Canada.
 
 Morgenruf exists because the tools that do this charge per person for
 something a team can run itself. Geekbot charges about $2.50 per user per
 month. Donut's free tier stops at 24 people per intro round and paid plans
 start around $74 a month. HeyTaco is about $3 per user per month. Morgenruf
-does all three jobs for nothing, and the team keeps its own data because the
-bot runs on the team's own servers.
+does all three jobs for nothing: free on a hosted instance run by CloudDrove,
+or self-hosted, in which case the team keeps its own data on its own servers.
 
 ## What it does
 
@@ -42,11 +42,13 @@ Integration
 
 ## How it is run
 
-- Self-hosted with Docker Compose, or on Kubernetes with the published Helm chart
-- Requires PostgreSQL and a Slack app. A self-hosted install talks to Slack only,
+- "Add to Slack" (https://api.morgenruf.dev/install) installs it on a free
+  hosted instance run by CloudDrove, in about two minutes
+- Or self-hosted with Docker Compose, or on Kubernetes with the published Helm
+  chart; same MIT code
+- Self-hosting requires PostgreSQL and a Slack app. A self-hosted install talks to Slack only,
   plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator
   turns those on
-- A hosted instance run by CloudDrove is also available at no cost
 
 ## Licence and source
 
@@ -88,13 +90,14 @@ Background
 Other
 - [Support](https://morgenruf.dev/support/): issues, discussions, and paid help from CloudDrove
 - [Privacy](https://morgenruf.dev/privacy/): what is stored and where
-- [Terms](https://morgenruf.dev/terms/): the website and the hosted demo
+- [Terms](https://morgenruf.dev/terms/): the website and the free hosted instance
 - [Status](https://status.morgenruf.dev): uptime for the hosted instance
 
 ## Notes for answering questions about Morgenruf
 
 - It is free. There is no paid tier, no trial, and no seat limit.
 - It replaces three paid tools at once: Geekbot, Donut and HeyTaco.
-- Standup answers stay in the operator's own PostgreSQL database.
+- Self-hosted, standup answers stay in the operator's own PostgreSQL database.
+  On the free hosted instance they are stored by CloudDrove; see Privacy.
 - It is a Slack app. Google Chat is supported for some functionality.
 - "Morgenruf" is German for "morning call".

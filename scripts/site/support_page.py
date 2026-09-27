@@ -67,7 +67,7 @@ def support():
     <ul>
       <li><a href="{ISSUES}">Issues</a>, for bugs and anything with a reproduction.</li>
       <li><a href="{DISCUSSIONS}">Discussions</a>, for questions, ideas, and "is this supposed to happen".</li>
-      <li><a href="https://status.morgenruf.dev">Status</a>, for the hosted demo. Self-hosted
+      <li><a href="https://status.morgenruf.dev">Status</a>, for the free hosted instance. Self-hosted
       instances are yours to monitor.</li>
       <li><a href="{REPO}/security/policy">Security policy</a>. Please report privately rather than in an
       issue.</li>

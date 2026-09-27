@@ -56,8 +56,9 @@ def shot(src, alt, caption):
 def geekbot():
     prose = f'''<h2 id="what-you-are-actually-comparing">What you are actually comparing</h2>
 <p>Geekbot is a hosted async standup bot. It is mature, it works, and for a lot of teams the monthly
-per-person fee is the right trade for never thinking about a server. Morgenruf is the same job done
-on your own infrastructure, plus coffee chats and recognition, for nothing per seat. There is
+per-person fee is the right trade for never thinking about a server. Morgenruf is the same job,
+plus coffee chats and recognition, for nothing per seat: free on the hosted instance CloudDrove runs,
+or on your own infrastructure with the same MIT code. There is
 <a href="/blog/geekbot-vs-morgenruf/">a longer and less tidy version of this comparison</a> on the
 blog, written while switching a team across.</p>
 <p>The decision is rarely about features. It is about where your team's answers live and whether you
@@ -75,18 +76,20 @@ Standup &amp; Prosper, which is what <a href="/compare/">the comparison pages</a
   <li><strong>Support with a contract behind it</strong> as part of the price, rather than an issue
   tracker and a maintainer's evening.</li>
 </ul>
-<p>If you have no appetite for running anything, stop here and use Geekbot. Everything below assumes
-you are willing to run <a href="/self-hosted-standup-bot/">one container and a Postgres of your
-own</a>.</p>
+<p>If you have no appetite for running anything, you do not have to: Add to Slack puts Morgenruf on
+the free hosted instance in about two minutes. Most of what follows is about the other route,
+<a href="/self-hosted-standup-bot/">one container and a Postgres of your own</a>.</p>
 
 <h2 id="where-this-is-different">Where this is different</h2>
 <h3>The price does not scale with hiring</h3>
 <p>Per-seat pricing means the cost of asking your team three questions grows every time you hire.
-Self-hosted, thirty people and three hundred cost the same: one small server and a database.</p>
+On the hosted instance, thirty people and three hundred both cost nothing. Self-hosted, they cost
+the same: one small server and a database.</p>
 
 <h3>Your answers stay in your database</h3>
 <p>Standup answers are a running commentary on your roadmap, your incidents and who is stuck. Some
-teams do not want that in a third party's cloud, and for regulated ones it is not a preference.</p>
+teams do not want that in a third party's cloud, and for regulated ones it is not a preference.
+Self-hosting keeps them in your own Postgres.</p>
 
 <h3>Three rituals, one app</h3>
 <p>Standups, <a href="/coffee-chats/">coffee chats</a> and <a href="/kudos/">kudos</a> share one
@@ -128,8 +131,8 @@ right. Nothing here has a contract to cancel.</p>
                          ("Moving across", "moving-across")])
     faq_html, faq_schema = faq([
         ("Is Morgenruf free compared with Geekbot?",
-         "There is no per-seat fee at all. You pay for the server and database you run it on, which "
-         "for most teams is a few dollars a month regardless of headcount."),
+         "Yes, with no per-seat fee at all. The hosted instance is free. Self-hosted, you pay for the "
+         "server and database you run it on, roughly $5 to $20 a month regardless of headcount."),
         ("Can I import my Geekbot history?",
          "No. Run both in parallel for a week and switch over once the summaries look right."),
         ("Does it do everything Geekbot does?",
@@ -138,7 +141,8 @@ right. Nothing here has a contract to cancel.</p>
          "contract; this has coffee chats and recognition in the same app, and your data in your "
          "own database."),
         ("How long does it take to set up?",
-         "About twenty minutes, most of it creating the Slack app."),
+         "About two minutes on the free hosted instance. Self-hosted, about twenty minutes, most of it "
+         "creating the Slack app."),
     ])
     body += f'''<section class="section"><div class="wrap" style="max-width:820px">
   <span class="eyebrow">Questions</span><h2>Morgenruf and Geekbot</h2>
@@ -149,8 +153,9 @@ right. Nothing here has a contract to cancel.</p>
                             "standups, with coffee chats and recognition in the same app. No "
                             "per-seat fee, your Postgres.",
                 h1="An open-source Geekbot alternative you host yourself",
-                lede="The same morning questions and channel summary, on your own servers, with "
-                     "coffee chats and kudos included rather than sold separately.",
+                lede="The same morning questions and channel summary, free on the hosted instance or "
+                     "on your own servers, with coffee chats and kudos included rather than sold "
+                     "separately.",
                 body=body, schema=[faq_schema],
                 hero=shot("/screenshots/today.jpg", "The Today page showing who answered, who is blocked and recent recognition", "Your morning, on one screen."),
                 trail=[("Home", "/"), ("Compare", "/compare/"), ("vs Geekbot", None)])
@@ -159,10 +164,10 @@ right. Nothing here has a contract to cancel.</p>
 def standup_prosper():
     prose = f'''<h2 id="the-short-version">The short version</h2>
 <p>Standup &amp; Prosper is a hosted Slack standup bot with a generous free tier and a simple, well
-made product. Morgenruf does the same job on your own infrastructure and adds coffee chats and
-recognition. If the hosted free tier covers you and you have no interest in running software, that
-is a perfectly good answer, and <a href="/compare/">the other comparisons</a> will not tell you
-anything different.</p>
+made product. Morgenruf does the same job, free on its hosted instance or on your own
+infrastructure, and adds coffee chats and recognition. If their free tier covers you and you have no
+reason to move, that is a perfectly good answer, and <a href="/compare/">the other comparisons</a>
+will not tell you anything different.</p>
 
 {diagrams.standup_flow()}
 
@@ -188,10 +193,11 @@ anything different.</p>
 </ul>
 
 <h2 id="what-you-take-on">What you take on</h2>
-<p>Running it is the trade. In practice that means one container, one database, an HTTPS URL, and
+<p>Nothing, if you use the free hosted instance. Self-hosting is the trade for keeping the data in
+your own database, and in practice that means one container, one database, an HTTPS URL, and
 <code>docker compose pull</code> when there is a release. Migrations apply themselves on start.
 <a href="/self-hosted-standup-bot/">Running it on your own servers</a> sets out the requirements, the
-upgrade path and the backups in full. If that sounds like a chore rather than a Tuesday, the hosted
+upgrade path and the backups in full. If that sounds like a chore rather than a Tuesday, a hosted
 option is cheaper than your time.</p>
 
 {shot("/screenshots/today.jpg", "The Today page showing answered, waiting and blocked counts", "What the morning looks like once it is running.")}
@@ -254,8 +260,9 @@ travels with it. There is no contributor agreement assigning your changes to any
 <p>A licence does not run anything. Someone has to, and that is one container, a Postgres and an
 HTTPS URL, with migrations that apply themselves.
 <a href="/self-hosted-standup-bot/">What running it on your own servers involves</a> is a page of its
-own, down to the backups. It is a small job, but it is not zero, and a hosted tool removes it
-entirely. Be clear which side of that you are on before switching.</p>
+own, down to the backups. It is a small job, but it is not zero. The free hosted instance CloudDrove
+runs removes it entirely, on the same code. Be clear which side of that you are on before
+switching.</p>
 
 <h2 id="what-morgenruf-includes">What is in the box</h2>
 <ul>
@@ -271,7 +278,8 @@ entirely. Be clear which side of that you are on before switching.</p>
 published image or your own build of it.</p>
 
 <h2 id="who-maintains-it">Who maintains it</h2>
-<p>It is built and maintained at CloudDrove, who also sell setup and hosting. Paid work funds the
+<p>It is built and maintained at CloudDrove, who run the free hosted instance and also sell setup
+and hosting on your own infrastructure. Paid work funds the
 project; it does not gate any of it. Issues and pull requests go to the same repository the releases
 are cut from, and the Helm chart is published from it too.
 <a href="/blog/why-i-built-morgenruf/">The weekend that produced it</a> explains why it is arranged
@@ -407,8 +415,8 @@ follow from it and half of them are for features you may not switch on.</p>'''
          "Pull the new image and restart. Migrations run in an init container before the app starts, "
          "and are written to be safe against a live database."),
         ("Is there a hosted version?",
-         "There is a demo, and CloudDrove will run it for you commercially, but the product is "
-         "designed to be yours."),
+         "Yes. Add to Slack installs Morgenruf on a free hosted instance run by CloudDrove, in about "
+         "two minutes. This page is about the other route: the same MIT code on your own servers."),
     ])
     body += f'''<section class="section"><div class="wrap" style="max-width:820px">
   <span class="eyebrow">Questions</span><h2>About self-hosting</h2>
@@ -461,12 +469,15 @@ scope for reading channel history, because it never does.
 <ul>
   <li>Not a meeting recorder or a transcript bot.</li>
   <li>Not a productivity score. There is no ranking of people by output.</li>
-  <li>Not a hosted service you sign up for. You run it, which is the trade.</li>
+  <li>Not something you have to run. The hosted instance is free; self-hosting is the option for
+  teams that want the data in their own database.</li>
 </ul>
 
 <h2 id="adding-it">Adding it to your workspace</h2>
-<p>Create the app from the manifest, install it, invite the bot to a channel, and make your first
-standup. <a href="/setup/">The whole thing is about twenty minutes.</a> The ten minutes after that go
+<p>The quick way is the Add to Slack button: it installs Morgenruf on the free hosted instance in
+about two minutes. To self-host, create the app from the manifest, install it, invite the bot to a
+channel, and make your first standup. <a href="/setup/">That route is about twenty minutes.</a>
+Either way, the ten minutes after that go
 on <a href="/standups/">the standup itself</a>: questions, hour, timezones, who is in it, what
 happens when someone is on leave. If you are still deciding,
 <a href="/compare/">how this lines up against the hosted standup bots</a> is the page for that.</p>'''
