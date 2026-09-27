@@ -243,7 +243,7 @@ which is the question the attendance table exists to answer.</p>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/coffee-chats/",
-        title="Random coffee chats for Slack, self-hosted",
+        title="Slack coffee chat bot: random pairings, free or self-hosted",
         description="Pair people from a Slack channel on a cadence, avoid repeat matches, suggest "
                     "hours that suit both timezones, and let Zoom book the meeting. Self-hosted.",
         h1="Introduce the people who never talk",
@@ -318,7 +318,7 @@ visible in a way neither dataset shows alone.</p>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/kudos/",
-        title="Kudos: peer recognition in Slack, self-hosted",
+        title="Slack kudos bot: peer recognition with a daily allowance",
         description="Peer recognition in Slack with a daily allowance that resets at midnight in "
                     "each person's own timezone, your own emoji as the token, and two "
                     "leaderboards.",
@@ -379,7 +379,7 @@ place</a>.</p>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/insights/",
-        title="Standup and recognition insights, self-hosted",
+        title="Standup analytics: stale blockers and unthanked work",
         description="Questions that need two datasets at once: blockers nobody has cleared in days, "
                     "and people who answer every standup and are thanked by nobody. No scores.",
         h1="The questions that need two datasets",

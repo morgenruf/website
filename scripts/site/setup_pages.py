@@ -131,9 +131,9 @@ def hub():
 </div></section>'''
     return page(
         path="/setup/",
-        title="Set up a self-hosted Slack standup bot",
-        description="Three ways to run Morgenruf yourself: Docker Compose, Kubernetes with Helm, or "
-                    "from source. What you need, and the Slack app, in about twenty minutes.",
+        title="Self-host Morgenruf: Docker Compose or Helm",
+        description="Run Morgenruf yourself with Docker Compose, or on Kubernetes with Helm: what you "
+                    "need, the Slack app, and about twenty minutes end to end.",
         h1="Set it up yourself, in about twenty minutes",
         lede="Morgenruf is one process and a Postgres database. Pick whichever of these you already "
              "have, and the Slack side is the same either way. Would rather not run anything? "
@@ -254,7 +254,7 @@ would rather not.</p></div>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/setup/docker/",
-        title="Run a Slack standup bot with Docker Compose",
+        title="Install Morgenruf with Docker Compose",
         description="Self-host Morgenruf with Docker Compose: environment variables, starting the "
                     "containers, giving Slack an HTTPS URL with a tunnel, upgrades and backups.",
         h1="Set it up with Docker Compose",
@@ -362,7 +362,7 @@ you will run the previous release's migrations against the new code.</p>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/setup/kubernetes/",
-        title="Kubernetes and Helm setup for a Slack standup bot",
+        title="Install Morgenruf on Kubernetes with Helm",
         description="Install Morgenruf on Kubernetes with the published Helm chart: values, "
                     "external Postgres, ingress or Cloudflare tunnel, migrations, and why one "
                     "replica.",

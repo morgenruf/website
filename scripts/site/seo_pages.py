@@ -146,10 +146,10 @@ right. Nothing here has a contract to cancel.</p>
   <span class="eyebrow">Questions</span><h2>Morgenruf and Geekbot</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/geekbot-alternative/",
-                title="Open-source Geekbot alternative, self-hosted",
-                description="A self-hosted, MIT-licensed Geekbot alternative for async Slack "
-                            "standups, with coffee chats and recognition in the same app. No "
-                            "per-seat fee, your Postgres.",
+                title="Free, open-source Geekbot alternative for Slack standups",
+                description="A free, MIT-licensed Geekbot alternative for async Slack standups, "
+                            "with coffee chats and recognition in the same app. Hosted free, or "
+                            "self-hosted.",
                 h1="An open-source Geekbot alternative you host yourself",
                 lede="The same morning questions and channel summary, free on the hosted instance or "
                      "on your own servers, with coffee chats and kudos included rather than sold "
@@ -225,7 +225,7 @@ option is cheaper than your time.</p>
   <span class="eyebrow">Questions</span><h2>Morgenruf and Standup &amp; Prosper</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/standup-prosper-alternative/",
-                title="Self-hosted Standup &amp; Prosper alternative",
+                title="Free, open-source Standup &amp; Prosper alternative for Slack",
                 description="An open-source, self-hosted Standup &amp; Prosper alternative for Slack "
                             "standups, with coffee chats and kudos in the same app and no per-seat "
                             "bill as you hire.",
@@ -500,7 +500,7 @@ happens when someone is on leave. If you are still deciding,
                 title="Slack standup bot: DMs, summaries, commands",
                 description="A Slack standup bot that DMs each person their questions at their own "
                             "local hour and posts one summary to the channel. Slash commands, App "
-                            "Home, MIT licensed.",
+                            "Home, MIT.",
                 h1="A Slack standup bot, from the morning DM to the summary",
                 lede="Questions by DM at each person's local hour, one summary in the channel, "
                      "slash commands and an App Home tab. Nobody opens a dashboard to take part.",

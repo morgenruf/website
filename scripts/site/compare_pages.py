@@ -114,10 +114,9 @@ whether the introductions land, then turn Donut off. Nothing here needs a contra
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/donut-alternative/",
-        title="Open-source Donut alternative for Slack coffee chats",
-        description="A self-hosted Donut alternative for random coffee chats in Slack, plus "
-                    "standups and kudos in the same app. MIT licensed, no per-seat fee, your data "
-                    "stays put.",
+        title="Free, open-source Donut alternative for Slack coffee chats",
+        description="A free Donut alternative for random coffee chats in Slack, plus standups and "
+                    "kudos in the same app. MIT licensed, no per-seat fee, hosted or self-hosted.",
         h1="An open-source Donut alternative you host yourself",
         lede="Random introductions from a channel, a time both people actually pick, and the meeting "
              "booked at that hour. Plus standups and kudos in the same app.",
@@ -185,10 +184,9 @@ month, which means the cost of thanking people grows exactly as you hire them.</
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/heytaco-alternative/",
-        title="Open-source HeyTaco alternative for Slack recognition",
-        description="A self-hosted HeyTaco alternative for Slack recognition: any emoji as the "
-                    "token, a daily allowance per timezone, plus standups and coffee chats. MIT "
-                    "licensed.",
+        title="Free, open-source HeyTaco alternative for Slack kudos",
+        description="A free HeyTaco alternative for Slack recognition: any emoji as the token, a "
+                    "daily allowance per timezone, plus standups and coffee chats. MIT licensed.",
         h1="An open-source HeyTaco alternative you host yourself",
         lede="A daily allowance, your own emoji, leaderboards for giving as well as receiving, and "
              "no per-seat bill for thanking your colleagues.",
@@ -357,7 +355,7 @@ def hub():
 '''
     return page(
         path="/compare/",
-        title="Morgenruf vs Geekbot, Donut, HeyTaco and Standup & Prosper",
+        title="Standup bot comparison: Morgenruf vs Geekbot and others",
         description="Honest comparisons between Morgenruf and the tools teams usually pay for: "
                     "Geekbot, Donut, HeyTaco and Standup & Prosper, including where each of them "
                     "wins.",

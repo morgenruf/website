@@ -54,7 +54,7 @@ def privacy():
                  title="Privacy: what hosted Morgenruf stores, and where",
                  description="What the free hosted Morgenruf instance stores, where, for how "
                              "long, and which sub-processors are involved. Self-hosted installs "
-                             "are governed by their operator.",
+                             "answer to their operator.",
                  h1="Privacy",
                  lede="This covers the free hosted instance and this website. If you self-host "
                       "Morgenruf, you are the data controller and this policy does not apply to "
