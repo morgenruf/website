@@ -55,7 +55,7 @@
   </div>
   <div><div class="shot"><picture><source srcset="/screenshots/today.webp" type="image/webp"/><img src="/screenshots/today.jpg" width="1182" height="600" fetchpriority="high" alt="The Today page showing who answered, who is blocked and recent recognition"/></picture></div><p class="shot-cap">Your morning, on one screen.</p></div>
 </div></div></header>
-<section class="section"><div class="wrap"><div class="guide"><nav class="toc" aria-label="On this page"><strong>On this page</strong><div class="toc-links"><a href="#what-you-are-actually-comparing">What you are comparing</a><a href="#where-geekbot-wins">Where Geekbot wins</a><a href="#where-this-is-different">Where this is different</a><a href="#the-things-that-decide-it-in-practice">What decides it</a><a href="#moving-across">Moving across</a></div></nav><div class="prose"><h2 id="what-you-are-actually-comparing">What you are actually comparing</h2>
+<section class="section"><div class="wrap"><div class="guide"><nav class="toc" aria-label="On this page"><strong>On this page</strong><div class="toc-links"><a href="#what-you-are-actually-comparing">What you are comparing</a><a href="#morgenruf-and-geekbot-side-by-side">Side by side</a><a href="#where-geekbot-wins">Where Geekbot wins</a><a href="#where-this-is-different">Where this is different</a><a href="#the-things-that-decide-it-in-practice">What decides it</a><a href="#what-geekbot-costs">What Geekbot costs</a><a href="#moving-across">Moving across</a></div></nav><div class="prose"><h2 id="what-you-are-actually-comparing">What you are actually comparing</h2>
 <p>Geekbot is a hosted async standup bot. It is mature, it works, and for a lot of teams the monthly
 per-person fee is the right trade for never thinking about a server. Morgenruf is the same job,
 plus coffee chats and recognition, for nothing per seat: free on the hosted instance CloudDrove runs,
@@ -83,8 +83,14 @@ Standup &amp; Prosper, which is what <a href="/compare/">the comparison pages</a
 <text x="600" y="128" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">A private nudge</text>
 <text x="600" y="146" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">to whoever has not</text>
 </svg>
-<figcaption>One morning, in the order it happens. The nudge is private; only the summary is public.</figcaption>
+<figcaption>The shape of morning a Geekbot team already knows: a DM at each local hour, a private nudge, one summary.</figcaption>
 </figure>
+
+<h2 id="morgenruf-and-geekbot-side-by-side">How do Morgenruf and Geekbot compare?</h2>
+<div class="scroll-x"><table><thead><tr><th></th><th class="us">Morgenruf</th><th>Geekbot</th></tr></thead><tbody><tr><td>Async standups by DM, one channel summary</td><td class="us yes">Yes</td><td class="yes">Yes</td></tr><tr><td>Per-person timezones</td><td class="us yes">Yes</td><td class="yes">Yes</td></tr><tr><td>Polls and surveys</td><td class="us no">No</td><td class="yes">Yes</td></tr><tr><td>Microsoft Teams</td><td class="us no">In progress</td><td class="yes">Yes</td></tr><tr><td>Free plan</td><td class="us yes">Yes, any team size</td><td class="">Up to 10 users</td></tr><tr><td>Price above the free plan</td><td class="us yes">None</td><td class="no">$3 per user monthly, $2.50 billed annually</td></tr><tr><td>A 30 person team, per year</td><td class="us yes">$0 hosted</td><td class="no">$900 to $1,080</td></tr><tr><td>Runs on your own servers</td><td class="us yes">Yes</td><td class="no">No</td></tr><tr><td>Source you can read</td><td class="us yes">MIT</td><td class="no">Closed</td></tr><tr><td>Where answers are stored</td><td class="us yes">Your Postgres, or the hosted instance</td><td class="">Geekbot's cloud</td></tr><tr><td>Slack App Directory listing</td><td class="us no">No</td><td class="yes">Yes</td></tr><tr><td>Support contract</td><td class="us ">Paid, from CloudDrove</td><td class="yes">Included</td></tr></tbody></table></div>
+<p class="shot-cap" style="margin-top:12px">Geekbot prices checked 2026-09-26 on
+<a href="https://geekbot.com/pricing/">Geekbot's pricing page</a>. If something here is out of date,
+please <a href="https://github.com/morgenruf/morgenruf/issues/new/choose">open an issue</a>.</p>
 
 <h2 id="where-geekbot-wins">Where Geekbot wins</h2>
 <ul>
@@ -139,15 +145,32 @@ deployment and one database, which is also what makes the
 
 <div class="shot"><picture><source srcset="/screenshots/standups.webp" type="image/webp"/><img src="/screenshots/standups.jpg" width="1180" height="530" loading="lazy" alt="Two standups in the dashboard, each with a completion sparkline and a health badge"/></picture></div><p class="shot-cap">A standup that is quietly dying says so here before anyone notices in the channel.</p>
 
-<h2 id="moving-across">Moving across</h2>
+<h2 id="what-geekbot-costs">What does Geekbot cost for 10, 30 or 100 people?</h2>
+<p>Worked out from Geekbot's published prices on 2026-09-26, per year. Morgenruf's self-hosted figure
+is the small server and Postgres it runs on, which does not move with headcount.</p>
+<div class="scroll-x"><table>
+<thead><tr><th>Team size</th><th>Geekbot, billed monthly</th><th>Geekbot, billed annually</th><th class="us">Morgenruf, hosted</th><th class="us">Morgenruf, self-hosted</th></tr></thead>
+<tbody>
+<tr><td>10 people</td><td>$0 (free plan)</td><td>$0 (free plan)</td><td class="us yes">$0</td><td class="us">$60 to $240</td></tr>
+<tr><td>30 people</td><td>$1,080</td><td>$900</td><td class="us yes">$0</td><td class="us">$60 to $240</td></tr>
+<tr><td>100 people</td><td>$3,600</td><td>$3,000</td><td class="us yes">$0</td><td class="us">$60 to $240</td></tr>
+</tbody></table></div>
+<p>At ten people or fewer, both are free and the choice is about everything else on this page.</p>
+
+<h2 id="moving-across">Moving across from Geekbot</h2>
 <p>There is no importer, and honestly the history is rarely what you miss. The usual path is to run
 both for a week: same questions, same channel, and turn the old one off once the new summary looks
 right. Nothing here has a contract to cancel.</p>
 <ol>
-  <li><a href="/setup/docker/">Run it with Docker</a> or <a href="/setup/kubernetes/">on Kubernetes</a>.</li>
-  <li><a href="/setup/slack-app/">Create the Slack app</a> and install it.</li>
-  <li>Recreate your standup: channel, questions, hour, participants.</li>
-  <li>Watch one morning. Then switch the other one off.</li>
+  <li>Write down each Geekbot standup: its channel, questions, schedule, participants and
+  timezone.</li>
+  <li>Install Morgenruf: <a href="https://api.morgenruf.dev/install">Add to Slack</a> for the free hosted instance, or
+  <a href="/setup/docker/">run it with Docker</a> or <a href="/setup/kubernetes/">on Kubernetes</a>
+  and <a href="/setup/slack-app/">create the Slack app</a>.</li>
+  <li>Recreate each standup: channel, questions in your own words, hour, participants.</li>
+  <li>Mark anyone on leave, so the first week's completion figure means something.</li>
+  <li>Watch a week of mornings side by side.</li>
+  <li>Keep whatever Geekbot history you want, then switch Geekbot off.</li>
 </ol></div></div></div></section><section class="section"><div class="wrap" style="max-width:820px">
   <span class="eyebrow">Questions</span><h2>Morgenruf and Geekbot</h2>
   <div style="margin-top:24px"><details open><summary>Is Morgenruf free compared with Geekbot?</summary><p>Yes, with no per-seat fee at all. The hosted instance is free. Self-hosted, you pay for the server and database you run it on, roughly $5 to $20 a month regardless of headcount.</p></details><details><summary>Can I import my Geekbot history?</summary><p>No. Run both in parallel for a week and switch over once the summaries look right.</p></details><details><summary>Does it do everything Geekbot does?</summary><p>For async standups, the everyday shape is the same: questions, schedules, timezones, summaries, reminders, analytics. Geekbot has more years of edge cases and a support contract; this has coffee chats and recognition in the same app, and your data in your own database.</p></details><details><summary>How long does it take to set up?</summary><p>About two minutes on the free hosted instance. Self-hosted, about twenty minutes, most of it creating the Slack app.</p></details></div></div></section>

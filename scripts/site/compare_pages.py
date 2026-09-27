@@ -90,6 +90,13 @@ turns those on. Leaving is not a migration because the data is already yours.</p
 person team pays for a small server and a database instead of a subscription that grows with
 hiring.</p>
 
+<h2 id="for-people-teams">For people teams: nothing to install on a server</h2>
+<p>Add to Slack puts Morgenruf on the free hosted instance, so a people ops lead can start coffee
+chats without anyone running a server. Each round closes by asking whether the pair met, and the
+answer is recorded four ways: met, did not meet, never replied, and never delivered. If your company
+needs the data in-house, this is the line to forward to engineering: "Morgenruf is one container
+and a Postgres, MIT licensed, about twenty minutes to set up: morgenruf.dev/setup/".</p>
+
 <h2 id="switching">Switching</h2>
 <p>There is no importer, and pairing history is the one thing worth not losing, so the sensible move
 is to run both for a fortnight: point Morgenruf at the same channel with a different cadence, see
@@ -163,6 +170,11 @@ custom emoji and the bot picks it up on its own.</p>
 <h3>Recognition data next to something else</h3>
 <p>A leaderboard tells you who is thanked. Put it beside standup answers and you can ask who is
 contributing and being thanked by nobody, which is the question worth acting on.</p>
+
+<h3>Nothing for HR to install</h3>
+<p>Add to Slack puts Morgenruf on the free hosted instance, so whoever runs recognition can switch
+kudos on without an engineer. If the data has to stay in-house, the self-hosted route is one
+container and a Postgres; <a href="/setup/">the setup page</a> is the link to forward.</p>
 
 <h3>The price, again</h3>
 <p>Free for every seat, hosted or self-hosted. Recognition tools are usually priced per person per

@@ -45,7 +45,25 @@ def guide(prose, toc):
             f'<div class="prose">{prose}</div></div></div></section>')
 
 
+GEEKBOT_ROWS = [
+    ("Async standups by DM, one channel summary", "Yes", "yes", "Yes", "yes"),
+    ("Per-person timezones", "Yes", "yes", "Yes", "yes"),
+    ("Polls and surveys", "No", "no", "Yes", "yes"),
+    ("Microsoft Teams", "In progress", "no", "Yes", "yes"),
+    ("Free plan", "Yes, any team size", "yes", "Up to 10 users", ""),
+    ("Price above the free plan", "None", "yes", "$3 per user monthly, $2.50 billed annually", "no"),
+    ("A 30 person team, per year", "$0 hosted", "yes", "$900 to $1,080", "no"),
+    ("Runs on your own servers", "Yes", "yes", "No", "no"),
+    ("Source you can read", "MIT", "yes", "Closed", "no"),
+    ("Where answers are stored", "Your Postgres, or the hosted instance", "yes", "Geekbot's cloud", ""),
+    ("Slack App Directory listing", "No", "no", "Yes", "yes"),
+    ("Support contract", "Paid, from CloudDrove", "", "Included", "yes"),
+]
+
+
 def geekbot():
+    from compare_pages import table
+    geekbot_table = table(GEEKBOT_ROWS, "Geekbot")
     prose = f'''<h2 id="what-you-are-actually-comparing">What you are actually comparing</h2>
 <p>Geekbot is a hosted async standup bot. It is mature, it works, and for a lot of teams the monthly
 per-person fee is the right trade for never thinking about a server. Morgenruf is the same job,
@@ -57,7 +75,13 @@ blog, written while switching a team across.</p>
 want a subscription that grows with headcount. The same question applies to Donut, HeyTaco and
 Standup &amp; Prosper, which is what <a href="/compare/">the comparison pages</a> work through.</p>
 
-{diagrams.standup_flow()}
+{diagrams.standup_flow("The shape of morning a Geekbot team already knows: a DM at each local hour, a private nudge, one summary.")}
+
+<h2 id="morgenruf-and-geekbot-side-by-side">How do Morgenruf and Geekbot compare?</h2>
+{geekbot_table}
+<p class="shot-cap" style="margin-top:12px">Geekbot prices checked 2026-09-26 on
+<a href="https://geekbot.com/pricing/">Geekbot's pricing page</a>. If something here is out of date,
+please <a href="{REPO}/issues/new/choose">open an issue</a>.</p>
 
 <h2 id="where-geekbot-wins">Where Geekbot wins</h2>
 <ul>
@@ -112,20 +136,39 @@ deployment and one database, which is also what makes the
 
 {shot("/screenshots/standups.jpg", "Two standups in the dashboard, each with a completion sparkline and a health badge", "A standup that is quietly dying says so here before anyone notices in the channel.")}
 
-<h2 id="moving-across">Moving across</h2>
+<h2 id="what-geekbot-costs">What does Geekbot cost for 10, 30 or 100 people?</h2>
+<p>Worked out from Geekbot's published prices on 2026-09-26, per year. Morgenruf's self-hosted figure
+is the small server and Postgres it runs on, which does not move with headcount.</p>
+<div class="scroll-x"><table>
+<thead><tr><th>Team size</th><th>Geekbot, billed monthly</th><th>Geekbot, billed annually</th><th class="us">Morgenruf, hosted</th><th class="us">Morgenruf, self-hosted</th></tr></thead>
+<tbody>
+<tr><td>10 people</td><td>$0 (free plan)</td><td>$0 (free plan)</td><td class="us yes">$0</td><td class="us">$60 to $240</td></tr>
+<tr><td>30 people</td><td>$1,080</td><td>$900</td><td class="us yes">$0</td><td class="us">$60 to $240</td></tr>
+<tr><td>100 people</td><td>$3,600</td><td>$3,000</td><td class="us yes">$0</td><td class="us">$60 to $240</td></tr>
+</tbody></table></div>
+<p>At ten people or fewer, both are free and the choice is about everything else on this page.</p>
+
+<h2 id="moving-across">Moving across from Geekbot</h2>
 <p>There is no importer, and honestly the history is rarely what you miss. The usual path is to run
 both for a week: same questions, same channel, and turn the old one off once the new summary looks
 right. Nothing here has a contract to cancel.</p>
 <ol>
-  <li><a href="/setup/docker/">Run it with Docker</a> or <a href="/setup/kubernetes/">on Kubernetes</a>.</li>
-  <li><a href="/setup/slack-app/">Create the Slack app</a> and install it.</li>
-  <li>Recreate your standup: channel, questions, hour, participants.</li>
-  <li>Watch one morning. Then switch the other one off.</li>
+  <li>Write down each Geekbot standup: its channel, questions, schedule, participants and
+  timezone.</li>
+  <li>Install Morgenruf: <a href="{INSTALL}">Add to Slack</a> for the free hosted instance, or
+  <a href="/setup/docker/">run it with Docker</a> or <a href="/setup/kubernetes/">on Kubernetes</a>
+  and <a href="/setup/slack-app/">create the Slack app</a>.</li>
+  <li>Recreate each standup: channel, questions in your own words, hour, participants.</li>
+  <li>Mark anyone on leave, so the first week's completion figure means something.</li>
+  <li>Watch a week of mornings side by side.</li>
+  <li>Keep whatever Geekbot history you want, then switch Geekbot off.</li>
 </ol>'''
     body = guide(prose, [("What you are comparing", "what-you-are-actually-comparing"),
+                         ("Side by side", "morgenruf-and-geekbot-side-by-side"),
                          ("Where Geekbot wins", "where-geekbot-wins"),
                          ("Where this is different", "where-this-is-different"),
                          ("What decides it", "the-things-that-decide-it-in-practice"),
+                         ("What Geekbot costs", "what-geekbot-costs"),
                          ("Moving across", "moving-across")])
     faq_html, faq_schema = faq([
         ("Is Morgenruf free compared with Geekbot?",
@@ -159,7 +202,18 @@ right. Nothing here has a contract to cancel.</p>
                 trail=[("Home", "/"), ("Compare", "/compare/"), ("vs Geekbot", None)])
 
 
+SP_ROWS = [
+    ("Async standups in Slack", "Yes", "yes", "Yes", "yes"),
+    ("A hosted service with a free tier", "Yes, any team size", "yes", "Yes", "yes"),
+    ("Runs on your own servers", "Yes", "yes", "No", "no"),
+    ("Source you can read", "MIT", "yes", "Closed", "no"),
+    ("Coffee chats and kudos in the same app", "Yes", "yes", "No, standups only", "no"),
+]
+
+
 def standup_prosper():
+    from compare_pages import table
+    sp_table = table(SP_ROWS, "Standup &amp; Prosper")
     prose = f'''<h2 id="the-short-version">The short version</h2>
 <p>Standup &amp; Prosper is a hosted Slack standup bot with a generous free tier and a simple, well
 made product. Morgenruf does the same job, free on its hosted instance or on your own
@@ -167,7 +221,13 @@ infrastructure, and adds coffee chats and recognition. If their free tier covers
 reason to move, that is a perfectly good answer, and <a href="/compare/">the other comparisons</a>
 will not tell you anything different.</p>
 
-{diagrams.standup_flow()}
+{diagrams.standup_flow("What a Standup &amp; Prosper team would recognise: questions by DM, answers in their own time, one post.")}
+
+<h2 id="side-by-side">How do Morgenruf and Standup &amp; Prosper compare?</h2>
+{sp_table}
+<p class="shot-cap" style="margin-top:12px">Checked against Standup &amp; Prosper's public pages in
+September 2026. Their pricing page could not be read on 2026-09-26, so no price is quoted here rather
+than a guessed one.</p>
 
 <h2 id="where-it-wins">Where Standup &amp; Prosper wins</h2>
 <ul>
@@ -206,7 +266,8 @@ option is cheaper than your time.</p>
   <li><a href="/setup/slack-app/">Create the app</a>, install it, invite the bot to your channel.</li>
   <li>Recreate the standup, run both for a few days, then turn the old one off.</li>
 </ol>'''
-    body = guide(prose, [("The short version", "the-short-version"), ("Where it wins", "where-it-wins"),
+    body = guide(prose, [("The short version", "the-short-version"), ("Side by side", "side-by-side"),
+                         ("Where it wins", "where-it-wins"),
                          ("Where this is different", "where-this-is-different"),
                          ("What you take on", "what-you-take-on"), ("Switching", "switching")])
     faq_html, faq_schema = faq([
@@ -252,7 +313,7 @@ travels with it. There is no contributor agreement assigning your changes to any
   <li><strong>It cannot be taken away.</strong> No price change, no acquisition, no sunset email.</li>
 </ul>
 
-{diagrams.architecture()}
+{diagrams.architecture("The whole of what you would be running: one process, one Postgres, and Slack on the other end.")}
 
 <h2 id="the-honest-trade">The honest trade</h2>
 <p>A licence does not run anything. Someone has to, and that is one container, a Postgres and an
@@ -345,7 +406,7 @@ answers. Everything else on this page follows from that. Three reasons come up, 
   small service is an afternoon.</li>
 </ul>
 
-{diagrams.architecture()}
+{diagrams.architecture("Where the answers physically sit when you self-host: your Postgres, in the region you chose.")}
 
 <h2 id="what-running-it-involves">What running it actually involves</h2>
 <ul>
@@ -453,7 +514,7 @@ hosting, which have pages of their own:
   <li><strong>Group introductions</strong> for coffee chats, with the time vote in the message.</li>
 </ul>
 
-{diagrams.standup_flow()}
+{diagrams.standup_flow("Everything a teammate sees happens in Slack: the DM, the nudge if they are late, and the summary.")}
 
 <h2 id="the-scopes-it-asks-for">The scopes it asks for</h2>
 <p>Standups need to read channel membership, write messages, and open DMs. Coffee chats add three

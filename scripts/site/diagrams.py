@@ -27,7 +27,7 @@ ARROW_DEF = f'''<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" marke
 <path d="M0 0 L10 5 L0 10 z" fill="{AMBER}"/></marker></defs>'''
 
 
-def architecture():
+def architecture(caption="Everything runs in one process against one database. A self-hosted install talks to Slack only, plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator turns those on."):
     """What talks to what, for the setup hub."""
     return f'''<figure class="diagram">
 <svg viewBox="0 0 760 240" role="img" aria-label="Slack sends events to the Morgenruf app, which reads and writes your own Postgres database. A scheduler inside the app sends standups and coffee chat introductions.">
@@ -44,11 +44,11 @@ def architecture():
 <text x="380" y="30" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="{INK}">Three things at the core</text>
 <text x="380" y="52" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">No queue, no cache, optional services off by default</text>
 </svg>
-<figcaption>Everything runs in one process against one database. A self-hosted install talks to Slack only, plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator turns those on.</figcaption>
+<figcaption>{caption}</figcaption>
 </figure>'''
 
 
-def standup_flow():
+def standup_flow(caption="One morning, in the order it happens. The nudge is private; only the summary is public."):
     """A morning, as a timeline."""
     stops = [
         (60, "09:30", "The bot DMs each person", SKY),
@@ -70,7 +70,7 @@ def standup_flow():
 <line x1="60" y1="96" x2="600" y2="96" stroke="#E9E2D6" stroke-width="3"/>
 {dots}
 </svg>
-<figcaption>One morning, in the order it happens. The nudge is private; only the summary is public.</figcaption>
+<figcaption>{caption}</figcaption>
 </figure>'''
 
 

@@ -277,7 +277,7 @@ def kudos():
   <div class="mod" style="border-top:0">
     <div class="mod-copy">
       <span class="tag tag-kudos">How it works</span>
-      <h2 id="a-daily-budget-not-a-applause-button">A daily budget, not a applause button</h2>
+      <h2 id="a-daily-budget-not-an-applause-button">A daily budget, not an applause button</h2>
       <p class="lede">Everyone gets a handful of tokens a day. Give one with a message in a DM or a
       slash command, and it posts publicly with the reason. What is not spent is gone at midnight.</p>
       <ul>
@@ -299,6 +299,21 @@ noise and people stop reading them. A small daily budget that disappears at midn
 things: it makes each one mean something, and it creates a mild pressure to spend them, which is
 what gets somebody to notice the quiet colleague who fixed the build. Midnight is read per person,
 the same way <a href="/standups/">a standup</a> works out when to ask.</p>
+
+<h2 id="setting-up-kudos">How do you set up kudos in Slack?</h2>
+<ol>
+  <li>Turn Kudos on in the Morgenruf dashboard. Like every module it is off until you do.</li>
+  <li>Pick the token: any emoji in your workspace, including a custom one.</li>
+  <li>Set the daily allowance.</li>
+  <li>People give one with <code>/kudos @teammate a reason</code> or from a DM, and it posts
+  publicly with the reason.</li>
+</ol>
+
+<h2 id="choosing-the-allowance">Choosing the daily allowance</h2>
+<p>Five a day is a sensible place to start. Fewer makes each one weigh more; more makes it easier to
+thank the small things. Watch the givers leaderboard for a few weeks: if most people run out before
+lunch, raise it, and if hardly anyone spends more than one, lower it. The number matters less than
+the reset, because a budget that disappears at midnight is what gets it spent.</p>
 
 <h2 id="what-it-is-not">What it is not</h2>
 <p>There is no points store, no gift card catalogue, no vendor taking a cut of a reward budget.
@@ -347,7 +362,7 @@ INSIGHTS_FAQ = [
 
 def insights():
     body = '''<section class="section"><div class="wrap"><div class="prose">
-''' + diagrams.standup_flow() + '''
+''' + diagrams.standup_flow("Where the data comes from: the answers each morning, which Insights then reads across days.") + '''
 <h2 id="two-questions-worth-asking">Two questions worth asking</h2>
 <p>Most dashboards count things you already knew. These two need two datasets at once, which is the
 only reason to have <a href="/standups/">standups</a> and <a href="/kudos/">kudos</a> in one app
@@ -361,6 +376,13 @@ repeated blockers by person and by how long they have persisted.</p>
 <h3>Who answers every standup and is thanked by nobody?</h3>
 <p>Recognition data is skewed towards visible work. Somebody who files every morning, unblocks other
 people, and never gets a kudo is a retention risk that neither dataset shows on its own.</p>
+
+<h2 id="an-example">What that looks like in practice</h2>
+<p>An illustration rather than a screenshot. Say someone has written "waiting on the staging
+database" in five standups running. Each morning on its own reads as normal, and each one scrolls
+away. Across the week it is one blocker nobody has cleared, which is the pattern Insights groups by
+person and by how long it has lasted. The same goes for somebody who has filed every morning for a
+month, unblocked two colleagues in their answers, and appears nowhere in the kudos leaderboard.</p>
 
 <h2 id="what-it-deliberately-does-not-do">What it deliberately does not do</h2>
 <ul>
