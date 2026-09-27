@@ -502,12 +502,26 @@
 </footer>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Morgenruf",
+{"@context":"https://schema.org","@type":"Organization","@id":"https://morgenruf.dev/#organization",
+"name":"Morgenruf","url":"https://morgenruf.dev/","logo":"https://morgenruf.dev/icon-512.png",
+"sameAs":["https://github.com/morgenruf/morgenruf"],
+"parentOrganization":{"@type":"Organization","name":"CloudDrove","url":"https://clouddrove.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","@id":"https://morgenruf.dev/#website",
+"url":"https://morgenruf.dev/","name":"Morgenruf","publisher":{"@id":"https://morgenruf.dev/#organization"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","@id":"https://morgenruf.dev/#software","name":"Morgenruf",
+"alternateName":"Morgenruf Slack standup bot",
 "url":"https://morgenruf.dev/","applicationCategory":"BusinessApplication",
 "operatingSystem":"Docker, Kubernetes, Linux, macOS",
 "description":"Open-source Slack app for async standups, random coffee chats and peer recognition. Free on the hosted instance or self-hosted. MIT licensed, no per-seat pricing.",
 "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
 "license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,
+"downloadUrl":"https://github.com/morgenruf/morgenruf/releases",
+"sameAs":["https://github.com/morgenruf/morgenruf","https://hub.docker.com/r/morgenruf/morgenruf"],
+"publisher":{"@id":"https://morgenruf.dev/#organization"},
 "creator":{"@type":"Organization","name":"CloudDrove","url":"https://clouddrove.com"}}
 </script>
 <script type="application/ld+json">
