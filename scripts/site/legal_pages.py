@@ -50,27 +50,27 @@ def _page(*, path, title, description, h1, lede, prose, trail, noindex=False):
 
 
 def privacy():
-    return _page(path="/privacy",
-                 title="Privacy: what Morgenruf stores and what it never sends",
-                 description="What Morgenruf stores, what leaves your infrastructure (almost "
-                             "nothing), the three optional services that do make outbound calls, "
-                             "and the sub-processors involved.",
+    return _page(path="/privacy/",
+                 title="Privacy: what hosted Morgenruf stores, and where",
+                 description="What the free hosted Morgenruf instance stores, where, for how "
+                             "long, and which sub-processors are involved. Self-hosted installs "
+                             "answer to their operator.",
                  h1="Privacy",
-                 lede="Short version: self-hosted, your database, and no telemetry unless you "
-                      "switch it on yourself. The longer version is below, including the three "
-                      "optional services that do make outbound calls.",
+                 lede="This covers the free hosted instance and this website. If you self-host "
+                      "Morgenruf, you are the data controller and this policy does not apply to "
+                      "your deployment.",
                  prose=_extract("privacy.html"),
                  trail=[("Home", "/"), ("Privacy", None)])
 
 
 def terms():
-    return _page(path="/terms",
-                 title="Terms: morgenruf.dev and the hosted demo",
-                 description="Terms covering this website and the hosted demo, including what the "
-                             "demo is for and what it is not. The software itself is MIT licensed "
-                             "and yours to run.",
+    return _page(path="/terms/",
+                 title="Terms: morgenruf.dev and the free hosted instance",
+                 description="Terms covering this website and the free hosted Morgenruf instance. "
+                             "The software itself is MIT licensed and yours to run on your own "
+                             "servers.",
                  h1="Terms",
-                 lede="These cover this website and the hosted demo. The software is MIT licensed, "
+                 lede="These cover this website and the free hosted instance. The software is MIT licensed, "
                       "and running it yourself is governed by that licence, not by this page.",
                  prose=_extract("terms.html"),
                  trail=[("Home", "/"), ("Terms", None)])
@@ -81,11 +81,11 @@ def not_found():
 rebuilt, or the link may have been wrong to begin with.</p>
 <h2 id="the-useful-links">Where you were probably going</h2>
 <div class="tiles" style="margin:24px 0">
-  <a class="tile" href="/setup"><h3>Set it up</h3><p>Docker, Kubernetes and the Slack app, in about
+  <a class="tile" href="/setup/"><h3>Set it up</h3><p>Docker, Kubernetes and the Slack app, in about
   twenty minutes.</p><span class="go">Start here →</span></a>
-  <a class="tile" href="/standups"><h3>Standups</h3><p>What the daily check-in does and how it
+  <a class="tile" href="/standups/"><h3>Standups</h3><p>What the daily check-in does and how it
   behaves.</p><span class="go">Read →</span></a>
-  <a class="tile" href="/support"><h3>Help</h3><p>Issues, discussions and commercial support.</p>
+  <a class="tile" href="/support/"><h3>Help</h3><p>Issues, discussions and commercial support.</p>
   <span class="go">Get help →</span></a>
 </div>
 <p>If a link on this site brought you here, that is a bug:
@@ -100,18 +100,18 @@ rebuilt, or the link may have been wrong to begin with.</p>
 
 
 POSTS = [
-    ("/blog/why-i-built-morgenruf", "Why I built a free Geekbot alternative",
+    ("/blog/why-i-built-morgenruf/", "Why I built Morgenruf in a Tim Hortons in Kitchener",
      "A Saturday at a Tim Hortons in Kitchener, a monthly SaaS bill, and one line on it: $2.50 per "
      "person per month for a bot that DMs three questions and pastes the answers into a channel. "
      "The post works through how small the core loop really is, what the weekend produced, and "
      "which features went in afterwards because they cost nothing once the foundation existed: "
      "mood tracking, webhooks, CSV export and an MCP server."),
-    ("/blog/async-standups-slack-free", "Async standups in Slack, for free",
+    ("/blog/async-standups-slack-free/", "The 12.5 hour standup: taking a team of ten async in Slack",
      "The arithmetic first: a quarter hour a day is 75 minutes a week per person, and 12.5 hours a "
      "week for a team of ten, most of it spent listening. Then what replaces it. A scheduled DM, "
      "short written answers, one summary in a channel, and the five steps to get there. It ends on "
      "the per-seat maths, which is where the case for async stops being about meetings."),
-    ("/blog/geekbot-vs-morgenruf", "Geekbot and Morgenruf, compared honestly",
+    ("/blog/geekbot-vs-morgenruf/", "Geekbot and Morgenruf, compared honestly",
      "A feature table, then the section that matters: where Geekbot wins. Zero operations, a Slack "
      "App Directory listing your IT admin already knows how to approve, years of edge cases, and a "
      "funded team behind it. After that, the parts self-hosting wins, and a straight answer on who "
@@ -136,20 +136,20 @@ which is why there are three of them and not thirty.</p>
 actually replace the meeting, what self-hosting a small Slack app costs in money and in evenings,
 and the parts of building an alternative to per-seat software that turned out harder than expected.
 Where a post compares Morgenruf with something people pay for, it says where the paid tool wins,
-for the same reason the <a href="/compare">comparison pages</a> do: a page that claims the
+for the same reason the <a href="/compare/">comparison pages</a> do: a page that claims the
 competitor is bad at everything convinces nobody.</p>
 <p>What you will not find is a list of the ten best standup bots of the year, a post written to
 hold a keyword, or an announcement dressed as an essay. Releases go in the
-<a href="/changelog">changelog</a>, and how each part of the app behaves is documented on the
-<a href="/standups">standups</a>, <a href="/coffee-chats">coffee chats</a> and
-<a href="/kudos">kudos</a> pages rather than being rewritten here.</p>
+<a href="/changelog/">changelog</a>, and how each part of the app behaves is documented on the
+<a href="/standups/">standups</a>, <a href="/coffee-chats/">coffee chats</a> and
+<a href="/kudos/">kudos</a> pages rather than being rewritten here.</p>
 <p>New posts are announced in <a href="{REPO}/discussions">GitHub discussions</a>, which is also
 where to say that one of them is wrong.</p>'''
-    return _page(path="/blog", title="Blog: async standups, self-hosting and team rituals",
+    return _page(path="/blog/", title="Blog: async standups, self-hosting and team rituals",
                  description="Writing about async standups, self-hosting Slack tools and building "
                              "an open-source alternative to per-seat team software. Three posts so "
                              "far, no listicles.",
-                 h1="Writing",
+                 h1="Writing about async standups and self-hosting",
                  lede="On async standups, self-hosting, and what building the alternative actually "
                       "involves.",
                  prose=prose, trail=[("Home", "/"), ("Blog", None)])

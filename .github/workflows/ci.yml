@@ -51,3 +51,15 @@ jobs:
           budgetPath: .github/lighthouse-budget.json
           uploadArtifacts: true
           temporaryPublicStorage: true
+
+  indexnow:
+    # Pages changed on main are sent to IndexNow once the deploy that carries
+    # them is live. Search engines that do not use IndexNow are unaffected.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Send changed pages to IndexNow
+        run: python3 scripts/indexnow.py "${{ github.event.before }}" "${{ github.sha }}"

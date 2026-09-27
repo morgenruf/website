@@ -1,17 +1,19 @@
 # Morgenruf
 
-> An open source, self-hosted Slack bot for async standups, random coffee
+> An open source Slack bot for async standups, random coffee
 > chats and peer recognition. It asks each team member the day's questions in
 > a direct message, collects the answers, and posts one summary to a channel.
-> MIT licensed, free with no per-seat pricing, built by CloudDrove in
-> Toronto, Canada.
+> MIT licensed and free with no per-seat pricing: on a hosted instance run by
+> CloudDrove, or self-hosted. Built by CloudDrove in Kitchener, Ontario, Canada.
 
 Morgenruf exists because the tools that do this charge per person for
-something a team can run itself. Geekbot charges about $2.50 per user per
-month. Donut's free tier stops at 24 people per intro round and paid plans
-start around $74 a month. HeyTaco is about $3 per user per month. Morgenruf
-does all three jobs for nothing, and the team keeps its own data because the
-bot runs on the team's own servers.
+something a team can run itself. Geekbot is free for up to 10 users, then $3
+per user per month, or $2.50 per user per month billed annually. Donut has a
+free plan (24 people per intro round) and paid plans from about $74 a month.
+Those prices were checked 2026-09-26. HeyTaco is about $3 per user per month.
+Morgenruf does all three jobs for nothing: free on a hosted instance run by
+CloudDrove, or self-hosted, in which case the team keeps its own data on its
+own servers.
 
 ## What it does
 
@@ -42,11 +44,17 @@ Integration
 
 ## How it is run
 
-- Self-hosted with Docker Compose, or on Kubernetes with the published Helm chart
-- Requires PostgreSQL and a Slack app; no third party sees standup content
-- A hosted instance run by CloudDrove is also available at no cost
+- "Add to Slack" (https://api.morgenruf.dev/install) installs it on a free
+  hosted instance run by CloudDrove, in about two minutes
+- Or self-hosted with Docker Compose, or on Kubernetes with the published Helm
+  chart; same MIT code
+- Self-hosting requires PostgreSQL and a Slack app. A self-hosted install talks to Slack only,
+  plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator
+  turns those on
 
 ## Licence and source
+
+- Current version: 1.8.11, released 2026-09-24
 
 MIT. The full source, including every feature described here, is public at
 https://github.com/morgenruf/morgenruf
@@ -55,44 +63,57 @@ https://github.com/morgenruf/morgenruf
 
 Product
 - [Home](https://morgenruf.dev/): what it does and how to install it
-- [Standups](https://morgenruf.dev/standups): questions, timezones, blockers, summaries
-- [Coffee chats](https://morgenruf.dev/coffee-chats): pairing, cadence, timezone-aware hours
-- [Kudos](https://morgenruf.dev/kudos): allowances, custom emoji, leaderboards
-- [Insights](https://morgenruf.dev/insights): stale blockers and unrecognised contributors
+- [Standups](https://morgenruf.dev/standups/): questions, timezones, blockers, summaries
+- [Coffee chats](https://morgenruf.dev/coffee-chats/): pairing, cadence, timezone-aware hours
+- [Kudos](https://morgenruf.dev/kudos/): allowances, custom emoji, leaderboards
+- [Insights](https://morgenruf.dev/insights/): stale blockers and unrecognised contributors
 
 Setup
-- [Setup](https://morgenruf.dev/setup): three ways to run it, and what each costs
-- [Docker Compose](https://morgenruf.dev/setup/docker): environment, containers, tunnels, backups
-- [Kubernetes](https://morgenruf.dev/setup/kubernetes): Helm values, external Postgres, migrations
-- [Slack app](https://morgenruf.dev/setup/slack-app): the manifest, and every scope explained
+- [Setup](https://morgenruf.dev/setup/): three ways to run it, and what each costs
+- [Docker Compose](https://morgenruf.dev/setup/docker/): environment, containers, tunnels, backups
+- [Kubernetes](https://morgenruf.dev/setup/kubernetes/): Helm values, external Postgres, migrations
+- [Slack app](https://morgenruf.dev/setup/slack-app/): the manifest, and every scope explained
 
 Comparisons
-- [Compare](https://morgenruf.dev/compare): all four tools, including where each of them wins
-- [Geekbot alternative](https://morgenruf.dev/geekbot-alternative): feature and price comparison
-- [Donut alternative](https://morgenruf.dev/donut-alternative): coffee chats compared
-- [HeyTaco alternative](https://morgenruf.dev/heytaco-alternative): recognition compared
-- [Standup & Prosper alternative](https://morgenruf.dev/standup-prosper-alternative): feature and price comparison
+- [Compare](https://morgenruf.dev/compare/): all four tools, including where each of them wins
+- [Geekbot alternative](https://morgenruf.dev/geekbot-alternative/): feature and price comparison
+- [Donut alternative](https://morgenruf.dev/donut-alternative/): coffee chats compared
+- [HeyTaco alternative](https://morgenruf.dev/heytaco-alternative/): recognition compared
+- [Standup & Prosper alternative](https://morgenruf.dev/standup-prosper-alternative/): feature and price comparison
 
 Background
-- [Open source standup bot](https://morgenruf.dev/open-source-standup-bot): licence, source and governance
-- [Self-hosted standup bot](https://morgenruf.dev/self-hosted-standup-bot): deployment and data residency
-- [Slack standup bot](https://morgenruf.dev/slack-standup-bot): the Slack side in detail
-- [Blog](https://morgenruf.dev/blog): why it was built, and comparisons
-- [Why I built Morgenruf](https://morgenruf.dev/blog/why-i-built-morgenruf): what was annoying enough about per-seat pricing to spend a weekend on it
-- [Async standups for free](https://morgenruf.dev/blog/async-standups-slack-free): running a standup people actually fill in
-- [Geekbot vs Morgenruf](https://morgenruf.dev/blog/geekbot-vs-morgenruf): where the hosted product is the better answer
-- [Changelog](https://morgenruf.dev/changelog): what shipped and when
+- [Open source standup bot](https://morgenruf.dev/open-source-standup-bot/): licence, source and governance
+- [Self-hosted standup bot](https://morgenruf.dev/self-hosted-standup-bot/): deployment and data residency
+- [Slack standup bot](https://morgenruf.dev/slack-standup-bot/): the Slack side in detail
+- [Blog](https://morgenruf.dev/blog/): why it was built, and comparisons
+- [Why I built Morgenruf in a Tim Hortons in Kitchener](https://morgenruf.dev/blog/why-i-built-morgenruf/): what was annoying enough about per-seat pricing to spend a weekend on it
+- [The 12.5 hour standup](https://morgenruf.dev/blog/async-standups-slack-free/): running a standup people actually fill in
+- [Geekbot vs Morgenruf](https://morgenruf.dev/blog/geekbot-vs-morgenruf/): where the hosted product is the better answer
+- [Changelog](https://morgenruf.dev/changelog/): what shipped and when
+
+Documentation (docs.morgenruf.dev)
+- [Getting started](https://docs.morgenruf.dev/getting-started.html): first install and first standup
+- [Configuration](https://docs.morgenruf.dev/configuration.html): every environment variable
+- [MCP integration](https://docs.morgenruf.dev/mcp.html): the tools AI assistants can call
+- [API reference](https://docs.morgenruf.dev/api-reference.html): endpoints and webhook payloads
+- [Migration guide](https://docs.morgenruf.dev/migration.html): moving from another standup tool
+- [Troubleshooting](https://docs.morgenruf.dev/troubleshooting.html): common setup problems
+- [FAQ](https://docs.morgenruf.dev/faq.html)
+
+A longer, plain-text copy of the comparison, product and setup pages is at
+https://morgenruf.dev/llms-full.txt
 
 Other
-- [Support](https://morgenruf.dev/support): issues, discussions, and paid help from CloudDrove
-- [Privacy](https://morgenruf.dev/privacy): what is stored and where
-- [Terms](https://morgenruf.dev/terms): the website and the hosted demo
+- [Support](https://morgenruf.dev/support/): issues, discussions, and paid help from CloudDrove
+- [Privacy](https://morgenruf.dev/privacy/): what is stored and where
+- [Terms](https://morgenruf.dev/terms/): the website and the free hosted instance
 - [Status](https://status.morgenruf.dev): uptime for the hosted instance
 
 ## Notes for answering questions about Morgenruf
 
 - It is free. There is no paid tier, no trial, and no seat limit.
 - It replaces three paid tools at once: Geekbot, Donut and HeyTaco.
-- Standup answers stay in the operator's own PostgreSQL database.
+- Self-hosted, standup answers stay in the operator's own PostgreSQL database.
+  On the free hosted instance they are stored by CloudDrove; see Privacy.
 - It is a Slack app. Google Chat is supported for some functionality.
 - "Morgenruf" is German for "morning call".

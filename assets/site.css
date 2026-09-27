@@ -3,6 +3,19 @@
    amber where the sun comes up, paper for everything after. Colours are
    sampled from the mascot rather than picked to look like software.
    ------------------------------------------------------------------- */
+/* ── Fonts ───────────────────────────────────────────────────────────────
+   Served from here rather than Google Fonts: the stylesheet hop to
+   fonts.googleapis.com blocked first paint for about 800ms on a slow phone.
+   Both are variable fonts under the SIL Open Font License (see assets/fonts).
+   ------------------------------------------------------------------- */
+@font-face{font-family:'Bricolage Grotesque'; font-style:normal; font-weight:700 800; font-display:swap;
+  src:url(/assets/fonts/bricolage-grotesque-latin.woff2) format('woff2'); unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Bricolage Grotesque'; font-style:normal; font-weight:700 800; font-display:swap;
+  src:url(/assets/fonts/bricolage-grotesque-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Manrope'; font-style:normal; font-weight:400 800; font-display:swap;
+  src:url(/assets/fonts/manrope-latin.woff2) format('woff2'); unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Manrope'; font-style:normal; font-weight:400 800; font-display:swap;
+  src:url(/assets/fonts/manrope-latin-ext.woff2) format('woff2'); unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
 :root{
   --ink:#12131F; --ink-2:#1B1D2E; --ink-soft:#2A2D42;
   --paper:#FFFDF8; --paper-2:#FFF7EA; --line:#E9E2D6;
@@ -49,10 +62,32 @@ a{color:inherit}
 .nav-links a{color:var(--on-ink-muted); text-decoration:none; font-size:15px; font-weight:500}
 .nav-links a:hover{color:var(--on-ink)}
 .nav-cta{display:flex; gap:10px; align-items:center}
-@media (max-width:900px){.nav-links{display:none}}
+@media (max-width:900px){.nav-links{display:none} .nav-cta{margin-left:auto} .nav-in{gap:12px}}
+@media (max-width:560px){.nav-cta .btn-ghost{display:none} .nav .wrap{padding:0 16px} .nav-in{gap:10px}
+  .nav-cta .btn-sm{padding:9px 13px; gap:7px} .nav .brand{gap:8px; font-size:18px}}
+/* Below 900px the links move into a menu. A details element, so it opens
+   without script; nav.js only closes it again after a tap. */
+.nav-menu{display:none; flex:none; width:42px; background:none; border:0; border-radius:0; padding:0; margin:0}
+.nav-menu summary::after,.nav-menu[open] summary::after{content:none}
+.nav-menu summary{list-style:none; cursor:pointer; width:42px; height:42px; display:flex; align-items:center; justify-content:center; border-radius:999px; border:2px solid rgba(255,255,255,.28); color:var(--on-ink)}
+.nav-menu summary::-webkit-details-marker{display:none}
+.nav-menu summary:focus-visible{outline:3px solid var(--sky); outline-offset:3px}
+.burger,.burger::before,.burger::after{display:block; width:18px; height:2px; border-radius:2px; background:currentColor; transition:transform .15s ease}
+.burger{position:relative}
+.burger::before,.burger::after{content:""; position:absolute; left:0}
+.burger::before{top:-6px}
+.burger::after{top:6px}
+.nav-menu[open] .burger{background:transparent}
+.nav-menu[open] .burger::before{top:0; transform:rotate(45deg)}
+.nav-menu[open] .burger::after{top:0; transform:rotate(-45deg)}
+.nav-menu-panel{position:absolute; left:0; right:0; top:100%; background:var(--ink); border-bottom:1px solid rgba(255,255,255,.1); box-shadow:var(--shadow-lift); padding:6px 24px 16px; display:flex; flex-direction:column}
+.nav-menu-panel a{color:var(--on-ink); text-decoration:none; font-weight:600; font-size:17px; padding:13px 0; border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-menu-panel a:last-child{border-bottom:0}
+.nav-menu-panel a[aria-current]{color:var(--sun)}
+@media (max-width:900px){.nav-menu{display:block}}
 
 /* ── Buttons ─────────────────────────────────────────────────────────── */
-.btn{display:inline-flex; align-items:center; gap:9px; padding:13px 22px; border-radius:999px; font-weight:700; font-size:15.5px; text-decoration:none; border:2px solid transparent; cursor:pointer; transition:transform .12s ease, box-shadow .12s ease}
+.btn{display:inline-flex; align-items:center; gap:9px; white-space:nowrap; padding:13px 22px; border-radius:999px; font-weight:700; font-size:15.5px; text-decoration:none; border:2px solid transparent; cursor:pointer; transition:transform .12s ease, box-shadow .12s ease}
 .btn:hover{transform:translateY(-1px)}
 .btn:focus-visible{outline:3px solid var(--sky); outline-offset:3px}
 .btn-sun{background:var(--sun); color:#26190A; box-shadow:0 10px 26px rgba(255,178,63,.36)}
@@ -106,6 +141,7 @@ a{color:inherit}
 .mod li{position:relative; padding-left:28px; margin-bottom:11px; color:var(--muted)}
 .mod li::before{content:""; position:absolute; left:0; top:9px; width:15px; height:9px; border-left:2.5px solid var(--leaf); border-bottom:2.5px solid var(--leaf); transform:rotate(-45deg)}
 .shot{border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow-lift); background:var(--ink); line-height:0}
+.shot picture{display:block}
 .shot img{display:block; width:100%; height:auto}
 .shot-cap{font-size:13.5px; color:var(--dim); margin-top:11px}
 .tag{display:inline-block; font-size:12.5px; font-weight:700; padding:4px 11px; border-radius:999px; margin-bottom:12px}
@@ -189,9 +225,17 @@ footer a:hover{color:var(--sun)}
 .foot-bottom a{display:inline; margin:0}
 .foot-legal{display:flex; gap:18px}
 
+/* ── Which route the install button takes, and when a page was checked ── */
+.cta-note{font-size:13.5px; color:var(--dim); margin:12px 0 0; max-width:60ch}
+.page-head .cta-note{color:var(--muted)}
+.define .lede{color:var(--text); margin-bottom:8px}
+.reviewed{font-size:13px; color:var(--dim); margin:0}
+/* ── Blog posts: byline and an early way in ──────────────────────────── */
+.byline{font-size:14.5px; color:var(--muted); margin:0 0 14px}
+.post-cta{display:flex; gap:10px; flex-wrap:wrap; margin:0 0 30px}
 /* ── Breadcrumbs ─────────────────────────────────────────────────────── */
-.crumbs{padding:18px 24px 0; font-size:13.5px; color:var(--dim); display:flex; gap:8px; flex-wrap:wrap; align-items:center}
-.crumbs a{color:var(--muted); text-decoration:none}
+.crumbs{padding:8px 24px 0; font-size:13.5px; color:var(--dim); display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+.crumbs a{color:var(--muted); text-decoration:none; display:inline-flex; align-items:center; min-height:44px; padding:0 4px; margin:0 -4px}
 .crumbs a:hover{color:var(--rooster)}
 
 /* ── Page header, for everything that is not the home page ───────────── */
@@ -209,6 +253,7 @@ footer a:hover{color:var(--sun)}
    left the right side empty and the page looking broken.
    ------------------------------------------------------------------- */
 .guide{display:grid; grid-template-columns:210px minmax(0,72ch); gap:56px; align-items:start}
+.guide > *{min-width:0}
 @media (max-width:1000px){.guide{grid-template-columns:1fr; gap:26px}}
 .toc{position:sticky; top:88px; font-size:14.5px; border-left:2px solid var(--line); padding-left:16px}
 .toc strong{display:block; font-size:12.5px; color:var(--dim); margin-bottom:10px; font-weight:700}

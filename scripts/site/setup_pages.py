@@ -2,8 +2,9 @@
 
 "How do I self-host a Slack standup bot" is a question with intent behind it
 and no good answer on the open web: every result is a hosted product's signup
-page. These pages are the answer, and each one carries HowTo schema so the
-steps can surface directly in a result.
+page. These pages are the answer. The three guides carry HowTo schema; Google
+stopped showing HowTo rich results in 2023, so it is there for other readers
+of structured data, not for a step carousel.
 """
 
 from __future__ import annotations
@@ -56,8 +57,10 @@ HUB_FAQ = [
      "A machine that can run Docker or a Kubernetes cluster, a Postgres database, and an HTTPS URL "
      "Slack can reach. A Cloudflare tunnel covers the last one without opening a port."),
     ("Can I try it without a server?",
-     "Yes. Run it on your laptop with Docker Compose and expose it with a tunnel while you try it. "
-     "Nothing about that is different from the production path except where it runs."),
+     "Yes. Add to Slack installs it on the free hosted instance CloudDrove runs, in about two "
+     "minutes. To try the self-hosted route, run it on your laptop with Docker Compose and expose it "
+     "with a tunnel. Nothing about that is different from the production path except where it "
+     "runs."),
     ("Do I need a paid Slack plan?",
      "No. Morgenruf uses the standard Slack app APIs available on the free plan."),
 ]
@@ -68,17 +71,17 @@ def hub():
   <span class="eyebrow">Three ways in</span>
   <h2 id="pick-a-way-to-run-it">Pick a way to run it</h2>
   <div class="tiles" style="margin-top:24px">
-    <a class="tile" href="/setup/docker">
+    <a class="tile" href="/setup/docker/">
       <h3>Docker Compose</h3>
       <p>The shortest path. One file, one command, runs on a laptop, a VPS or a spare Mac mini.</p>
       <span class="go">Set it up with Docker →</span>
     </a>
-    <a class="tile" href="/setup/kubernetes">
+    <a class="tile" href="/setup/kubernetes/">
       <h3>Kubernetes and Helm</h3>
       <p>A published chart, an external Postgres, and an ingress or a tunnel. For clusters you already run.</p>
       <span class="go">Set it up with Helm →</span>
     </a>
-    <a class="tile" href="/setup/slack-app">
+    <a class="tile" href="/setup/slack-app/">
       <h3>The Slack app</h3>
       <p>Creating the app from the manifest, the scopes it asks for and why, and installing it.</p>
       <span class="go">Create the Slack app →</span>
@@ -102,7 +105,8 @@ def hub():
     <h2 id="the-shape-of-it">The shape of it</h2>
     <p>Three things talk to each other: Slack, the app, and your database. Slack sends events to
     your URL, the app writes to Postgres, and a scheduler inside the app sends the messages that
-    start standups and coffee chats. There is no other service and nothing phones home.</p>
+    start standups and coffee chats. A self-hosted install talks to Slack only, plus Zoom, email
+    (Resend), an AI provider or PostHog analytics if the operator turns those on.</p>
 
     <div class="note"><p><strong>One value people miss:</strong> <code>FLASK_SECRET_KEY</code> signs
     dashboard sessions. Generate a real one with <code>openssl rand -hex 32</code>. Leaving it blank
@@ -111,9 +115,9 @@ def hub():
     <h2 id="after-it-is-running">After it is running</h2>
     <ol>
       <li>Open your app URL and sign in with Slack. You are the first admin.</li>
-      <li>Create <a href="/standups">a standup</a>: pick a channel, the questions, the hour, and
+      <li>Create <a href="/standups/">a standup</a>: pick a channel, the questions, the hour, and
       who takes part.</li>
-      <li>Turn on <a href="/coffee-chats">coffee chats</a> and <a href="/kudos">kudos</a> when you
+      <li>Turn on <a href="/coffee-chats/">coffee chats</a> and <a href="/kudos/">kudos</a> when you
       want them. Both are off until you say so.</li>
       <li>Optional: connect Zoom so coffee chats book a real meeting, and set up a digest email.</li>
     </ol>
@@ -127,15 +131,17 @@ def hub():
   <div style="margin-top:24px">{faq_html}</div>
 </div></section>'''
     return page(
-        path="/setup",
-        title="Set up a self-hosted Slack standup bot",
-        description="Three ways to run Morgenruf yourself: Docker Compose, Kubernetes with Helm, or "
-                    "from source. What you need, and the Slack app, in about twenty minutes.",
+        path="/setup/",
+        title="Self-host Morgenruf: Docker Compose or Helm",
+        description="Run Morgenruf yourself with Docker Compose, or on Kubernetes with Helm: what you "
+                    "need, the Slack app, and about twenty minutes end to end.",
         h1="Set it up yourself, in about twenty minutes",
         lede="Morgenruf is one process and a Postgres database. Pick whichever of these you already "
-             "have, and the Slack side is the same either way.",
+             "have, and the Slack side is the same either way. Would rather not run anything? "
+             f'<a href="{INSTALL}">Add to Slack</a> puts it on the free hosted instance in about two '
+             "minutes.",
         body=body, schema=[faq_schema],
-        trail=[("Home", "/"), ("Set up", None)], current="/setup")
+        trail=[("Home", "/"), ("Set up", None)], current="/setup/")
 
 
 DOCKER_STEPS = [
@@ -175,11 +181,11 @@ def docker():
   <li>A way to give Slack an HTTPS URL. A Cloudflare tunnel is fine and needs no open port.</li>
 </ul>
 <p>Nothing on this page costs money beyond the machine it runs on, which is the point of
-<a href="/blog/async-standups-slack-free">running async standups in Slack for free</a>.</p>
+<a href="/blog/async-standups-slack-free/">running async standups in Slack for free</a>.</p>
 
 <h2 id="1-create-the-slack-app">1. Create the Slack app</h2>
 <p>Do this first, because the next step wants three values from it. The
-<a href="/setup/slack-app">Slack app page</a> covers it properly; the short version is: create an
+<a href="/setup/slack-app/">Slack app page</a> covers it properly; the short version is: create an
 app from the manifest, add <code>https://your-domain/oauth/callback</code> as a redirect URL, and
 copy the client id, client secret and signing secret.</p>
 
@@ -215,8 +221,8 @@ permanent, use a named tunnel rather than a quick one, because the quick URL cha
 <h2 id="5-install-it">5. Install it</h2>
 <p>Open your app URL in a browser and authorise the workspace. You become the first admin, and the
 dashboard opens on an empty Standups page. Create one: channel, questions, the hour, and who takes
-part. What <a href="/standups">a standup does once it is running</a> is described separately, as are
-<a href="/coffee-chats">coffee chats</a>, which stay off until you turn them on.</p>
+part. What <a href="/standups/">a standup does once it is running</a> is described separately, as are
+<a href="/coffee-chats/">coffee chats</a>, which stay off until you turn them on.</p>
 
 <h2 id="keeping-it-running">Keeping it running</h2>
 <ul>
@@ -231,12 +237,12 @@ part. What <a href="/standups">a standup does once it is running</a> is describe
 <div class="note"><p><strong>Stuck?</strong> The
 <a href="https://github.com/morgenruf/morgenruf/issues">issue tracker</a> and
 <a href="https://github.com/morgenruf/morgenruf/discussions">discussions</a> are where setup
-questions get answered, and <a href="/support">CloudDrove will do the whole thing for you</a> if you
+questions get answered, and <a href="/support/">CloudDrove will do the whole thing for you</a> if you
 would rather not.</p></div>
 
 <div class="next">
-  <a class="tile" href="/setup/slack-app"><h3>The Slack app</h3><p>The manifest, the scopes and why each one is asked for.</p><span class="go">Read it →</span></a>
-  <a class="tile" href="/setup/kubernetes"><h3>Kubernetes instead</h3><p>The Helm chart, an external database, and ingress or tunnel.</p><span class="go">Read it →</span></a>
+  <a class="tile" href="/setup/slack-app/"><h3>The Slack app</h3><p>The manifest, the scopes and why each one is asked for.</p><span class="go">Read it →</span></a>
+  <a class="tile" href="/setup/kubernetes/"><h3>Kubernetes instead</h3><p>The Helm chart, an external database, and ingress or tunnel.</p><span class="go">Read it →</span></a>
 </div>
 '''
     body = guide(prose, [("What you need", "what-you-need"), ("1. Create the Slack app", "1-create-the-slack-app"),
@@ -248,8 +254,8 @@ would rather not.</p></div>
   <span class="eyebrow">Questions</span><h2 id="running-it-with-docker">Running it with Docker</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
-        path="/setup/docker",
-        title="Run a Slack standup bot with Docker Compose",
+        path="/setup/docker/",
+        title="Install Morgenruf with Docker Compose",
         description="Self-host Morgenruf with Docker Compose: environment variables, starting the "
                     "containers, giving Slack an HTTPS URL with a tunnel, upgrades and backups.",
         h1="Set it up with Docker Compose",
@@ -259,7 +265,7 @@ would rather not.</p></div>
         schema=[howto("Set up Morgenruf with Docker Compose",
                       "Self-host an open-source Slack standup bot using Docker Compose.",
                       DOCKER_STEPS), faq_schema],
-        trail=[("Home", "/"), ("Set up", "/setup"), ("Docker", None)], current="/setup")
+        trail=[("Home", "/"), ("Set up", "/setup/"), ("Docker", None)], current="/setup/")
 
 
 K8S_STEPS = [
@@ -317,8 +323,8 @@ intend to keep. The data outliving the release is the point.</p></div>
 </ul>
 
 <h2 id="one-replica-on-purpose">One replica, on purpose</h2>
-<p>The scheduler that fires <a href="/standups">standups</a>, <a href="/coffee-chats">coffee chat
-rounds</a> and the midnight <a href="/kudos">kudos</a> reset runs inside the app process. Two
+<p>The scheduler that fires <a href="/standups/">standups</a>, <a href="/coffee-chats/">coffee chat
+rounds</a> and the midnight <a href="/kudos/">kudos</a> reset runs inside the app process. Two
 replicas would both wake up at nine and both send the morning message. Until that moves behind a
 shared lock, run one replica and let Kubernetes restart it; a restart mid-round resumes rather than
 repeating, because delivery is recorded per person as it happens.</p>
@@ -341,10 +347,10 @@ you will run the previous release's migrations against the new code.</p>
 
 <div class="note"><p><strong>Stuck?</strong> Ask in
 <a href="https://github.com/morgenruf/morgenruf/discussions">discussions</a>, or have
-<a href="/support">CloudDrove run the cluster for you</a>.</p></div>
+<a href="/support/">CloudDrove run the cluster for you</a>.</p></div>
 
 <div class="next">
-  <a class="tile" href="/setup/slack-app"><h3>The Slack app</h3><p>The manifest, the scopes, and installing it.</p><span class="go">Read it →</span></a>
+  <a class="tile" href="/setup/slack-app/"><h3>The Slack app</h3><p>The manifest, the scopes, and installing it.</p><span class="go">Read it →</span></a>
   <a class="tile" href="https://github.com/morgenruf/helm-charts"><h3>Chart values</h3><p>Every value the chart takes, with defaults.</p><span class="go">Open the chart →</span></a>
 </div>
 '''
@@ -356,8 +362,8 @@ you will run the previous release's migrations against the new code.</p>
   <span class="eyebrow">Questions</span><h2 id="running-it-on-kubernetes">Running it on Kubernetes</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
-        path="/setup/kubernetes",
-        title="Kubernetes and Helm setup for a Slack standup bot",
+        path="/setup/kubernetes/",
+        title="Install Morgenruf on Kubernetes with Helm",
         description="Install Morgenruf on Kubernetes with the published Helm chart: values, "
                     "external Postgres, ingress or Cloudflare tunnel, migrations, and why one "
                     "replica.",
@@ -368,7 +374,7 @@ you will run the previous release's migrations against the new code.</p>
         schema=[howto("Install Morgenruf on Kubernetes with Helm",
                       "Self-host an open-source Slack standup bot on Kubernetes using the published "
                       "Helm chart.", K8S_STEPS, "PT15M"), faq_schema],
-        trail=[("Home", "/"), ("Set up", "/setup"), ("Kubernetes", None)], current="/setup")
+        trail=[("Home", "/"), ("Set up", "/setup/"), ("Kubernetes", None)], current="/setup/")
 
 
 SLACK_STEPS = [
@@ -429,20 +435,20 @@ it every event is rejected.</p>
 <h2 id="4-what-it-asks-for-and-why">4. What it asks for, and why</h2>
 <p>Scopes are the part people read carefully, so here is each group and what it is for.</p>
 <ul>
-  <li><code>channels:read</code>, <code>groups:read</code> — to see who is in the channel a standup
+  <li><code>channels:read</code>, <code>groups:read</code>: to see who is in the channel a standup
   or a coffee chat draws from.</li>
-  <li><code>chat:write</code> — to post the summary and the introductions.</li>
-  <li><code>im:write</code>, <code>im:history</code> — to ask each person their questions in a DM and
+  <li><code>chat:write</code>: to post the summary and the introductions.</li>
+  <li><code>im:write</code>, <code>im:history</code>: to ask each person their questions in a DM and
   read their answers to it.</li>
-  <li><code>users:read</code>, <code>users:read.email</code> — names and email, for the dashboard and
+  <li><code>users:read</code>, <code>users:read.email</code>: names and email, for the dashboard and
   the digest.</li>
-  <li><code>users.profile:read</code> — timezones, so nobody is asked at midnight.</li>
-  <li><code>mpim:write</code>, <code>mpim:history</code> — the group DM a
-  <a href="/coffee-chats">coffee chat</a> introduction happens in. Only needed if you turn coffee
+  <li><code>users.profile:read</code>: timezones, so nobody is asked at midnight.</li>
+  <li><code>mpim:write</code>, <code>mpim:history</code>: the group DM a
+  <a href="/coffee-chats/">coffee chat</a> introduction happens in. Only needed if you turn coffee
   chats on.</li>
-  <li><code>emoji:read</code> — so <a href="/kudos">kudos</a> can use a custom token from your
+  <li><code>emoji:read</code>: so <a href="/kudos/">kudos</a> can use a custom token from your
   workspace.</li>
-  <li><code>commands</code> — the slash commands.</li>
+  <li><code>commands</code>: the slash commands.</li>
 </ul>
 <p>There is no scope for reading channel history, because the app never does.</p>
 
@@ -453,20 +459,20 @@ failing at runtime, and the dashboard tells you which scopes are missing.</p></d
 <h2 id="5-install-and-invite">5. Install and invite</h2>
 <p>Open your app URL, authorise, and you are the first admin. Then invite the bot to the channel the
 summary posts in, and to any channel you want coffee chats to pair from. The bot has to be in the
-channel before <a href="/standups">a standup</a> can post there:</p>
+channel before <a href="/standups/">a standup</a> can post there:</p>
 <pre><code>/invite @Morgenruf</code></pre>
 
 <h2 id="slash-commands-you-get">Slash commands you get</h2>
 <ul>
-  <li><code>/standup</code> — start your standup now</li>
-  <li><code>/skip</code> — skip today</li>
-  <li><code>/kudos @teammate a reason</code> — give recognition</li>
-  <li><code>/help</code> — what the bot can do</li>
+  <li><code>/standup</code>: start your standup now</li>
+  <li><code>/skip</code>: skip today</li>
+  <li><code>/kudos @teammate a reason</code>: give recognition</li>
+  <li><code>/help</code>: what the bot can do</li>
 </ul>
 
 <div class="next">
-  <a class="tile" href="/setup/docker"><h3>Docker Compose</h3><p>Get the app itself running in a few minutes.</p><span class="go">Read it →</span></a>
-  <a class="tile" href="/setup/kubernetes"><h3>Kubernetes</h3><p>The Helm chart, values and rollouts.</p><span class="go">Read it →</span></a>
+  <a class="tile" href="/setup/docker/"><h3>Docker Compose</h3><p>Get the app itself running in a few minutes.</p><span class="go">Read it →</span></a>
+  <a class="tile" href="/setup/kubernetes/"><h3>Kubernetes</h3><p>The Helm chart, values and rollouts.</p><span class="go">Read it →</span></a>
 </div>
 '''
     body = guide(prose, [("Create from the manifest", "1-create-the-app-from-the-manifest"),
@@ -480,7 +486,7 @@ channel before <a href="/standups">a standup</a> can post there:</p>
   <span class="eyebrow">Questions</span><h2 id="about-the-slack-app">About the Slack app</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
-        path="/setup/slack-app",
+        path="/setup/slack-app/",
         title="Create the Slack app: manifest, scopes, install",
         description="Create a Slack app from the Morgenruf manifest, add the redirect URL, and see "
                     "every scope it asks for, including the three extra ones coffee chats need.",
@@ -491,4 +497,4 @@ channel before <a href="/standups">a standup</a> can post there:</p>
         schema=[howto("Create a Slack app for Morgenruf",
                       "Create and install the Slack app for a self-hosted standup bot.",
                       SLACK_STEPS, "PT10M"), faq_schema],
-        trail=[("Home", "/"), ("Set up", "/setup"), ("Slack app", None)], current="/setup")
+        trail=[("Home", "/"), ("Set up", "/setup/"), ("Slack app", None)], current="/setup/")

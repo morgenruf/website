@@ -9,12 +9,14 @@ from __future__ import annotations
 
 import diagrams
 
-from shell import INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, faq, footer, head, nav
+from shell import (CTA_NOTE, INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, definition, faq,
+                   footer, head, nav, webpage_schema)
 
 
-def page(*, path, title, description, h1, lede, body, hero="", schema=(), trail=(), current=""):
+def page(*, path, title, description, h1, lede, body, hero="", schema=(), trail=(), current="",
+         define=""):
     crumb_html, crumb_schema = breadcrumbs(trail)
-    schemas = list(schema) + ([crumb_schema] if crumb_schema else [])
+    schemas = list(schema) + ([crumb_schema] if crumb_schema else []) + [webpage_schema(path, title)]
     return (head(title=title, description=description, path=path, schema=schemas)
             + nav(current) + crumb_html
             + f'''<main>
@@ -24,17 +26,22 @@ def page(*, path, title, description, h1, lede, body, hero="", schema=(), trail=
     <p class="lede">{lede}</p>
     <div class="head-cta">
       <a class="btn btn-sun" href="{INSTALL}">{SLACK_MARK}Add to Slack</a>
-      <a class="btn btn-line" href="/setup">Set it up yourself</a>
+      <a class="btn btn-line" href="/setup/">Self-host in about 20 minutes</a>
     </div>
+    {CTA_NOTE}
   </div>
   <div>{hero}</div>
 </div></div></header>
-{body}
+{definition(define) if define else ""}{body}
 </main>''' + cta_band() + footer())
 
 
-def shot(src, alt, caption, w=None, h=None):
-    """Width and height come from the file, so the space is reserved correctly."""
+def shot(src, alt, caption, w=None, h=None, lazy=True):
+    """Width and height come from the file, so the space is reserved correctly.
+
+    A WebP copy sits beside every screenshot and is offered first. The one
+    screenshot in a page header is the largest thing on screen when the page
+    loads, so it is fetched eagerly and early instead of lazily."""
     if w is None or h is None:
         try:
             from PIL import Image
@@ -43,7 +50,10 @@ def shot(src, alt, caption, w=None, h=None):
                 w, h = im.size
         except Exception:
             w, h = 1100, 700
-    return (f'<div class="shot"><img src="{src}" width="{w}" height="{h}" loading="lazy" alt="{alt}"/></div>'
+    load = 'loading="lazy"' if lazy else 'fetchpriority="high"'
+    webp = src.rsplit(".", 1)[0] + ".webp"
+    return (f'<div class="shot"><picture><source srcset="{webp}" type="image/webp"/>'
+            f'<img src="{src}" width="{w}" height="{h}" {load} alt="{alt}"/></picture></div>'
             f'<p class="shot-cap">{caption}</p>')
 
 
@@ -82,6 +92,7 @@ def standups():
         <li>Answers in a thread or the channel, grouped by person or by question</li>
         <li>Blockers highlighted so they are not buried in paragraph three</li>
         <li>A private nudge for whoever has not filed yet</li>
+        <li>An optional mood check alongside the questions, to spot a rough week early</li>
       </ul>
     </div>
     <div>{shot("/screenshots/standups.jpg", "Two standups in the dashboard, each with a completion sparkline and a health badge", "Each standup carries fourteen days of completion, so one that is slipping says so.")}</div>
@@ -109,7 +120,7 @@ def standups():
 <h2 id="the-things-that-decide-whether-a-standup-survives">The things that decide whether a standup survives</h2>
 <p>Most async standup tools do the same first ten percent. What separates one that a team still uses
 in six months is the handling of ordinary human situations. The same list is worked through against
-a hosted tool in <a href="/geekbot-alternative">the comparison with Geekbot</a>.</p>
+a hosted tool in <a href="/geekbot-alternative/">the comparison with Geekbot</a>.</p>
 <ul>
   <li><strong>Timezones per person.</strong> Not per workspace. A 9:30 standup in Toronto is 19:00 in
   Kolkata, and a tool that asks at 19:00 gets ignored.</li>
@@ -129,10 +140,10 @@ a hosted tool in <a href="/geekbot-alternative">the comparison with Geekbot</a>.
   <li><strong>Ask an assistant.</strong> The MCP server lets Claude or Cursor answer questions like
   "who has been blocked on the same thing for days" against your own history.</li>
   <li><strong>CSV export</strong>, because it is your data.</li>
-  <li><strong>Read them next to recognition.</strong> <a href="/insights">Insights</a> asks the
+  <li><strong>Read them next to recognition.</strong> <a href="/insights/">Insights</a> asks the
   questions that need standup answers and kudos at the same time.</li>
 </ul>
-<p>If the reason you are here is the per-seat bill, <a href="/blog/async-standups-slack-free">the
+<p>If the reason you are here is the per-seat bill, <a href="/blog/async-standups-slack-free/">the
 write-up on running async standups in Slack for free</a> is the shorter version of this page.</p>
 </div></div></section>
 '''
@@ -141,17 +152,18 @@ write-up on running async standups in Slack for free</a> is the shorter version 
   <span class="eyebrow">Questions</span><h2 id="about-standups">About standups</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
-        path="/standups",
-        title="Async standups in Slack, self-hosted",
+        path="/standups/",
+        title="Async standups in Slack, free or self-hosted",
         description="Async daily standups in Slack: your own questions, per-person timezones, "
                     "blockers highlighted, and one summary in the channel. Open source and "
                     "self-hosted.",
         h1="Async standups that survive contact with a real team",
-        lede="Each person answers in a DM at a sensible local hour. One summary lands in the channel. "
-             "Nobody sits in a call to hear what they could have read.",
+        lede="Morgenruf asks each person in a DM at a sensible local hour. One summary lands in the "
+             "channel. Nobody sits in a call to hear what they could have read.",
         body=body, schema=[faq_schema],
-        hero=shot("/screenshots/today.jpg", "The Today page: who has answered, who is blocked, and recent recognition", "Today, for a team of eight."),
-        trail=[("Home", "/"), ("Standups", None)], current="/standups")
+        hero=shot("/screenshots/today.jpg", "The Today page: who has answered, who is blocked, and recent recognition", "Today, for a team of eight.", lazy=False),
+        trail=[("Home", "/"), ("Standups", None)], current="/standups/",
+        define='Morgenruf is a free, open-source (MIT) Slack app for async standups. It asks each person your questions by DM at their own local hour and posts one summary to the channel, with blockers pulled out. It runs free on a hosted instance CloudDrove operates, or on your own servers, and also handles coffee chats and kudos.')
 
 
 CONNECT_FAQ = [
@@ -203,7 +215,7 @@ def coffee_chats():
 <h2 id="the-part-most-pairing-tools-leave-out">The part most pairing tools leave out</h2>
 <p>Two people get introduced, say "we should find a time", and never do. The introduction has to
 carry the meeting or the meeting does not happen. Where a hosted product still wins on this is set
-out in <a href="/donut-alternative">the comparison with Donut</a>.</p>
+out in <a href="/donut-alternative/">the comparison with Donut</a>.</p>
 <ul>
   <li><strong>Hours that suit both.</strong> Each person's working day comes from their Slack
   timezone. The suggestions are the overlap, not your convenience.</li>
@@ -225,8 +237,8 @@ turn it on.</p>
 <h2 id="where-people-manage-their-own-participation">Where people manage their own participation</h2>
 <p>From the Morgenruf tab in Slack, which is where people look. Pause, skip a round, snooze for a
 fortnight, ask for a different match, connect or disconnect Zoom. It is the same tab where somebody
-sets leave for <a href="/standups">a standup</a> or checks what is left of their
-<a href="/kudos">kudos allowance</a>. An admin can see who is in the pool and why somebody is not,
+sets leave for <a href="/standups/">a standup</a> or checks what is left of their
+<a href="/kudos/">kudos allowance</a>. An admin can see who is in the pool and why somebody is not,
 which is the question the attendance table exists to answer.</p>
 </div></div></section>
 '''
@@ -235,16 +247,17 @@ which is the question the attendance table exists to answer.</p>
   <span class="eyebrow">Questions</span><h2 id="about-coffee-chats">About coffee chats</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
-        path="/coffee-chats",
-        title="Random coffee chats for Slack, self-hosted",
+        path="/coffee-chats/",
+        title="Slack coffee chat bot: random pairings, free or self-hosted",
         description="Pair people from a Slack channel on a cadence, avoid repeat matches, suggest "
                     "hours that suit both timezones, and let Zoom book the meeting. Self-hosted.",
         h1="Introduce the people who never talk",
         lede="Random pairings from a channel, on a cadence, that end in an actual meeting rather than "
              "two people agreeing they should find a time.",
         body=body, schema=[faq_schema],
-        hero=shot("/screenshots/coffee-chat-settings.jpg", "Coffee chat settings beside a live preview of the Slack introduction", "The settings, and the message they produce."),
-        trail=[("Home", "/"), ("Coffee chats", None)], current="/coffee-chats")
+        hero=shot("/screenshots/coffee-chat-settings.jpg", "Coffee chat settings beside a live preview of the Slack introduction", "The settings, and the message they produce.", lazy=False),
+        trail=[("Home", "/"), ("Coffee chats", None)], current="/coffee-chats/",
+        define='Morgenruf is a free, open-source (MIT) Slack app that runs random coffee chats. It pairs people from a channel on a cadence, avoids repeat matches, suggests hours that suit both timezones and can book the Zoom meeting. It runs on a free hosted instance or on your own servers, alongside async standups and kudos.')
 
 
 KUDOS_FAQ = [
@@ -270,7 +283,7 @@ def kudos():
   <div class="mod" style="border-top:0">
     <div class="mod-copy">
       <span class="tag tag-kudos">How it works</span>
-      <h2 id="a-daily-budget-not-a-applause-button">A daily budget, not a applause button</h2>
+      <h2 id="a-daily-budget-not-an-applause-button">A daily budget, not an applause button</h2>
       <p class="lede">Everyone gets a handful of tokens a day. Give one with a message in a DM or a
       slash command, and it posts publicly with the reason. What is not spent is gone at midnight.</p>
       <ul>
@@ -291,17 +304,32 @@ def kudos():
 noise and people stop reading them. A small daily budget that disappears at midnight does two useful
 things: it makes each one mean something, and it creates a mild pressure to spend them, which is
 what gets somebody to notice the quiet colleague who fixed the build. Midnight is read per person,
-the same way <a href="/standups">a standup</a> works out when to ask.</p>
+the same way <a href="/standups/">a standup</a> works out when to ask.</p>
+
+<h2 id="setting-up-kudos">How do you set up kudos in Slack?</h2>
+<ol>
+  <li>Turn Kudos on in the Morgenruf dashboard. Like every module it is off until you do.</li>
+  <li>Pick the token: any emoji in your workspace, including a custom one.</li>
+  <li>Set the daily allowance.</li>
+  <li>People give one with <code>/kudos @teammate a reason</code> or from a DM, and it posts
+  publicly with the reason.</li>
+</ol>
+
+<h2 id="choosing-the-allowance">Choosing the daily allowance</h2>
+<p>Five a day is a sensible place to start. Fewer makes each one weigh more; more makes it easier to
+thank the small things. Watch the givers leaderboard for a few weeks: if most people run out before
+lunch, raise it, and if hardly anyone spends more than one, lower it. The number matters less than
+the reset, because a budget that disappears at midnight is what gets it spent.</p>
 
 <h2 id="what-it-is-not">What it is not</h2>
 <p>There is no points store, no gift card catalogue, no vendor taking a cut of a reward budget.
 Recognition here is a message to a channel and a number in a leaderboard. If your programme needs
 prizes, this is the wrong tool and an honest answer now saves you a migration later.
-<a href="/heytaco-alternative">The HeyTaco comparison</a> is where that trade is spelled out.</p>
+<a href="/heytaco-alternative/">The HeyTaco comparison</a> is where that trade is spelled out.</p>
 
 <h2 id="reading-the-room">Reading the room</h2>
 <p>Recognition data is only interesting next to something else, which is why it feeds
-<a href="/insights">Insights</a>: somebody who answers every standup and has never been thanked is
+<a href="/insights/">Insights</a>: somebody who answers every standup and has never been thanked is
 visible in a way neither dataset shows alone.</p>
 </div></div></section>
 '''
@@ -310,8 +338,8 @@ visible in a way neither dataset shows alone.</p>
   <span class="eyebrow">Questions</span><h2 id="about-kudos">About kudos</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
-        path="/kudos",
-        title="Kudos: peer recognition in Slack, self-hosted",
+        path="/kudos/",
+        title="Slack kudos bot: peer recognition with a daily allowance",
         description="Peer recognition in Slack with a daily allowance that resets at midnight in "
                     "each person's own timezone, your own emoji as the token, and two "
                     "leaderboards.",
@@ -319,8 +347,9 @@ visible in a way neither dataset shows alone.</p>
         lede="A handful of tokens a day each, given publicly with a reason, gone at midnight if "
              "unspent.",
         body=body, schema=[faq_schema],
-        hero=shot("/screenshots/kudos.jpg", "Kudos settings: the token, the daily allowance and a preview of the message", "Your token, your allowance."),
-        trail=[("Home", "/"), ("Kudos", None)], current="/kudos")
+        hero=shot("/screenshots/kudos.jpg", "Kudos settings: the token, the daily allowance and a preview of the message", "Your token, your allowance.", lazy=False),
+        trail=[("Home", "/"), ("Kudos", None)], current="/kudos/",
+        define='Morgenruf is a free, open-source (MIT) Slack app whose kudos module gives everyone a small daily allowance of recognition tokens, in any emoji you choose, that resets at midnight in their own timezone. It runs on a free hosted instance or on your own servers, alongside async standups and coffee chats.')
 
 
 INSIGHTS_FAQ = [
@@ -340,10 +369,10 @@ INSIGHTS_FAQ = [
 
 def insights():
     body = '''<section class="section"><div class="wrap"><div class="prose">
-''' + diagrams.standup_flow() + '''
+''' + diagrams.standup_flow("Where the data comes from: the answers each morning, which Insights then reads across days.") + '''
 <h2 id="two-questions-worth-asking">Two questions worth asking</h2>
 <p>Most dashboards count things you already knew. These two need two datasets at once, which is the
-only reason to have <a href="/standups">standups</a> and <a href="/kudos">kudos</a> in one app
+only reason to have <a href="/standups/">standups</a> and <a href="/kudos/">kudos</a> in one app
 rather than two subscriptions.</p>
 
 <h3>Who has been blocked on the same thing for days?</h3>
@@ -355,6 +384,13 @@ repeated blockers by person and by how long they have persisted.</p>
 <p>Recognition data is skewed towards visible work. Somebody who files every morning, unblocks other
 people, and never gets a kudo is a retention risk that neither dataset shows on its own.</p>
 
+<h2 id="an-example">What that looks like in practice</h2>
+<p>An illustration rather than a screenshot. Say someone has written "waiting on the staging
+database" in five standups running. Each morning on its own reads as normal, and each one scrolls
+away. Across the week it is one blocker nobody has cleared, which is the pattern Insights groups by
+person and by how long it has lasted. The same goes for somebody who has filed every morning for a
+month, unblocked two colleagues in their answers, and appears nowhere in the kudos leaderboard.</p>
+
 <h2 id="what-it-deliberately-does-not-do">What it deliberately does not do</h2>
 <ul>
   <li>No productivity score, and no ranking of people by output.</li>
@@ -362,7 +398,7 @@ people, and never gets a kudo is a retention risk that neither dataset shows on 
   <li>No exporting your team's answers anywhere. It reads your database and stops there.</li>
 </ul>
 <p>It can be switched off per workspace like any other module. Paying two vendors per seat to get one
-answer of this kind is most of <a href="/blog/why-i-built-morgenruf">why this was built in the first
+answer of this kind is most of <a href="/blog/why-i-built-morgenruf/">why this was built in the first
 place</a>.</p>
 </div></div></section>
 '''
@@ -371,13 +407,14 @@ place</a>.</p>
   <span class="eyebrow">Questions</span><h2 id="about-insights">About insights</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
-        path="/insights",
-        title="Standup and recognition insights, self-hosted",
+        path="/insights/",
+        title="Standup analytics: stale blockers and unthanked work",
         description="Questions that need two datasets at once: blockers nobody has cleared in days, "
                     "and people who answer every standup and are thanked by nobody. No scores.",
         h1="The questions that need two datasets",
         lede="Standups tell you who is blocked. Kudos tell you who was thanked. Together they tell "
              "you something neither can on its own.",
         body=body, schema=[faq_schema],
-        hero=shot("/screenshots/members.jpg", "Member cards showing which features each person runs", "Who runs what, at a glance."),
-        trail=[("Home", "/"), ("Insights", None)], current="/insights")
+        hero=shot("/screenshots/members.jpg", "Member cards showing which features each person runs", "Who runs what, at a glance.", lazy=False),
+        trail=[("Home", "/"), ("Insights", None)], current="/insights/",
+        define='Morgenruf Insights reads standup answers and kudos together, to show blockers nobody has cleared in days and people who contribute every morning without being thanked. It is part of Morgenruf, a free, open-source (MIT) Slack app for standups, coffee chats and kudos, hosted free or self-hosted.')

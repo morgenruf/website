@@ -3,54 +3,61 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Async standups in Slack, self-hosted</title>
+<title>Async standups in Slack, free or self-hosted</title>
 <meta name="description" content="Async daily standups in Slack: your own questions, per-person timezones, blockers highlighted, and one summary in the channel. Open source and self-hosted."/>
 <meta name="robots" content="index, follow"/>
-<link rel="canonical" href="https://morgenruf.dev/standups"/>
+<link rel="canonical" href="https://morgenruf.dev/standups/"/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://morgenruf.dev/standups"/>
-<meta property="og:title" content="Async standups in Slack, self-hosted"/>
+<meta property="og:url" content="https://morgenruf.dev/standups/"/>
+<meta property="og:title" content="Async standups in Slack, free or self-hosted"/>
 <meta property="og:description" content="Async daily standups in Slack: your own questions, per-person timezones, blockers highlighted, and one summary in the channel. Open source and self-hosted."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Async standups in Slack, self-hosted"/>
+<meta name="twitter:title" content="Async standups in Slack, free or self-hosted"/>
 <meta name="twitter:description" content="Async daily standups in Slack: your own questions, per-person timezones, blockers highlighted, and one summary in the channel. Open source and self-hosted."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="theme-color" content="#12131f"/>
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/site.css"/>
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=1789500623"/>
 <script src="/assets/analytics.js" defer></script>
+<script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What time does it ask people?", "acceptedAnswer": {"@type": "Answer", "text": "Whatever hour you set, in each person's own timezone. A team across four continents gets asked at a sensible local hour rather than yours."}}, {"@type": "Question", "name": "Can we have more than one standup?", "acceptedAnswer": {"@type": "Answer", "text": "As many as you like, each with its own channel, schedule, questions and participants. A morning engineering call and a Tuesday design sync are two standups, not a compromise."}}, {"@type": "Question", "name": "What happens when somebody is on leave?", "acceptedAnswer": {"@type": "Answer", "text": "They are skipped, not nagged. Vacation is set from the Slack App Home or the dashboard, and nobody on leave counts against the completion figure."}}, {"@type": "Question", "name": "Can people edit an answer after sending it?", "acceptedAnswer": {"@type": "Answer", "text": "Within a window you choose: until the report posts, for four hours, or indefinitely."}}, {"@type": "Question", "name": "What does the summary look like?", "acceptedAnswer": {"@type": "Answer", "text": "One message in your channel, grouped by person or by question, with blockers pulled out. It can post in a thread to keep the channel quiet, and can go to a different channel from the one the questions came from."}}, {"@type": "Question", "name": "Does it chase people who have not answered?", "acceptedAnswer": {"@type": "Answer", "text": "If you want it to. A nudge goes as a private DM a set number of minutes before the report posts, to the people who have not filed, and to nobody else."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Standups"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "url": "https://morgenruf.dev/standups/", "name": "Async standups in Slack, free or self-hosted", "dateModified": "2026-09-26", "about": {"@id": "https://morgenruf.dev/#software"}, "publisher": {"@id": "https://morgenruf.dev/#organization"}}</script>
 </head>
 <body>
 <nav class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
-    <div class="nav-links"><a href="/standups" aria-current=page>Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/setup">Set up</a><a href="/compare">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
+    <a class="brand" href="/"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <div class="nav-links"><a href="/standups/" aria-current=page>Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/setup/">Set up</a><a href="/compare/">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
     <div class="nav-cta">
       <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
       <a class="btn btn-sun btn-sm" href="https://api.morgenruf.dev/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
     </div>
+    <details class="nav-menu">
+      <summary aria-label="Menu"><span class="burger" aria-hidden="true"></span></summary>
+      <div class="nav-menu-panel"><a href="/standups/" aria-current=page>Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/setup/">Set up</a><a href="/compare/">Compare</a><a href="https://docs.morgenruf.dev">Docs</a><a href="https://github.com/morgenruf/morgenruf">GitHub</a></div>
+    </details>
   </div>
 </nav>
 <div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <span>Standups</span></div><main>
 <header class="page-head"><div class="wrap"><div class="head-in">
   <div>
     <h1>Async standups that survive contact with a real team</h1>
-    <p class="lede">Each person answers in a DM at a sensible local hour. One summary lands in the channel. Nobody sits in a call to hear what they could have read.</p>
+    <p class="lede">Morgenruf asks each person in a DM at a sensible local hour. One summary lands in the channel. Nobody sits in a call to hear what they could have read.</p>
     <div class="head-cta">
       <a class="btn btn-sun" href="https://api.morgenruf.dev/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
-      <a class="btn btn-line" href="/setup">Set it up yourself</a>
+      <a class="btn btn-line" href="/setup/">Self-host in about 20 minutes</a>
     </div>
+    <p class="cta-note">Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.</p>
   </div>
-  <div><div class="shot"><img src="/screenshots/today.jpg" width="1182" height="600" loading="lazy" alt="The Today page: who has answered, who is blocked, and recent recognition"/></div><p class="shot-cap">Today, for a team of eight.</p></div>
+  <div><div class="shot"><picture><source srcset="/screenshots/today.webp" type="image/webp"/><img src="/screenshots/today.jpg" width="1182" height="600" fetchpriority="high" alt="The Today page: who has answered, who is blocked, and recent recognition"/></picture></div><p class="shot-cap">Today, for a team of eight.</p></div>
 </div></div></header>
+<section class="section define"><div class="wrap"><p class="lede">Morgenruf is a free, open-source (MIT) Slack app for async standups. It asks each person your questions by DM at their own local hour and posts one summary to the channel, with blockers pulled out. It runs free on a hosted instance CloudDrove operates, or on your own servers, and also handles coffee chats and kudos.</p><p class="reviewed">Last reviewed September 26, 2026</p></div></section>
 <section class="section"><div class="wrap">
   <div class="mod" style="border-top:0">
     <div class="mod-copy">
@@ -63,9 +70,10 @@
         <li>Answers in a thread or the channel, grouped by person or by question</li>
         <li>Blockers highlighted so they are not buried in paragraph three</li>
         <li>A private nudge for whoever has not filed yet</li>
+        <li>An optional mood check alongside the questions, to spot a rough week early</li>
       </ul>
     </div>
-    <div><div class="shot"><img src="/screenshots/standups.jpg" width="1180" height="530" loading="lazy" alt="Two standups in the dashboard, each with a completion sparkline and a health badge"/></div><p class="shot-cap">Each standup carries fourteen days of completion, so one that is slipping says so.</p></div>
+    <div><div class="shot"><picture><source srcset="/screenshots/standups.webp" type="image/webp"/><img src="/screenshots/standups.jpg" width="1180" height="530" loading="lazy" alt="Two standups in the dashboard, each with a completion sparkline and a health badge"/></picture></div><p class="shot-cap">Each standup carries fourteen days of completion, so one that is slipping says so.</p></div>
   </div>
 
   <div class="mod">
@@ -81,7 +89,7 @@
         <li>When the next coffee chat round goes out, and whether it is overdue</li>
       </ul>
     </div>
-    <div><div class="shot"><img src="/screenshots/today.jpg" width="1182" height="600" loading="lazy" alt="The Today page showing answered and blocked counts, this morning's answers and recent kudos"/></div><p class="shot-cap">Today, for a team of eight.</p></div>
+    <div><div class="shot"><picture><source srcset="/screenshots/today.webp" type="image/webp"/><img src="/screenshots/today.jpg" width="1182" height="600" loading="lazy" alt="The Today page showing answered and blocked counts, this morning's answers and recent kudos"/></picture></div><p class="shot-cap">Today, for a team of eight.</p></div>
   </div>
 </div></section>
 
@@ -108,7 +116,7 @@
 <h2 id="the-things-that-decide-whether-a-standup-survives">The things that decide whether a standup survives</h2>
 <p>Most async standup tools do the same first ten percent. What separates one that a team still uses
 in six months is the handling of ordinary human situations. The same list is worked through against
-a hosted tool in <a href="/geekbot-alternative">the comparison with Geekbot</a>.</p>
+a hosted tool in <a href="/geekbot-alternative/">the comparison with Geekbot</a>.</p>
 <ul>
   <li><strong>Timezones per person.</strong> Not per workspace. A 9:30 standup in Toronto is 19:00 in
   Kolkata, and a tool that asks at 19:00 gets ignored.</li>
@@ -128,10 +136,10 @@ a hosted tool in <a href="/geekbot-alternative">the comparison with Geekbot</a>.
   <li><strong>Ask an assistant.</strong> The MCP server lets Claude or Cursor answer questions like
   "who has been blocked on the same thing for days" against your own history.</li>
   <li><strong>CSV export</strong>, because it is your data.</li>
-  <li><strong>Read them next to recognition.</strong> <a href="/insights">Insights</a> asks the
+  <li><strong>Read them next to recognition.</strong> <a href="/insights/">Insights</a> asks the
   questions that need standup answers and kudos at the same time.</li>
 </ul>
-<p>If the reason you are here is the per-seat bill, <a href="/blog/async-standups-slack-free">the
+<p>If the reason you are here is the per-seat bill, <a href="/blog/async-standups-slack-free/">the
 write-up on running async standups in Slack for free</a> is the shorter version of this page.</p>
 </div></div></section>
 <section class="section"><div class="wrap" style="max-width:820px">
@@ -141,7 +149,7 @@ write-up on running async standups in Slack for free</a> is the shorter version 
   <div class="wrap">
     <div class="band">
       <h2>Free for every seat, and that is the whole pricing page</h2>
-      <p class="lede">MIT licensed, no paid tier, nothing held back from the repository. You pay for a server and a database, which you were paying for anyway.</p>
+      <p class="lede">Add to Slack puts Morgenruf on the free hosted instance CloudDrove runs, in about two minutes. Or self-host the same MIT code with Docker Compose or Helm and pay only for the server.</p>
       <div class="band-cta">
         <a class="btn btn-sun" href="https://api.morgenruf.dev/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
         <a class="btn btn-ghost" href="https://github.com/morgenruf/morgenruf">Read the source</a>
@@ -153,17 +161,18 @@ write-up on running async standups in Slack for free</a> is the shorter version 
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
         <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
-        chats and recognition. Self-host it and keep your own data.</p>
+        chats and recognition. Free on the hosted instance, or self-host it and keep your own
+        data.</p>
         <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
         Kitchener, Ontario 🇨🇦</p>
       </div>
-      <div><h3>Product</h3><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h3>Set up</h3><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
+      <div><h3>Product</h3><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/insights/">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog/">Changelog</a></div><div><h3>Set up</h3><a href="/setup/">All the ways</a><a href="/setup/docker/">Docker Compose</a><a href="/setup/kubernetes/">Kubernetes and Helm</a><a href="/setup/slack-app/">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare/">All comparisons</a><a href="/geekbot-alternative/">vs Geekbot</a><a href="/donut-alternative/">vs Donut</a><a href="/heytaco-alternative/">vs HeyTaco</a><a href="/standup-prosper-alternative/">vs Standup &amp; Prosper</a><a href="/open-source-standup-bot/">Open-source standup bot</a><a href="/self-hosted-standup-bot/">Self-hosted standup bot</a><a href="/slack-standup-bot/">Slack standup bot</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog/">Blog</a><a href="/support/">Support</a></div>
     </div>
     <div class="foot-bottom">
       <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
-      <span class="foot-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></span>
+      <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></span>
     </div>
   </div>
 </footer>

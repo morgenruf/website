@@ -6,6 +6,7 @@ worse than not having the page: it tells a visitor the project stalled.
 
 from __future__ import annotations
 
+import functools
 import pathlib
 import re
 
@@ -16,6 +17,7 @@ KIND = {"Added": "state done", "Fixed": "state", "Changed": "state", "Removed": 
         "Security": "state"}
 
 
+@functools.lru_cache(maxsize=None)
 def _published_tags():
     """Tags that have a GitHub release. The 0.x entries predate releases, and
     linking them produced four 404s on a page about being well maintained."""
@@ -25,9 +27,26 @@ def _published_tags():
             ["gh", "release", "list", "--limit", "80", "--repo", "morgenruf/morgenruf",
              "--json", "tagName", "-q", ".[].tagName"],
             capture_output=True, text=True, timeout=30).stdout.split()
-        return {t.lstrip("v") for t in out}
+        tags = {t.lstrip("v") for t in out}
     except Exception:
-        return set()
+        tags = set()
+    if not tags:
+        # gh missing, logged out or rate limited: keep the links the last
+        # build found rather than silently dropping every one of them.
+        built = pathlib.Path(__file__).resolve().parent.parent.parent / "changelog/index.html"
+        if built.exists():
+            tags = set(re.findall(r"/releases/tag/v([0-9.]+)", built.read_text()))
+    return tags
+
+
+def latest_release():
+    """The newest version that has a published GitHub release, and its date."""
+    entries = _entries()
+    published = _published_tags()
+    for version, date, _ in entries:
+        if version in published:
+            return version, date
+    return (entries[0][0], entries[0][1]) if entries else ("", "")
 
 
 def _entries():
@@ -90,8 +109,8 @@ def changelog():
 </div></section>'''
     faq_html, faq_schema = faq([
         ("How often are there releases?",
-         "Whenever something is ready. Recent months have averaged several a week, including fixes "
-         "that went out within an hour of being reported."),
+         "Whenever something is ready. Some months see several in a week and others none; the dates "
+         "above are the record. Fixes have gone out within an hour of being reported."),
         ("How do I upgrade?",
          "Pull the new image and restart, or helm upgrade. Migrations run themselves before the app "
          "starts."),
@@ -105,7 +124,7 @@ def changelog():
     return (head(title=f"Changelog: every Morgenruf release, currently {latest}",
                  description="Every Morgenruf release and what changed in it: new modules, fixes and the "
                              "occasional removal, generated straight from the repository's own changelog file.",
-                 path="/changelog", schema=[faq_schema, crumb_schema])
+                 path="/changelog/", schema=[faq_schema, crumb_schema])
             + nav() + crumb_html
             + f'''<main>
 <header class="page-head"><div class="wrap">

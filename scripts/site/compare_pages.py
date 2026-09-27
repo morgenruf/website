@@ -7,12 +7,14 @@ bad at everything convinces nobody and ranks badly, because people bounce.
 
 from __future__ import annotations
 
-from shell import INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, faq, footer, head, nav
+from shell import (CTA_NOTE, INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, definition, faq,
+                   footer, head, nav, webpage_schema)
 
 
-def page(*, path, title, description, h1, lede, body, schema=(), trail=(), current="/compare"):
+def page(*, path, title, description, h1, lede, body, schema=(), trail=(), current="/compare/",
+         define=""):
     crumb_html, crumb_schema = breadcrumbs(trail)
-    schemas = list(schema) + ([crumb_schema] if crumb_schema else [])
+    schemas = list(schema) + ([crumb_schema] if crumb_schema else []) + [webpage_schema(path, title)]
     return (head(title=title, description=description, path=path, schema=schemas)
             + nav(current) + crumb_html
             + f'''<main>
@@ -21,10 +23,11 @@ def page(*, path, title, description, h1, lede, body, schema=(), trail=(), curre
   <p class="lede">{lede}</p>
   <div class="head-cta">
     <a class="btn btn-sun" href="{INSTALL}">{SLACK_MARK}Add to Slack</a>
-    <a class="btn btn-line" href="/setup">Set it up yourself</a>
+    <a class="btn btn-line" href="/setup/">Self-host in about 20 minutes</a>
   </div>
+  {CTA_NOTE}
 </div></header>
-{body}
+{definition(define) if define else ""}{body}
 </main>''' + cta_band() + footer())
 
 
@@ -51,12 +54,13 @@ def donut():
         ("Source you can read", "MIT", "yes", "Closed", "no"),
         ("Your pairing data lives in", "your database", "yes", "their cloud", "no"),
         ("Microsoft Teams", "In progress", "no", "Yes", "yes"),
-        ("Price", "Free, any team size", "yes", "Per seat, monthly", "no"),
+        ("Price", "Free, any team size", "yes", "Free plan; paid plans from about $74 a month", ""),
     ]
     body = f'''<section class="section"><div class="wrap">
 {table(rows, "Donut")}
-<p class="shot-cap" style="margin-top:12px">Checked against Donut's public pages in September 2026.
-Their plans change; if something here is out of date, please
+<p class="shot-cap" style="margin-top:12px">Prices checked 2026-09-26 against
+<a href="https://www.donut.com/pricing/">Donut's pricing page</a>. Their plans change; if something
+here is out of date, please
 <a href="{REPO}/issues/new/choose">tell me and I will fix it</a>.</p>
 </div></section>
 
@@ -65,8 +69,8 @@ Their plans change; if something here is out of date, please
 <p>Donut is a good product and the one that made this category. It has years of polish, a Teams
 version that works today, and a wider surface than this: journeys for onboarding, channel prompts,
 video facilitation.</p>
-{HONEST % ("If you need Microsoft Teams today, or onboarding journeys, or you simply do not want to run "
-           "software, Donut is the better answer and you should use it.")}
+{HONEST % ("If you need Microsoft Teams today, or onboarding journeys, or a video facilitation layer, "
+           "Donut is the better answer and you should use it.")}
 
 <h2 id="where-this-is-different">Where this is different</h2>
 <h3>It is one app, not three subscriptions</h3>
@@ -80,12 +84,21 @@ days, each of them presses one, and a matching pair becomes a Zoom meeting at th
 the account of whoever connected theirs.</p>
 
 <h3>Your data stays yours</h3>
-<p>Who met whom, and who quietly opted out, lives in Postgres you control. Nothing is sent anywhere
-else, and leaving is not a migration because it is already yours.</p>
+<p>Self-hosted, who met whom and who quietly opted out lives in Postgres you control. The install
+talks to Slack only, plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator
+turns those on. Leaving is not a migration because the data is already yours.</p>
 
 <h3>The price</h3>
-<p>Free for every seat, at any size, because you run it. A thirty person team pays for a small server
-and a database instead of a per-seat subscription that grows with hiring.</p>
+<p>Free for every seat, at any size: on the free hosted instance, or self-hosted, where a thirty
+person team pays for a small server and a database instead of a subscription that grows with
+hiring.</p>
+
+<h2 id="for-people-teams">For people teams: nothing to install on a server</h2>
+<p>Add to Slack puts Morgenruf on the free hosted instance, so a people ops lead can start coffee
+chats without anyone running a server. Each round closes by asking whether the pair met, and the
+answer is recorded four ways: met, did not meet, never replied, and never delivered. If your company
+needs the data in-house, this is the line to forward to engineering: "Morgenruf is one container
+and a Postgres, MIT licensed, about twenty minutes to set up: morgenruf.dev/setup/".</p>
 
 <h2 id="switching">Switching</h2>
 <p>There is no importer, and pairing history is the one thing worth not losing, so the sensible move
@@ -103,23 +116,23 @@ whether the introductions land, then turn Donut off. Nothing here needs a contra
          "No. Without it a pairing uses whatever room link you set on the programme, or none. Zoom "
          "only adds a real meeting at the agreed hour."),
         ("What does it cost for 200 people?",
-         "Nothing per seat. The server and database you run it on, which for 200 people is a small "
-         "instance."),
+         "Nothing per seat. On the hosted instance, nothing at all. Self-hosted, the server and "
+         "database you run it on, which for 200 people is a small instance."),
     ])
     body += f'''<section class="section"><div class="wrap" style="max-width:820px">
   <span class="eyebrow">Questions</span><h2 id="morgenruf-and-donut">Morgenruf and Donut</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
-        path="/donut-alternative",
-        title="Open-source Donut alternative for Slack coffee chats",
-        description="A self-hosted Donut alternative for random coffee chats in Slack, plus "
-                    "standups and kudos in the same app. MIT licensed, no per-seat fee, your data "
-                    "stays put.",
-        h1="An open-source Donut alternative you host yourself",
+        path="/donut-alternative/",
+        title="Free, open-source Donut alternative for Slack coffee chats",
+        description="A free Donut alternative for random coffee chats in Slack, plus standups and "
+                    "kudos in the same app. MIT licensed, no per-seat fee, hosted or self-hosted.",
+        h1="A free, open-source Donut alternative for Slack",
         lede="Random introductions from a channel, a time both people actually pick, and the meeting "
              "booked at that hour. Plus standups and kudos in the same app.",
         body=body, schema=[faq_schema],
-        trail=[("Home", "/"), ("Compare", "/compare"), ("vs Donut", None)])
+        trail=[("Home", "/"), ("Compare", "/compare/"), ("vs Donut", None)],
+        define='Morgenruf is a free, open-source (MIT) Donut alternative for Slack coffee chats. It pairs people from a channel, suggests hours both can make, and books the Zoom meeting. Donut has a free plan and paid plans from about $74 a month (checked 2026-09-26); Morgenruf is free at any size, hosted or self-hosted.')
 
 
 def heytaco():
@@ -162,9 +175,14 @@ custom emoji and the bot picks it up on its own.</p>
 <p>A leaderboard tells you who is thanked. Put it beside standup answers and you can ask who is
 contributing and being thanked by nobody, which is the question worth acting on.</p>
 
+<h3>Nothing for HR to install</h3>
+<p>Add to Slack puts Morgenruf on the free hosted instance, so whoever runs recognition can switch
+kudos on without an engineer. If the data has to stay in-house, the self-hosted route is one
+container and a Postgres; <a href="/setup/">the setup page</a> is the link to forward.</p>
+
 <h3>The price, again</h3>
-<p>Free for every seat. Recognition tools are usually priced per person per month, which means the
-cost of thanking people grows exactly as you hire them.</p>
+<p>Free for every seat, hosted or self-hosted. Recognition tools are usually priced per person per
+month, which means the cost of thanking people grows exactly as you hire them.</p>
 </div></div></section>
 '''
     faq_html, faq_schema = faq([
@@ -181,33 +199,32 @@ cost of thanking people grows exactly as you hire them.</p>
   <span class="eyebrow">Questions</span><h2 id="morgenruf-and-heytaco">Morgenruf and HeyTaco</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
-        path="/heytaco-alternative",
-        title="Open-source HeyTaco alternative for Slack recognition",
-        description="A self-hosted HeyTaco alternative for Slack recognition: any emoji as the "
-                    "token, a daily allowance per timezone, plus standups and coffee chats. MIT "
-                    "licensed.",
-        h1="An open-source HeyTaco alternative you host yourself",
+        path="/heytaco-alternative/",
+        title="Free, open-source HeyTaco alternative for Slack kudos",
+        description="A free HeyTaco alternative for Slack recognition: any emoji as the token, a "
+                    "daily allowance per timezone, plus standups and coffee chats. MIT licensed.",
+        h1="A free, open-source HeyTaco alternative for Slack",
         lede="A daily allowance, your own emoji, leaderboards for giving as well as receiving, and "
              "no per-seat bill for thanking your colleagues.",
         body=body, schema=[faq_schema],
-        trail=[("Home", "/"), ("Compare", "/compare"), ("vs HeyTaco", None)])
+        trail=[("Home", "/"), ("Compare", "/compare/"), ("vs HeyTaco", None)],
+        define='Morgenruf is a free, open-source (MIT) HeyTaco alternative for recognition in Slack. Everyone gets a daily allowance of tokens, in any emoji you like, that resets at midnight in their own timezone, with leaderboards for giving and receiving. It has no rewards catalogue, runs hosted free or self-hosted, and includes standups and coffee chats.')
 
 
 PRICE_ROWS = [
     ("Geekbot", "Async standups, check-ins, polls",
-     "Per person per month, published at $2.50 on the standard plan, less on an annual term, "
-     "billed on the people who take part."),
+     "Free for up to 10 users. Above that, $3 per user per month, or $2.50 per user per month "
+     "billed annually."),
     ("Donut", "Random pairings, onboarding journeys, channel prompts",
-     "A free tier that covers a single small programme, then per person per month once you want "
-     "more than that."),
+     "A free plan, then paid plans from about $74 a month."),
     ("HeyTaco", "Peer recognition, leaderboards, a rewards catalogue",
      "Per person per month, and any gift cards in the catalogue come out of a budget you fund on "
      "top of the subscription."),
     ("Standup &amp; Prosper", "Async standups",
      "A free tier that genuinely fits a small team, then per person per month above it."),
     ("Morgenruf", "Standups, coffee chats and kudos in one app",
-     "No seat component at any size. You pay for a small server and a Postgres, which is a fixed "
-     "line whether you are twelve people or three hundred."),
+     "Free on the hosted instance CloudDrove runs. Self-hosted, no seat component at any size: a "
+     "small server and a Postgres, a fixed line whether you are twelve people or three hundred."),
 ]
 
 
@@ -231,17 +248,17 @@ def hub():
   <span class="eyebrow">The comparisons</span>
   <h2 id="the-comparisons" style="margin-bottom:24px">Start with the one you are paying for</h2>
   <div class="tiles">
-    <a class="tile" href="/geekbot-alternative"><h3>vs Geekbot</h3>
+    <a class="tile" href="/geekbot-alternative/"><h3>vs Geekbot</h3>
       <p>Async standups, the closest comparison, and the one most teams arrive from.</p><span class="go">Compare →</span></a>
-    <a class="tile" href="/donut-alternative"><h3>vs Donut</h3>
+    <a class="tile" href="/donut-alternative/"><h3>vs Donut</h3>
       <p>Random coffee chats and introductions, plus what Donut does that this does not.</p><span class="go">Compare →</span></a>
-    <a class="tile" href="/heytaco-alternative"><h3>vs HeyTaco</h3>
+    <a class="tile" href="/heytaco-alternative/"><h3>vs HeyTaco</h3>
       <p>Peer recognition, daily allowances, and where a rewards catalogue matters.</p><span class="go">Compare →</span></a>
-    <a class="tile" href="/standup-prosper-alternative"><h3>vs Standup &amp; Prosper</h3>
+    <a class="tile" href="/standup-prosper-alternative/"><h3>vs Standup &amp; Prosper</h3>
       <p>Another async standup bot, and the differences that actually show up in use.</p><span class="go">Compare →</span></a>
-    <a class="tile" href="/open-source-standup-bot"><h3>Open source options</h3>
+    <a class="tile" href="/open-source-standup-bot/"><h3>Open source options</h3>
       <p>What else you can self-host, and honestly where each one fits.</p><span class="go">Read →</span></a>
-    <a class="tile" href="/self-hosted-standup-bot"><h3>Why self-host at all</h3>
+    <a class="tile" href="/self-hosted-standup-bot/"><h3>Why self-host at all</h3>
       <p>Data residency, cost at scale, and the parts that are genuinely harder.</p><span class="go">Read →</span></a>
   </div>
 
@@ -256,7 +273,7 @@ def hub():
     three days late, the enterprise grid. It is listed in the Slack App Directory, so an IT admin
     can approve it through the process they already have, and it comes with support that somebody is
     paid to answer. Nothing to deploy, patch or back up. The longer
-    <a href="/geekbot-alternative">Geekbot and Morgenruf comparison</a> goes through the daily
+    <a href="/geekbot-alternative/">Geekbot and Morgenruf comparison</a> goes through the daily
     shape of both.</p>
 
     <h3>Donut</h3>
@@ -264,39 +281,43 @@ def hub():
     prompts, video facilitation, and a Microsoft Teams version that works today rather than one that
     is in progress. If your pairing programme is really an onboarding programme, Donut is built for
     that and this is not. The
-    <a href="/donut-alternative">Donut alternative page</a> has the feature-by-feature version.</p>
+    <a href="/donut-alternative/">Donut alternative page</a> has the feature-by-feature version.</p>
 
     <h3>HeyTaco</h3>
     <p>The taco is good product design and the gamification is thought through, but the real gap is
     the rewards catalogue: a recognition programme with a budget behind it, where thanks convert
     into something people can spend. Morgenruf gives you a message and a leaderboard and stops
     there. If HR has a recognition budget, read the
-    <a href="/heytaco-alternative">HeyTaco alternative page</a> before you move anything.</p>
+    <a href="/heytaco-alternative/">HeyTaco alternative page</a> before you move anything.</p>
 
     <h3>Standup &amp; Prosper</h3>
     <p>A simple, well made standup bot with a free tier that covers a small team properly. If you
     are eight people and the free tier fits, self-hosting anything is a worse deal than the zero you
     are already paying. It only starts to bite when you outgrow the tier or the answers cannot sit
     in somebody else's cloud, which is what the
-    <a href="/standup-prosper-alternative">Standup &amp; Prosper comparison</a> works through.</p>
+    <a href="/standup-prosper-alternative/">Standup &amp; Prosper comparison</a> works through.</p>
 
     <h2 id="what-it-costs">What the bill actually looks like</h2>
     {price_table()}
-    <p style="margin-top:18px">Prices checked against public pricing pages in September 2026 and
-    quoted with that date attached, because they move. At the $2.50 per person per month Geekbot
-    publishes, a team of thirty pays $900 a year for the morning questions alone. Add pairing and
-    recognition at comparable per-seat rates and the same thirty people cost somewhere between two
-    and three thousand a year, rising every time you hire. Self-hosted, the same three rituals are a
-    small VPS at roughly $5 to $20 a month plus a Postgres, and that number does not change at three
-    hundred people. Counting only money, a standup-only team crosses over at around a dozen people.
-    Counting somebody's attention as well, later than that.</p>
+    <p style="margin-top:18px">Prices checked 2026-09-26 against
+    <a href="https://geekbot.com/pricing/">Geekbot's</a> and
+    <a href="https://www.donut.com/pricing/">Donut's</a> pricing pages, and quoted with that date
+    attached, because they move. Geekbot is free for up to 10 users. Past that, a team of thirty
+    pays $900 a year on annual billing, or $1,080 paying monthly, for the morning questions alone.
+    Add pairing and recognition at comparable per-seat rates and the same thirty people cost
+    somewhere between two and three thousand a year, rising every time you hire. Morgenruf on the
+    hosted instance costs nothing at any size. Self-hosted, the same three rituals are a small VPS
+    at roughly $5 to $20 a month plus a Postgres, and that number does not change at three hundred
+    people. Counting only money, a standup-only team of ten or fewer pays nothing either way; above
+    that, Geekbot's per-user price passes the cost of a small server almost at once.</p>
 
     <h2 id="what-self-hosting-costs">What self-hosting costs you in effort</h2>
-    <p>The money argument is easy and slightly dishonest on its own, because the time is real. Here
-    is the whole of it:</p>
+    <p>None of this applies on the free hosted instance. It applies when you self-host, which is
+    the route for keeping the data in your own database. The money argument is easy and slightly
+    dishonest on its own, because the time is real. Here is the whole of it:</p>
     <ul>
       <li><strong>The install.</strong> One container and a Postgres 13 or newer, about twenty
-      minutes, most of which is <a href="/setup">creating the Slack app</a> rather than deploying
+      minutes, most of which is <a href="/setup/">creating the Slack app</a> rather than deploying
       anything.</li>
       <li><strong>An HTTPS URL Slack can reach.</strong> An ingress if you run Kubernetes, or a
       Cloudflare tunnel, which needs no open port.</li>
@@ -309,31 +330,33 @@ def hub():
     </ul>
     <p>The part that catches people is never the container. It is Slack scopes: a workspace that
     installed before a feature existed has not granted that feature's permissions, and the fix is a
-    reinstall. <a href="/self-hosted-standup-bot">What self-hosting involves</a> covers the rest,
-    and <a href="/support">paid setup and hosting</a> exists if you would rather buy the time back.</p>
+    reinstall. <a href="/self-hosted-standup-bot/">What self-hosting involves</a> covers the rest,
+    and <a href="/support/">paid setup and hosting</a> exists if you would rather buy the time back.</p>
 
     <h2 id="who-should-not">Who should not pick Morgenruf</h2>
     <p>Saying this plainly saves everybody an afternoon:</p>
     <ul>
       <li><strong>Anyone on Microsoft Teams.</strong> Support is in progress, which means not today.
-      Donut and HeyTaco both ship it now.</li>
+      Geekbot, Donut and HeyTaco all ship it now.</li>
       <li><strong>Anyone who needs a rewards catalogue.</strong> Gift cards, budgets, redemption.
       HeyTaco or Bonusly, not this.</li>
-      <li><strong>Teams with nowhere to run a container</strong> and no appetite to find one. A
-      per-seat bill is cheaper than an afternoon of somebody's attention every month.</li>
+      <li><strong>Teams that need their data in-house but have nowhere to run a container</strong>
+      and no appetite to find one. The hosted instance is free, but it is CloudDrove's database,
+      not yours.</li>
       <li><strong>Anyone who needs an App Directory listing</strong> for procurement or IT
-      governance. A self-hosted app you installed yourself does not have one.</li>
+      governance. Morgenruf is not listed there today, hosted or self-hosted.</li>
       <li><strong>Teams that need a contracted response time</strong> and will not buy it
       separately. Community support is one maintainer who also has a job.</li>
-      <li><strong>Teams already happy on a free tier.</strong> If Standup &amp; Prosper covers your
-      ten people for nothing, there is no argument here worth your time.</li>
+      <li><strong>Teams already happy on a free tier.</strong> If Geekbot's free plan or Standup
+      &amp; Prosper covers your ten people for nothing, there is no argument here worth your
+      time.</li>
     </ul>
 
     <h2 id="one-app">What the single app is actually for</h2>
     <p>The reason to consolidate is not tidiness, it is that the three signals sit in one database.
-    <a href="/standups">Async standups</a> tell you who is stuck and who quietly stopped answering.
-    <a href="/coffee-chats">Coffee chats</a> tell you who has met whom, which is the map of how work
-    actually travels. <a href="/kudos">Kudos</a> tell you who gets thanked. Separately those are
+    <a href="/standups/">Async standups</a> tell you who is stuck and who quietly stopped answering.
+    <a href="/coffee-chats/">Coffee chats</a> tell you who has met whom, which is the map of how work
+    actually travels. <a href="/kudos/">Kudos</a> tell you who gets thanked. Separately those are
     three dashboards nobody opens. Together you can ask the question worth acting on: who is
     answering every morning, unblocking other people, and being thanked by nobody. No integration
     between three vendors gives you that, and no vendor is going to build it for you.</p>
@@ -348,8 +371,8 @@ def hub():
 </div></section>
 '''
     return page(
-        path="/compare",
-        title="Morgenruf vs Geekbot, Donut, HeyTaco and Standup & Prosper",
+        path="/compare/",
+        title="Standup bot comparison: Morgenruf vs Geekbot and others",
         description="Honest comparisons between Morgenruf and the tools teams usually pay for: "
                     "Geekbot, Donut, HeyTaco and Standup & Prosper, including where each of them "
                     "wins.",

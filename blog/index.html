@@ -6,9 +6,9 @@
 <title>Blog: async standups, self-hosting and team rituals</title>
 <meta name="description" content="Writing about async standups, self-hosting Slack tools and building an open-source alternative to per-seat team software. Three posts so far, no listicles."/>
 <meta name="robots" content="index, follow"/>
-<link rel="canonical" href="https://morgenruf.dev/blog"/>
+<link rel="canonical" href="https://morgenruf.dev/blog/"/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://morgenruf.dev/blog"/>
+<meta property="og:url" content="https://morgenruf.dev/blog/"/>
 <meta property="og:title" content="Blog: async standups, self-hosting and team rituals"/>
 <meta property="og:description" content="Writing about async standups, self-hosting Slack tools and building an open-source alternative to per-seat team software. Three posts so far, no listicles."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
@@ -20,27 +20,31 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/site.css"/>
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=1789500623"/>
 <script src="/assets/analytics.js" defer></script>
+<script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Blog"}]}</script>
 </head>
 <body>
 <nav class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
-    <div class="nav-links"><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/setup">Set up</a><a href="/compare">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
+    <a class="brand" href="/"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <div class="nav-links"><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/setup/">Set up</a><a href="/compare/">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
     <div class="nav-cta">
       <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
       <a class="btn btn-sun btn-sm" href="https://api.morgenruf.dev/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
     </div>
+    <details class="nav-menu">
+      <summary aria-label="Menu"><span class="burger" aria-hidden="true"></span></summary>
+      <div class="nav-menu-panel"><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/setup/">Set up</a><a href="/compare/">Compare</a><a href="https://docs.morgenruf.dev">Docs</a><a href="https://github.com/morgenruf/morgenruf">GitHub</a></div>
+    </details>
   </div>
 </nav>
 <div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <span>Blog</span></div><main>
 <header class="page-head"><div class="wrap">
-  <h1>Writing</h1>
+  <h1>Writing about async standups and self-hosting</h1>
   <p class="lede">On async standups, self-hosting, and what building the alternative actually involves.</p>
 </div></header>
 <section class="section"><div class="wrap"><div class="prose"><p>Three posts so far. They get written when something is concrete enough to be
@@ -49,37 +53,38 @@ a comparison that is easier to make in long form than in a table. Nothing here i
 which is why there are three of them and not thirty.</p>
 
 <h2 id="the-posts">The posts</h2>
-<div class="tiles" style="margin:24px 0 8px"><a class="tile" href="/blog/why-i-built-morgenruf"><h3>Why I built a free Geekbot alternative</h3><p>A Saturday at a Tim Hortons in Kitchener, a monthly SaaS bill, and one line on it: $2.50 per person per month for a bot that DMs three questions and pastes the answers into a channel. The post works through how small the core loop really is, what the weekend produced, and which features went in afterwards because they cost nothing once the foundation existed: mood tracking, webhooks, CSV export and an MCP server.</p><span class="go">Read the post →</span></a><a class="tile" href="/blog/async-standups-slack-free"><h3>Async standups in Slack, for free</h3><p>The arithmetic first: a quarter hour a day is 75 minutes a week per person, and 12.5 hours a week for a team of ten, most of it spent listening. Then what replaces it. A scheduled DM, short written answers, one summary in a channel, and the five steps to get there. It ends on the per-seat maths, which is where the case for async stops being about meetings.</p><span class="go">Read the post →</span></a><a class="tile" href="/blog/geekbot-vs-morgenruf"><h3>Geekbot and Morgenruf, compared honestly</h3><p>A feature table, then the section that matters: where Geekbot wins. Zero operations, a Slack App Directory listing your IT admin already knows how to approve, years of edge cases, and a funded team behind it. After that, the parts self-hosting wins, and a straight answer on who should choose which. If you only read one of these before switching, read this one.</p><span class="go">Read the post →</span></a></div>
+<div class="tiles" style="margin:24px 0 8px"><a class="tile" href="/blog/why-i-built-morgenruf/"><h3>Why I built Morgenruf in a Tim Hortons in Kitchener</h3><p>A Saturday at a Tim Hortons in Kitchener, a monthly SaaS bill, and one line on it: $2.50 per person per month for a bot that DMs three questions and pastes the answers into a channel. The post works through how small the core loop really is, what the weekend produced, and which features went in afterwards because they cost nothing once the foundation existed: mood tracking, webhooks, CSV export and an MCP server.</p><span class="go">Read the post →</span></a><a class="tile" href="/blog/async-standups-slack-free/"><h3>The 12.5 hour standup: taking a team of ten async in Slack</h3><p>The arithmetic first: a quarter hour a day is 75 minutes a week per person, and 12.5 hours a week for a team of ten, most of it spent listening. Then what replaces it. A scheduled DM, short written answers, one summary in a channel, and the five steps to get there. It ends on the per-seat maths, which is where the case for async stops being about meetings.</p><span class="go">Read the post →</span></a><a class="tile" href="/blog/geekbot-vs-morgenruf/"><h3>Geekbot and Morgenruf, compared honestly</h3><p>A feature table, then the section that matters: where Geekbot wins. Zero operations, a Slack App Directory listing your IT admin already knows how to approve, years of edge cases, and a funded team behind it. After that, the parts self-hosting wins, and a straight answer on who should choose which. If you only read one of these before switching, read this one.</p><span class="go">Read the post →</span></a></div>
 
 <h2 id="what-gets-written">What gets written here, and what does not</h2>
 <p>The subjects are the ones this project keeps running into: async standups and whether they
 actually replace the meeting, what self-hosting a small Slack app costs in money and in evenings,
 and the parts of building an alternative to per-seat software that turned out harder than expected.
 Where a post compares Morgenruf with something people pay for, it says where the paid tool wins,
-for the same reason the <a href="/compare">comparison pages</a> do: a page that claims the
+for the same reason the <a href="/compare/">comparison pages</a> do: a page that claims the
 competitor is bad at everything convinces nobody.</p>
 <p>What you will not find is a list of the ten best standup bots of the year, a post written to
 hold a keyword, or an announcement dressed as an essay. Releases go in the
-<a href="/changelog">changelog</a>, and how each part of the app behaves is documented on the
-<a href="/standups">standups</a>, <a href="/coffee-chats">coffee chats</a> and
-<a href="/kudos">kudos</a> pages rather than being rewritten here.</p>
+<a href="/changelog/">changelog</a>, and how each part of the app behaves is documented on the
+<a href="/standups/">standups</a>, <a href="/coffee-chats/">coffee chats</a> and
+<a href="/kudos/">kudos</a> pages rather than being rewritten here.</p>
 <p>New posts are announced in <a href="https://github.com/morgenruf/morgenruf/discussions">GitHub discussions</a>, which is also
 where to say that one of them is wrong.</p></div></div></section>
 </main><footer>
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
         <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
-        chats and recognition. Self-host it and keep your own data.</p>
+        chats and recognition. Free on the hosted instance, or self-host it and keep your own
+        data.</p>
         <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
         Kitchener, Ontario 🇨🇦</p>
       </div>
-      <div><h3>Product</h3><a href="/standups">Standups</a><a href="/coffee-chats">Coffee chats</a><a href="/kudos">Kudos</a><a href="/insights">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog">Changelog</a></div><div><h3>Set up</h3><a href="/setup">All the ways</a><a href="/setup/docker">Docker Compose</a><a href="/setup/kubernetes">Kubernetes and Helm</a><a href="/setup/slack-app">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare">All comparisons</a><a href="/geekbot-alternative">vs Geekbot</a><a href="/donut-alternative">vs Donut</a><a href="/heytaco-alternative">vs HeyTaco</a><a href="/standup-prosper-alternative">vs Standup & Prosper</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog">Blog</a><a href="/support">Support</a></div>
+      <div><h3>Product</h3><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/insights/">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog/">Changelog</a></div><div><h3>Set up</h3><a href="/setup/">All the ways</a><a href="/setup/docker/">Docker Compose</a><a href="/setup/kubernetes/">Kubernetes and Helm</a><a href="/setup/slack-app/">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare/">All comparisons</a><a href="/geekbot-alternative/">vs Geekbot</a><a href="/donut-alternative/">vs Donut</a><a href="/heytaco-alternative/">vs HeyTaco</a><a href="/standup-prosper-alternative/">vs Standup &amp; Prosper</a><a href="/open-source-standup-bot/">Open-source standup bot</a><a href="/self-hosted-standup-bot/">Self-hosted standup bot</a><a href="/slack-standup-bot/">Slack standup bot</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog/">Blog</a><a href="/support/">Support</a></div>
     </div>
     <div class="foot-bottom">
       <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
-      <span class="foot-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></span>
+      <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></span>
     </div>
   </div>
 </footer>

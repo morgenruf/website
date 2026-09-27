@@ -8,7 +8,7 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://static.cloudflareinsights.com https://us-assets.i.posthog.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://status.morgenruf.dev https://cloudflareinsights.com https://us.i.posthog.com https://us-assets.i.posthog.com;"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://us-assets.i.posthog.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://status.morgenruf.dev https://cloudflareinsights.com https://us.i.posthog.com https://us-assets.i.posthog.com;"
 
 [[headers]]
   for = "/*.html"
@@ -20,6 +20,58 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Images keep their names when they are replaced, so they get a month rather
+# than the year-long immutable cache /assets/* has (whose URLs carry a hash).
+[[headers]]
+  for = "/screenshots/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/mascot.png"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/mascot.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/logo-mark.png"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/logo-mark-68.png"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/icon-512.png"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/icon-68.png"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/favicon.ico"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/favicon.png"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/og-image.png"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
 [[redirects]]
   from = "/github"
   to = "https://github.com/morgenruf/morgenruf"
@@ -27,7 +79,7 @@
 
 [[redirects]]
   from = "/docs"
-  to = "https://github.com/morgenruf/morgenruf#readme"
+  to = "https://docs.morgenruf.dev"
   status = 301
 
 [[redirects]]
@@ -53,66 +105,17 @@
     Cache-Control = "public, max-age=86400"
 
 [[headers]]
+  for = "/llms-full.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
   for = "/robots.txt"
   [headers.values]
     Cache-Control = "public, max-age=86400"
 
-[[redirects]]
-  from = "/privacy"
-  to = "/privacy.html"
-  status = 200
-
-[[redirects]]
-  from = "/terms"
-  to = "/terms.html"
-  status = 200
-
-[[redirects]]
-  from = "/geekbot-alternative"
-  to = "/geekbot-alternative.html"
-  status = 200
-
-[[redirects]]
-  from = "/standup-prosper-alternative"
-  to = "/standup-prosper-alternative.html"
-  status = 200
-
-[[redirects]]
-  from = "/open-source-standup-bot"
-  to = "/open-source-standup-bot.html"
-  status = 200
-
-[[redirects]]
-  from = "/self-hosted-standup-bot"
-  to = "/self-hosted-standup-bot.html"
-  status = 200
-
-[[redirects]]
-  from = "/slack-standup-bot"
-  to = "/slack-standup-bot.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog"
-  to = "/blog/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/why-i-built-morgenruf"
-  to = "/blog/why-i-built-morgenruf.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/async-standups-slack-free"
-  to = "/blog/async-standups-slack-free.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/geekbot-vs-morgenruf"
-  to = "/blog/geekbot-vs-morgenruf.html"
-  status = 200
-
-[[redirects]]
-  from = "/changelog"
-  to = "/changelog.html"
-  status = 200
+# Pages are built as <name>/index.html. Netlify serves them at /<name>/ and
+# answers /<name> with a 301 to that, so canonicals, the sitemap and internal
+# links all use the trailing-slash form. The rewrites to flat <name>.html files
+# that used to sit here matched nothing once the site moved to directories.
