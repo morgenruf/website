@@ -422,10 +422,21 @@ BOT_ROWS = [
 ]
 
 
+# Each vendor's own favicon, copied into /logos/ so the page does not hotlink
+# their sites. Shown beside the name to help a reader find a row, not as an
+# endorsement; alt is empty because the name follows.
+BOT_LOGOS = {'Morgenruf': '/logo-mark-68.png', 'Standup &amp; Prosper': '/logos/standup-prosper.png', 'Geekbot': '/logos/geekbot.png', 'DailyBot': '/logos/dailybot.svg', 'Range': '/logos/range.png', 'Troopr': '/logos/troopr.png', "Team O'clock": '/logos/teamoclock.png', 'Kollabe': '/logos/kollabe.png', 'Polly': '/logos/polly.png', 'Steady (was Status Hero)': '/logos/steady.png', 'poddaily': '/logos/poddaily.svg'}
+
+
 def bots_table():
+    def name(tool, url):
+        logo = (f'<img src="{BOT_LOGOS[tool]}" alt="" width="20" height="20" loading="lazy" '
+                f'style="flex:none;border-radius:4px">')
+        label = tool if url.startswith("/") else f'<a href="{url}">{tool}</a>'
+        return f'<span style="display:flex;align-items:center;gap:8px">{logo}<span>{label}</span></span>'
     rows = "".join(
-        f'<tr><td><strong>{"<a href=%s>%s</a>" % (url, tool) if not url.startswith("/") else tool}'
-        f'</strong></td><td>{free}</td><td>{paid}</td><td>{where}</td><td>{src}</td></tr>'
+        f'<tr><td><strong>{name(tool, url)}</strong></td><td>{free}</td><td>{paid}</td>'
+        f'<td>{where}</td><td>{src}</td></tr>'
         for tool, url, free, paid, where, src in BOT_ROWS)
     return ('<div class="scroll-x"><table><thead><tr><th>Bot</th><th>Free plan</th>'
             '<th>Paid price</th><th>Chat apps</th><th>Source and hosting</th></tr></thead>'
@@ -438,7 +449,8 @@ def standup_bots():
 from that vendor's own pricing page, read on {CHECKED}. Prices are per month unless the row says
 otherwise. If a row is wrong, <a href="{REPO}/issues/new/choose">say so</a> and it will be fixed.</p>
 {bots_table()}
-<p class="shot-cap" style="margin-top:12px">Standuply is left out: its pricing page loads its prices
+<p class="shot-cap" style="margin-top:12px">Logos belong to their owners and are shown only
+to identify each product. Standuply is left out: its pricing page loads its prices
 with JavaScript and the newest figures its help centre publishes are from January 2024, so there is
 no current number to quote.</p>
 

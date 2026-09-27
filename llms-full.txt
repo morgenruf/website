@@ -256,7 +256,7 @@ KollabeSlack standups not included$29 per space a month, flatSlack, Microsoft Te
 PollyStandups not includedFrom $19 a month billed annually, 500 responses a monthSlack, Teams, Google Chat and moreClosed
 Steady (was Status Hero)None; 100 credits per user addedCredit based, from $25 a monthSlack, Microsoft TeamsClosed
 poddailyFree, self-hostedNoneSlackMIT, self-host (Postgres and Redis)
-Standuply is left out: its pricing page loads its prices with JavaScript and the newest figures its help centre publishes are from January 2024, so there is no current number to quote.
+Logos belong to their owners and are shown only to identify each product. Standuply is left out: its pricing page loads its prices with JavaScript and the newest figures its help centre publishes are from January 2024, so there is no current number to quote.
 Which one to pick
 Most teams do not need to compare eleven tools. They need the one that fits how they work.
 Standups only, Slack only, and you want it free with nothing to run: Standup & Prosper. Its free plan has no cap on standups or people, which is the largest free hosted plan in this table. It is the honest first answer for that team.
