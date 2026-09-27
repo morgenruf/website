@@ -25,9 +25,16 @@ def _published_tags():
             ["gh", "release", "list", "--limit", "80", "--repo", "morgenruf/morgenruf",
              "--json", "tagName", "-q", ".[].tagName"],
             capture_output=True, text=True, timeout=30).stdout.split()
-        return {t.lstrip("v") for t in out}
+        tags = {t.lstrip("v") for t in out}
     except Exception:
-        return set()
+        tags = set()
+    if not tags:
+        # gh missing, logged out or rate limited: keep the links the last
+        # build found rather than silently dropping every one of them.
+        built = pathlib.Path(__file__).resolve().parent.parent.parent / "changelog/index.html"
+        if built.exists():
+            tags = set(re.findall(r"/releases/tag/v([0-9.]+)", built.read_text()))
+    return tags
 
 
 def _entries():

@@ -93,6 +93,46 @@ def refresh_webp():
         print(f"{dst.relative_to(ROOT)!s:38s} written")
 
 
+def _lastmod(rel):
+    """The day this page last changed: today if it has uncommitted edits
+    (the build runs before the commit), otherwise its last commit."""
+    import datetime
+    import subprocess
+    dirty = subprocess.run(["git", "status", "--porcelain", "--", rel], cwd=ROOT,
+                           capture_output=True, text=True).stdout.strip()
+    if not dirty:
+        day = subprocess.run(["git", "log", "-1", "--format=%cs", "--", rel], cwd=ROOT,
+                             capture_output=True, text=True).stdout.strip()
+        if day:
+            return day
+    return datetime.date.today().isoformat()
+
+
+def write_sitemap():
+    """Every indexable page, with the date it last changed.
+
+    Hand-kept, this carried one date for every URL and would have gone stale
+    on the first single-page edit. The changelog also counts the date of its
+    newest release, since that page changes when the app repository does."""
+    rels = ["index.html"] + [r for r in PAGES if r != "404.html"] + HAND_WRITTEN
+    entries = []
+    for rel in rels:
+        path = "/" if rel == "index.html" else "/" + rel[: -len("index.html")]
+        day = _lastmod(rel)
+        if rel == "changelog/index.html":
+            newest = re.search(r'<time datetime="([0-9-]{10})"', (ROOT / rel).read_text())
+            if newest and newest.group(1) > day:
+                day = newest.group(1)
+        entries.append((path, day))
+    entries.sort(key=lambda e: (e[0] != "/", e[0]))
+    urls = "".join(f"  <url>\n    <loc>{shell.SITE}{p}</loc>\n    <lastmod>{d}</lastmod>\n  </url>\n"
+                   for p, d in entries)
+    xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + "</urlset>\n")
+    (ROOT / "sitemap.xml").write_text(xml)
+    print(f"{'sitemap.xml':38s} {len(entries):5d} urls")
+
+
 def main():
     refresh_webp()
     for rel, render in PAGES.items():
@@ -114,6 +154,7 @@ def main():
     if after != before:
         home.write_text(after)
     print(f"{'index.html':38s} shared parts {'refreshed' if after != before else 'unchanged'}")
+    write_sitemap()
 
 
 if __name__ == "__main__":

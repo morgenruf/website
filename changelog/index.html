@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Changelog: every Morgenruf release, currently 1.8.11</title>
+<title>Changelog: every Morgenruf release, currently 1.8.12</title>
 <meta name="description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/changelog/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/changelog/"/>
-<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.8.11"/>
+<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.8.12"/>
 <meta property="og:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.8.11"/>
+<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.8.12"/>
 <meta name="twitter:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="theme-color" content="#12131f"/>
@@ -47,13 +47,20 @@
 <header class="page-head"><div class="wrap">
   <h1>Changelog</h1>
   <p class="lede">Every release, what changed in it, and why. Currently on
-  <strong>1.8.11</strong>, with 24 releases documented.</p>
+  <strong>1.8.12</strong>, with 25 releases documented.</p>
 </div></header>
 <section class="section"><div class="wrap">
   <div class="note" style="margin-bottom:34px"><p>Every release is tagged, published with notes, and
   built from the same commit that is on <a href="https://github.com/morgenruf/morgenruf">GitHub</a>. Docker images carry the
   revision they were built from, so you can check what you are running matches what you read here.</p></div>
   <article class="release">
+  <div class="release-meta">
+    <h2 id="v1.8.12">1.8.12</h2>
+    <time datetime="2026-09-27">2026-09-27</time>
+    
+  </div>
+  <div class="release-body"><h3 id="v1.8.12-fixed">Fixed</h3><ul><li><strong>Removing someone from a standup in the dashboard now sticks.</strong> A standup created from Slack with "sync with channel" on replaces its participants with the channel's members before every run, and the dashboard never showed that setting, so a removed person came back the next morning. The editor now has a "Sync with channel members" checkbox; while it is on, the participant picker is hidden. Turn it off to choose people yourself.</li></ul><h3 id="v1.8.12-changed">Changed</h3><ul><li>Dependency updates: psycopg2-binary 2.9.13, posthog 7.59.0, resend 2.47.0, sentry-sdk 2.70.0, marshmallow 4.3.1, frontend build image node 26-alpine.</li></ul></div>
+</article><article class="release">
   <div class="release-meta">
     <h2 id="v1.8.11">1.8.11</h2>
     <time datetime="2026-09-24">2026-09-24</time>
