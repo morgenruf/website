@@ -221,7 +221,8 @@ PRICE_ROWS = [
      "Per person per month, and any gift cards in the catalogue come out of a budget you fund on "
      "top of the subscription."),
     ("Standup &amp; Prosper", "Async standups",
-     "A free tier that genuinely fits a small team, then per person per month above it."),
+     "Free forever with unlimited standups and team members. Paid plans are $1 or $4 per "
+     "standup user a month (checked 2026-09-27)."),
     ("Morgenruf", "Standups, coffee chats and kudos in one app",
      "Free on the hosted instance CloudDrove runs. Self-hosted, no seat component at any size: a "
      "small server and a Postgres, a fixed line whether you are twelve people or three hundred."),
@@ -248,6 +249,8 @@ def hub():
   <span class="eyebrow">The comparisons</span>
   <h2 id="the-comparisons" style="margin-bottom:24px">Start with the one you are paying for</h2>
   <div class="tiles">
+    <a class="tile" href="/compare/standup-bots/"><h3>Eleven standup bots</h3>
+      <p>Free plan limits and prices side by side, and which bot fits which team.</p><span class="go">Compare →</span></a>
     <a class="tile" href="/geekbot-alternative/"><h3>vs Geekbot</h3>
       <p>Async standups, the closest comparison, and the one most teams arrive from.</p><span class="go">Compare →</span></a>
     <a class="tile" href="/donut-alternative/"><h3>vs Donut</h3>
@@ -347,9 +350,9 @@ def hub():
       governance. Morgenruf is not listed there today, hosted or self-hosted.</li>
       <li><strong>Teams that need a contracted response time</strong> and will not buy it
       separately. Community support is one maintainer who also has a job.</li>
-      <li><strong>Teams already happy on a free tier.</strong> If Geekbot's free plan or Standup
-      &amp; Prosper covers your ten people for nothing, there is no argument here worth your
-      time.</li>
+      <li><strong>Teams already happy on a free tier.</strong> If Geekbot's free plan covers your
+      ten people, or Standup &amp; Prosper's free plan (no user limit) covers your standups, there
+      is no argument here worth your time.</li>
     </ul>
 
     <h2 id="one-app">What the single app is actually for</h2>
@@ -381,3 +384,157 @@ def hub():
              "does not, and what the bill and the effort come to on each side.",
         body=body,
         trail=[("Home", "/"), ("Compare", None)])
+
+
+# Every figure below was read from the vendor's own pricing page or help centre
+# on the date in CHECKED. Research notes with the source for each row are kept
+# in the private marketing repo (content/comparisons/). Re-check before editing
+# a number; never copy one from somebody else's list.
+CHECKED = "2026-09-27"
+
+BOT_ROWS = [
+    # tool, url, free plan, paid price, platforms, source
+    ("Morgenruf", "/", "Free at any team size on the hosted instance",
+     "None", "Slack; Google Chat in beta", "MIT, self-host with Docker or Helm"),
+    ("Standup &amp; Prosper", "https://standup-and-prosper.com/",
+     "Free forever: unlimited standups and team members",
+     "$1 or $4 per standup user a month", "Slack", "Closed"),
+    ("Geekbot", "https://geekbot.com/pricing/", "Up to 10 users, unlimited standups",
+     "$3 per participant a month, $2.50 billed annually", "Slack, Microsoft Teams", "Closed"),
+    ("DailyBot", "https://www.dailybot.com/pricing", "Unlimited members, 50 compiled reports a "
+     "month, 14 days of history", "$3 or $6.50 per active user a month ($2.40 or $5 annually)",
+     "Slack, Teams, Google Chat, Discord", "Closed"),
+    ("Range", "https://www.range.co/pricing", "Up to 12 users, 30 days of check-in history",
+     "$8 per team member a month", "Slack, Microsoft Teams", "Closed"),
+    ("Troopr", "https://troopr.ai/pricing", "Up to 10 seats and 3 scheduled routines",
+     "$8 per seat a month, $6 annually", "Slack, Microsoft Teams", "Closed; self-hosted on Enterprise"),
+    ("Team O'clock", "https://www.teamoclock.com/pricing", "Up to 5 active members, 14 days of history",
+     "$3 per active member a month, 10 member minimum", "Slack, Microsoft Teams", "Closed"),
+    ("Kollabe", "https://kollabe.com/pricing", "Slack standups not included",
+     "$29 per space a month, flat", "Slack, Microsoft Teams", "Closed"),
+    ("Polly", "https://www.polly.ai/pricing", "Standups not included",
+     "From $19 a month billed annually, 500 responses a month", "Slack, Teams, Google Chat and more",
+     "Closed"),
+    ("Steady (was Status Hero)", "https://runsteady.com/pricing", "None; 100 credits per user added",
+     "Credit based, from $25 a month", "Slack, Microsoft Teams", "Closed"),
+    ("poddaily", "https://github.com/maggit/poddaily", "Free, self-hosted", "None", "Slack",
+     "MIT, self-host (Postgres and Redis)"),
+]
+
+
+def bots_table():
+    rows = "".join(
+        f'<tr><td><strong>{"<a href=%s>%s</a>" % (url, tool) if not url.startswith("/") else tool}'
+        f'</strong></td><td>{free}</td><td>{paid}</td><td>{where}</td><td>{src}</td></tr>'
+        for tool, url, free, paid, where, src in BOT_ROWS)
+    return ('<div class="scroll-x"><table><thead><tr><th>Bot</th><th>Free plan</th>'
+            '<th>Paid price</th><th>Chat apps</th><th>Source and hosting</th></tr></thead>'
+            f'<tbody>{rows}</tbody></table></div>')
+
+
+def standup_bots():
+    prose = f'''<h2 id="the-table">Free plans and prices, side by side</h2>
+<p>Eleven Slack standup bots, including Morgenruf, which is the one this site is about. Each row comes
+from that vendor's own pricing page, read on {CHECKED}. Prices are per month unless the row says
+otherwise. If a row is wrong, <a href="{REPO}/issues/new/choose">say so</a> and it will be fixed.</p>
+{bots_table()}
+<p class="shot-cap" style="margin-top:12px">Standuply is left out: its pricing page loads its prices
+with JavaScript and the newest figures its help centre publishes are from January 2024, so there is
+no current number to quote.</p>
+
+<h2 id="which-one">Which one to pick</h2>
+<p>Most teams do not need to compare eleven tools. They need the one that fits how they work.</p>
+<ul>
+  <li><strong>Standups only, Slack only, and you want it free with nothing to run:</strong>
+  Standup &amp; Prosper. Its free plan has no cap on standups or people, which is the largest free
+  hosted plan in this table. It is the honest first answer for that team.</li>
+  <li><strong>Ten people or fewer, or you need Microsoft Teams, polls and surveys:</strong> Geekbot.
+  It is the most established product here, and free up to ten users.</li>
+  <li><strong>Your company is on Google Chat or Discord as well as Slack:</strong> DailyBot covers
+  the most chat apps.</li>
+  <li><strong>Standups are one part of Jira work in Slack:</strong> Troopr.</li>
+  <li><strong>You want check-ins tied to goals and meeting agendas:</strong> Range.</li>
+  <li><strong>You also run retros and planning poker:</strong> Team O'clock or Kollabe.</li>
+  <li><strong>Standup answers must stay on your own servers, or you want coffee chats and peer
+  recognition in the same app, at any team size for free:</strong> Morgenruf. It is MIT licensed,
+  runs on Docker or Kubernetes, and is also free on a hosted instance if you would rather not run
+  it. poddaily is the other active open-source option, smaller and standups only.</li>
+</ul>
+
+<h2 id="what-free-means">What "free" means in each case</h2>
+<p>A free plan usually runs out in one of four ways. Knowing which one applies tells you when the
+bill starts.</p>
+<ul>
+  <li><strong>A user cap.</strong> Geekbot and Troopr stop at 10, Range at 12, Team O'clock at 5.
+  The eleventh person turns the whole team into a paid plan.</li>
+  <li><strong>A history limit.</strong> DailyBot keeps 14 days on its free plan, Team O'clock 14,
+  Range 30. Fine for the daily habit, not for looking back at a quarter.</li>
+  <li><strong>A usage cap.</strong> DailyBot allows 50 compiled check-in reports a month across the
+  whole organisation.</li>
+  <li><strong>Standups not included.</strong> Polly and Kollabe have free plans, but Slack standups
+  are on their paid plans.</li>
+</ul>
+<p>Standup &amp; Prosper and Morgenruf have no user cap. The difference is that Standup &amp;
+Prosper is hosted only and closed source, while Morgenruf can also run on your own infrastructure,
+where you keep every answer for as long as you like.</p>
+
+<h2 id="per-seat-maths">What a 30 person team pays in a year</h2>
+<p>At list price, paying monthly, for standups only: Geekbot $1,080, DailyBot Essentials $1,080,
+Range $2,880, Troopr $2,880, Team O'clock $1,080. Standup &amp; Prosper and Morgenruf: $0 on their
+free plans. Where annual billing is offered, it lowers these by 17 to 25 percent.</p>
+
+<h2 id="status-hero">What happened to Status Hero</h2>
+<p>Status Hero is now called Steady. statushero.com redirects to runsteady.com, and the product is
+sold on credits rather than seats, with no free plan.</p>
+
+<h2 id="about-this-page">About this page</h2>
+<p>Morgenruf is built by CloudDrove, so this page is not neutral, and it says so. The rows are
+written from each vendor's own pages, and the recommendations above name another tool first
+wherever another tool fits better. For a closer look at one of them, see the
+<a href="/geekbot-alternative/">Geekbot</a> and
+<a href="/standup-prosper-alternative/">Standup &amp; Prosper</a> comparisons.</p>'''
+    body = seo_guide(prose, [("The table", "the-table"), ("Which one to pick", "which-one"),
+                             ('What "free" means', "what-free-means"),
+                             ("A 30 person team", "per-seat-maths"),
+                             ("Status Hero", "status-hero"), ("About this page", "about-this-page")])
+    faq_html, faq_schema = faq([
+        ("What is the best free Slack standup bot?",
+         "For standups only on Slack with nothing to run, Standup & Prosper: its free plan has no "
+         "limit on standups or people. For ten people or fewer who need Teams or polls, Geekbot. To "
+         "keep answers on your own servers, or to add coffee chats and kudos, Morgenruf, which is "
+         "free at any size and MIT licensed."),
+        ("Is there an open-source Slack standup bot?",
+         "Yes. Morgenruf (MIT, Docker or Helm, with a free hosted instance too) and poddaily (MIT, "
+         "self-hosted) are both maintained. Older projects such as 18F's standup-slack-bot are "
+         "archived."),
+        ("Which standup bots have no user limit on the free plan?",
+         f"Standup & Prosper and Morgenruf, as of {CHECKED}. DailyBot has no member limit but caps "
+         "compiled reports at 50 a month and keeps 14 days of history."),
+        ("Is Geekbot free?",
+         "For teams of up to 10 users. Above that it costs $3 per participant a month, or $2.50 billed "
+         f"annually (checked {CHECKED})."),
+        ("What happened to Status Hero?",
+         "It was renamed Steady. It now charges for credits rather than seats and has no free plan."),
+    ])
+    body += f'''<section class="section"><div class="wrap" style="max-width:820px">
+  <span class="eyebrow">Questions</span><h2 id="questions">Slack standup bots</h2>
+  <div style="margin-top:24px">{faq_html}</div></div></section>'''
+    return page(
+        path="/compare/standup-bots/",
+        title="Slack standup bots compared: free plans and prices, 2026",
+        description="Eleven Slack standup bots compared on free plan limits and price, from each "
+                    f"vendor's pricing page ({CHECKED}), with honest advice on which fits.",
+        h1="Slack standup bots compared",
+        lede="Free plan limits and prices for eleven standup bots, read from each vendor's own "
+             "pricing page, and which one fits which team.",
+        body=body, schema=[faq_schema],
+        trail=[("Home", "/"), ("Compare", "/compare/"), ("Standup bots", None)],
+        define=f"Morgenruf is a free, open-source (MIT) Slack standup bot. This page compares it with "
+               f"ten other standup bots on free plan limits and paid price, each checked on the "
+               f"vendor's own pricing page on {CHECKED}. For standups only, Standup &amp; Prosper has "
+               f"the largest free hosted plan; Morgenruf is the option you can also run yourself.")
+
+
+def seo_guide(prose, toc):
+    from seo_pages import guide
+    return guide(prose, toc)

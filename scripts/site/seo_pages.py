@@ -244,15 +244,16 @@ will not tell you anything different.</p>
 
 <h2 id="side-by-side">How do Morgenruf and Standup &amp; Prosper compare?</h2>
 {sp_table}
-<p class="shot-cap" style="margin-top:12px">Checked against Standup &amp; Prosper's public pages in
-September 2026. Their pricing page could not be read on 2026-09-26, so no price is quoted here rather
-than a guessed one.</p>
+<p class="shot-cap" style="margin-top:12px">Checked against
+<a href="https://standup-and-prosper.com/">Standup &amp; Prosper's own site</a> on 2026-09-27: a free
+plan with unlimited standups and team members, and paid plans at $1 or $4 per standup user a
+month.</p>
 
 <h2 id="where-it-wins">Where Standup &amp; Prosper wins</h2>
 <ul>
   <li><strong>Zero operations.</strong> Nothing to deploy, patch or back up.</li>
-  <li><strong>A free tier</strong> that genuinely fits small teams, so the cost argument only starts
-  to bite as you grow.</li>
+  <li><strong>A free plan with no user limit.</strong> Unlimited standups and team members, so for
+  standups alone on Slack there is no cost argument at all.</li>
   <li><strong>Simplicity.</strong> It does one thing and does not ask you to think about modules,
   scopes or migrations.</li>
 </ul>
@@ -291,9 +292,9 @@ option is cheaper than your time.</p>
                          ("What you take on", "what-you-take-on"), ("Switching", "switching")])
     faq_html, faq_schema = faq([
         ("Is self-hosting worth it for a team of ten?",
-         "If the hosted free tier covers ten people and you have nowhere to run a container, probably "
-         "not. It becomes worth it when you outgrow the free tier, when standup answers cannot sit in "
-         "a third party, or when you want coffee chats and recognition too."),
+         "Not for the price: Standup & Prosper's free plan has no user limit. It becomes worth it when "
+         "standup answers cannot sit with a third party, when you want to keep full history in your "
+         "own database, or when you want coffee chats and recognition too."),
         ("What does it cost to run?",
          "A small VPS and a Postgres. Many teams run it beside things they already have, in which "
          "case the marginal cost is close to nothing."),

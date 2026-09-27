@@ -76,6 +76,7 @@ Setup
 
 Comparisons
 - [Compare](https://morgenruf.dev/compare/): all four tools, including where each of them wins
+- [Slack standup bots compared](https://morgenruf.dev/compare/standup-bots/): eleven standup bots, free plan limits and prices from each vendor's pricing page, and which fits which team
 - [Geekbot alternative](https://morgenruf.dev/geekbot-alternative/): feature and price comparison
 - [Donut alternative](https://morgenruf.dev/donut-alternative/): coffee chats compared
 - [HeyTaco alternative](https://morgenruf.dev/heytaco-alternative/): recognition compared

@@ -178,7 +178,9 @@ Add to Slack Self-host in about 20 minutes
 Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
 Morgenruf does three jobs that most teams buy from three different companies: the async standup, the random introduction between people who never talk, and the public thank-you. Each of the tools below does one of those jobs, most of them for longer than this has existed, and each of them charges by the person by the month. These pages exist so you can work out which trade you actually want, including the cases where the answer is to keep paying them.
 The comparisons Start with the one you are paying for
-vs Geekbot
+Eleven standup bots
+Free plan limits and prices side by side, and which bot fits which team.
+Compare → vs Geekbot
 Async standups, the closest comparison, and the one most teams arrive from.
 Compare → vs Donut
 Random coffee chats and introductions, plus what Donut does that this does not.
@@ -206,7 +208,7 @@ ToolWhat you get for itHow the bill works
 GeekbotAsync standups, check-ins, pollsFree for up to 10 users. Above that, $3 per user per month, or $2.50 per user per month billed annually.
 DonutRandom pairings, onboarding journeys, channel promptsA free plan, then paid plans from about $74 a month.
 HeyTacoPeer recognition, leaderboards, a rewards cataloguePer person per month, and any gift cards in the catalogue come out of a budget you fund on top of the subscription.
-Standup & ProsperAsync standupsA free tier that genuinely fits a small team, then per person per month above it.
+Standup & ProsperAsync standupsFree forever with unlimited standups and team members. Paid plans are $1 or $4 per standup user a month (checked 2026-09-27).
 MorgenrufStandups, coffee chats and kudos in one appFree on the hosted instance CloudDrove runs. Self-hosted, no seat component at any size: a small server and a Postgres, a fixed line whether you are twelve people or three hundred.
 Prices checked 2026-09-26 against Geekbot's and Donut's pricing pages, and quoted with that date attached, because they move. Geekbot is free for up to 10 users. Past that, a team of thirty pays $900 a year on annual billing, or $1,080 paying monthly, for the morning questions alone. Add pairing and recognition at comparable per-seat rates and the same thirty people cost somewhere between two and three thousand a year, rising every time you hire. Morgenruf on the hosted instance costs nothing at any size. Self-hosted, the same three rituals are a small VPS at roughly $5 to $20 a month plus a Postgres, and that number does not change at three hundred people. Counting only money, a standup-only team of ten or fewer pays nothing either way; above that, Geekbot's per-user price passes the cost of a small server almost at once.
 What self-hosting costs you in effort
@@ -224,12 +226,70 @@ Anyone who needs a rewards catalogue. Gift cards, budgets, redemption. HeyTaco o
 Teams that need their data in-house but have nowhere to run a container and no appetite to find one. The hosted instance is free, but it is CloudDrove's database, not yours.
 Anyone who needs an App Directory listing for procurement or IT governance. Morgenruf is not listed there today, hosted or self-hosted.
 Teams that need a contracted response time and will not buy it separately. Community support is one maintainer who also has a job.
-Teams already happy on a free tier. If Geekbot's free plan or Standup & Prosper covers your ten people for nothing, there is no argument here worth your time.
+Teams already happy on a free tier. If Geekbot's free plan covers your ten people, or Standup & Prosper's free plan (no user limit) covers your standups, there is no argument here worth your time.
 What the single app is actually for
 The reason to consolidate is not tidiness, it is that the three signals sit in one database. Async standups tell you who is stuck and who quietly stopped answering. Coffee chats tell you who has met whom, which is the map of how work actually travels. Kudos tell you who gets thanked. Separately those are three dashboards nobody opens. Together you can ask the question worth acting on: who is answering every morning, unblocking other people, and being thanked by nobody. No integration between three vendors gives you that, and no vendor is going to build it for you.
 How these pages are written
 Each comparison says where the other tool wins, because they all win somewhere and a page that claims otherwise is not worth reading. Prices are quoted with the date they were checked, so you can tell at a glance how stale they are rather than trusting a number with no age on it.
 All of them were checked in September 2026. If something is wrong, it is a bug like any other: open an issue.
+
+## Slack standup bots compared: free plans and prices, 2026
+https://morgenruf.dev/compare/standup-bots/
+
+Slack standup bots compared
+Free plan limits and prices for eleven standup bots, read from each vendor's own pricing page, and which one fits which team.
+Add to Slack Self-host in about 20 minutes
+Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
+Morgenruf is a free, open-source (MIT) Slack standup bot. This page compares it with ten other standup bots on free plan limits and paid price, each checked on the vendor's own pricing page on 2026-09-27. For standups only, Standup & Prosper has the largest free hosted plan; Morgenruf is the option you can also run yourself.
+Last reviewed September 26, 2026
+Free plans and prices, side by side
+Eleven Slack standup bots, including Morgenruf, which is the one this site is about. Each row comes from that vendor's own pricing page, read on 2026-09-27. Prices are per month unless the row says otherwise. If a row is wrong, say so and it will be fixed.
+BotFree planPaid priceChat appsSource and hosting
+MorgenrufFree at any team size on the hosted instanceNoneSlack; Google Chat in betaMIT, self-host with Docker or Helm
+Standup & ProsperFree forever: unlimited standups and team members$1 or $4 per standup user a monthSlackClosed
+GeekbotUp to 10 users, unlimited standups$3 per participant a month, $2.50 billed annuallySlack, Microsoft TeamsClosed
+DailyBotUnlimited members, 50 compiled reports a month, 14 days of history$3 or $6.50 per active user a month ($2.40 or $5 annually)Slack, Teams, Google Chat, DiscordClosed
+RangeUp to 12 users, 30 days of check-in history$8 per team member a monthSlack, Microsoft TeamsClosed
+TrooprUp to 10 seats and 3 scheduled routines$8 per seat a month, $6 annuallySlack, Microsoft TeamsClosed; self-hosted on Enterprise
+Team O'clockUp to 5 active members, 14 days of history$3 per active member a month, 10 member minimumSlack, Microsoft TeamsClosed
+KollabeSlack standups not included$29 per space a month, flatSlack, Microsoft TeamsClosed
+PollyStandups not includedFrom $19 a month billed annually, 500 responses a monthSlack, Teams, Google Chat and moreClosed
+Steady (was Status Hero)None; 100 credits per user addedCredit based, from $25 a monthSlack, Microsoft TeamsClosed
+poddailyFree, self-hostedNoneSlackMIT, self-host (Postgres and Redis)
+Standuply is left out: its pricing page loads its prices with JavaScript and the newest figures its help centre publishes are from January 2024, so there is no current number to quote.
+Which one to pick
+Most teams do not need to compare eleven tools. They need the one that fits how they work.
+Standups only, Slack only, and you want it free with nothing to run: Standup & Prosper. Its free plan has no cap on standups or people, which is the largest free hosted plan in this table. It is the honest first answer for that team.
+Ten people or fewer, or you need Microsoft Teams, polls and surveys: Geekbot. It is the most established product here, and free up to ten users.
+Your company is on Google Chat or Discord as well as Slack: DailyBot covers the most chat apps.
+Standups are one part of Jira work in Slack: Troopr.
+You want check-ins tied to goals and meeting agendas: Range.
+You also run retros and planning poker: Team O'clock or Kollabe.
+Standup answers must stay on your own servers, or you want coffee chats and peer recognition in the same app, at any team size for free: Morgenruf. It is MIT licensed, runs on Docker or Kubernetes, and is also free on a hosted instance if you would rather not run it. poddaily is the other active open-source option, smaller and standups only.
+What "free" means in each case
+A free plan usually runs out in one of four ways. Knowing which one applies tells you when the bill starts.
+A user cap. Geekbot and Troopr stop at 10, Range at 12, Team O'clock at 5. The eleventh person turns the whole team into a paid plan.
+A history limit. DailyBot keeps 14 days on its free plan, Team O'clock 14, Range 30. Fine for the daily habit, not for looking back at a quarter.
+A usage cap. DailyBot allows 50 compiled check-in reports a month across the whole organisation.
+Standups not included. Polly and Kollabe have free plans, but Slack standups are on their paid plans.
+Standup & Prosper and Morgenruf have no user cap. The difference is that Standup & Prosper is hosted only and closed source, while Morgenruf can also run on your own infrastructure, where you keep every answer for as long as you like.
+What a 30 person team pays in a year
+At list price, paying monthly, for standups only: Geekbot $1,080, DailyBot Essentials $1,080, Range $2,880, Troopr $2,880, Team O'clock $1,080. Standup & Prosper and Morgenruf: $0 on their free plans. Where annual billing is offered, it lowers these by 17 to 25 percent.
+What happened to Status Hero
+Status Hero is now called Steady. statushero.com redirects to runsteady.com, and the product is sold on credits rather than seats, with no free plan.
+About this page
+Morgenruf is built by CloudDrove, so this page is not neutral, and it says so. The rows are written from each vendor's own pages, and the recommendations above name another tool first wherever another tool fits better. For a closer look at one of them, see the Geekbot and Standup & Prosper comparisons.
+QuestionsSlack standup bots
+What is the best free Slack standup bot?
+For standups only on Slack with nothing to run, Standup & Prosper: its free plan has no limit on standups or people. For ten people or fewer who need Teams or polls, Geekbot. To keep answers on your own servers, or to add coffee chats and kudos, Morgenruf, which is free at any size and MIT licensed.
+Is there an open-source Slack standup bot?
+Yes. Morgenruf (MIT, Docker or Helm, with a free hosted instance too) and poddaily (MIT, self-hosted) are both maintained. Older projects such as 18F's standup-slack-bot are archived.
+Which standup bots have no user limit on the free plan?
+Standup & Prosper and Morgenruf, as of 2026-09-27. DailyBot has no member limit but caps compiled reports at 50 a month and keeps 14 days of history.
+Is Geekbot free?
+For teams of up to 10 users. Above that it costs $3 per participant a month, or $2.50 billed annually (checked 2026-09-27).
+What happened to Status Hero?
+It was renamed Steady. It now charges for credits rather than seats and has no free plan.
 
 ## Free, open-source Geekbot alternative for Slack standups
 https://morgenruf.dev/geekbot-alternative/
@@ -417,10 +477,10 @@ A hosted service with a free tierYes, any team sizeYes
 Runs on your own serversYesNo
 Source you can readMITClosed
 Coffee chats and kudos in the same appYesNo, standups only
-Checked against Standup & Prosper's public pages in September 2026. Their pricing page could not be read on 2026-09-26, so no price is quoted here rather than a guessed one.
+Checked against Standup & Prosper's own site on 2026-09-27: a free plan with unlimited standups and team members, and paid plans at $1 or $4 per standup user a month.
 Where Standup & Prosper wins
 Zero operations. Nothing to deploy, patch or back up.
-A free tier that genuinely fits small teams, so the cost argument only starts to bite as you grow.
+A free plan with no user limit. Unlimited standups and team members, so for standups alone on Slack there is no cost argument at all.
 Simplicity. It does one thing and does not ask you to think about modules, scopes or migrations.
 Where this is different
 Your data. Answers, blockers and participation live in Postgres you control.
@@ -437,7 +497,7 @@ Create the app, install it, invite the bot to your channel.
 Recreate the standup, run both for a few days, then turn the old one off.
 QuestionsMorgenruf and Standup & Prosper
 Is self-hosting worth it for a team of ten?
-If the hosted free tier covers ten people and you have nowhere to run a container, probably not. It becomes worth it when you outgrow the free tier, when standup answers cannot sit in a third party, or when you want coffee chats and recognition too.
+Not for the price: Standup & Prosper's free plan has no user limit. It becomes worth it when standup answers cannot sit with a third party, when you want to keep full history in your own database, or when you want coffee chats and recognition too.
 What does it cost to run?
 A small VPS and a Postgres. Many teams run it beside things they already have, in which case the marginal cost is close to nothing.
 Can I keep using Slack the same way?
