@@ -109,15 +109,18 @@
     <a href="/standup-prosper-alternative/">Standup &amp; Prosper comparison</a> works through.</p>
 
     <h2 id="what-it-costs">What the bill actually looks like</h2>
-    <div class="scroll-x"><table><thead><tr><th>Tool</th><th>What you get for it</th><th>How the bill works</th></tr></thead><tbody><tr><td><strong>Geekbot</strong></td><td>Async standups, check-ins, polls</td><td>Per person per month, published at $2.50 on the standard plan, less on an annual term, billed on the people who take part.</td></tr><tr><td><strong>Donut</strong></td><td>Random pairings, onboarding journeys, channel prompts</td><td>A free tier that covers a single small programme, then per person per month once you want more than that.</td></tr><tr><td><strong>HeyTaco</strong></td><td>Peer recognition, leaderboards, a rewards catalogue</td><td>Per person per month, and any gift cards in the catalogue come out of a budget you fund on top of the subscription.</td></tr><tr><td><strong>Standup &amp; Prosper</strong></td><td>Async standups</td><td>A free tier that genuinely fits a small team, then per person per month above it.</td></tr><tr><td><strong>Morgenruf</strong></td><td>Standups, coffee chats and kudos in one app</td><td>Free on the hosted instance CloudDrove runs. Self-hosted, no seat component at any size: a small server and a Postgres, a fixed line whether you are twelve people or three hundred.</td></tr></tbody></table></div>
-    <p style="margin-top:18px">Prices checked against public pricing pages in September 2026 and
-    quoted with that date attached, because they move. At the $2.50 per person per month Geekbot
-    publishes, a team of thirty pays $900 a year for the morning questions alone. Add pairing and
-    recognition at comparable per-seat rates and the same thirty people cost somewhere between two
-    and three thousand a year, rising every time you hire. Self-hosted, the same three rituals are a
-    small VPS at roughly $5 to $20 a month plus a Postgres, and that number does not change at three
-    hundred people. Counting only money, a standup-only team crosses over at around a dozen people.
-    Counting somebody's attention as well, later than that.</p>
+    <div class="scroll-x"><table><thead><tr><th>Tool</th><th>What you get for it</th><th>How the bill works</th></tr></thead><tbody><tr><td><strong>Geekbot</strong></td><td>Async standups, check-ins, polls</td><td>Free for up to 10 users. Above that, $3 per user per month, or $2.50 per user per month billed annually.</td></tr><tr><td><strong>Donut</strong></td><td>Random pairings, onboarding journeys, channel prompts</td><td>A free plan, then paid plans from about $74 a month.</td></tr><tr><td><strong>HeyTaco</strong></td><td>Peer recognition, leaderboards, a rewards catalogue</td><td>Per person per month, and any gift cards in the catalogue come out of a budget you fund on top of the subscription.</td></tr><tr><td><strong>Standup &amp; Prosper</strong></td><td>Async standups</td><td>A free tier that genuinely fits a small team, then per person per month above it.</td></tr><tr><td><strong>Morgenruf</strong></td><td>Standups, coffee chats and kudos in one app</td><td>Free on the hosted instance CloudDrove runs. Self-hosted, no seat component at any size: a small server and a Postgres, a fixed line whether you are twelve people or three hundred.</td></tr></tbody></table></div>
+    <p style="margin-top:18px">Prices checked 2026-09-26 against
+    <a href="https://geekbot.com/pricing/">Geekbot's</a> and
+    <a href="https://www.donut.com/pricing/">Donut's</a> pricing pages, and quoted with that date
+    attached, because they move. Geekbot is free for up to 10 users. Past that, a team of thirty
+    pays $900 a year on annual billing, or $1,080 paying monthly, for the morning questions alone.
+    Add pairing and recognition at comparable per-seat rates and the same thirty people cost
+    somewhere between two and three thousand a year, rising every time you hire. Morgenruf on the
+    hosted instance costs nothing at any size. Self-hosted, the same three rituals are a small VPS
+    at roughly $5 to $20 a month plus a Postgres, and that number does not change at three hundred
+    people. Counting only money, a standup-only team of ten or fewer pays nothing either way; above
+    that, Geekbot's per-user price passes the cost of a small server almost at once.</p>
 
     <h2 id="what-self-hosting-costs">What self-hosting costs you in effort</h2>
     <p>None of this applies on the free hosted instance. It applies when you self-host, which is
@@ -145,7 +148,7 @@
     <p>Saying this plainly saves everybody an afternoon:</p>
     <ul>
       <li><strong>Anyone on Microsoft Teams.</strong> Support is in progress, which means not today.
-      Donut and HeyTaco both ship it now.</li>
+      Geekbot, Donut and HeyTaco all ship it now.</li>
       <li><strong>Anyone who needs a rewards catalogue.</strong> Gift cards, budgets, redemption.
       HeyTaco or Bonusly, not this.</li>
       <li><strong>Teams that need their data in-house but have nowhere to run a container</strong>
@@ -155,8 +158,9 @@
       governance. Morgenruf is not listed there today, hosted or self-hosted.</li>
       <li><strong>Teams that need a contracted response time</strong> and will not buy it
       separately. Community support is one maintainer who also has a job.</li>
-      <li><strong>Teams already happy on a free tier.</strong> If Standup &amp; Prosper covers your
-      ten people for nothing, there is no argument here worth your time.</li>
+      <li><strong>Teams already happy on a free tier.</strong> If Geekbot's free plan or Standup
+      &amp; Prosper covers your ten people for nothing, there is no argument here worth your
+      time.</li>
     </ul>
 
     <h2 id="one-app">What the single app is actually for</h2>

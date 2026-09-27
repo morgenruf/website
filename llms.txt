@@ -7,11 +7,13 @@
 > CloudDrove, or self-hosted. Built by CloudDrove in Toronto, Canada.
 
 Morgenruf exists because the tools that do this charge per person for
-something a team can run itself. Geekbot charges about $2.50 per user per
-month. Donut's free tier stops at 24 people per intro round and paid plans
-start around $74 a month. HeyTaco is about $3 per user per month. Morgenruf
-does all three jobs for nothing: free on a hosted instance run by CloudDrove,
-or self-hosted, in which case the team keeps its own data on its own servers.
+something a team can run itself. Geekbot is free for up to 10 users, then $3
+per user per month, or $2.50 per user per month billed annually. Donut has a
+free plan (24 people per intro round) and paid plans from about $74 a month.
+Those prices were checked 2026-09-26. HeyTaco is about $3 per user per month.
+Morgenruf does all three jobs for nothing: free on a hosted instance run by
+CloudDrove, or self-hosted, in which case the team keeps its own data on its
+own servers.
 
 ## What it does
 

@@ -51,12 +51,13 @@ def donut():
         ("Source you can read", "MIT", "yes", "Closed", "no"),
         ("Your pairing data lives in", "your database", "yes", "their cloud", "no"),
         ("Microsoft Teams", "In progress", "no", "Yes", "yes"),
-        ("Price", "Free, any team size", "yes", "Per seat, monthly", "no"),
+        ("Price", "Free, any team size", "yes", "Free plan; paid plans from about $74 a month", ""),
     ]
     body = f'''<section class="section"><div class="wrap">
 {table(rows, "Donut")}
-<p class="shot-cap" style="margin-top:12px">Checked against Donut's public pages in September 2026.
-Their plans change; if something here is out of date, please
+<p class="shot-cap" style="margin-top:12px">Prices checked 2026-09-26 against
+<a href="https://www.donut.com/pricing/">Donut's pricing page</a>. Their plans change; if something
+here is out of date, please
 <a href="{REPO}/issues/new/choose">tell me and I will fix it</a>.</p>
 </div></section>
 
@@ -197,11 +198,10 @@ month, which means the cost of thanking people grows exactly as you hire them.</
 
 PRICE_ROWS = [
     ("Geekbot", "Async standups, check-ins, polls",
-     "Per person per month, published at $2.50 on the standard plan, less on an annual term, "
-     "billed on the people who take part."),
+     "Free for up to 10 users. Above that, $3 per user per month, or $2.50 per user per month "
+     "billed annually."),
     ("Donut", "Random pairings, onboarding journeys, channel prompts",
-     "A free tier that covers a single small programme, then per person per month once you want "
-     "more than that."),
+     "A free plan, then paid plans from about $74 a month."),
     ("HeyTaco", "Peer recognition, leaderboards, a rewards catalogue",
      "Per person per month, and any gift cards in the catalogue come out of a budget you fund on "
      "top of the subscription."),
@@ -284,14 +284,17 @@ def hub():
 
     <h2 id="what-it-costs">What the bill actually looks like</h2>
     {price_table()}
-    <p style="margin-top:18px">Prices checked against public pricing pages in September 2026 and
-    quoted with that date attached, because they move. At the $2.50 per person per month Geekbot
-    publishes, a team of thirty pays $900 a year for the morning questions alone. Add pairing and
-    recognition at comparable per-seat rates and the same thirty people cost somewhere between two
-    and three thousand a year, rising every time you hire. Self-hosted, the same three rituals are a
-    small VPS at roughly $5 to $20 a month plus a Postgres, and that number does not change at three
-    hundred people. Counting only money, a standup-only team crosses over at around a dozen people.
-    Counting somebody's attention as well, later than that.</p>
+    <p style="margin-top:18px">Prices checked 2026-09-26 against
+    <a href="https://geekbot.com/pricing/">Geekbot's</a> and
+    <a href="https://www.donut.com/pricing/">Donut's</a> pricing pages, and quoted with that date
+    attached, because they move. Geekbot is free for up to 10 users. Past that, a team of thirty
+    pays $900 a year on annual billing, or $1,080 paying monthly, for the morning questions alone.
+    Add pairing and recognition at comparable per-seat rates and the same thirty people cost
+    somewhere between two and three thousand a year, rising every time you hire. Morgenruf on the
+    hosted instance costs nothing at any size. Self-hosted, the same three rituals are a small VPS
+    at roughly $5 to $20 a month plus a Postgres, and that number does not change at three hundred
+    people. Counting only money, a standup-only team of ten or fewer pays nothing either way; above
+    that, Geekbot's per-user price passes the cost of a small server almost at once.</p>
 
     <h2 id="what-self-hosting-costs">What self-hosting costs you in effort</h2>
     <p>None of this applies on the free hosted instance. It applies when you self-host, which is
@@ -319,7 +322,7 @@ def hub():
     <p>Saying this plainly saves everybody an afternoon:</p>
     <ul>
       <li><strong>Anyone on Microsoft Teams.</strong> Support is in progress, which means not today.
-      Donut and HeyTaco both ship it now.</li>
+      Geekbot, Donut and HeyTaco all ship it now.</li>
       <li><strong>Anyone who needs a rewards catalogue.</strong> Gift cards, budgets, redemption.
       HeyTaco or Bonusly, not this.</li>
       <li><strong>Teams that need their data in-house but have nowhere to run a container</strong>
@@ -329,8 +332,9 @@ def hub():
       governance. Morgenruf is not listed there today, hosted or self-hosted.</li>
       <li><strong>Teams that need a contracted response time</strong> and will not buy it
       separately. Community support is one maintainer who also has a job.</li>
-      <li><strong>Teams already happy on a free tier.</strong> If Standup &amp; Prosper covers your
-      ten people for nothing, there is no argument here worth your time.</li>
+      <li><strong>Teams already happy on a free tier.</strong> If Geekbot's free plan or Standup
+      &amp; Prosper covers your ten people for nothing, there is no argument here worth your
+      time.</li>
     </ul>
 
     <h2 id="one-app">What the single app is actually for</h2>
