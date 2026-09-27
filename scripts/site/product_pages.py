@@ -142,13 +142,13 @@ write-up on running async standups in Slack for free</a> is the shorter version 
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/standups/",
-        title="Async standups in Slack, self-hosted",
+        title="Async standups in Slack, free or self-hosted",
         description="Async daily standups in Slack: your own questions, per-person timezones, "
                     "blockers highlighted, and one summary in the channel. Open source and "
                     "self-hosted.",
         h1="Async standups that survive contact with a real team",
-        lede="Each person answers in a DM at a sensible local hour. One summary lands in the channel. "
-             "Nobody sits in a call to hear what they could have read.",
+        lede="Morgenruf asks each person in a DM at a sensible local hour. One summary lands in the "
+             "channel. Nobody sits in a call to hear what they could have read.",
         body=body, schema=[faq_schema],
         hero=shot("/screenshots/today.jpg", "The Today page: who has answered, who is blocked, and recent recognition", "Today, for a team of eight."),
         trail=[("Home", "/"), ("Standups", None)], current="/standups/")

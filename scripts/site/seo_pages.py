@@ -442,7 +442,7 @@ follow from it and half of them are for features you may not switch on.</p>'''
 def slack_bot():
     prose = f'''<h2 id="what-it-does-in-slack">What a Slack standup bot does, and what this one does</h2>
 <p>A standup bot asks each person the same few questions every working morning and puts the answers
-somewhere the team will actually read them. That is the whole category. This one does it entirely
+somewhere the team will actually read them. That is the whole category. Morgenruf does it entirely
 inside Slack: a direct message at your local hour, a summary in the channel an hour later, and
 nothing to log into. The dashboard is for whoever sets it up, and most weeks they do not open it
 either.</p>
