@@ -15,7 +15,7 @@ DISCUSSIONS = REPO + "/discussions"
 SUPPORT_FAQ = [
     ("Is there paid support?",
      "Yes, from CloudDrove, who build and maintain Morgenruf. Installation, a managed cluster, "
-     "upgrades and a contracted response time. Write to hello@clouddrove.com."),
+     "upgrades and a contracted response time. Write to hello@morgenruf.dev."),
     ("Does paying get me features other people do not have?",
      "No. Everything is MIT and everything is in the repository. Paid work funds the project and "
      "buys you somebody else's time, never a private build."),
@@ -105,7 +105,7 @@ def support():
       </div>
     </div>
     <div class="band-cta" style="justify-content:flex-start">
-      <a class="btn btn-sun" href="mailto:hello@clouddrove.com?subject=Morgenruf%20support">Email hello@clouddrove.com</a>
+      <a class="btn btn-sun" href="mailto:hello@morgenruf.dev?subject=Morgenruf%20support">Email hello@morgenruf.dev</a>
       <a class="btn btn-ghost" href="https://clouddrove.com">About CloudDrove</a>
     </div>
     <p style="margin:22px 0 0;font-size:14px;color:var(--on-ink-muted)">Paid support funds the work
@@ -131,7 +131,7 @@ def support():
   and a company that will run the whole thing for you.</p>
   <div class="head-cta">
     <a class="btn btn-ink" href="{ISSUES}">Open an issue</a>
-    <a class="btn btn-line" href="mailto:hello@clouddrove.com?subject=Morgenruf%20support">Ask about paid support</a>
+    <a class="btn btn-line" href="mailto:hello@morgenruf.dev?subject=Morgenruf%20support">Ask about paid support</a>
   </div>
 </div></header>
 {body}
