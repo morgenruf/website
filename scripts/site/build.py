@@ -62,6 +62,12 @@ def refresh_chrome(html):
     return html
 
 
+def refresh_home_footer(html):
+    """The homepage keeps its own nav (in-page anchors) and closing band, but
+    its footer is the shared one."""
+    return re.sub(r"<footer>.*?</footer>\n", lambda _: shell.footer_block(), html, count=1, flags=re.S)
+
+
 def main():
     for rel, render in PAGES.items():
         out = ROOT / rel
@@ -76,6 +82,12 @@ def main():
         if after != before:
             path.write_text(after)
         print(f"{rel:38s} chrome {'refreshed' if after != before else 'unchanged'}")
+    home = ROOT / "index.html"
+    before = home.read_text()
+    after = refresh_home_footer(before)
+    if after != before:
+        home.write_text(after)
+    print(f"{'index.html':38s} footer {'refreshed' if after != before else 'unchanged'}")
 
 
 if __name__ == "__main__":

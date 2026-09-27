@@ -37,7 +37,10 @@ FOOTER = [
                 ("Documentation", "https://docs.morgenruf.dev")]),
     ("Compare", [("All comparisons", "/compare/"), ("vs Geekbot", "/geekbot-alternative/"),
                  ("vs Donut", "/donut-alternative/"), ("vs HeyTaco", "/heytaco-alternative/"),
-                 ("vs Standup & Prosper", "/standup-prosper-alternative/")]),
+                 ("vs Standup &amp; Prosper", "/standup-prosper-alternative/"),
+                 ("Open-source standup bot", "/open-source-standup-bot/"),
+                 ("Self-hosted standup bot", "/self-hosted-standup-bot/"),
+                 ("Slack standup bot", "/slack-standup-bot/")]),
     ("Project", [("GitHub", REPO), ("Helm charts", "https://charts.morgenruf.dev"),
                  ("Status", "https://status.morgenruf.dev"), ("Blog", "/blog/"),
                  ("Support", "/support/")]),
@@ -112,6 +115,12 @@ def breadcrumbs(trail):
 
 
 def footer():
+    return footer_block() + "</body>\n</html>\n"
+
+
+def footer_block():
+    """The footer element alone, for the hand-written homepage, which has
+    schema after it and so cannot take the closing tags as well."""
     cols = ""
     for heading, links in FOOTER:
         rows = "".join(f'<a href="{href}">{label}</a>' for label, href in links)
@@ -135,8 +144,6 @@ def footer():
     </div>
   </div>
 </footer>
-</body>
-</html>
 '''
 
 
