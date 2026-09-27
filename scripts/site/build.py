@@ -71,8 +71,14 @@ def refresh_chrome(html):
 
 def refresh_home_footer(html):
     """The homepage keeps its own nav (in-page anchors) and closing band, but
-    its footer is the shared one."""
-    return re.sub(r"<footer>.*?</footer>\n", lambda _: shell.footer_block(), html, count=1, flags=re.S)
+    its footer is the shared one, and its schema states the version the
+    changelog says was released last. A hand-typed version went stale twice."""
+    html = re.sub(r"<footer>.*?</footer>\n", lambda _: shell.footer_block(), html, count=1, flags=re.S)
+    version, _ = changelog_page.latest_release()
+    html = re.sub(r'"softwareVersion":"[^"]*",\n', "", html)
+    if version:
+        html = html.replace('"downloadUrl":', f'"softwareVersion":"{version}",\n"downloadUrl":', 1)
+    return html
 
 
 def refresh_webp():
