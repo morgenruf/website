@@ -20,19 +20,18 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/site.css"/>
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=769193ca84"/>
 <script src="/assets/analytics.js" defer></script>
-<script src="/assets/nav.js" defer></script>
+<script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Morgenruf a drop-in Donut replacement?", "acceptedAnswer": {"@type": "Answer", "text": "For random pairings from a Slack channel, yes. For Teams, journeys or Gatheround's video facilitation, no, and pretending otherwise would waste your afternoon."}}, {"@type": "Question", "name": "Can I import our Donut history?", "acceptedAnswer": {"@type": "Answer", "text": "No. Run both for a couple of weeks instead and let the new pairings build their own history."}}, {"@type": "Question", "name": "Does it need Zoom?", "acceptedAnswer": {"@type": "Answer", "text": "No. Without it a pairing uses whatever room link you set on the programme, or none. Zoom only adds a real meeting at the agreed hour."}}, {"@type": "Question", "name": "What does it cost for 200 people?", "acceptedAnswer": {"@type": "Answer", "text": "Nothing per seat. On the hosted instance, nothing at all. Self-hosted, the server and database you run it on, which for 200 people is a small instance."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Compare","item":"https://morgenruf.dev/compare/"},{"@type":"ListItem","position":3,"name":"vs Donut"}]}</script>
 </head>
 <body>
 <nav class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <a class="brand" href="/"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
     <div class="nav-links"><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/setup/">Set up</a><a href="/compare/" aria-current=page>Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
     <div class="nav-cta">
       <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
@@ -113,7 +112,7 @@ whether the introductions land, then turn Donut off. Nothing here needs a contra
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
         <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
         chats and recognition. Free on the hosted instance, or self-host it and keep your own
         data.</p>

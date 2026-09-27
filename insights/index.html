@@ -20,19 +20,18 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/site.css"/>
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=769193ca84"/>
 <script src="/assets/analytics.js" defer></script>
-<script src="/assets/nav.js" defer></script>
+<script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What does Insights actually look at?", "acceptedAnswer": {"@type": "Answer", "text": "Two datasets at once. Standup answers on their own tell you who is blocked today; kudos on their own tell you who was thanked. Together they answer questions neither can: who is contributing and going unrecognised, and which blocker has been in someone's answers for days."}}, {"@type": "Question", "name": "Is this surveillance?", "acceptedAnswer": {"@type": "Answer", "text": "It is the same information already in your channel, counted. It does not read messages it was not sent, does not score people, and does not produce a ranking of who is 'productive'. If you want a tool that tells you who to performance-manage, this is not it."}}, {"@type": "Question", "name": "Can I turn it off?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Insights is a module like the others and can be switched off per workspace, at which point it stops running and leaves the sidebar."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Insights"}]}</script>
 </head>
 <body>
 <nav class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <a class="brand" href="/"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
     <div class="nav-links"><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/setup/">Set up</a><a href="/compare/">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
     <div class="nav-cta">
       <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
@@ -54,7 +53,7 @@
       <a class="btn btn-line" href="/setup/">Set it up yourself</a>
     </div>
   </div>
-  <div><div class="shot"><img src="/screenshots/members.jpg" width="1180" height="480" loading="lazy" alt="Member cards showing which features each person runs"/></div><p class="shot-cap">Who runs what, at a glance.</p></div>
+  <div><div class="shot"><picture><source srcset="/screenshots/members.webp" type="image/webp"/><img src="/screenshots/members.jpg" width="1180" height="480" fetchpriority="high" alt="Member cards showing which features each person runs"/></picture></div><p class="shot-cap">Who runs what, at a glance.</p></div>
 </div></div></header>
 <section class="section"><div class="wrap"><div class="prose">
 <figure class="diagram">
@@ -119,7 +118,7 @@ place</a>.</p>
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
         <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
         chats and recognition. Free on the hosted instance, or self-host it and keep your own
         data.</p>

@@ -20,19 +20,18 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/site.css"/>
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=769193ca84"/>
 <script src="/assets/analytics.js" defer></script>
-<script src="/assets/nav.js" defer></script>
+<script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What time does it ask people?", "acceptedAnswer": {"@type": "Answer", "text": "Whatever hour you set, in each person's own timezone. A team across four continents gets asked at a sensible local hour rather than yours."}}, {"@type": "Question", "name": "Can we have more than one standup?", "acceptedAnswer": {"@type": "Answer", "text": "As many as you like, each with its own channel, schedule, questions and participants. A morning engineering call and a Tuesday design sync are two standups, not a compromise."}}, {"@type": "Question", "name": "What happens when somebody is on leave?", "acceptedAnswer": {"@type": "Answer", "text": "They are skipped, not nagged. Vacation is set from the Slack App Home or the dashboard, and nobody on leave counts against the completion figure."}}, {"@type": "Question", "name": "Can people edit an answer after sending it?", "acceptedAnswer": {"@type": "Answer", "text": "Within a window you choose: until the report posts, for four hours, or indefinitely."}}, {"@type": "Question", "name": "What does the summary look like?", "acceptedAnswer": {"@type": "Answer", "text": "One message in your channel, grouped by person or by question, with blockers pulled out. It can post in a thread to keep the channel quiet, and can go to a different channel from the one the questions came from."}}, {"@type": "Question", "name": "Does it chase people who have not answered?", "acceptedAnswer": {"@type": "Answer", "text": "If you want it to. A nudge goes as a private DM a set number of minutes before the report posts, to the people who have not filed, and to nobody else."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Standups"}]}</script>
 </head>
 <body>
 <nav class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <a class="brand" href="/"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
     <div class="nav-links"><a href="/standups/" aria-current=page>Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/setup/">Set up</a><a href="/compare/">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
     <div class="nav-cta">
       <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
@@ -54,7 +53,7 @@
       <a class="btn btn-line" href="/setup/">Set it up yourself</a>
     </div>
   </div>
-  <div><div class="shot"><img src="/screenshots/today.jpg" width="1182" height="600" loading="lazy" alt="The Today page: who has answered, who is blocked, and recent recognition"/></div><p class="shot-cap">Today, for a team of eight.</p></div>
+  <div><div class="shot"><picture><source srcset="/screenshots/today.webp" type="image/webp"/><img src="/screenshots/today.jpg" width="1182" height="600" fetchpriority="high" alt="The Today page: who has answered, who is blocked, and recent recognition"/></picture></div><p class="shot-cap">Today, for a team of eight.</p></div>
 </div></div></header>
 <section class="section"><div class="wrap">
   <div class="mod" style="border-top:0">
@@ -70,7 +69,7 @@
         <li>A private nudge for whoever has not filed yet</li>
       </ul>
     </div>
-    <div><div class="shot"><img src="/screenshots/standups.jpg" width="1180" height="530" loading="lazy" alt="Two standups in the dashboard, each with a completion sparkline and a health badge"/></div><p class="shot-cap">Each standup carries fourteen days of completion, so one that is slipping says so.</p></div>
+    <div><div class="shot"><picture><source srcset="/screenshots/standups.webp" type="image/webp"/><img src="/screenshots/standups.jpg" width="1180" height="530" loading="lazy" alt="Two standups in the dashboard, each with a completion sparkline and a health badge"/></picture></div><p class="shot-cap">Each standup carries fourteen days of completion, so one that is slipping says so.</p></div>
   </div>
 
   <div class="mod">
@@ -86,7 +85,7 @@
         <li>When the next coffee chat round goes out, and whether it is overdue</li>
       </ul>
     </div>
-    <div><div class="shot"><img src="/screenshots/today.jpg" width="1182" height="600" loading="lazy" alt="The Today page showing answered and blocked counts, this morning's answers and recent kudos"/></div><p class="shot-cap">Today, for a team of eight.</p></div>
+    <div><div class="shot"><picture><source srcset="/screenshots/today.webp" type="image/webp"/><img src="/screenshots/today.jpg" width="1182" height="600" loading="lazy" alt="The Today page showing answered and blocked counts, this morning's answers and recent kudos"/></picture></div><p class="shot-cap">Today, for a team of eight.</p></div>
   </div>
 </div></section>
 
@@ -158,7 +157,7 @@ write-up on running async standups in Slack for free</a> is the shorter version 
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
         <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
         chats and recognition. Free on the hosted instance, or self-host it and keep your own
         data.</p>

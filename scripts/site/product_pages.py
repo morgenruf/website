@@ -33,8 +33,12 @@ def page(*, path, title, description, h1, lede, body, hero="", schema=(), trail=
 </main>''' + cta_band() + footer())
 
 
-def shot(src, alt, caption, w=None, h=None):
-    """Width and height come from the file, so the space is reserved correctly."""
+def shot(src, alt, caption, w=None, h=None, lazy=True):
+    """Width and height come from the file, so the space is reserved correctly.
+
+    A WebP copy sits beside every screenshot and is offered first. The one
+    screenshot in a page header is the largest thing on screen when the page
+    loads, so it is fetched eagerly and early instead of lazily."""
     if w is None or h is None:
         try:
             from PIL import Image
@@ -43,7 +47,10 @@ def shot(src, alt, caption, w=None, h=None):
                 w, h = im.size
         except Exception:
             w, h = 1100, 700
-    return (f'<div class="shot"><img src="{src}" width="{w}" height="{h}" loading="lazy" alt="{alt}"/></div>'
+    load = 'loading="lazy"' if lazy else 'fetchpriority="high"'
+    webp = src.rsplit(".", 1)[0] + ".webp"
+    return (f'<div class="shot"><picture><source srcset="{webp}" type="image/webp"/>'
+            f'<img src="{src}" width="{w}" height="{h}" {load} alt="{alt}"/></picture></div>'
             f'<p class="shot-cap">{caption}</p>')
 
 
@@ -150,7 +157,7 @@ write-up on running async standups in Slack for free</a> is the shorter version 
         lede="Morgenruf asks each person in a DM at a sensible local hour. One summary lands in the "
              "channel. Nobody sits in a call to hear what they could have read.",
         body=body, schema=[faq_schema],
-        hero=shot("/screenshots/today.jpg", "The Today page: who has answered, who is blocked, and recent recognition", "Today, for a team of eight."),
+        hero=shot("/screenshots/today.jpg", "The Today page: who has answered, who is blocked, and recent recognition", "Today, for a team of eight.", lazy=False),
         trail=[("Home", "/"), ("Standups", None)], current="/standups/")
 
 
@@ -243,7 +250,7 @@ which is the question the attendance table exists to answer.</p>
         lede="Random pairings from a channel, on a cadence, that end in an actual meeting rather than "
              "two people agreeing they should find a time.",
         body=body, schema=[faq_schema],
-        hero=shot("/screenshots/coffee-chat-settings.jpg", "Coffee chat settings beside a live preview of the Slack introduction", "The settings, and the message they produce."),
+        hero=shot("/screenshots/coffee-chat-settings.jpg", "Coffee chat settings beside a live preview of the Slack introduction", "The settings, and the message they produce.", lazy=False),
         trail=[("Home", "/"), ("Coffee chats", None)], current="/coffee-chats/")
 
 
@@ -319,7 +326,7 @@ visible in a way neither dataset shows alone.</p>
         lede="A handful of tokens a day each, given publicly with a reason, gone at midnight if "
              "unspent.",
         body=body, schema=[faq_schema],
-        hero=shot("/screenshots/kudos.jpg", "Kudos settings: the token, the daily allowance and a preview of the message", "Your token, your allowance."),
+        hero=shot("/screenshots/kudos.jpg", "Kudos settings: the token, the daily allowance and a preview of the message", "Your token, your allowance.", lazy=False),
         trail=[("Home", "/"), ("Kudos", None)], current="/kudos/")
 
 
@@ -379,5 +386,5 @@ place</a>.</p>
         lede="Standups tell you who is blocked. Kudos tell you who was thanked. Together they tell "
              "you something neither can on its own.",
         body=body, schema=[faq_schema],
-        hero=shot("/screenshots/members.jpg", "Member cards showing which features each person runs", "Who runs what, at a glance."),
+        hero=shot("/screenshots/members.jpg", "Member cards showing which features each person runs", "Who runs what, at a glance.", lazy=False),
         trail=[("Home", "/"), ("Insights", None)], current="/insights/")

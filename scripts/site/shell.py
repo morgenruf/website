@@ -7,11 +7,15 @@ older landing pages ended up thin and inconsistent.
 
 from __future__ import annotations
 
+import hashlib
+import pathlib
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 SITE = "https://morgenruf.dev"
 INSTALL = "https://api.morgenruf.dev/install"
 REPO = "https://github.com/morgenruf/morgenruf"
 
-MARK = '<img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/>' 
+MARK = '<img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/>' 
 
 SLACK_MARK = ('<svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px">'
   '<path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/>'
@@ -47,6 +51,16 @@ FOOTER = [
 ]
 
 
+def asset(path):
+    """A static asset URL carrying a hash of its contents.
+
+    /assets/* is served with a year-long immutable cache, so an edited
+    site.css under the same URL would never reach a returning visitor. The
+    query string changes whenever the file does."""
+    digest = hashlib.sha256((ROOT / path.lstrip("/")).read_bytes()).hexdigest()[:10]
+    return f"{path}?v={digest}"
+
+
 def head(*, title, description, path, og_image="/og-image.png", schema=None, extra_head=""):
     url = SITE + path
     blocks = "".join(f'\n<script type="application/ld+json">{s}</script>' for s in (schema or []))
@@ -72,12 +86,11 @@ def head(*, title, description, path, og_image="/og-image.png", schema=None, ext
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/site.css"/>
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="{asset("/assets/site.css")}"/>
 <script src="/assets/analytics.js" defer></script>
-<script src="/assets/nav.js" defer></script>{extra_head}{blocks}
+<script src="{asset("/assets/nav.js")}" defer></script>{extra_head}{blocks}
 </head>
 <body>
 '''

@@ -20,18 +20,17 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/site.css"/>
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=769193ca84"/>
 <script src="/assets/analytics.js" defer></script>
-<script src="/assets/nav.js" defer></script>
+<script src="/assets/nav.js?v=9bd6907975" defer></script>
 </head>
 <body>
 
 <nav class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <a class="brand" href="/"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
     <div class="nav-links">
       <a href="#standups">Standups</a>
       <a href="#coffee-chats">Coffee chats</a>
@@ -69,7 +68,7 @@
       </div>
     </div>
     <div>
-      <img class="mascot" src="/mascot.png" width="600" height="512" alt="The Morgenruf rooster, in sunglasses, holding a mug of coffee"/>
+      <picture><source srcset="/mascot.webp" type="image/webp"/><img class="mascot" src="/mascot.png" width="600" height="512" alt="The Morgenruf rooster, in sunglasses, holding a mug of coffee"/></picture>
     </div>
   </div>
   <div class="proof">
@@ -101,8 +100,8 @@
         </ul>
       </div>
       <div>
-        <div class="shot"><img src="/screenshots/standups.jpg" width="1476" height="360" loading="lazy"
-          alt="Two standups listed in the Morgenruf dashboard, each with a fourteen-day completion sparkline and a health badge"/></div>
+        <div class="shot"><picture><source srcset="/screenshots/standups.webp" type="image/webp"/><img src="/screenshots/standups.jpg" width="1476" height="360" loading="lazy"
+          alt="Two standups listed in the Morgenruf dashboard, each with a fourteen-day completion sparkline and a health badge"/></picture></div>
         <p class="shot-cap">Every standup carries fourteen days of completion, so a schedule that is
         slipping says so before anyone goes looking.</p>
       </div>
@@ -124,8 +123,8 @@
         </ul>
       </div>
       <div>
-        <div class="shot"><img src="/screenshots/coffee-chat-settings.jpg" width="1476" height="690" loading="lazy"
-          alt="Coffee chat settings on the left and a live preview of the Slack introduction on the right"/></div>
+        <div class="shot"><picture><source srcset="/screenshots/coffee-chat-settings.webp" type="image/webp"/><img src="/screenshots/coffee-chat-settings.jpg" width="1476" height="690" loading="lazy"
+          alt="Coffee chat settings on the left and a live preview of the Slack introduction on the right"/></picture></div>
         <p class="shot-cap">Settings on the left, the Slack message they produce on the right,
         updating as you type.</p>
       </div>
@@ -145,8 +144,8 @@
         </ul>
       </div>
       <div>
-        <div class="shot"><img src="/screenshots/kudos.jpg" width="1527" height="640" loading="lazy"
-          alt="Kudos settings: the token, the daily allowance, and a preview of the recognition message"/></div>
+        <div class="shot"><picture><source srcset="/screenshots/kudos.webp" type="image/webp"/><img src="/screenshots/kudos.jpg" width="1527" height="640" loading="lazy"
+          alt="Kudos settings: the token, the daily allowance, and a preview of the recognition message"/></picture></div>
         <p class="shot-cap">Set the token and the allowance, and see the message your team will get.</p>
       </div>
     </div>
@@ -165,8 +164,8 @@
         </ul>
       </div>
       <div>
-        <div class="shot"><img src="/screenshots/members.jpg" width="1476" height="530" loading="lazy"
-          alt="Member cards in the dashboard showing which features each person has been put in charge of"/></div>
+        <div class="shot"><picture><source srcset="/screenshots/members.webp" type="image/webp"/><img src="/screenshots/members.jpg" width="1476" height="530" loading="lazy"
+          alt="Member cards in the dashboard showing which features each person has been put in charge of"/></picture></div>
         <p class="shot-cap">Press a chip to hand a feature over. Press it again to take it back.</p>
       </div>
     </div>
@@ -184,7 +183,7 @@
         <div class="slack-top"><span class="slack-dots"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></span> Direct message</div>
         <div class="slack-body">
           <div class="msg">
-            <img class="av" src="/icon-512.png" alt="" width="34" height="34"/>
+            <img class="av" src="/icon-68.png" alt="" width="34" height="34"/>
             <div><div class="msg-who">Morgenruf <small>APP</small> <time>9:30</time></div>
             <div class="msg-text">Morning Priya. What did you get done yesterday?</div></div>
           </div>
@@ -194,7 +193,7 @@
             <div class="msg-text">Shipped the retry logic for webhook delivery. Reviewing the migration plan with Marcus today.</div></div>
           </div>
           <div class="msg">
-            <img class="av" src="/icon-512.png" alt="" width="34" height="34"/>
+            <img class="av" src="/icon-68.png" alt="" width="34" height="34"/>
             <div><div class="msg-who">Morgenruf <small>APP</small> <time>9:32</time></div>
             <div class="msg-text">Anything blocking you?</div></div>
           </div>
@@ -204,7 +203,7 @@
         <div class="slack-top"><span class="slack-dots"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></span> Group message</div>
         <div class="slack-body">
           <div class="msg">
-            <img class="av" src="/icon-512.png" alt="" width="34" height="34"/>
+            <img class="av" src="/icon-68.png" alt="" width="34" height="34"/>
             <div><div class="msg-who">Morgenruf <small>APP</small> <time>10:00</time></div>
             <div class="msg-text">@sofia and @hiro have been matched. Say hello right here.
               <div class="msg-text quiet" style="margin-top:8px">Times that suit everyone's hours</div>
@@ -223,7 +222,7 @@
         <div class="slack-top"><span class="slack-dots"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></span> #engineering</div>
         <div class="slack-body">
           <div class="msg">
-            <img class="av" src="/icon-512.png" alt="" width="34" height="34"/>
+            <img class="av" src="/icon-68.png" alt="" width="34" height="34"/>
             <div><div class="msg-who">Morgenruf <small>APP</small> <time>16:04</time></div>
             <div class="msg-text">🍁 <strong>@marcus</strong> gave a 🍁 to <strong>@priya</strong>
               <div class="msg-text" style="border-left:3px solid var(--line);padding-left:10px;margin-top:6px">caught a DST bug that would have hit every European user</div>
@@ -231,7 +230,7 @@
             </div></div>
           </div>
           <div class="msg">
-            <img class="av" src="/icon-512.png" alt="" width="34" height="34"/>
+            <img class="av" src="/icon-68.png" alt="" width="34" height="34"/>
             <div><div class="msg-who">Morgenruf <small>APP</small> <time>17:00</time></div>
             <div class="msg-text">Did you and @hiro manage to meet?
               <div class="slack-btns"><span class="slack-btn primary">We met</span><span class="slack-btn">Not this time</span></div>
@@ -466,7 +465,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
         <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
         chats and recognition. Free on the hosted instance, or self-host it and keep your own
         data.</p>

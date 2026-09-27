@@ -20,19 +20,18 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/site.css"/>
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=769193ca84"/>
 <script src="/assets/analytics.js" defer></script>
-<script src="/assets/nav.js" defer></script>
+<script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Morgenruf free compared with Geekbot?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, with no per-seat fee at all. The hosted instance is free. Self-hosted, you pay for the server and database you run it on, roughly $5 to $20 a month regardless of headcount."}}, {"@type": "Question", "name": "Can I import my Geekbot history?", "acceptedAnswer": {"@type": "Answer", "text": "No. Run both in parallel for a week and switch over once the summaries look right."}}, {"@type": "Question", "name": "Does it do everything Geekbot does?", "acceptedAnswer": {"@type": "Answer", "text": "For async standups, the everyday shape is the same: questions, schedules, timezones, summaries, reminders, analytics. Geekbot has more years of edge cases and a support contract; this has coffee chats and recognition in the same app, and your data in your own database."}}, {"@type": "Question", "name": "How long does it take to set up?", "acceptedAnswer": {"@type": "Answer", "text": "About two minutes on the free hosted instance. Self-hosted, about twenty minutes, most of it creating the Slack app."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Compare","item":"https://morgenruf.dev/compare/"},{"@type":"ListItem","position":3,"name":"vs Geekbot"}]}</script>
 </head>
 <body>
 <nav class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <a class="brand" href="/"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
     <div class="nav-links"><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/setup/">Set up</a><a href="/compare/">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
     <div class="nav-cta">
       <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
@@ -54,7 +53,7 @@
       <a class="btn btn-line" href="/setup/">Set it up yourself</a>
     </div>
   </div>
-  <div><div class="shot"><img src="/screenshots/today.jpg" width="1182" height="600" loading="lazy" alt="The Today page showing who answered, who is blocked and recent recognition"/></div><p class="shot-cap">Your morning, on one screen.</p></div>
+  <div><div class="shot"><picture><source srcset="/screenshots/today.webp" type="image/webp"/><img src="/screenshots/today.jpg" width="1182" height="600" fetchpriority="high" alt="The Today page showing who answered, who is blocked and recent recognition"/></picture></div><p class="shot-cap">Your morning, on one screen.</p></div>
 </div></div></header>
 <section class="section"><div class="wrap"><div class="guide"><nav class="toc" aria-label="On this page"><strong>On this page</strong><div class="toc-links"><a href="#what-you-are-actually-comparing">What you are comparing</a><a href="#where-geekbot-wins">Where Geekbot wins</a><a href="#where-this-is-different">Where this is different</a><a href="#the-things-that-decide-it-in-practice">What decides it</a><a href="#moving-across">Moving across</a></div></nav><div class="prose"><h2 id="what-you-are-actually-comparing">What you are actually comparing</h2>
 <p>Geekbot is a hosted async standup bot. It is mature, it works, and for a lot of teams the monthly
@@ -138,7 +137,7 @@ deployment and one database, which is also what makes the
   when it slips.</li>
 </ul>
 
-<div class="shot"><img src="/screenshots/standups.jpg" width="1180" height="530" loading="lazy" alt="Two standups in the dashboard, each with a completion sparkline and a health badge"/></div><p class="shot-cap">A standup that is quietly dying says so here before anyone notices in the channel.</p>
+<div class="shot"><picture><source srcset="/screenshots/standups.webp" type="image/webp"/><img src="/screenshots/standups.jpg" width="1180" height="530" loading="lazy" alt="Two standups in the dashboard, each with a completion sparkline and a health badge"/></picture></div><p class="shot-cap">A standup that is quietly dying says so here before anyone notices in the channel.</p>
 
 <h2 id="moving-across">Moving across</h2>
 <p>There is no importer, and honestly the history is rarely what you miss. The usual path is to run
@@ -168,7 +167,7 @@ right. Nothing here has a contract to cancel.</p>
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
         <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
         chats and recognition. Free on the hosted instance, or self-host it and keep your own
         data.</p>

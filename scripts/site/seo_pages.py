@@ -8,6 +8,7 @@ else, and enough substance to be worth landing on.
 from __future__ import annotations
 
 import diagrams
+from product_pages import shot
 from shell import INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, faq, footer, head, nav
 
 
@@ -42,15 +43,6 @@ def guide(prose, toc):
             f'<nav class="toc" aria-label="On this page"><strong>On this page</strong>'
             f'<div class="toc-links">{links}</div></nav>'
             f'<div class="prose">{prose}</div></div></div></section>')
-
-
-def shot(src, alt, caption):
-    from PIL import Image
-    import pathlib
-    with Image.open(pathlib.Path(__file__).resolve().parent.parent.parent / src.lstrip("/")) as im:
-        w, h = im.size
-    return (f'<div class="shot"><img src="{src}" width="{w}" height="{h}" loading="lazy" alt="{alt}"/></div>'
-            f'<p class="shot-cap">{caption}</p>')
 
 
 def geekbot():
@@ -163,7 +155,7 @@ right. Nothing here has a contract to cancel.</p>
                      "on your own servers, with coffee chats and kudos included rather than sold "
                      "separately.",
                 body=body, schema=[faq_schema],
-                hero=shot("/screenshots/today.jpg", "The Today page showing who answered, who is blocked and recent recognition", "Your morning, on one screen."),
+                hero=shot("/screenshots/today.jpg", "The Today page showing who answered, who is blocked and recent recognition", "Your morning, on one screen.", lazy=False),
                 trail=[("Home", "/"), ("Compare", "/compare/"), ("vs Geekbot", None)])
 
 
@@ -513,5 +505,5 @@ happens when someone is on leave. If you are still deciding,
                 lede="Questions by DM at each person's local hour, one summary in the channel, "
                      "slash commands and an App Home tab. Nobody opens a dashboard to take part.",
                 body=body, schema=[faq_schema],
-                hero=shot("/screenshots/today.jpg", "The Today page showing the morning's answers and blockers", "The dashboard is for whoever runs it. Everyone else stays in Slack."),
+                hero=shot("/screenshots/today.jpg", "The Today page showing the morning's answers and blockers", "The dashboard is for whoever runs it. Everyone else stays in Slack.", lazy=False),
                 trail=[("Home", "/"), ("Slack standup bot", None)])

@@ -55,6 +55,13 @@ HAND_WRITTEN = [
 ]
 
 
+def refresh_assets(html):
+    """Point a hand-written page at the current versions of the shared assets."""
+    for path in ("/assets/site.css", "/assets/nav.js"):
+        html = re.sub(re.escape(path) + r'(\?v=[0-9a-f]+)?"', shell.asset(path) + '"', html)
+    return html
+
+
 def refresh_chrome(html):
     html = re.sub(r'<nav class="nav">.*?</nav>\n', lambda _: shell.nav(), html, count=1, flags=re.S)
     html = re.sub(r"</main>.*\Z", lambda _: "</main>" + shell.cta_band() + shell.footer(), html,
@@ -68,7 +75,26 @@ def refresh_home_footer(html):
     return re.sub(r"<footer>.*?</footer>\n", lambda _: shell.footer_block(), html, count=1, flags=re.S)
 
 
+def refresh_webp():
+    """A WebP copy beside each screenshot and the mascot, which pages offer
+    first through <picture>. Made again whenever the original is newer, so a
+    replaced screenshot cannot keep serving its old WebP."""
+    from PIL import Image
+    sources = [(p, None) for p in sorted((ROOT / "screenshots").glob("*.jpg"))]
+    sources.append((ROOT / "mascot.png", 660))  # shown at most 330px wide
+    for src, width in sources:
+        dst = src.with_suffix(".webp")
+        if dst.exists() and dst.stat().st_mtime >= src.stat().st_mtime:
+            continue
+        with Image.open(src) as im:
+            if width and im.width > width:
+                im = im.resize((width, round(im.height * width / im.width)), Image.LANCZOS)
+            im.save(dst, "WEBP", quality=82, method=6)
+        print(f"{dst.relative_to(ROOT)!s:38s} written")
+
+
 def main():
+    refresh_webp()
     for rel, render in PAGES.items():
         out = ROOT / rel
         out.parent.mkdir(parents=True, exist_ok=True)
@@ -78,16 +104,16 @@ def main():
     for rel in HAND_WRITTEN:
         path = ROOT / rel
         before = path.read_text()
-        after = refresh_chrome(before)
+        after = refresh_assets(refresh_chrome(before))
         if after != before:
             path.write_text(after)
         print(f"{rel:38s} chrome {'refreshed' if after != before else 'unchanged'}")
     home = ROOT / "index.html"
     before = home.read_text()
-    after = refresh_home_footer(before)
+    after = refresh_assets(refresh_home_footer(before))
     if after != before:
         home.write_text(after)
-    print(f"{'index.html':38s} footer {'refreshed' if after != before else 'unchanged'}")
+    print(f"{'index.html':38s} shared parts {'refreshed' if after != before else 'unchanged'}")
 
 
 if __name__ == "__main__":

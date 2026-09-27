@@ -20,19 +20,18 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/assets/site.css"/>
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=769193ca84"/>
 <script src="/assets/analytics.js" defer></script>
-<script src="/assets/nav.js" defer></script>
+<script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does it work on Slack's free plan?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It uses standard app APIs available on the free plan."}}, {"@type": "Question", "name": "Can it post to a different channel from the one it asks in?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Questions go by DM, and the summary can post anywhere the bot has been invited."}}, {"@type": "Question", "name": "Does it read our channel messages?", "acceptedAnswer": {"@type": "Answer", "text": "No. It reads replies to its own DMs and channel membership where you point it. It has no history scope."}}, {"@type": "Question", "name": "What about Microsoft Teams or Google Chat?", "acceptedAnswer": {"@type": "Answer", "text": "Google Chat is in beta; Teams as a platform is in progress. Slack is first class."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Slack standup bot"}]}</script>
 </head>
 <body>
 <nav class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="/"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <a class="brand" href="/"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
     <div class="nav-links"><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/setup/">Set up</a><a href="/compare/">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
     <div class="nav-cta">
       <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
@@ -54,7 +53,7 @@
       <a class="btn btn-line" href="/setup/">Set it up yourself</a>
     </div>
   </div>
-  <div><div class="shot"><img src="/screenshots/today.jpg" width="1182" height="600" loading="lazy" alt="The Today page showing the morning's answers and blockers"/></div><p class="shot-cap">The dashboard is for whoever runs it. Everyone else stays in Slack.</p></div>
+  <div><div class="shot"><picture><source srcset="/screenshots/today.webp" type="image/webp"/><img src="/screenshots/today.jpg" width="1182" height="600" fetchpriority="high" alt="The Today page showing the morning's answers and blockers"/></picture></div><p class="shot-cap">The dashboard is for whoever runs it. Everyone else stays in Slack.</p></div>
 </div></div></header>
 <section class="section"><div class="wrap"><div class="guide"><nav class="toc" aria-label="On this page"><strong>On this page</strong><div class="toc-links"><a href="#what-it-does-in-slack">What a standup bot does</a><a href="#the-scopes-it-asks-for">The scopes</a><a href="#what-it-is-not">What it is not</a><a href="#adding-it">Adding it</a></div></nav><div class="prose"><h2 id="what-it-does-in-slack">What a Slack standup bot does, and what this one does</h2>
 <p>A standup bot asks each person the same few questions every working morning and puts the answers
@@ -103,7 +102,7 @@ scopes for group DMs and timezones. Kudos needs emoji read access to use your ow
 scope for reading channel history, because it never does.
 <a href="/setup/slack-app/">Every scope, with the reason</a>.</p>
 
-<div class="shot"><img src="/screenshots/coffee-chat-settings.jpg" width="875" height="575" loading="lazy" alt="Coffee chat settings with a live preview of the Slack message"/></div><p class="shot-cap">The settings page shows the Slack message it will produce, as you edit it.</p>
+<div class="shot"><picture><source srcset="/screenshots/coffee-chat-settings.webp" type="image/webp"/><img src="/screenshots/coffee-chat-settings.jpg" width="875" height="575" loading="lazy" alt="Coffee chat settings with a live preview of the Slack message"/></picture></div><p class="shot-cap">The settings page shows the Slack message it will produce, as you edit it.</p>
 
 <h2 id="what-it-is-not">What it is not</h2>
 <ul>
@@ -139,7 +138,7 @@ happens when someone is on leave. If you are still deciding,
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
         <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
         chats and recognition. Free on the hosted instance, or self-host it and keep your own
         data.</p>
