@@ -435,20 +435,20 @@ it every event is rejected.</p>
 <h2 id="4-what-it-asks-for-and-why">4. What it asks for, and why</h2>
 <p>Scopes are the part people read carefully, so here is each group and what it is for.</p>
 <ul>
-  <li><code>channels:read</code>, <code>groups:read</code> — to see who is in the channel a standup
+  <li><code>channels:read</code>, <code>groups:read</code>: to see who is in the channel a standup
   or a coffee chat draws from.</li>
-  <li><code>chat:write</code> — to post the summary and the introductions.</li>
-  <li><code>im:write</code>, <code>im:history</code> — to ask each person their questions in a DM and
+  <li><code>chat:write</code>: to post the summary and the introductions.</li>
+  <li><code>im:write</code>, <code>im:history</code>: to ask each person their questions in a DM and
   read their answers to it.</li>
-  <li><code>users:read</code>, <code>users:read.email</code> — names and email, for the dashboard and
+  <li><code>users:read</code>, <code>users:read.email</code>: names and email, for the dashboard and
   the digest.</li>
-  <li><code>users.profile:read</code> — timezones, so nobody is asked at midnight.</li>
-  <li><code>mpim:write</code>, <code>mpim:history</code> — the group DM a
+  <li><code>users.profile:read</code>: timezones, so nobody is asked at midnight.</li>
+  <li><code>mpim:write</code>, <code>mpim:history</code>: the group DM a
   <a href="/coffee-chats/">coffee chat</a> introduction happens in. Only needed if you turn coffee
   chats on.</li>
-  <li><code>emoji:read</code> — so <a href="/kudos/">kudos</a> can use a custom token from your
+  <li><code>emoji:read</code>: so <a href="/kudos/">kudos</a> can use a custom token from your
   workspace.</li>
-  <li><code>commands</code> — the slash commands.</li>
+  <li><code>commands</code>: the slash commands.</li>
 </ul>
 <p>There is no scope for reading channel history, because the app never does.</p>
 
@@ -464,10 +464,10 @@ channel before <a href="/standups/">a standup</a> can post there:</p>
 
 <h2 id="slash-commands-you-get">Slash commands you get</h2>
 <ul>
-  <li><code>/standup</code> — start your standup now</li>
-  <li><code>/skip</code> — skip today</li>
-  <li><code>/kudos @teammate a reason</code> — give recognition</li>
-  <li><code>/help</code> — what the bot can do</li>
+  <li><code>/standup</code>: start your standup now</li>
+  <li><code>/skip</code>: skip today</li>
+  <li><code>/kudos @teammate a reason</code>: give recognition</li>
+  <li><code>/help</code>: what the bot can do</li>
 </ul>
 
 <div class="next">

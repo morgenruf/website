@@ -707,24 +707,24 @@ This has to match the APP_URL you configured, including https.
 From Basic Information, copy the client id, client secret and signing secret into your environment or Helm values. The signing secret is what lets the app verify a request genuinely came from Slack; without it every event is rejected.
 4. What it asks for, and why
 Scopes are the part people read carefully, so here is each group and what it is for.
-channels:read, groups:read — to see who is in the channel a standup or a coffee chat draws from.
-chat:write — to post the summary and the introductions.
-im:write, im:history — to ask each person their questions in a DM and read their answers to it.
-users:read, users:read.email — names and email, for the dashboard and the digest.
-users.profile:read — timezones, so nobody is asked at midnight.
-mpim:write, mpim:history — the group DM a coffee chat introduction happens in. Only needed if you turn coffee chats on.
-emoji:read — so kudos can use a custom token from your workspace.
-commands — the slash commands.
+channels:read, groups:read: to see who is in the channel a standup or a coffee chat draws from.
+chat:write: to post the summary and the introductions.
+im:write, im:history: to ask each person their questions in a DM and read their answers to it.
+users:read, users:read.email: names and email, for the dashboard and the digest.
+users.profile:read: timezones, so nobody is asked at midnight.
+mpim:write, mpim:history: the group DM a coffee chat introduction happens in. Only needed if you turn coffee chats on.
+emoji:read: so kudos can use a custom token from your workspace.
+commands: the slash commands.
 There is no scope for reading channel history, because the app never does.
 If you installed before coffee chats existed, your workspace will not have granted the three mpim scopes. Coffee chats stay dark until you reinstall, rather than failing at runtime, and the dashboard tells you which scopes are missing.
 5. Install and invite
 Open your app URL, authorise, and you are the first admin. Then invite the bot to the channel the summary posts in, and to any channel you want coffee chats to pair from. The bot has to be in the channel before a standup can post there:
 /invite @Morgenruf
 Slash commands you get
-/standup — start your standup now
-/skip — skip today
-/kudos @teammate a reason — give recognition
-/help — what the bot can do
+/standup: start your standup now
+/skip: skip today
+/kudos @teammate a reason: give recognition
+/help: what the bot can do
 Docker Compose
 Get the app itself running in a few minutes.
 Read it → Kubernetes
