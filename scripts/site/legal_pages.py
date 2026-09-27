@@ -100,13 +100,13 @@ rebuilt, or the link may have been wrong to begin with.</p>
 
 
 POSTS = [
-    ("/blog/why-i-built-morgenruf/", "Why I built a free Geekbot alternative",
+    ("/blog/why-i-built-morgenruf/", "Why I built Morgenruf in a Tim Hortons in Kitchener",
      "A Saturday at a Tim Hortons in Kitchener, a monthly SaaS bill, and one line on it: $2.50 per "
      "person per month for a bot that DMs three questions and pastes the answers into a channel. "
      "The post works through how small the core loop really is, what the weekend produced, and "
      "which features went in afterwards because they cost nothing once the foundation existed: "
      "mood tracking, webhooks, CSV export and an MCP server."),
-    ("/blog/async-standups-slack-free/", "Async standups in Slack, for free",
+    ("/blog/async-standups-slack-free/", "The 12.5 hour standup: taking a team of ten async in Slack",
      "The arithmetic first: a quarter hour a day is 75 minutes a week per person, and 12.5 hours a "
      "week for a team of ten, most of it spent listening. Then what replaces it. A scheduled DM, "
      "short written answers, one summary in a channel, and the five steps to get there. It ends on "
@@ -149,7 +149,7 @@ where to say that one of them is wrong.</p>'''
                  description="Writing about async standups, self-hosting Slack tools and building "
                              "an open-source alternative to per-seat team software. Three posts so "
                              "far, no listicles.",
-                 h1="Writing",
+                 h1="Writing about async standups and self-hosting",
                  lede="On async standups, self-hosting, and what building the alternative actually "
                       "involves.",
                  prose=prose, trail=[("Home", "/"), ("Blog", None)])

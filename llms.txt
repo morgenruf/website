@@ -84,8 +84,8 @@ Background
 - [Self-hosted standup bot](https://morgenruf.dev/self-hosted-standup-bot/): deployment and data residency
 - [Slack standup bot](https://morgenruf.dev/slack-standup-bot/): the Slack side in detail
 - [Blog](https://morgenruf.dev/blog/): why it was built, and comparisons
-- [Why I built Morgenruf](https://morgenruf.dev/blog/why-i-built-morgenruf/): what was annoying enough about per-seat pricing to spend a weekend on it
-- [Async standups for free](https://morgenruf.dev/blog/async-standups-slack-free/): running a standup people actually fill in
+- [Why I built Morgenruf in a Tim Hortons in Kitchener](https://morgenruf.dev/blog/why-i-built-morgenruf/): what was annoying enough about per-seat pricing to spend a weekend on it
+- [The 12.5 hour standup](https://morgenruf.dev/blog/async-standups-slack-free/): running a standup people actually fill in
 - [Geekbot vs Morgenruf](https://morgenruf.dev/blog/geekbot-vs-morgenruf/): where the hosted product is the better answer
 - [Changelog](https://morgenruf.dev/changelog/): what shipped and when
 

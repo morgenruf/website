@@ -211,6 +211,9 @@ footer a:hover{color:var(--sun)}
 .foot-bottom a{display:inline; margin:0}
 .foot-legal{display:flex; gap:18px}
 
+/* ── Blog posts: byline and an early way in ──────────────────────────── */
+.byline{font-size:14.5px; color:var(--muted); margin:0 0 14px}
+.post-cta{display:flex; gap:10px; flex-wrap:wrap; margin:0 0 30px}
 /* ── Breadcrumbs ─────────────────────────────────────────────────────── */
 .crumbs{padding:8px 24px 0; font-size:13.5px; color:var(--dim); display:flex; gap:8px; flex-wrap:wrap; align-items:center}
 .crumbs a{color:var(--muted); text-decoration:none; display:inline-flex; align-items:center; min-height:44px; padding:0 4px; margin:0 -4px}

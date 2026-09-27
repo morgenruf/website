@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Async standups in Slack, for free</title>
+<title>The 12.5 hour standup: taking a team of ten async in Slack</title>
 <meta name="description" content="A 15 minute standup costs a 10 person team 12.5 hours a week. Here is how to move it into Slack DMs, async, with a free open-source bot you can self-host."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/blog/async-standups-slack-free/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/blog/async-standups-slack-free/"/>
-<meta property="og:title" content="Async standups in Slack, for free"/>
+<meta property="og:title" content="The 12.5 hour standup: taking a team of ten async in Slack"/>
 <meta property="og:description" content="A 15 minute standup costs a 10 person team 12.5 hours a week. Here is how to move it into Slack DMs, async, with a free open-source bot you can self-host."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Async standups in Slack, for free"/>
+<meta name="twitter:title" content="The 12.5 hour standup: taking a team of ten async in Slack"/>
 <meta name="twitter:description" content="A 15 minute standup costs a 10 person team 12.5 hours a week. Here is how to move it into Slack DMs, async, with a free open-source bot you can self-host."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="theme-color" content="#12131f"/>
@@ -24,8 +24,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="/assets/site.css"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://morgenruf.dev/blog/"},{"@type":"ListItem","position":3,"name":"Async standups in Slack, for free"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Async standups in Slack, for free","description":"A 15 minute standup costs a 10 person team 12.5 hours a week. Here is how to move it into Slack DMs, async, with a free open-source bot you can self-host.","image":"https://morgenruf.dev/og-image.png","datePublished":"2026-04-05","dateModified":"2026-09-18","author":{"@type":"Person","name":"Anmol Nagpal","worksFor":{"@type":"Organization","name":"CloudDrove","url":"https://clouddrove.com"}},"publisher":{"@type":"Organization","@id":"https://morgenruf.dev/#organization","name":"Morgenruf","url":"https://morgenruf.dev/","logo":{"@type":"ImageObject","url":"https://morgenruf.dev/icon-512.png","width":512,"height":512}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://morgenruf.dev/blog/async-standups-slack-free/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://morgenruf.dev/blog/"},{"@type":"ListItem","position":3,"name":"The 12.5 hour standup: taking a team of ten async in Slack"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"The 12.5 hour standup: taking a team of ten async in Slack","description":"A 15 minute standup costs a 10 person team 12.5 hours a week. Here is how to move it into Slack DMs, async, with a free open-source bot you can self-host.","image":"https://morgenruf.dev/og-image.png","datePublished":"2026-04-05","dateModified":"2026-09-26","author":{"@type":"Person","name":"Anmol Nagpal","worksFor":{"@type":"Organization","name":"CloudDrove","url":"https://clouddrove.com"}},"publisher":{"@type":"Organization","@id":"https://morgenruf.dev/#organization","name":"Morgenruf","url":"https://morgenruf.dev/","logo":{"@type":"ImageObject","url":"https://morgenruf.dev/icon-512.png","width":512,"height":512}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://morgenruf.dev/blog/async-standups-slack-free/"}}</script>
 <script src="/assets/analytics.js" defer></script>
 <script src="/assets/nav.js" defer></script>
 </head>
@@ -44,9 +44,11 @@
     </details>
   </div>
 </nav>
-<div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <a href="/blog/">Blog</a><span aria-hidden="true">›</span> <span>Async standups in Slack, for free</span></div><main>
-<header class="page-head"><div class="wrap"><h1>Async standups in Slack, for free</h1></div></header>
-<section class="section"><div class="wrap"><div class="prose"><p>Your daily standup meeting is eating more time than you think. What feels like a quick 15-minute sync actually costs your team hours every week &mdash; and breaks the focus time that matters most. There is a better way, and it does not require an expensive SaaS tool.</p>
+<div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <a href="/blog/">Blog</a><span aria-hidden="true">›</span> <span>The 12.5 hour standup: taking a team of ten async in Slack</span></div><main>
+<header class="page-head"><div class="wrap"><h1>The 12.5 hour standup: taking a team of ten async in Slack</h1></div></header>
+<section class="section"><div class="wrap"><div class="prose"><p class="byline">By <strong>Anmol Nagpal</strong>, CloudDrove &middot; <time datetime="2026-04-05">April 5, 2026</time> &middot; Updated <time datetime="2026-09-26">September 26, 2026</time>: setup times, prices and the hosted instance brought up to date.</p>
+<p class="post-cta"><a class="btn btn-sun btn-sm" href="https://api.morgenruf.dev/install">Add to Slack, free</a> <a class="btn btn-line btn-sm" href="/setup/">Self-host it</a></p>
+<p>Your daily standup meeting is eating more time than you think. What feels like a quick 15-minute sync actually costs your team hours every week, and breaks the focus time that matters most. There is a better way, and it does not require an expensive SaaS tool.</p>
 
   <h2>The problem with synchronous standups</h2>
 
@@ -64,18 +66,18 @@
 
   <h2>What async standups are</h2>
 
-  <p>An async standup replaces the live meeting with structured written updates. At a scheduled time, each team member gets a prompt &mdash; usually via DM &mdash; and replies with short answers to a set of questions. Those responses are collected and posted to a shared Slack channel.</p>
+  <p>An async standup replaces the live meeting with structured written updates. At a scheduled time, each team member gets a prompt (usually a DM) and replies with short answers to a set of questions. Those responses are collected and posted to a shared Slack channel.</p>
 
   <p>Everyone updates on their own schedule within a window that works for them. No one has to be online at the same time. A typical async update takes <strong>2 minutes instead of 15</strong>, and the written record is searchable, skimmable, and permanent.</p>
 
-  <p>The result: your team stays aligned without the meeting.</p>
+  <p>The result: your team stays aligned without the meeting. What that looks like day to day is on the page about <a href="/standups/">async standups in Slack</a> with Morgenruf.</p>
 
   <h2>What you need</h2>
 
   <p>Just two things:</p>
   <ol>
     <li>A <strong>Slack workspace</strong> (free plan works fine)</li>
-    <li><strong><a href="https://morgenruf.dev/">Morgenruf</a></strong> &mdash; a free, open-source Slack standup bot</li>
+    <li><strong><a href="https://morgenruf.dev/">Morgenruf</a></strong>, a free, open-source Slack standup bot</li>
   </ol>
 
   <p>Morgenruf is completely free. No per-user pricing, no paid tiers, no credit card required. Add to Slack puts it on the free hosted instance CloudDrove runs, or you can self-host the same code on your own infrastructure.</p>
@@ -92,7 +94,7 @@
       <strong>Configure your standup.</strong> Pick the questions you want to ask (the defaults are Yesterday, Today, Blockers, and Mood). Set your schedule, timezone, and the Slack channel where summaries should be posted.
     </li>
     <li>
-      <strong>Morgenruf DMs your team.</strong> At the scheduled time, Morgenruf sends a direct message to each team member with the standup questions. No app-switching &mdash; everything happens inside Slack.
+      <strong>Morgenruf DMs your team.</strong> At the scheduled time, Morgenruf sends a direct message to each team member with the standup questions. No app-switching: everything happens inside Slack.
     </li>
     <li>
       <strong>Team members reply in DMs.</strong> Each person responds at their own pace. Answers are short and structured: what they did, what they are doing, any blockers, and optionally their mood.
@@ -113,7 +115,7 @@
     <li><strong>Mood tracking.</strong> Track team morale over time. Spot burnout early before it becomes a retention problem.</li>
     <li><strong>Participation analytics.</strong> See who is consistently updating and who might need a nudge, without micromanaging.</li>
     <li><strong>Per-user timezones.</strong> Each team member gets their DM at the right local time, even if your team spans New York to Tokyo.</li>
-    <li><strong>Webhooks.</strong> Push standup data to your own systems &mdash; pipe it into Notion, a dashboard, or your CI pipeline.</li>
+    <li><strong>Webhooks.</strong> Push standup data to your own systems and pipe it into Notion, a dashboard, or your CI pipeline.</li>
     <li><strong>CSV export.</strong> Download standup history for reporting, retrospectives, or compliance.</li>
   </ul>
 
@@ -130,7 +132,7 @@
     <div><span>Morgenruf cost</span> <span>$0 / year</span></div>
   </div>
 
-  <p>Prices checked 2026-09-26. At 50 people on annual billing, Geekbot costs $1,500/year. At 100 people, $3,000. The per-user model means the bill grows as your team does &mdash; exactly when you should be spending on things that matter. The same arithmetic against the other tools teams pay for is on <a href="/compare/">the comparison page</a>.</p>
+  <p>Prices checked 2026-09-26. At 50 people on annual billing, Geekbot costs $1,500/year. At 100 people, $3,000. The per-user model means the bill grows as your team does, exactly when you should be spending on things that matter. The same arithmetic against the other tools teams pay for is on <a href="/compare/">the comparison page</a>.</p>
 
   <p>Morgenruf is free and open source under the MIT license. If you self-host, <strong>you own your data</strong>. No vendor lock-in, no surprise price hikes, no negotiating enterprise contracts just to run a standup.</p>
 
@@ -142,7 +144,7 @@
     <h2>Ready to ditch the daily standup meeting?</h2>
     <p>Add Morgenruf to Slack on the free hosted instance in about two minutes, or self-host it. Free and open source.</p>
     <div>
-      <a href="https://api.morgenruf.dev/install">Add to Slack &mdash; free</a>
+      <a href="https://api.morgenruf.dev/install">Add to Slack, free</a>
       <a href="https://github.com/morgenruf/morgenruf">View on GitHub</a>
     </div>
   </div></div></div></section>
