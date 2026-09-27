@@ -10,7 +10,7 @@ from __future__ import annotations
 from shell import INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, faq, footer, head, nav
 
 
-def page(*, path, title, description, h1, lede, body, schema=(), trail=(), current="/compare"):
+def page(*, path, title, description, h1, lede, body, schema=(), trail=(), current="/compare/"):
     crumb_html, crumb_schema = breadcrumbs(trail)
     schemas = list(schema) + ([crumb_schema] if crumb_schema else [])
     return (head(title=title, description=description, path=path, schema=schemas)
@@ -21,7 +21,7 @@ def page(*, path, title, description, h1, lede, body, schema=(), trail=(), curre
   <p class="lede">{lede}</p>
   <div class="head-cta">
     <a class="btn btn-sun" href="{INSTALL}">{SLACK_MARK}Add to Slack</a>
-    <a class="btn btn-line" href="/setup">Set it up yourself</a>
+    <a class="btn btn-line" href="/setup/">Set it up yourself</a>
   </div>
 </div></header>
 {body}
@@ -110,7 +110,7 @@ whether the introductions land, then turn Donut off. Nothing here needs a contra
   <span class="eyebrow">Questions</span><h2 id="morgenruf-and-donut">Morgenruf and Donut</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
-        path="/donut-alternative",
+        path="/donut-alternative/",
         title="Open-source Donut alternative for Slack coffee chats",
         description="A self-hosted Donut alternative for random coffee chats in Slack, plus "
                     "standups and kudos in the same app. MIT licensed, no per-seat fee, your data "
@@ -119,7 +119,7 @@ whether the introductions land, then turn Donut off. Nothing here needs a contra
         lede="Random introductions from a channel, a time both people actually pick, and the meeting "
              "booked at that hour. Plus standups and kudos in the same app.",
         body=body, schema=[faq_schema],
-        trail=[("Home", "/"), ("Compare", "/compare"), ("vs Donut", None)])
+        trail=[("Home", "/"), ("Compare", "/compare/"), ("vs Donut", None)])
 
 
 def heytaco():
@@ -181,7 +181,7 @@ cost of thanking people grows exactly as you hire them.</p>
   <span class="eyebrow">Questions</span><h2 id="morgenruf-and-heytaco">Morgenruf and HeyTaco</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
-        path="/heytaco-alternative",
+        path="/heytaco-alternative/",
         title="Open-source HeyTaco alternative for Slack recognition",
         description="A self-hosted HeyTaco alternative for Slack recognition: any emoji as the "
                     "token, a daily allowance per timezone, plus standups and coffee chats. MIT "
@@ -190,7 +190,7 @@ cost of thanking people grows exactly as you hire them.</p>
         lede="A daily allowance, your own emoji, leaderboards for giving as well as receiving, and "
              "no per-seat bill for thanking your colleagues.",
         body=body, schema=[faq_schema],
-        trail=[("Home", "/"), ("Compare", "/compare"), ("vs HeyTaco", None)])
+        trail=[("Home", "/"), ("Compare", "/compare/"), ("vs HeyTaco", None)])
 
 
 PRICE_ROWS = [
@@ -231,17 +231,17 @@ def hub():
   <span class="eyebrow">The comparisons</span>
   <h2 id="the-comparisons" style="margin-bottom:24px">Start with the one you are paying for</h2>
   <div class="tiles">
-    <a class="tile" href="/geekbot-alternative"><h3>vs Geekbot</h3>
+    <a class="tile" href="/geekbot-alternative/"><h3>vs Geekbot</h3>
       <p>Async standups, the closest comparison, and the one most teams arrive from.</p><span class="go">Compare →</span></a>
-    <a class="tile" href="/donut-alternative"><h3>vs Donut</h3>
+    <a class="tile" href="/donut-alternative/"><h3>vs Donut</h3>
       <p>Random coffee chats and introductions, plus what Donut does that this does not.</p><span class="go">Compare →</span></a>
-    <a class="tile" href="/heytaco-alternative"><h3>vs HeyTaco</h3>
+    <a class="tile" href="/heytaco-alternative/"><h3>vs HeyTaco</h3>
       <p>Peer recognition, daily allowances, and where a rewards catalogue matters.</p><span class="go">Compare →</span></a>
-    <a class="tile" href="/standup-prosper-alternative"><h3>vs Standup &amp; Prosper</h3>
+    <a class="tile" href="/standup-prosper-alternative/"><h3>vs Standup &amp; Prosper</h3>
       <p>Another async standup bot, and the differences that actually show up in use.</p><span class="go">Compare →</span></a>
-    <a class="tile" href="/open-source-standup-bot"><h3>Open source options</h3>
+    <a class="tile" href="/open-source-standup-bot/"><h3>Open source options</h3>
       <p>What else you can self-host, and honestly where each one fits.</p><span class="go">Read →</span></a>
-    <a class="tile" href="/self-hosted-standup-bot"><h3>Why self-host at all</h3>
+    <a class="tile" href="/self-hosted-standup-bot/"><h3>Why self-host at all</h3>
       <p>Data residency, cost at scale, and the parts that are genuinely harder.</p><span class="go">Read →</span></a>
   </div>
 
@@ -256,7 +256,7 @@ def hub():
     three days late, the enterprise grid. It is listed in the Slack App Directory, so an IT admin
     can approve it through the process they already have, and it comes with support that somebody is
     paid to answer. Nothing to deploy, patch or back up. The longer
-    <a href="/geekbot-alternative">Geekbot and Morgenruf comparison</a> goes through the daily
+    <a href="/geekbot-alternative/">Geekbot and Morgenruf comparison</a> goes through the daily
     shape of both.</p>
 
     <h3>Donut</h3>
@@ -264,21 +264,21 @@ def hub():
     prompts, video facilitation, and a Microsoft Teams version that works today rather than one that
     is in progress. If your pairing programme is really an onboarding programme, Donut is built for
     that and this is not. The
-    <a href="/donut-alternative">Donut alternative page</a> has the feature-by-feature version.</p>
+    <a href="/donut-alternative/">Donut alternative page</a> has the feature-by-feature version.</p>
 
     <h3>HeyTaco</h3>
     <p>The taco is good product design and the gamification is thought through, but the real gap is
     the rewards catalogue: a recognition programme with a budget behind it, where thanks convert
     into something people can spend. Morgenruf gives you a message and a leaderboard and stops
     there. If HR has a recognition budget, read the
-    <a href="/heytaco-alternative">HeyTaco alternative page</a> before you move anything.</p>
+    <a href="/heytaco-alternative/">HeyTaco alternative page</a> before you move anything.</p>
 
     <h3>Standup &amp; Prosper</h3>
     <p>A simple, well made standup bot with a free tier that covers a small team properly. If you
     are eight people and the free tier fits, self-hosting anything is a worse deal than the zero you
     are already paying. It only starts to bite when you outgrow the tier or the answers cannot sit
     in somebody else's cloud, which is what the
-    <a href="/standup-prosper-alternative">Standup &amp; Prosper comparison</a> works through.</p>
+    <a href="/standup-prosper-alternative/">Standup &amp; Prosper comparison</a> works through.</p>
 
     <h2 id="what-it-costs">What the bill actually looks like</h2>
     {price_table()}
@@ -296,7 +296,7 @@ def hub():
     is the whole of it:</p>
     <ul>
       <li><strong>The install.</strong> One container and a Postgres 13 or newer, about twenty
-      minutes, most of which is <a href="/setup">creating the Slack app</a> rather than deploying
+      minutes, most of which is <a href="/setup/">creating the Slack app</a> rather than deploying
       anything.</li>
       <li><strong>An HTTPS URL Slack can reach.</strong> An ingress if you run Kubernetes, or a
       Cloudflare tunnel, which needs no open port.</li>
@@ -309,8 +309,8 @@ def hub():
     </ul>
     <p>The part that catches people is never the container. It is Slack scopes: a workspace that
     installed before a feature existed has not granted that feature's permissions, and the fix is a
-    reinstall. <a href="/self-hosted-standup-bot">What self-hosting involves</a> covers the rest,
-    and <a href="/support">paid setup and hosting</a> exists if you would rather buy the time back.</p>
+    reinstall. <a href="/self-hosted-standup-bot/">What self-hosting involves</a> covers the rest,
+    and <a href="/support/">paid setup and hosting</a> exists if you would rather buy the time back.</p>
 
     <h2 id="who-should-not">Who should not pick Morgenruf</h2>
     <p>Saying this plainly saves everybody an afternoon:</p>
@@ -331,9 +331,9 @@ def hub():
 
     <h2 id="one-app">What the single app is actually for</h2>
     <p>The reason to consolidate is not tidiness, it is that the three signals sit in one database.
-    <a href="/standups">Async standups</a> tell you who is stuck and who quietly stopped answering.
-    <a href="/coffee-chats">Coffee chats</a> tell you who has met whom, which is the map of how work
-    actually travels. <a href="/kudos">Kudos</a> tell you who gets thanked. Separately those are
+    <a href="/standups/">Async standups</a> tell you who is stuck and who quietly stopped answering.
+    <a href="/coffee-chats/">Coffee chats</a> tell you who has met whom, which is the map of how work
+    actually travels. <a href="/kudos/">Kudos</a> tell you who gets thanked. Separately those are
     three dashboards nobody opens. Together you can ask the question worth acting on: who is
     answering every morning, unblocking other people, and being thanked by nobody. No integration
     between three vendors gives you that, and no vendor is going to build it for you.</p>
@@ -348,7 +348,7 @@ def hub():
 </div></section>
 '''
     return page(
-        path="/compare",
+        path="/compare/",
         title="Morgenruf vs Geekbot, Donut, HeyTaco and Standup & Prosper",
         description="Honest comparisons between Morgenruf and the tools teams usually pay for: "
                     "Geekbot, Donut, HeyTaco and Standup & Prosper, including where each of them "

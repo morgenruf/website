@@ -121,7 +121,7 @@ def support():
                  description="Where to get help with Morgenruf: the GitHub issue tracker, "
                              "discussions, the documentation, and paid setup, hosting and upgrades "
                              "from CloudDrove, who build it.",
-                 path="/support", schema=[faq_schema, breadcrumbs(
+                 path="/support/", schema=[faq_schema, breadcrumbs(
                      [("Home", "/"), ("Support", None)])[1]])
             + nav() + breadcrumbs([("Home", "/"), ("Support", None)])[0]
             + f'''<main>

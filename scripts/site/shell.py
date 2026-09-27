@@ -20,27 +20,27 @@ SLACK_MARK = ('<svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true
   '<path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>')
 
 NAV = [
-    ("Standups", "/standups"),
-    ("Coffee chats", "/coffee-chats"),
-    ("Kudos", "/kudos"),
-    ("Set up", "/setup"),
-    ("Compare", "/compare"),
+    ("Standups", "/standups/"),
+    ("Coffee chats", "/coffee-chats/"),
+    ("Kudos", "/kudos/"),
+    ("Set up", "/setup/"),
+    ("Compare", "/compare/"),
     ("Docs", "https://docs.morgenruf.dev"),
 ]
 
 FOOTER = [
-    ("Product", [("Standups", "/standups"), ("Coffee chats", "/coffee-chats"),
-                 ("Kudos", "/kudos"), ("Insights", "/insights"),
-                 ("Roadmap", "/#roadmap"), ("Changelog", "/changelog")]),
-    ("Set up", [("All the ways", "/setup"), ("Docker Compose", "/setup/docker"),
-                ("Kubernetes and Helm", "/setup/kubernetes"), ("The Slack app", "/setup/slack-app"),
+    ("Product", [("Standups", "/standups/"), ("Coffee chats", "/coffee-chats/"),
+                 ("Kudos", "/kudos/"), ("Insights", "/insights/"),
+                 ("Roadmap", "/#roadmap"), ("Changelog", "/changelog/")]),
+    ("Set up", [("All the ways", "/setup/"), ("Docker Compose", "/setup/docker/"),
+                ("Kubernetes and Helm", "/setup/kubernetes/"), ("The Slack app", "/setup/slack-app/"),
                 ("Documentation", "https://docs.morgenruf.dev")]),
-    ("Compare", [("All comparisons", "/compare"), ("vs Geekbot", "/geekbot-alternative"),
-                 ("vs Donut", "/donut-alternative"), ("vs HeyTaco", "/heytaco-alternative"),
-                 ("vs Standup & Prosper", "/standup-prosper-alternative")]),
+    ("Compare", [("All comparisons", "/compare/"), ("vs Geekbot", "/geekbot-alternative/"),
+                 ("vs Donut", "/donut-alternative/"), ("vs HeyTaco", "/heytaco-alternative/"),
+                 ("vs Standup & Prosper", "/standup-prosper-alternative/")]),
     ("Project", [("GitHub", REPO), ("Helm charts", "https://charts.morgenruf.dev"),
-                 ("Status", "https://status.morgenruf.dev"), ("Blog", "/blog"),
-                 ("Support", "/support")]),
+                 ("Status", "https://status.morgenruf.dev"), ("Blog", "/blog/"),
+                 ("Support", "/support/")]),
 ]
 
 
@@ -130,7 +130,7 @@ def footer():
     </div>
     <div class="foot-bottom">
       <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
-      <span class="foot-legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a></span>
+      <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></span>
     </div>
   </div>
 </footer>

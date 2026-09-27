@@ -105,7 +105,7 @@ def changelog():
     return (head(title=f"Changelog: every Morgenruf release, currently {latest}",
                  description="Every Morgenruf release and what changed in it: new modules, fixes and the "
                              "occasional removal, generated straight from the repository's own changelog file.",
-                 path="/changelog", schema=[faq_schema, crumb_schema])
+                 path="/changelog/", schema=[faq_schema, crumb_schema])
             + nav() + crumb_html
             + f'''<main>
 <header class="page-head"><div class="wrap">

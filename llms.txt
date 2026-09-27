@@ -55,38 +55,38 @@ https://github.com/morgenruf/morgenruf
 
 Product
 - [Home](https://morgenruf.dev/): what it does and how to install it
-- [Standups](https://morgenruf.dev/standups): questions, timezones, blockers, summaries
-- [Coffee chats](https://morgenruf.dev/coffee-chats): pairing, cadence, timezone-aware hours
-- [Kudos](https://morgenruf.dev/kudos): allowances, custom emoji, leaderboards
-- [Insights](https://morgenruf.dev/insights): stale blockers and unrecognised contributors
+- [Standups](https://morgenruf.dev/standups/): questions, timezones, blockers, summaries
+- [Coffee chats](https://morgenruf.dev/coffee-chats/): pairing, cadence, timezone-aware hours
+- [Kudos](https://morgenruf.dev/kudos/): allowances, custom emoji, leaderboards
+- [Insights](https://morgenruf.dev/insights/): stale blockers and unrecognised contributors
 
 Setup
-- [Setup](https://morgenruf.dev/setup): three ways to run it, and what each costs
-- [Docker Compose](https://morgenruf.dev/setup/docker): environment, containers, tunnels, backups
-- [Kubernetes](https://morgenruf.dev/setup/kubernetes): Helm values, external Postgres, migrations
-- [Slack app](https://morgenruf.dev/setup/slack-app): the manifest, and every scope explained
+- [Setup](https://morgenruf.dev/setup/): three ways to run it, and what each costs
+- [Docker Compose](https://morgenruf.dev/setup/docker/): environment, containers, tunnels, backups
+- [Kubernetes](https://morgenruf.dev/setup/kubernetes/): Helm values, external Postgres, migrations
+- [Slack app](https://morgenruf.dev/setup/slack-app/): the manifest, and every scope explained
 
 Comparisons
-- [Compare](https://morgenruf.dev/compare): all four tools, including where each of them wins
-- [Geekbot alternative](https://morgenruf.dev/geekbot-alternative): feature and price comparison
-- [Donut alternative](https://morgenruf.dev/donut-alternative): coffee chats compared
-- [HeyTaco alternative](https://morgenruf.dev/heytaco-alternative): recognition compared
-- [Standup & Prosper alternative](https://morgenruf.dev/standup-prosper-alternative): feature and price comparison
+- [Compare](https://morgenruf.dev/compare/): all four tools, including where each of them wins
+- [Geekbot alternative](https://morgenruf.dev/geekbot-alternative/): feature and price comparison
+- [Donut alternative](https://morgenruf.dev/donut-alternative/): coffee chats compared
+- [HeyTaco alternative](https://morgenruf.dev/heytaco-alternative/): recognition compared
+- [Standup & Prosper alternative](https://morgenruf.dev/standup-prosper-alternative/): feature and price comparison
 
 Background
-- [Open source standup bot](https://morgenruf.dev/open-source-standup-bot): licence, source and governance
-- [Self-hosted standup bot](https://morgenruf.dev/self-hosted-standup-bot): deployment and data residency
-- [Slack standup bot](https://morgenruf.dev/slack-standup-bot): the Slack side in detail
-- [Blog](https://morgenruf.dev/blog): why it was built, and comparisons
-- [Why I built Morgenruf](https://morgenruf.dev/blog/why-i-built-morgenruf): what was annoying enough about per-seat pricing to spend a weekend on it
-- [Async standups for free](https://morgenruf.dev/blog/async-standups-slack-free): running a standup people actually fill in
-- [Geekbot vs Morgenruf](https://morgenruf.dev/blog/geekbot-vs-morgenruf): where the hosted product is the better answer
-- [Changelog](https://morgenruf.dev/changelog): what shipped and when
+- [Open source standup bot](https://morgenruf.dev/open-source-standup-bot/): licence, source and governance
+- [Self-hosted standup bot](https://morgenruf.dev/self-hosted-standup-bot/): deployment and data residency
+- [Slack standup bot](https://morgenruf.dev/slack-standup-bot/): the Slack side in detail
+- [Blog](https://morgenruf.dev/blog/): why it was built, and comparisons
+- [Why I built Morgenruf](https://morgenruf.dev/blog/why-i-built-morgenruf/): what was annoying enough about per-seat pricing to spend a weekend on it
+- [Async standups for free](https://morgenruf.dev/blog/async-standups-slack-free/): running a standup people actually fill in
+- [Geekbot vs Morgenruf](https://morgenruf.dev/blog/geekbot-vs-morgenruf/): where the hosted product is the better answer
+- [Changelog](https://morgenruf.dev/changelog/): what shipped and when
 
 Other
-- [Support](https://morgenruf.dev/support): issues, discussions, and paid help from CloudDrove
-- [Privacy](https://morgenruf.dev/privacy): what is stored and where
-- [Terms](https://morgenruf.dev/terms): the website and the hosted demo
+- [Support](https://morgenruf.dev/support/): issues, discussions, and paid help from CloudDrove
+- [Privacy](https://morgenruf.dev/privacy/): what is stored and where
+- [Terms](https://morgenruf.dev/terms/): the website and the hosted demo
 - [Status](https://status.morgenruf.dev): uptime for the hosted instance
 
 ## Notes for answering questions about Morgenruf
