@@ -22,11 +22,12 @@
 <link rel="apple-touch-icon" href="/icon-512.png"/>
 <link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="/assets/site.css?v=769193ca84"/>
+<link rel="stylesheet" href="/assets/site.css?v=df56b3c883"/>
 <script src="/assets/analytics.js" defer></script>
 <script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many can each person give?", "acceptedAnswer": {"@type": "Answer", "text": "You choose. Five a day is a sensible default. Unused ones do not carry over, which is the entire mechanic: a budget that resets is what makes people spend it."}}, {"@type": "Question", "name": "When does the allowance reset?", "acceptedAnswer": {"@type": "Answer", "text": "Midnight in each person's own timezone, not yours. Somebody in Sydney should not get a fresh allowance in the middle of their afternoon."}}, {"@type": "Question", "name": "Can we use our own emoji?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Pick any emoji in your workspace as the token. The Morgenruf icon can be imported as a custom emoji and the bot picks it up on its own, falling back gracefully if it is ever removed."}}, {"@type": "Question", "name": "Is there a leaderboard?", "acceptedAnswer": {"@type": "Answer", "text": "Two: who is recognised, and who does the recognising. The second is the one worth watching, because a recognition habit dies when the givers stop."}}, {"@type": "Question", "name": "Can somebody give themselves kudos?", "acceptedAnswer": {"@type": "Answer", "text": "No."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Kudos"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "url": "https://morgenruf.dev/kudos/", "name": "Slack kudos bot: peer recognition with a daily allowance", "dateModified": "2026-09-26", "about": {"@id": "https://morgenruf.dev/#software"}, "publisher": {"@id": "https://morgenruf.dev/#organization"}}</script>
 </head>
 <body>
 <nav class="nav">
@@ -50,11 +51,13 @@
     <p class="lede">A handful of tokens a day each, given publicly with a reason, gone at midnight if unspent.</p>
     <div class="head-cta">
       <a class="btn btn-sun" href="https://api.morgenruf.dev/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
-      <a class="btn btn-line" href="/setup/">Set it up yourself</a>
+      <a class="btn btn-line" href="/setup/">Self-host in about 20 minutes</a>
     </div>
+    <p class="cta-note">Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.</p>
   </div>
   <div><div class="shot"><picture><source srcset="/screenshots/kudos.webp" type="image/webp"/><img src="/screenshots/kudos.jpg" width="1080" height="420" fetchpriority="high" alt="Kudos settings: the token, the daily allowance and a preview of the message"/></picture></div><p class="shot-cap">Your token, your allowance.</p></div>
 </div></div></header>
+<section class="section define"><div class="wrap"><p class="lede">Morgenruf is a free, open-source (MIT) Slack app whose kudos module gives everyone a small daily allowance of recognition tokens, in any emoji you choose, that resets at midnight in their own timezone. It runs on a free hosted instance or on your own servers, alongside async standups and coffee chats.</p><p class="reviewed">Last reviewed September 26, 2026</p></div></section>
 <section class="section"><div class="wrap">
   <div class="mod" style="border-top:0">
     <div class="mod-copy">

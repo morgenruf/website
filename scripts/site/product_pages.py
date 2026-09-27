@@ -9,12 +9,14 @@ from __future__ import annotations
 
 import diagrams
 
-from shell import INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, faq, footer, head, nav
+from shell import (CTA_NOTE, INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, definition, faq,
+                   footer, head, nav, webpage_schema)
 
 
-def page(*, path, title, description, h1, lede, body, hero="", schema=(), trail=(), current=""):
+def page(*, path, title, description, h1, lede, body, hero="", schema=(), trail=(), current="",
+         define=""):
     crumb_html, crumb_schema = breadcrumbs(trail)
-    schemas = list(schema) + ([crumb_schema] if crumb_schema else [])
+    schemas = list(schema) + ([crumb_schema] if crumb_schema else []) + [webpage_schema(path, title)]
     return (head(title=title, description=description, path=path, schema=schemas)
             + nav(current) + crumb_html
             + f'''<main>
@@ -24,12 +26,13 @@ def page(*, path, title, description, h1, lede, body, hero="", schema=(), trail=
     <p class="lede">{lede}</p>
     <div class="head-cta">
       <a class="btn btn-sun" href="{INSTALL}">{SLACK_MARK}Add to Slack</a>
-      <a class="btn btn-line" href="/setup/">Set it up yourself</a>
+      <a class="btn btn-line" href="/setup/">Self-host in about 20 minutes</a>
     </div>
+    {CTA_NOTE}
   </div>
   <div>{hero}</div>
 </div></div></header>
-{body}
+{definition(define) if define else ""}{body}
 </main>''' + cta_band() + footer())
 
 
@@ -89,6 +92,7 @@ def standups():
         <li>Answers in a thread or the channel, grouped by person or by question</li>
         <li>Blockers highlighted so they are not buried in paragraph three</li>
         <li>A private nudge for whoever has not filed yet</li>
+        <li>An optional mood check alongside the questions, to spot a rough week early</li>
       </ul>
     </div>
     <div>{shot("/screenshots/standups.jpg", "Two standups in the dashboard, each with a completion sparkline and a health badge", "Each standup carries fourteen days of completion, so one that is slipping says so.")}</div>
@@ -158,7 +162,8 @@ write-up on running async standups in Slack for free</a> is the shorter version 
              "channel. Nobody sits in a call to hear what they could have read.",
         body=body, schema=[faq_schema],
         hero=shot("/screenshots/today.jpg", "The Today page: who has answered, who is blocked, and recent recognition", "Today, for a team of eight.", lazy=False),
-        trail=[("Home", "/"), ("Standups", None)], current="/standups/")
+        trail=[("Home", "/"), ("Standups", None)], current="/standups/",
+        define='Morgenruf is a free, open-source (MIT) Slack app for async standups. It asks each person your questions by DM at their own local hour and posts one summary to the channel, with blockers pulled out. It runs free on a hosted instance CloudDrove operates, or on your own servers, and also handles coffee chats and kudos.')
 
 
 CONNECT_FAQ = [
@@ -251,7 +256,8 @@ which is the question the attendance table exists to answer.</p>
              "two people agreeing they should find a time.",
         body=body, schema=[faq_schema],
         hero=shot("/screenshots/coffee-chat-settings.jpg", "Coffee chat settings beside a live preview of the Slack introduction", "The settings, and the message they produce.", lazy=False),
-        trail=[("Home", "/"), ("Coffee chats", None)], current="/coffee-chats/")
+        trail=[("Home", "/"), ("Coffee chats", None)], current="/coffee-chats/",
+        define='Morgenruf is a free, open-source (MIT) Slack app that runs random coffee chats. It pairs people from a channel on a cadence, avoids repeat matches, suggests hours that suit both timezones and can book the Zoom meeting. It runs on a free hosted instance or on your own servers, alongside async standups and kudos.')
 
 
 KUDOS_FAQ = [
@@ -342,7 +348,8 @@ visible in a way neither dataset shows alone.</p>
              "unspent.",
         body=body, schema=[faq_schema],
         hero=shot("/screenshots/kudos.jpg", "Kudos settings: the token, the daily allowance and a preview of the message", "Your token, your allowance.", lazy=False),
-        trail=[("Home", "/"), ("Kudos", None)], current="/kudos/")
+        trail=[("Home", "/"), ("Kudos", None)], current="/kudos/",
+        define='Morgenruf is a free, open-source (MIT) Slack app whose kudos module gives everyone a small daily allowance of recognition tokens, in any emoji you choose, that resets at midnight in their own timezone. It runs on a free hosted instance or on your own servers, alongside async standups and coffee chats.')
 
 
 INSIGHTS_FAQ = [
@@ -409,4 +416,5 @@ place</a>.</p>
              "you something neither can on its own.",
         body=body, schema=[faq_schema],
         hero=shot("/screenshots/members.jpg", "Member cards showing which features each person runs", "Who runs what, at a glance.", lazy=False),
-        trail=[("Home", "/"), ("Insights", None)], current="/insights/")
+        trail=[("Home", "/"), ("Insights", None)], current="/insights/",
+        define='Morgenruf Insights reads standup answers and kudos together, to show blockers nobody has cleared in days and people who contribute every morning without being thanked. It is part of Morgenruf, a free, open-source (MIT) Slack app for standups, coffee chats and kudos, hosted free or self-hosted.')

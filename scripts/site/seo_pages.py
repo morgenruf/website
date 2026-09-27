@@ -9,32 +9,50 @@ from __future__ import annotations
 
 import diagrams
 from product_pages import shot
-from shell import INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, faq, footer, head, nav
+from shell import (CTA_NOTE, INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, definition, faq,
+                   footer, head, nav, webpage_schema)
 
 
-def page(*, path, title, description, h1, lede, body, hero="", schema=(), trail=()):
+def page(*, path, title, description, h1, lede, body, hero="", schema=(), trail=(), define=""):
     crumb_html, crumb_schema = breadcrumbs(trail)
-    schemas = list(schema) + ([crumb_schema] if crumb_schema else [])
+    schemas = list(schema) + ([crumb_schema] if crumb_schema else []) + [webpage_schema(path, title)]
     head_in = f'''<div class="head-in">
   <div>
     <h1>{h1}</h1>
     <p class="lede">{lede}</p>
     <div class="head-cta">
       <a class="btn btn-sun" href="{INSTALL}">{SLACK_MARK}Add to Slack</a>
-      <a class="btn btn-line" href="/setup/">Set it up yourself</a>
+      <a class="btn btn-line" href="/setup/">Self-host in about 20 minutes</a>
     </div>
+    {CTA_NOTE}
   </div>
   <div>{hero}</div>
 </div>''' if hero else f'''<h1>{h1}</h1>
 <p class="lede">{lede}</p>
 <div class="head-cta">
   <a class="btn btn-sun" href="{INSTALL}">{SLACK_MARK}Add to Slack</a>
-  <a class="btn btn-line" href="/setup/">Set it up yourself</a>
-</div>'''
+  <a class="btn btn-line" href="/setup/">Self-host in about 20 minutes</a>
+</div>
+{CTA_NOTE}'''
     return (head(title=title, description=description, path=path, schema=schemas)
             + nav() + crumb_html
-            + f'<main>\n<header class="page-head"><div class="wrap">{head_in}</div></header>\n{body}\n</main>'
+            + f'<main>\n<header class="page-head"><div class="wrap">{head_in}</div></header>\n'
+            + (definition(define) if define else "") + f'{body}\n</main>'
             + cta_band() + footer())
+
+
+def project_facts():
+    """What a visitor arriving from GitHub checks first: licence, how recent
+    the last release is, and how to run it. Read from the changelog at build."""
+    from changelog_page import latest_release
+    version, date = latest_release()
+    return f'''<div class="note"><p><strong>MIT licence</strong> &middot; latest release
+<a href="{REPO}/releases/tag/v{version}">{version}</a>, {date} &middot;
+<a href="https://charts.morgenruf.dev">Helm chart</a> &middot; <a href="/changelog/">every release</a></p>
+<pre><code>git clone https://github.com/morgenruf/morgenruf.git
+cd morgenruf/app &amp;&amp; cp .env.example .env   # add your Slack app values
+docker compose up -d</code></pre>
+<p style="margin:14px 0 0"><a class="btn btn-ink btn-sm" href="{REPO}">View on GitHub</a></p></div>'''
 
 
 def guide(prose, toc):
@@ -100,7 +118,7 @@ please <a href="{REPO}/issues/new/choose">open an issue</a>.</p>
 the free hosted instance in about two minutes. Most of what follows is about the other route,
 <a href="/self-hosted-standup-bot/">one container and a Postgres of your own</a>.</p>
 
-<h2 id="where-this-is-different">Where this is different</h2>
+<h2 id="where-this-is-different">Where is Morgenruf different from Geekbot?</h2>
 <h3>The price does not scale with hiring</h3>
 <p>Per-seat pricing means the cost of asking your team three questions grows every time you hire.
 Geekbot is free for up to 10 users, then $3 per user per month, or $2.50 per user per month billed
@@ -193,13 +211,14 @@ right. Nothing here has a contract to cancel.</p>
                 description="A free, MIT-licensed Geekbot alternative for async Slack standups, "
                             "with coffee chats and recognition in the same app. Hosted free, or "
                             "self-hosted.",
-                h1="An open-source Geekbot alternative you host yourself",
+                h1="A free, open-source Geekbot alternative for Slack",
                 lede="The same morning questions and channel summary, free on the hosted instance or "
                      "on your own servers, with coffee chats and kudos included rather than sold "
                      "separately.",
                 body=body, schema=[faq_schema],
                 hero=shot("/screenshots/today.jpg", "The Today page showing who answered, who is blocked and recent recognition", "Your morning, on one screen.", lazy=False),
-                trail=[("Home", "/"), ("Compare", "/compare/"), ("vs Geekbot", None)])
+                trail=[("Home", "/"), ("Compare", "/compare/"), ("vs Geekbot", None)],
+        define='Morgenruf is a free, open-source (MIT) Geekbot alternative for Slack. Like Geekbot, it sends each person standup questions by DM and posts one summary to a channel. Unlike Geekbot (free up to 10 users, then $3 per user per month, checked 2026-09-26), it has no per-seat fee at any size, can run on your own servers, and adds coffee chats and kudos.')
 
 
 SP_ROWS = [
@@ -290,15 +309,17 @@ option is cheaper than your time.</p>
                 description="An open-source, self-hosted Standup &amp; Prosper alternative for Slack "
                             "standups, with coffee chats and kudos in the same app and no per-seat "
                             "bill as you hire.",
-                h1="A self-hosted Standup &amp; Prosper alternative",
+                h1="A free, open-source Standup &amp; Prosper alternative",
                 lede="Same async standups, run on your own infrastructure, with two more team "
                      "rituals included rather than sold separately.",
                 body=body, schema=[faq_schema],
-                trail=[("Home", "/"), ("Compare", "/compare/"), ("vs Standup & Prosper", None)])
+                trail=[("Home", "/"), ("Compare", "/compare/"), ("vs Standup & Prosper", None)],
+        define='Morgenruf is a free, open-source (MIT) alternative to Standup &amp; Prosper for Slack. Both run async standups by DM with one summary in the channel. Morgenruf is free at any team size on its hosted instance, can also run on your own servers, and adds coffee chats and kudos in the same app.')
 
 
 def open_source():
-    prose = f'''<h2 id="what-open-source-buys-you">What the licence actually says</h2>
+    prose = f'''{project_facts()}
+<h2 id="what-open-source-buys-you">What the licence actually says</h2>
 <p>MIT, on the whole repository. Not open core, not source available, not a community edition with
 the useful half behind a sales call. One licence file, one repository, and the same code in the
 image that runs in production. Read it in about a minute: you may use, copy, modify, merge, publish,
@@ -388,11 +409,13 @@ whole thing takes about twenty minutes, most of it in Slack's settings.</p>'''
                 lede="What the licence covers, who maintains it, and what you are left holding if "
                      "the project ever stops. The hosting question has its own page.",
                 body=body, schema=[faq_schema],
-                trail=[("Home", "/"), ("Compare", "/compare/"), ("Open source", None)])
+                trail=[("Home", "/"), ("Open-source standup bot", None)],
+        define='Morgenruf is an open-source Slack standup bot under the MIT licence: one public repository, no open-core split and no paid tier. It asks standup questions by DM and posts one summary, and also runs coffee chats and kudos. Use the free hosted instance, or run the same code yourself.')
 
 
 def self_hosted():
-    prose = f'''<h2 id="why-teams-self-host-this">Why teams self-host a standup bot</h2>
+    prose = f'''{project_facts()}
+<h2 id="why-teams-self-host-this">Why teams self-host a standup bot</h2>
 <p>Self-hosting decides one thing before anything else: which machine, in which country, holds the
 answers. Everything else on this page follows from that. Three reasons come up, in this order:</p>
 <ul>
@@ -457,7 +480,9 @@ written up step by step, and the choice is mostly about what your team already o
 installed before a feature existed has not granted that feature's scopes.
 <a href="/setup/slack-app/">That page</a> exists because it is where setups actually stall. It helps
 to read <a href="/slack-standup-bot/">what the bot does inside Slack</a> first, because the scopes
-follow from it and half of them are for features you may not switch on.</p>'''
+follow from it and half of them are for features you may not switch on. If you would rather hand
+the whole job over, <a href="/support/">CloudDrove does paid setup and hosting</a> on your own
+infrastructure.</p>'''
     body = guide(prose, [("Why teams self-host", "why-teams-self-host-this"),
                          ("What running it involves", "what-running-it-involves"),
                          ("What leaves your network", "what-leaves-your-network"),
@@ -489,7 +514,8 @@ follow from it and half of them are for features you may not switch on.</p>'''
                 lede="One container, one database, one HTTPS URL Slack can reach. Where the answers "
                      "physically sit, and what it takes to keep them there.",
                 body=body, schema=[faq_schema],
-                trail=[("Home", "/"), ("Compare", "/compare/"), ("Self-hosted", None)])
+                trail=[("Home", "/"), ("Self-hosted standup bot", None)],
+        define='Morgenruf is a self-hostable Slack standup bot: one container and a Postgres database, deployed with Docker Compose or Helm, with every answer stored in a database you control. It is MIT licensed and free, and the same code also runs as a free hosted instance for teams that would rather not run it.')
 
 
 def slack_bot():
@@ -567,4 +593,5 @@ happens when someone is on leave. If you are still deciding,
                      "slash commands and an App Home tab. Nobody opens a dashboard to take part.",
                 body=body, schema=[faq_schema],
                 hero=shot("/screenshots/today.jpg", "The Today page showing the morning's answers and blockers", "The dashboard is for whoever runs it. Everyone else stays in Slack.", lazy=False),
-                trail=[("Home", "/"), ("Slack standup bot", None)])
+                trail=[("Home", "/"), ("Slack standup bot", None)],
+        define='Morgenruf is a free Slack standup bot. It DMs each person your questions at their local hour, posts one summary to the channel, and adds slash commands and an App Home tab. It is open source (MIT), free on a hosted instance or self-hosted, and also runs coffee chats and kudos.')

@@ -133,6 +133,42 @@ def write_sitemap():
     print(f"{'sitemap.xml':38s} {len(entries):5d} urls")
 
 
+def refresh_llms():
+    """Keep the version line in llms.txt current, and write llms-full.txt:
+    the main text of the product, comparison and setup pages as plain text,
+    for assistants that would rather read one file than follow twenty links."""
+    import html as html_lib
+    version, date = changelog_page.latest_release()
+    llms = ROOT / "llms.txt"
+    text = llms.read_text()
+    text = re.sub(r"^- Current version: .*$", f"- Current version: {version}, released {date}", text, flags=re.M)
+    llms.write_text(text)
+
+    parts = [f"# Morgenruf: the full text of the main pages\n\nGenerated from the site on each build. "
+             f"Current version {version}, released {date}. Summary and index: {shell.SITE}/llms.txt\n"]
+    for rel in ["standups/index.html", "coffee-chats/index.html", "kudos/index.html",
+                "insights/index.html", "compare/index.html", "geekbot-alternative/index.html",
+                "donut-alternative/index.html", "heytaco-alternative/index.html",
+                "standup-prosper-alternative/index.html", "open-source-standup-bot/index.html",
+                "self-hosted-standup-bot/index.html", "slack-standup-bot/index.html",
+                "setup/index.html", "setup/docker/index.html", "setup/kubernetes/index.html",
+                "setup/slack-app/index.html"]:
+        page = (ROOT / rel).read_text()
+        title = html_lib.unescape(re.search(r"<title>(.*?)</title>", page)[1])
+        main = re.search(r"<main>(.*?)</main>", page, re.S)[1]
+        main = re.sub(r"<(script|style|svg|figure)\b.*?</\1>", " ", main, flags=re.S)
+        main = re.sub(r"<nav class=\"toc\".*?</nav>", " ", main, flags=re.S)
+        main = " ".join(main.split())
+        main = re.sub(r"</(p|h[1-6]|li|tr|pre|summary|details|div|section)>", "\n", main)
+        main = re.sub(r"<[^>]+>", "", main)
+        lines = [" ".join(line.split()) for line in html_lib.unescape(main).splitlines()]
+        body = "\n".join(line for line in lines if line)
+        url = shell.SITE + "/" + rel[: -len("index.html")]
+        parts.append(f"\n## {title}\n{url}\n\n{body}\n")
+    (ROOT / "llms-full.txt").write_text("".join(parts))
+    print(f"{'llms.txt, llms-full.txt':38s} written")
+
+
 def main():
     refresh_webp()
     for rel, render in PAGES.items():
@@ -154,6 +190,7 @@ def main():
     if after != before:
         home.write_text(after)
     print(f"{'index.html':38s} shared parts {'refreshed' if after != before else 'unchanged'}")
+    refresh_llms()
     write_sitemap()
 
 

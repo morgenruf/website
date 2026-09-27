@@ -7,12 +7,14 @@ bad at everything convinces nobody and ranks badly, because people bounce.
 
 from __future__ import annotations
 
-from shell import INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, faq, footer, head, nav
+from shell import (CTA_NOTE, INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, definition, faq,
+                   footer, head, nav, webpage_schema)
 
 
-def page(*, path, title, description, h1, lede, body, schema=(), trail=(), current="/compare/"):
+def page(*, path, title, description, h1, lede, body, schema=(), trail=(), current="/compare/",
+         define=""):
     crumb_html, crumb_schema = breadcrumbs(trail)
-    schemas = list(schema) + ([crumb_schema] if crumb_schema else [])
+    schemas = list(schema) + ([crumb_schema] if crumb_schema else []) + [webpage_schema(path, title)]
     return (head(title=title, description=description, path=path, schema=schemas)
             + nav(current) + crumb_html
             + f'''<main>
@@ -21,10 +23,11 @@ def page(*, path, title, description, h1, lede, body, schema=(), trail=(), curre
   <p class="lede">{lede}</p>
   <div class="head-cta">
     <a class="btn btn-sun" href="{INSTALL}">{SLACK_MARK}Add to Slack</a>
-    <a class="btn btn-line" href="/setup/">Set it up yourself</a>
+    <a class="btn btn-line" href="/setup/">Self-host in about 20 minutes</a>
   </div>
+  {CTA_NOTE}
 </div></header>
-{body}
+{definition(define) if define else ""}{body}
 </main>''' + cta_band() + footer())
 
 
@@ -124,11 +127,12 @@ whether the introductions land, then turn Donut off. Nothing here needs a contra
         title="Free, open-source Donut alternative for Slack coffee chats",
         description="A free Donut alternative for random coffee chats in Slack, plus standups and "
                     "kudos in the same app. MIT licensed, no per-seat fee, hosted or self-hosted.",
-        h1="An open-source Donut alternative you host yourself",
+        h1="A free, open-source Donut alternative for Slack",
         lede="Random introductions from a channel, a time both people actually pick, and the meeting "
              "booked at that hour. Plus standups and kudos in the same app.",
         body=body, schema=[faq_schema],
-        trail=[("Home", "/"), ("Compare", "/compare/"), ("vs Donut", None)])
+        trail=[("Home", "/"), ("Compare", "/compare/"), ("vs Donut", None)],
+        define='Morgenruf is a free, open-source (MIT) Donut alternative for Slack coffee chats. It pairs people from a channel, suggests hours both can make, and books the Zoom meeting. Donut has a free plan and paid plans from about $74 a month (checked 2026-09-26); Morgenruf is free at any size, hosted or self-hosted.')
 
 
 def heytaco():
@@ -199,11 +203,12 @@ month, which means the cost of thanking people grows exactly as you hire them.</
         title="Free, open-source HeyTaco alternative for Slack kudos",
         description="A free HeyTaco alternative for Slack recognition: any emoji as the token, a "
                     "daily allowance per timezone, plus standups and coffee chats. MIT licensed.",
-        h1="An open-source HeyTaco alternative you host yourself",
+        h1="A free, open-source HeyTaco alternative for Slack",
         lede="A daily allowance, your own emoji, leaderboards for giving as well as receiving, and "
              "no per-seat bill for thanking your colleagues.",
         body=body, schema=[faq_schema],
-        trail=[("Home", "/"), ("Compare", "/compare/"), ("vs HeyTaco", None)])
+        trail=[("Home", "/"), ("Compare", "/compare/"), ("vs HeyTaco", None)],
+        define='Morgenruf is a free, open-source (MIT) HeyTaco alternative for recognition in Slack. Everyone gets a daily allowance of tokens, in any emoji you like, that resets at midnight in their own timezone, with leaderboards for giving and receiving. It has no rewards catalogue, runs hosted free or self-hosted, and includes standups and coffee chats.')
 
 
 PRICE_ROWS = [

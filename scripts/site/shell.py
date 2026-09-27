@@ -51,6 +51,33 @@ FOOTER = [
 ]
 
 
+# The day the comparison and product pages were last checked against the
+# product and the competitors' public pages. Shown on the page and in schema.
+REVIEWED = "2026-09-26"
+REVIEWED_TEXT = "September 26, 2026"
+
+CTA_NOTE = ('<p class="cta-note">Add to Slack installs Morgenruf on the free hosted instance '
+            'CloudDrove runs. Self-hosting is the same MIT code.</p>')
+
+
+def webpage_schema(path, title):
+    """A WebPage node with the review date, pointing at the product entity
+    the homepage declares."""
+    import json
+    return json.dumps({"@context": "https://schema.org", "@type": "WebPage", "url": SITE + path,
+                       "name": title, "dateModified": REVIEWED,
+                       "about": {"@id": SITE + "/#software"},
+                       "publisher": {"@id": SITE + "/#organization"}})
+
+
+def definition(text):
+    """One self-contained sentence or three that names the product, so a
+    passage lifted out of the page still says what it is about."""
+    return (f'<section class="section define"><div class="wrap">'
+            f'<p class="lede">{text}</p>'
+            f'<p class="reviewed">Last reviewed {REVIEWED_TEXT}</p></div></section>\n')
+
+
 def asset(path):
     """A static asset URL carrying a hash of its contents.
 

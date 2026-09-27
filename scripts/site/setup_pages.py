@@ -2,8 +2,9 @@
 
 "How do I self-host a Slack standup bot" is a question with intent behind it
 and no good answer on the open web: every result is a hosted product's signup
-page. These pages are the answer, and each one carries HowTo schema so the
-steps can surface directly in a result.
+page. These pages are the answer. The three guides carry HowTo schema; Google
+stopped showing HowTo rich results in 2023, so it is there for other readers
+of structured data, not for a step carousel.
 """
 
 from __future__ import annotations

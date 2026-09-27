@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="/icon-512.png"/>
 <link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="/assets/site.css?v=769193ca84"/>
+<link rel="stylesheet" href="/assets/site.css?v=df56b3c883"/>
 <script src="/assets/analytics.js" defer></script>
 <script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Create a Slack app for Morgenruf", "description": "Create and install the Slack app for a self-hosted standup bot.", "totalTime": "PT10M", "step": [{"@type": "HowToStep", "position": 1, "name": "Create the app from the manifest", "text": "At api.slack.com/apps choose Create New App, then From an app manifest, and paste slack-manifest.yaml from the repository."}, {"@type": "HowToStep", "position": 2, "name": "Add the redirect URL", "text": "Under OAuth and Permissions add https://your-domain/oauth/callback."}, {"@type": "HowToStep", "position": 3, "name": "Copy the credentials", "text": "From Basic Information, copy the client id, client secret and signing secret into your environment or Helm values."}, {"@type": "HowToStep", "position": 4, "name": "Install it into the workspace", "text": "Open your app URL and authorise. Whoever installs it becomes the first admin."}, {"@type": "HowToStep", "position": 5, "name": "Invite the bot to a channel", "text": "Invite the bot to the channel a standup posts in, and to any channel coffee chats pair from."}]}</script>

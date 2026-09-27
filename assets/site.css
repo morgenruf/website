@@ -225,6 +225,11 @@ footer a:hover{color:var(--sun)}
 .foot-bottom a{display:inline; margin:0}
 .foot-legal{display:flex; gap:18px}
 
+/* ── Which route the install button takes, and when a page was checked ── */
+.cta-note{font-size:13.5px; color:var(--dim); margin:12px 0 0; max-width:60ch}
+.page-head .cta-note{color:var(--muted)}
+.define .lede{color:var(--text); margin-bottom:8px}
+.reviewed{font-size:13px; color:var(--dim); margin:0}
 /* ── Blog posts: byline and an early way in ──────────────────────────── */
 .byline{font-size:14.5px; color:var(--muted); margin:0 0 14px}
 .post-cta{display:flex; gap:10px; flex-wrap:wrap; margin:0 0 30px}
