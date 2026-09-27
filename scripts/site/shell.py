@@ -76,10 +76,23 @@ def head(*, title, description, path, og_image="/og-image.png", schema=None, ext
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="/assets/site.css"/>
-<script src="/assets/analytics.js" defer></script>{extra_head}{blocks}
+<script src="/assets/analytics.js" defer></script>
+<script src="/assets/nav.js" defer></script>{extra_head}{blocks}
 </head>
 <body>
 '''
+
+
+def nav_menu(links):
+    """The links the desktop bar shows, for screens too narrow to show them.
+
+    A details element opens and closes without any script, so the menu works
+    even if nav.js never loads; the script only closes it after a tap.
+    """
+    return f'''<details class="nav-menu">
+      <summary aria-label="Menu"><span class="burger" aria-hidden="true"></span></summary>
+      <div class="nav-menu-panel">{links}<a href="{REPO}">GitHub</a></div>
+    </details>'''
 
 
 def nav(current=""):
@@ -94,6 +107,7 @@ def nav(current=""):
       <a class="btn btn-ghost btn-sm" href="{REPO}">GitHub</a>
       <a class="btn btn-sun btn-sm" href="{INSTALL}">{SLACK_MARK}Add to Slack</a>
     </div>
+    {nav_menu(links)}
   </div>
 </nav>
 '''

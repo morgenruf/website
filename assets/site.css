@@ -49,10 +49,32 @@ a{color:inherit}
 .nav-links a{color:var(--on-ink-muted); text-decoration:none; font-size:15px; font-weight:500}
 .nav-links a:hover{color:var(--on-ink)}
 .nav-cta{display:flex; gap:10px; align-items:center}
-@media (max-width:900px){.nav-links{display:none}}
+@media (max-width:900px){.nav-links{display:none} .nav-cta{margin-left:auto} .nav-in{gap:12px}}
+@media (max-width:560px){.nav-cta .btn-ghost{display:none} .nav .wrap{padding:0 16px} .nav-in{gap:10px}
+  .nav-cta .btn-sm{padding:9px 13px; gap:7px} .nav .brand{gap:8px; font-size:18px}}
+/* Below 900px the links move into a menu. A details element, so it opens
+   without script; nav.js only closes it again after a tap. */
+.nav-menu{display:none; flex:none; width:42px; background:none; border:0; border-radius:0; padding:0; margin:0}
+.nav-menu summary::after,.nav-menu[open] summary::after{content:none}
+.nav-menu summary{list-style:none; cursor:pointer; width:42px; height:42px; display:flex; align-items:center; justify-content:center; border-radius:999px; border:2px solid rgba(255,255,255,.28); color:var(--on-ink)}
+.nav-menu summary::-webkit-details-marker{display:none}
+.nav-menu summary:focus-visible{outline:3px solid var(--sky); outline-offset:3px}
+.burger,.burger::before,.burger::after{display:block; width:18px; height:2px; border-radius:2px; background:currentColor; transition:transform .15s ease}
+.burger{position:relative}
+.burger::before,.burger::after{content:""; position:absolute; left:0}
+.burger::before{top:-6px}
+.burger::after{top:6px}
+.nav-menu[open] .burger{background:transparent}
+.nav-menu[open] .burger::before{top:0; transform:rotate(45deg)}
+.nav-menu[open] .burger::after{top:0; transform:rotate(-45deg)}
+.nav-menu-panel{position:absolute; left:0; right:0; top:100%; background:var(--ink); border-bottom:1px solid rgba(255,255,255,.1); box-shadow:var(--shadow-lift); padding:6px 24px 16px; display:flex; flex-direction:column}
+.nav-menu-panel a{color:var(--on-ink); text-decoration:none; font-weight:600; font-size:17px; padding:13px 0; border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-menu-panel a:last-child{border-bottom:0}
+.nav-menu-panel a[aria-current]{color:var(--sun)}
+@media (max-width:900px){.nav-menu{display:block}}
 
 /* ── Buttons ─────────────────────────────────────────────────────────── */
-.btn{display:inline-flex; align-items:center; gap:9px; padding:13px 22px; border-radius:999px; font-weight:700; font-size:15.5px; text-decoration:none; border:2px solid transparent; cursor:pointer; transition:transform .12s ease, box-shadow .12s ease}
+.btn{display:inline-flex; align-items:center; gap:9px; white-space:nowrap; padding:13px 22px; border-radius:999px; font-weight:700; font-size:15.5px; text-decoration:none; border:2px solid transparent; cursor:pointer; transition:transform .12s ease, box-shadow .12s ease}
 .btn:hover{transform:translateY(-1px)}
 .btn:focus-visible{outline:3px solid var(--sky); outline-offset:3px}
 .btn-sun{background:var(--sun); color:#26190A; box-shadow:0 10px 26px rgba(255,178,63,.36)}
@@ -190,8 +212,8 @@ footer a:hover{color:var(--sun)}
 .foot-legal{display:flex; gap:18px}
 
 /* ── Breadcrumbs ─────────────────────────────────────────────────────── */
-.crumbs{padding:18px 24px 0; font-size:13.5px; color:var(--dim); display:flex; gap:8px; flex-wrap:wrap; align-items:center}
-.crumbs a{color:var(--muted); text-decoration:none}
+.crumbs{padding:8px 24px 0; font-size:13.5px; color:var(--dim); display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+.crumbs a{color:var(--muted); text-decoration:none; display:inline-flex; align-items:center; min-height:44px; padding:0 4px; margin:0 -4px}
 .crumbs a:hover{color:var(--rooster)}
 
 /* ── Page header, for everything that is not the home page ───────────── */
