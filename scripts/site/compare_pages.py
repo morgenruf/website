@@ -80,8 +80,9 @@ days, each of them presses one, and a matching pair becomes a Zoom meeting at th
 the account of whoever connected theirs.</p>
 
 <h3>Your data stays yours</h3>
-<p>Who met whom, and who quietly opted out, lives in Postgres you control. Nothing is sent anywhere
-else, and leaving is not a migration because it is already yours.</p>
+<p>Self-hosted, who met whom and who quietly opted out lives in Postgres you control. The install
+talks to Slack only, plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator
+turns those on. Leaving is not a migration because the data is already yours.</p>
 
 <h3>The price</h3>
 <p>Free for every seat, at any size, because you run it. A thirty person team pays for a small server

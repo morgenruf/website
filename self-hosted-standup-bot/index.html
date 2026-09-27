@@ -79,10 +79,10 @@ answers. Everything else on this page follows from that. Three reasons come up, 
 <rect x="295" y="192" width="170" height="36" rx="10" fill="#12131F"/>
 <text x="380" y="215" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#F6F3EC">scheduler, inside the process</text>
 <line x1="380" y1="160" x2="380" y2="190" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/>
-<text x="380" y="30" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="#12131F">Three things, and nothing else</text>
-<text x="380" y="52" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">No queue, no third party, no telemetry</text>
+<text x="380" y="30" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="#12131F">Three things at the core</text>
+<text x="380" y="52" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">No queue, no cache, optional services off by default</text>
 </svg>
-<figcaption>Everything runs in one process against one database. Nothing leaves your infrastructure except calls to Slack.</figcaption>
+<figcaption>Everything runs in one process against one database. A self-hosted install talks to Slack only, plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator turns those on.</figcaption>
 </figure>
 
 <h2 id="what-running-it-involves">What running it actually involves</h2>
@@ -96,14 +96,16 @@ answers. Everything else on this page follows from that. Three reasons come up, 
 </ul>
 
 <h2 id="what-leaves-your-network">What leaves your network</h2>
-<p>Slack's API, and nothing else. The app calls <code>slack.com</code> to read channel membership,
-open DMs and post the summary, and Slack calls your HTTPS URL back with events. Answers, blockers,
-participation, coffee chat pairings and kudos are written to your Postgres and stay there. No
-telemetry, no licence check phoning home. Product analytics exist in the code and stay off: they
-send nothing until an operator sets a PostHog key, and hosted Morgenruf is the only install that
-has one. You can watch that on the egress
-rules, and since it is <a href="/open-source-standup-bot/">MIT licensed and readable end to end</a>
-you can check the claim rather than take it.</p>
+<p>A self-hosted install talks to Slack only, plus Zoom, email (Resend), an AI provider or PostHog
+analytics if the operator turns those on. By default that means <code>slack.com</code>: the app
+calls it to read channel membership, open DMs and post the summary, and Slack calls your HTTPS URL
+back with events. Answers, blockers, participation, coffee chat pairings and kudos are written to
+your Postgres. There is no licence check. Each optional service stays silent until you configure
+it: Zoom when someone links an account for coffee chats, Resend when you set up digest email, an AI
+provider when you add a key for summaries, and PostHog when you set a PostHog key. You can watch
+that on the egress rules, and since it is
+<a href="/open-source-standup-bot/">MIT licensed and readable end to end</a> you can check the
+claim rather than take it.</p>
 <p>Which makes the residency answer short. The data lives in the region your database lives in,
 under the retention your backups already have, and a deletion or subject access request is a query
 against a schema you own.</p>

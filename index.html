@@ -382,7 +382,7 @@
     <h2>Your database, your cluster, your rules</h2>
     <div class="grid3" style="margin-top:28px">
       <div class="card"><h3>Postgres you control</h3><p>Every standup, pairing and kudo lives in a
-      database you own. No telemetry leaves the box.</p></div>
+      database you own. The install talks to Slack only, plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator turns those on.</p></div>
       <div class="card"><h3>Helm or Compose</h3><p>A published chart at charts.morgenruf.dev, or
       Docker Compose on a spare machine. Migrations run themselves on start.</p></div>
       <div class="card"><h3>No open ports needed</h3><p>Runs behind a Cloudflare tunnel, so a
@@ -427,9 +427,11 @@
       <details><summary>Can I run it without Kubernetes?</summary><p>Yes. Docker Compose is a copy
       of the env file and one command, and it runs happily on a small VPS or a spare Mac mini. The
       Helm chart is for people who already have a cluster, not the only route.</p></details>
-      <details><summary>Where does my standup data live?</summary><p>In your own Postgres, and
-      nowhere else. The only outbound calls are to Slack, to whichever AI provider you configure for
-      summaries (optional, off by default), and to Resend if you switch on digest email.</p></details>
+      <details><summary>Where does my standup data live?</summary><p>On the free hosted instance,
+      in the database CloudDrove runs for it; <a href="/privacy/">the privacy page</a> says where
+      and for how long. Self-hosted, in your own Postgres. A self-hosted install talks to Slack only,
+      plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator turns those
+      on.</p></details>
       <details><summary>Is this a Geekbot, Donut or HeyTaco alternative?</summary><p>It covers what
       teams use those for: async standups, random coffee chats, and peer recognition. Running one
       app instead of three is most of the point, along with owning the data. It is not a clone of
@@ -507,7 +509,7 @@
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"Is Morgenruf really free?","acceptedAnswer":{"@type":"Answer","text":"Yes, for any number of people. It is MIT licensed with no hosted tier. You pay for the server and database you run it on."}},
 {"@type":"Question","name":"Can I run it without Kubernetes?","acceptedAnswer":{"@type":"Answer","text":"Yes. Docker Compose works on a small VPS or a spare Mac mini. The Helm chart is for teams who already have a cluster."}},
-{"@type":"Question","name":"Where does my standup data live?","acceptedAnswer":{"@type":"Answer","text":"In your own Postgres database. No telemetry is sent unless you set a PostHog key yourself. Outbound calls go only to Slack, an optional AI provider, and Resend if digest email is enabled."}},
+{"@type":"Question","name":"Where does my standup data live?","acceptedAnswer":{"@type":"Answer","text":"On the free hosted instance, in the database CloudDrove runs for it. Self-hosted, in your own Postgres. A self-hosted install talks to Slack only, plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator turns those on."}},
 {"@type":"Question","name":"Is this a Geekbot, Donut or HeyTaco alternative?","acceptedAnswer":{"@type":"Answer","text":"It covers async standups, random coffee chats and peer recognition in one self-hosted app rather than three subscriptions."}},
 {"@type":"Question","name":"Does it work with Microsoft Teams or Google Chat?","acceptedAnswer":{"@type":"Answer","text":"Google Chat is in beta. Microsoft Teams as a platform is in progress. Slack is the first-class platform."}}]}
 </script>

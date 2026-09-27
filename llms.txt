@@ -43,7 +43,9 @@ Integration
 ## How it is run
 
 - Self-hosted with Docker Compose, or on Kubernetes with the published Helm chart
-- Requires PostgreSQL and a Slack app; no third party sees standup content
+- Requires PostgreSQL and a Slack app. A self-hosted install talks to Slack only,
+  plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator
+  turns those on
 - A hosted instance run by CloudDrove is also available at no cost
 
 ## Licence and source

@@ -41,10 +41,10 @@ def architecture():
 <rect x="295" y="192" width="170" height="36" rx="10" fill="{INK}"/>
 <text x="380" y="215" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#F6F3EC">scheduler, inside the process</text>
 <line x1="380" y1="160" x2="380" y2="190" stroke="{AMBER}" stroke-width="2.5" marker-end="url(#a)"/>
-<text x="380" y="30" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="{INK}">Three things, and nothing else</text>
-<text x="380" y="52" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">No queue, no third party, no telemetry</text>
+<text x="380" y="30" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="{INK}">Three things at the core</text>
+<text x="380" y="52" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">No queue, no cache, optional services off by default</text>
 </svg>
-<figcaption>Everything runs in one process against one database. Nothing leaves your infrastructure except calls to Slack.</figcaption>
+<figcaption>Everything runs in one process against one database. A self-hosted install talks to Slack only, plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator turns those on.</figcaption>
 </figure>'''
 
 

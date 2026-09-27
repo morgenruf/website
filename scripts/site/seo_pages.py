@@ -352,14 +352,16 @@ answers. Everything else on this page follows from that. Three reasons come up, 
 </ul>
 
 <h2 id="what-leaves-your-network">What leaves your network</h2>
-<p>Slack's API, and nothing else. The app calls <code>slack.com</code> to read channel membership,
-open DMs and post the summary, and Slack calls your HTTPS URL back with events. Answers, blockers,
-participation, coffee chat pairings and kudos are written to your Postgres and stay there. No
-telemetry, no licence check phoning home. Product analytics exist in the code and stay off: they
-send nothing until an operator sets a PostHog key, and hosted Morgenruf is the only install that
-has one. You can watch that on the egress
-rules, and since it is <a href="/open-source-standup-bot/">MIT licensed and readable end to end</a>
-you can check the claim rather than take it.</p>
+<p>A self-hosted install talks to Slack only, plus Zoom, email (Resend), an AI provider or PostHog
+analytics if the operator turns those on. By default that means <code>slack.com</code>: the app
+calls it to read channel membership, open DMs and post the summary, and Slack calls your HTTPS URL
+back with events. Answers, blockers, participation, coffee chat pairings and kudos are written to
+your Postgres. There is no licence check. Each optional service stays silent until you configure
+it: Zoom when someone links an account for coffee chats, Resend when you set up digest email, an AI
+provider when you add a key for summaries, and PostHog when you set a PostHog key. You can watch
+that on the egress rules, and since it is
+<a href="/open-source-standup-bot/">MIT licensed and readable end to end</a> you can check the
+claim rather than take it.</p>
 <p>Which makes the residency answer short. The data lives in the region your database lives in,
 under the retention your backups already have, and a deletion or subject access request is a query
 against a schema you own.</p>

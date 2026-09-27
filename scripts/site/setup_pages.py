@@ -102,7 +102,8 @@ def hub():
     <h2 id="the-shape-of-it">The shape of it</h2>
     <p>Three things talk to each other: Slack, the app, and your database. Slack sends events to
     your URL, the app writes to Postgres, and a scheduler inside the app sends the messages that
-    start standups and coffee chats. There is no other service and nothing phones home.</p>
+    start standups and coffee chats. A self-hosted install talks to Slack only, plus Zoom, email
+    (Resend), an AI provider or PostHog analytics if the operator turns those on.</p>
 
     <div class="note"><p><strong>One value people miss:</strong> <code>FLASK_SECRET_KEY</code> signs
     dashboard sessions. Generate a real one with <code>openssl rand -hex 32</code>. Leaving it blank
