@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="/icon-512.png"/>
 <link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="/assets/site.css?v=1789500623"/>
+<link rel="stylesheet" href="/assets/site.css?v=d9717ab79c"/>
 <script src="/assets/analytics.js" defer></script>
 <script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What are the minimum requirements?", "acceptedAnswer": {"@type": "Answer", "text": "One small container and a Postgres. A single vCPU with 512MB is enough for a team of dozens; the work is bursty and short."}}, {"@type": "Question", "name": "Does it need a public IP?", "acceptedAnswer": {"@type": "Answer", "text": "No. A Cloudflare tunnel gives Slack an HTTPS URL without opening a port or running an ingress controller."}}, {"@type": "Question", "name": "How do upgrades work?", "acceptedAnswer": {"@type": "Answer", "text": "Pull the new image and restart. Migrations run in an init container before the app starts, and are written to be safe against a live database."}}, {"@type": "Question", "name": "Is there a hosted version?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Add to Slack installs Morgenruf on a free hosted instance run by CloudDrove, in about two minutes. This page is about the other route: the same MIT code on your own servers."}}]}</script>

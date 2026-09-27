@@ -195,14 +195,6 @@ tbody tr:last-child td{border-bottom:none}
 .scroll-x{overflow-x:auto; -webkit-overflow-scrolling:touch}
 
 /* ── Roadmap ─────────────────────────────────────────────────────────── */
-.road{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
-@media (max-width:900px){.road{grid-template-columns:1fr}}
-.road-item{background:#fff; border:1px solid var(--line); border-left:4px solid var(--amber); border-radius:var(--radius-s); padding:20px 22px}
-.road-item.shipped{border-left-color:var(--leaf)}
-.road-item h3{font-size:17.5px; margin-bottom:6px}
-.road-item p{font-size:14.5px; color:var(--muted); margin:0 0 12px}
-.state{font-size:12.5px; font-weight:700; padding:3px 10px; border-radius:999px; background:rgba(255,178,63,.18); color:#8A5B00}
-.state.done{background:rgba(14,138,95,.13); color:var(--leaf)}
 
 /* ── Bands and footer ────────────────────────────────────────────────── */
 .band{background:var(--ink); color:var(--on-ink); border-radius:26px; padding:56px 44px; text-align:center}
@@ -305,3 +297,62 @@ footer a:hover{color:var(--sun)}
 .release-body ul{margin:0; padding-left:20px; color:var(--muted)}
 .release-body li{margin-bottom:8px}
 .release-body code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13.5px; background:var(--paper-2); border:1px solid var(--line); border-radius:5px; padding:1px 5px}
+
+/* Roadmap, drawn as Morgenruf's own standup: Yesterday (shipped), Today,
+   Tomorrow and Someday. Solid ink means built; dashed means not yet. */
+@font-face{font-family:'Caveat'; font-style:normal; font-weight:600; font-display:swap;
+  src:url(/assets/fonts/caveat-we-re-here.woff2) format('woff2'); unicode-range:U+20, U+27, U+65, U+68, U+72, U+77}
+.rm{overflow-x:clip}
+.rm-title{max-width:18ch; margin:10px 0 12px}
+.rm .lede{margin-bottom:0}
+.rm-ic{width:19px; height:19px; stroke:currentColor; fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round}
+.rm-spine{list-style:none; margin:0; padding:22px 0; position:relative; display:grid; gap:22px}
+.rm-past{margin-top:40px}
+.rm-spine::before{content:""; position:absolute; left:50%; top:0; bottom:0; width:2px; margin-left:-1px;
+  background:repeating-linear-gradient(to bottom,var(--ink) 0 7px,transparent 7px 14px)}
+.rm-past::before{background:var(--ink); top:22px}
+.rm-stage{position:relative; z-index:1; justify-self:center; display:flex; flex-direction:column; align-items:center; gap:4px}
+.rm-tag{font:800 13px/1 'Manrope',sans-serif; letter-spacing:.12em; text-transform:uppercase; background:var(--ink); color:#fff; border-radius:6px; padding:8px 12px; box-shadow:0 0 0 8px var(--paper)}
+.rm-stage small{font-size:13.5px; color:var(--muted); background:var(--paper); padding:0 8px}
+.rm-open .rm-tag{background:var(--paper); color:var(--ink); box-shadow:0 0 0 8px var(--paper),inset 0 0 0 2px var(--ink)}
+.rm-row{display:grid; grid-template-columns:minmax(0,1fr) 72px minmax(0,1fr); align-items:center}
+.rm-node{grid-column:2; grid-row:1; justify-self:center; width:42px; height:42px; border-radius:50%; background:#fff; border:2px solid var(--ink); display:grid; place-items:center; color:var(--ink); position:relative; z-index:1; box-shadow:0 0 0 6px var(--paper)}
+.rm-node::after{content:""; position:absolute; top:50%; height:2px; width:26px; background:var(--ink)}
+.rm-left .rm-node::after{right:100%}
+.rm-right .rm-node::after{left:100%}
+.rm-card{grid-row:1; background:#fff; border:2px solid var(--ink); border-radius:14px; padding:16px 18px; max-width:420px; width:100%; box-shadow:5px 5px 0 var(--ink)}
+.rm-left .rm-card{grid-column:1; justify-self:end}
+.rm-right .rm-card{grid-column:3; justify-self:start}
+.rm-card h3{font-size:20px; display:flex; align-items:baseline; gap:10px; flex-wrap:wrap}
+.rm-card p{margin:6px 0 0; color:var(--muted); font-size:15px; line-height:1.45}
+.rm-ver{font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace; color:var(--leaf); border:1.5px solid currentColor; border-radius:5px; padding:3px 5px; letter-spacing:0}
+.rm-shot{display:block; width:calc(100% + 36px); max-width:none; height:auto; margin:-16px -18px 14px; border-bottom:2px solid var(--ink); border-radius:12px 12px 0 0; aspect-ratio:560/228; object-fit:cover; object-position:top left}
+.rm-band{background:#FFF3CF; border-block:2px solid var(--sun); margin:6px 0}
+.rm-band .wrap{position:relative}
+.rm-now .rm-tag{background:var(--sun); color:var(--ink); box-shadow:0 0 0 8px #FFF3CF,inset 0 0 0 2px var(--ink)}
+.rm-now .rm-stage small{background:#FFF3CF}
+.rm-now .rm-node{box-shadow:0 0 0 6px #FFF3CF}
+.rm-today .rm-card{box-shadow:5px 5px 0 var(--sun),5px 5px 0 2px var(--ink)}
+.rm-plan .rm-node{border-style:dashed; color:var(--muted)}
+.rm-plan .rm-node::after{background:repeating-linear-gradient(to right,var(--ink) 0 4px,transparent 4px 8px)}
+.rm-plan .rm-card{border-style:dashed; box-shadow:none; background:transparent}
+.rm-someday .rm-card{border-color:var(--dim)}
+.rm-someday .rm-card h3,.rm-someday .rm-node{color:var(--muted)}
+.rm-here{position:absolute; right:24px; top:16px; display:flex; align-items:flex-end; gap:6px; pointer-events:none}
+.rm-here img{width:118px; height:auto; transform:rotate(4deg)}
+.rm-here span{font:600 26px/1 'Caveat',cursive; color:var(--ink); transform:rotate(-6deg); margin-bottom:62px; white-space:nowrap}
+.rm-here svg{position:absolute; left:-44px; top:30px; width:52px; height:40px; fill:none; stroke:var(--ink); stroke-width:2; stroke-linecap:round}
+.rm-links{margin-top:18px; display:flex; flex-wrap:wrap; gap:12px 22px; font-weight:700}
+@media (min-width:861px){.rm-left+.rm-right,.rm-right+.rm-left{margin-top:-64px}}
+@media (max-width:860px){
+  .rm-spine::before{left:21px}
+  .rm-stage{justify-self:start; align-items:flex-start}
+  .rm-row{grid-template-columns:42px minmax(0,1fr); column-gap:18px}
+  .rm-node{grid-column:1}
+  .rm-node::after{display:none}
+  .rm-left .rm-card,.rm-right .rm-card{grid-column:2; justify-self:stretch; max-width:none}
+  .rm-here{position:static; justify-content:flex-end; padding-top:14px}
+  .rm-here img{width:84px}
+  .rm-here span{margin-bottom:40px; font-size:22px}
+  .rm-here svg{display:none}
+}
