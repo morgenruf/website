@@ -141,8 +141,9 @@ competitor is bad at everything convinces nobody.</p>
 <p>What you will not find is a list of the ten best standup bots of the year, a post written to
 hold a keyword, or an announcement dressed as an essay. Releases go in the
 <a href="/changelog/">changelog</a>, and how each part of the app behaves is documented on the
-<a href="/standups/">standups</a>, <a href="/coffee-chats/">coffee chats</a> and
-<a href="/kudos/">kudos</a> pages rather than being rewritten here.</p>
+<a href="/standups/">standups</a>, <a href="/coffee-chats/">coffee chats</a>,
+<a href="/kudos/">kudos</a> and <a href="/celebrations/">celebrations</a> pages rather than being
+rewritten here.</p>
 <p>New posts are announced in <a href="{REPO}/discussions">GitHub discussions</a>, which is also
 where to say that one of them is wrong.</p>'''
     return _page(path="/blog/", title="Blog: async standups, self-hosting and team rituals",

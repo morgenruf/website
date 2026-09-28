@@ -34,6 +34,21 @@ Kudos
 - Peer recognition with a daily allowance that resets at midnight per timezone
 - Your own emoji as the token, leaderboards for giving as well as receiving
 
+Celebrations
+- Posts birthdays and work anniversaries in a channel the workspace picks, at a
+  time and in a timezone set for Celebrations alone
+- A celebration on a weekend or a listed company holiday is posted on the last
+  working day before it; working days and the holiday list are set by HR
+- One post per kind per day, grouped, with a 🎉 reaction added by the bot
+- Members add dates themselves; workspace admins can import them from a CSV
+- One-click opt out; birthdays are stored as day and month only, never a year
+- Off until a workspace admin turns it on, and can be handed to someone in HR
+
+Member profile
+- Birthday (day and month only), start date, role, location and "ask me about"
+- Filled in from the Slack App Home, /morgenruf profile, or the dashboard
+- Deleted 30 days after a member leaves the workspace
+
 Insights
 - Blockers nobody has cleared in days, and people who answer every standup and
   are thanked by nobody. No productivity scores, no individual rankings.
@@ -54,7 +69,7 @@ Integration
 
 ## Licence and source
 
-- Current version: 1.8.12, released 2026-09-27
+- Current version: 1.8.13, released 2026-09-27
 
 MIT. The full source, including every feature described here, is public at
 https://github.com/morgenruf/morgenruf
@@ -67,6 +82,7 @@ Product
 - [Coffee chats](https://morgenruf.dev/coffee-chats/): pairing, cadence, timezone-aware hours
 - [Kudos](https://morgenruf.dev/kudos/): allowances, custom emoji, leaderboards
 - [Insights](https://morgenruf.dev/insights/): stale blockers and unrecognised contributors
+- [Celebrations](https://morgenruf.dev/celebrations/): birthdays and work anniversaries, working days, holidays, the member profile
 
 Setup
 - [Setup](https://morgenruf.dev/setup/): three ways to run it, and what each costs
@@ -78,7 +94,7 @@ Comparisons
 - [Compare](https://morgenruf.dev/compare/): all four tools, including where each of them wins
 - [Slack standup bots compared](https://morgenruf.dev/compare/standup-bots/): eleven standup bots, free plan limits and prices from each vendor's pricing page, and which fits which team
 - [Geekbot alternative](https://morgenruf.dev/geekbot-alternative/): feature and price comparison
-- [Donut alternative](https://morgenruf.dev/donut-alternative/): coffee chats compared
+- [Donut alternative](https://morgenruf.dev/donut-alternative/): coffee chats and celebrations compared
 - [HeyTaco alternative](https://morgenruf.dev/heytaco-alternative/): recognition compared
 - [Standup & Prosper alternative](https://morgenruf.dev/standup-prosper-alternative/): feature and price comparison
 

@@ -1,6 +1,6 @@
 # Morgenruf: the full text of the main pages
 
-Generated from the site on each build. Current version 1.8.12, released 2026-09-27. Summary and index: https://morgenruf.dev/llms.txt
+Generated from the site on each build. Current version 1.8.13, released 2026-09-27. Summary and index: https://morgenruf.dev/llms.txt
 
 ## Async standups in Slack, free or self-hosted
 https://morgenruf.dev/standups/
@@ -168,6 +168,90 @@ Is this surveillance?
 It is the same information already in your channel, counted. It does not read messages it was not sent, does not score people, and does not produce a ranking of who is 'productive'. If you want a tool that tells you who to performance-manage, this is not it.
 Can I turn it off?
 Yes. Insights is a module like the others and can be switched off per workspace, at which point it stops running and leaves the sidebar.
+
+## Slack birthday bot for birthdays and work anniversaries
+https://morgenruf.dev/celebrations/
+
+Birthdays and work anniversaries, without the spreadsheet
+Morgenruf posts them in a channel on the day, or on the last working day before it, from dates people add themselves or HR imports once.
+Add to Slack Self-host in about 20 minutes
+Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
+#celebrations, on a Friday
+Morgenruf APP 09:00
+🎂 Tomorrow is @Priya's birthday!Off for the weekend, so let's celebrate early. 🎈🎉 1
+Morgenruf APP 09:00
+🎉 Today is @Tom's 3-year work anniversary!Thanks for three great years, Tom. 🙌🎉 1
+Morgenruf Celebrations is a free, open-source (MIT) Slack birthday and work anniversary bot. It posts birthdays and work anniversaries in a channel you choose, on the last working day before any weekend or company holiday, from a member profile that stores day and month only. It runs on a free hosted instance or on your own servers, alongside async standups, coffee chats and kudos.
+Last reviewed September 26, 2026
+How it works A post in the channel, on the day
+Pick a channel, a timezone and a time. Each working morning, Morgenruf posts whoever has a birthday or a work anniversary, and adds a 🎉 so the rest of the team can pile on.
+Birthdays and work anniversaries, each on or off
+One post per kind per day: two birthdays are one birthday double
+Anniversaries count the years; under a year is skipped
+Its own timezone and post time, 09:00 unless you change it
+Around your working days and your company holiday list
+Messages are short and the same for everyone. Names are mentions, and there are no pronouns, because the profile does not store them. Three or more birthdays on one day are listed together, with "Happy birthday to all of you". A 29 February birthday is celebrated on 28 February in other years.
+#celebrations, on a Tuesday
+Morgenruf APP 09:00
+🎂 Today is a birthday double: @Priya and @Tom!Wishing you both a lovely day. 💛🎉 1
+Morgenruf APP 09:00
+🎉 Today is @Tom's first work anniversary! 🥳One year already. Thanks for everything, Tom.🎉 1
+Working days and company holidays
+A birthday on a Saturday posted on the Saturday is a birthday nobody sees. So whoever runs Celebrations sets the working days (Monday to Friday by default, Sunday to Thursday, or any other week) and keeps a list of company holidays, typed in or imported as date,name. Morgenruf does not ship a holiday calendar of its own: your list is the only source, so it matches the days your company actually takes off.
+A celebration on a day off is posted on the last working day before it, with wording that says so:
+Saturday, from Friday: "Tomorrow is..."
+Sunday, from Friday: "On Sunday it's..."
+A Monday holiday, from Friday: "On Monday it's..."
+25 December, when 24 to 26 December are all holidays: posted on 23 December, "On 25 December it's..."
+The timezone is its own setting, not borrowed from a standup. The people who run standups and the people who run celebrations are often different, and a company celebrates on one clock even when its standup teams span several.
+Where the dates come from: the member profile
+Slack has no birthday field, and a start date only on some Enterprise Grid plans. So Morgenruf keeps a short member profile of its own: birthday, start date, role, location and "ask me about". It is part of the core rather than a Celebrations setting, so the features planned next, intros and onboarding buddies, can read it too.
+People add their own from the Your profile section of the Morgenruf App Home in Slack, with /morgenruf profile, or on My profile in the dashboard. All three open the same form.
+HR imports the rest. A workspace admin uploads a CSV with email,birthday,start_date from the HR tool's export, sees which rows matched before anything is saved, and can edit anyone's profile from Members.
+The bot asks, once, as shown below.
+Asking for dates Asking for dates, once
+Nobody has to chase a spreadsheet. When Celebrations is switched on, everyone with no dates on file gets one DM, and one tap either opens the profile form or opts them out.
+The first DM goes to each person once, not on every run
+Ask for dates, on the Celebrations and Members pages, shows the count and the message before it sends
+At most once per person every 30 days
+Joining the celebrations channel with no dates asks too
+Direct message
+Morgenruf APP 09:00
+👋 Hi Priya! Your team celebrates birthdays and work anniversaries in #celebrations.Add yours so nobody misses it. Only day and month are kept.Add my datesSkip me
+The Slack windows on this page are rebuilt in markup rather than screenshotted, so no real workspace's messages are shown.
+What is kept, and for how long
+Day and month only. No birth year is ever stored, from the form, the dashboard or a CSV. No message needs an age.
+One-click opt out. "Don't celebrate me publicly" in the profile, or "Skip me" on the DM. The dates stay; nothing is posted.
+People can clear their own dates at any time.
+Gone when someone leaves. Nobody who has left, and no deactivated member, is ever posted, and their profile is deleted 30 days after they leave the workspace. Uninstalling removes everything.
+What is stored, and who can see it, is set out on the privacy page.
+HR can run it without being an admin
+A workspace admin turns Celebrations on and can hand the Celebrations grant to someone in HR from Members, the same way coffee chats or kudos can have their own owner. That person looks after the channel, the timezone, the working days, the holiday list and asking for dates, without getting the rest of the workspace.
+What it does not do
+Donut has done celebrations for longer, and the Donut comparison says where it still wins. This first version leaves out:
+Weekly or monthly roundups
+GIFs and images
+Custom message text
+Mentioning the person's manager
+A live sync with an HR system: dates come from the profile form or a CSV export
+The 🎉 needs the reactions:write scope. A workspace that installed before it existed still gets every post, and gets the reaction once an admin re-authorises Slack. The Slack app page lists every scope and why.
+QuestionsAbout celebrations
+How do I get a birthday bot in Slack?
+Add Morgenruf to Slack, open the Celebrations page in the dashboard, pick a channel and a timezone, save, invite @Morgenruf to that channel, and turn Celebrations on. Birthdays and work anniversaries then post there at 09:00, or whatever time you set.
+Does it do work anniversaries as well as birthdays?
+Yes. Anniversaries are counted from each person's start date, so the post says how many years it has been. A start date less than a year ago is skipped. Either kind can be switched off on its own.
+What happens when a birthday falls on a weekend or a holiday?
+It is posted on the last working day before it. With a Monday to Friday week, Friday posts "Tomorrow is..." for a Saturday and "On Sunday it's..." for a Sunday. The working days and the holiday list are yours to set, so a Sunday to Thursday week works too.
+Does anyone have to give their birth year?
+No. Only the day and month are stored. There is no field for a year, and a full date in an imported file has its year dropped before it is saved.
+Can someone opt out?
+Yes, with one checkbox: "Don't celebrate me publicly" in their profile, or "Skip me" on the message that asks for dates. Their dates stay on file and nothing is posted about them.
+Can HR add everyone's dates at once?
+Yes. A workspace admin can import a CSV of email, birthday and start date, exported from the HR tool. It shows matched, unmatched and invalid rows before anything is saved, and does not overwrite dates a person entered themselves unless the admin ticks overwrite.
+Can we change the wording of the messages?
+Not in this version. The text is fixed, short and the same for everyone, with names as mentions and no pronouns, since the profile does not store them.
+Does it cost anything?
+No. Celebrations is part of Morgenruf, which is free on the hosted instance at any team size, and MIT licensed if you would rather run it on your own servers.
 
 ## Standup bot comparison: Morgenruf vs Geekbot and others
 https://morgenruf.dev/compare/
@@ -383,6 +467,7 @@ Suggests a time both people can makeYes, voted on in the messageVaries
 Creates the meetingZoom, at the agreed hourVaries by plan
 Async standups in the same appYesNo
 Peer recognition in the same appYesShoutouts
+Birthdays and work anniversariesYes, around your working days and holidaysYes
 Runs on your own serversYesNo
 Source you can readMITClosed
 Your pairing data lives inyour databasetheir cloud
@@ -395,6 +480,8 @@ Where they win. If you need Microsoft Teams today, or onboarding journeys, or a 
 Where this is different
 It is one app, not three subscriptions
 Most teams that pay for pairing also pay for standups and recognition. Morgenruf runs all three against one database, which is also what makes the cross-signal questions possible: who answers every standup and is thanked by nobody.
+Birthdays and work anniversaries, too
+Donut celebrates birthdays and anniversaries, and so does Morgenruf: posted in a channel you pick, grouped into one message per kind a day, and moved to the last working day before a weekend or a company holiday on your own list. Only the day and month of a birthday are kept, and anyone can opt out with one checkbox. Donut imports dates straight from an HRIS; here HR uploads a CSV export instead. Celebrations has the details.
 The introduction carries a meeting
 Two people being told to meet is the easy part. This proposes hours that fall inside both working days, each of them presses one, and a matching pair becomes a Zoom meeting at that hour, hosted on the account of whoever connected theirs.
 Your data stays yours
@@ -410,6 +497,8 @@ Is Morgenruf a drop-in Donut replacement?
 For random pairings from a Slack channel, yes. For Teams, journeys or Gatheround's video facilitation, no, and pretending otherwise would waste your afternoon.
 Can I import our Donut history?
 No. Run both for a couple of weeks instead and let the new pairings build their own history.
+Does Morgenruf do birthdays and work anniversaries like Donut?
+Yes. Celebrations posts both in a channel, on the last working day before any weekend or company holiday, from dates people add themselves or HR imports as a CSV. Birthdays are day and month only. It has no weekly or monthly roundups.
 Does it need Zoom?
 No. Without it a pairing uses whatever room link you set on the programme, or none. Zoom only adds a real meeting at the agreed hour.
 What does it cost for 200 people?
@@ -512,7 +601,7 @@ Add to Slack Self-host in about 20 minutes
 Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
 Morgenruf is an open-source Slack standup bot under the MIT licence: one public repository, no open-core split and no paid tier. It asks standup questions by DM and posts one summary, and also runs coffee chats and kudos. Use the free hosted instance, or run the same code yourself.
 Last reviewed September 26, 2026
-MIT licence · latest release 1.8.12, 2026-09-27 · Helm chart · every release
+MIT licence · latest release 1.8.13, 2026-09-27 · Helm chart · every release
 git clone https://github.com/morgenruf/morgenruf.git cd morgenruf/app && cp .env.example .env # add your Slack app values docker compose up -d
 View on GitHub
 What the licence actually says
@@ -528,6 +617,7 @@ Async standups with per-person timezones, blockers, nudges and an edit window
 Random coffee chats that agree a time and book a Zoom meeting
 Peer recognition with a daily allowance and your own emoji
 Insights across both datasets
+Birthdays and work anniversaries in a channel, from a member profile that keeps day and month only
 Signed webhooks, automation rules, an MCP server, CSV export, a Helm chart
 Every one of those is in the repository. There is no paid tier holding anything back, and what the bot does inside Slack is the same whether you run the published image or your own build of it.
 Who maintains it
@@ -557,7 +647,7 @@ Add to Slack Self-host in about 20 minutes
 Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
 Morgenruf is a self-hostable Slack standup bot: one container and a Postgres database, deployed with Docker Compose or Helm, with every answer stored in a database you control. It is MIT licensed and free, and the same code also runs as a free hosted instance for teams that would rather not run it.
 Last reviewed September 26, 2026
-MIT licence · latest release 1.8.12, 2026-09-27 · Helm chart · every release
+MIT licence · latest release 1.8.13, 2026-09-27 · Helm chart · every release
 git clone https://github.com/morgenruf/morgenruf.git cd morgenruf/app && cp .env.example .env # add your Slack app values docker compose up -d
 View on GitHub
 Why teams self-host a standup bot
@@ -774,6 +864,7 @@ users:read, users:read.email: names and email, for the dashboard and the digest.
 users.profile:read: timezones, so nobody is asked at midnight.
 mpim:write, mpim:history: the group DM a coffee chat introduction happens in. Only needed if you turn coffee chats on.
 emoji:read: so kudos can use a custom token from your workspace.
+reactions:write: the 🎉 under each celebration post. A workspace that has not granted it still gets the posts, without the reaction.
 commands: the slash commands.
 There is no scope for reading channel history, because the app never does.
 If you installed before coffee chats existed, your workspace will not have granted the three mpim scopes. Coffee chats stay dark until you reinstall, rather than failing at runtime, and the dashboard tells you which scopes are missing.
@@ -785,6 +876,7 @@ Slash commands you get
 /skip: skip today
 /kudos @teammate a reason: give recognition
 /help: what the bot can do
+/morgenruf profile: your member profile, the birthday and start date celebrations read
 Docker Compose
 Get the app itself running in a few minutes.
 Read it → Kubernetes

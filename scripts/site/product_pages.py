@@ -418,3 +418,215 @@ place</a>.</p>
         hero=shot("/screenshots/members.jpg", "Member cards showing which features each person runs", "Who runs what, at a glance.", lazy=False),
         trail=[("Home", "/"), ("Insights", None)], current="/insights/",
         define='Morgenruf Insights reads standup answers and kudos together, to show blockers nobody has cleared in days and people who contribute every morning without being thanked. It is part of Morgenruf, a free, open-source (MIT) Slack app for standups, coffee chats and kudos, hosted free or self-hosted.')
+
+
+def slack_window(title, messages):
+    """A Slack window rebuilt in markup, in the same style as the homepage.
+    Each message is (time, html). Celebrations has no screenshot yet, and
+    markup keeps any real workspace's names off the page."""
+    body = "".join(
+        f'''<div class="msg">
+  <img class="av" src="/icon-68.png" alt="" width="34" height="34"/>
+  <div><div class="msg-who">Morgenruf <small>APP</small> <time>{time}</time></div>
+  <div class="msg-text">{text}</div></div>
+</div>''' for time, text in messages)
+    return (f'<div class="slack"><div class="slack-top"><span class="slack-dots">'
+            f'<i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i>'
+            f'<i style="background:#28C840"></i></span> {title}</div>'
+            f'<div class="slack-body">{body}</div></div>')
+
+
+# The 🎉 the bot adds under each post, drawn like a Slack reaction.
+REACTION = ('<div class="slack-btns"><span class="slack-btn" style="border-radius:999px;'
+            'padding:3px 10px;font-weight:600">🎉 1</span></div>')
+
+# Message texts are the ones the app sends, word for word (design doc,
+# section 7, and app/tests/test_celebrations.py checks them).
+FRIDAY = [
+    ("09:00", "🎂 Tomorrow is <strong>@Priya</strong>'s birthday!<br/>"
+              "Off for the weekend, so let's celebrate early. 🎈" + REACTION),
+    ("09:00", "🎉 Today is <strong>@Tom</strong>'s 3-year work anniversary!<br/>"
+              "Thanks for three great years, Tom. 🙌" + REACTION),
+]
+WEEKDAY = [
+    ("09:00", "🎂 Today is a birthday double: <strong>@Priya</strong> and <strong>@Tom</strong>!<br/>"
+              "Wishing you both a lovely day. 💛" + REACTION),
+    ("09:00", "🎉 Today is <strong>@Tom</strong>'s first work anniversary! 🥳<br/>"
+              "One year already. Thanks for everything, Tom." + REACTION),
+]
+ASK = [
+    ("09:00", "👋 Hi Priya! Your team celebrates birthdays and work anniversaries in "
+              "<strong>#celebrations</strong>.<br/><br/>Add yours so nobody misses it. Only day "
+              "and month are kept."
+              '<div class="slack-btns"><span class="slack-btn primary">Add my dates</span>'
+              '<span class="slack-btn">Skip me</span></div>'),
+]
+
+
+CELEBRATIONS_FAQ = [
+    ("How do I get a birthday bot in Slack?",
+     "Add Morgenruf to Slack, open the Celebrations page in the dashboard, pick a channel and a "
+     "timezone, save, invite @Morgenruf to that channel, and turn Celebrations on. Birthdays and "
+     "work anniversaries then post there at 09:00, or whatever time you set."),
+    ("Does it do work anniversaries as well as birthdays?",
+     "Yes. Anniversaries are counted from each person's start date, so the post says how many "
+     "years it has been. A start date less than a year ago is skipped. Either kind can be switched "
+     "off on its own."),
+    ("What happens when a birthday falls on a weekend or a holiday?",
+     "It is posted on the last working day before it. With a Monday to Friday week, Friday posts "
+     "\"Tomorrow is...\" for a Saturday and \"On Sunday it's...\" for a Sunday. The working days "
+     "and the holiday list are yours to set, so a Sunday to Thursday week works too."),
+    ("Does anyone have to give their birth year?",
+     "No. Only the day and month are stored. There is no field for a year, and a full date in an "
+     "imported file has its year dropped before it is saved."),
+    ("Can someone opt out?",
+     "Yes, with one checkbox: \"Don't celebrate me publicly\" in their profile, or \"Skip me\" on "
+     "the message that asks for dates. Their dates stay on file and nothing is posted about them."),
+    ("Can HR add everyone's dates at once?",
+     "Yes. A workspace admin can import a CSV of email, birthday and start date, exported from the "
+     "HR tool. It shows matched, unmatched and invalid rows before anything is saved, and does not "
+     "overwrite dates a person entered themselves unless the admin ticks overwrite."),
+    ("Can we change the wording of the messages?",
+     "Not in this version. The text is fixed, short and the same for everyone, with names as "
+     "mentions and no pronouns, since the profile does not store them."),
+    ("Does it cost anything?",
+     "No. Celebrations is part of Morgenruf, which is free on the hosted instance at any team size, "
+     "and MIT licensed if you would rather run it on your own servers."),
+]
+
+
+def celebrations():
+    body = f'''<section class="section"><div class="wrap">
+  <div class="mod" style="border-top:0">
+    <div class="mod-copy">
+      <span class="tag tag-people">How it works</span>
+      <h2 id="a-post-in-the-channel-on-the-day">A post in the channel, on the day</h2>
+      <p class="lede">Pick a channel, a timezone and a time. Each working morning, Morgenruf posts
+      whoever has a birthday or a work anniversary, and adds a 🎉 so the rest of the team can pile
+      on.</p>
+      <ul>
+        <li>Birthdays and work anniversaries, each on or off</li>
+        <li>One post per kind per day: two birthdays are one birthday double</li>
+        <li>Anniversaries count the years; under a year is skipped</li>
+        <li>Its own timezone and post time, 09:00 unless you change it</li>
+        <li>Around your working days and your company holiday list</li>
+      </ul>
+      <p>Messages are short and the same for everyone. Names are mentions, and there are no
+      pronouns, because the profile does not store them. Three or more birthdays on one day are
+      listed together, with "Happy birthday to all of you". A 29 February birthday is celebrated on
+      28 February in other years.</p>
+    </div>
+    <div>{slack_window("#celebrations, on a Tuesday", WEEKDAY)}</div>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap"><div class="prose">
+''' + diagrams.celebration_week() + '''
+<h2 id="working-days-and-holidays">Working days and company holidays</h2>
+<p>A birthday on a Saturday posted on the Saturday is a birthday nobody sees. So whoever runs
+Celebrations sets the working days (Monday to Friday by default, Sunday to Thursday, or any other
+week) and keeps a list of company holidays, typed in or imported as <code>date,name</code>. Morgenruf
+does not ship a holiday calendar of its own: your list is the only source, so it matches the days
+your company actually takes off.</p>
+<p>A celebration on a day off is posted on the last working day before it, with wording that says
+so:</p>
+<ul>
+  <li>Saturday, from Friday: "Tomorrow is..."</li>
+  <li>Sunday, from Friday: "On Sunday it's..."</li>
+  <li>A Monday holiday, from Friday: "On Monday it's..."</li>
+  <li>25 December, when 24 to 26 December are all holidays: posted on 23 December, "On 25 December
+  it's..."</li>
+</ul>
+<p>The timezone is its own setting, not borrowed from <a href="/standups/">a standup</a>. The
+people who run standups and the people who run celebrations are often different, and a company
+celebrates on one clock even when its standup teams span several.</p>
+
+<h2 id="where-the-dates-come-from">Where the dates come from: the member profile</h2>
+<p>Slack has no birthday field, and a start date only on some Enterprise Grid plans. So Morgenruf
+keeps a short member profile of its own: birthday, start date, role, location and "ask me about".
+It is part of the core rather than a Celebrations setting, so the features planned next, intros
+and onboarding buddies, can read it too.</p>
+<ul>
+  <li><strong>People add their own</strong> from the Your profile section of the Morgenruf App Home
+  in Slack, with <code>/morgenruf profile</code>, or on My profile in the dashboard. All three open
+  the same form.</li>
+  <li><strong>HR imports the rest.</strong> A workspace admin uploads a CSV with
+  <code>email,birthday,start_date</code> from the HR tool's export, sees which rows matched before
+  anything is saved, and can edit anyone's profile from Members.</li>
+  <li><strong>The bot asks, once,</strong> as shown below.</li>
+</ul>
+</div></div></section>
+
+<section class="section"><div class="wrap">
+  <div class="mod" style="border-top:0">
+    <div class="mod-copy">
+      <span class="tag tag-people">Asking for dates</span>
+      <h2 id="asking-for-dates-once">Asking for dates, once</h2>
+      <p class="lede">Nobody has to chase a spreadsheet. When Celebrations is switched on, everyone
+      with no dates on file gets one DM, and one tap either opens the profile form or opts them
+      out.</p>
+      <ul>
+        <li>The first DM goes to each person once, not on every run</li>
+        <li>Ask for dates, on the Celebrations and Members pages, shows the count and the message
+        before it sends</li>
+        <li>At most once per person every 30 days</li>
+        <li>Joining the celebrations channel with no dates asks too</li>
+      </ul>
+    </div>
+    <div>''' + slack_window("Direct message", ASK) + '''</div>
+  </div>
+  <p class="shot-cap" style="margin-top:14px">The Slack windows on this page are rebuilt in markup
+  rather than screenshotted, so no real workspace's messages are shown.</p>
+</div></section>
+
+<section class="section"><div class="wrap"><div class="prose">
+<h2 id="privacy">What is kept, and for how long</h2>
+<ul>
+  <li><strong>Day and month only.</strong> No birth year is ever stored, from the form, the
+  dashboard or a CSV. No message needs an age.</li>
+  <li><strong>One-click opt out.</strong> "Don't celebrate me publicly" in the profile, or "Skip
+  me" on the DM. The dates stay; nothing is posted.</li>
+  <li><strong>People can clear their own dates</strong> at any time.</li>
+  <li><strong>Gone when someone leaves.</strong> Nobody who has left, and no deactivated member, is
+  ever posted, and their profile is deleted 30 days after they leave the workspace. Uninstalling
+  removes everything.</li>
+</ul>
+<p>What is stored, and who can see it, is set out on <a href="/privacy/">the privacy page</a>.</p>
+
+<h2 id="hr-can-run-it">HR can run it without being an admin</h2>
+<p>A workspace admin turns Celebrations on and can hand the Celebrations grant to someone in HR
+from Members, the same way <a href="/coffee-chats/">coffee chats</a> or <a href="/kudos/">kudos</a>
+can have their own owner. That person looks after the channel, the timezone, the working days, the
+holiday list and asking for dates, without getting the rest of the workspace.</p>
+
+<h2 id="what-it-does-not-do">What it does not do</h2>
+<p>Donut has done celebrations for longer, and <a href="/donut-alternative/">the Donut
+comparison</a> says where it still wins. This first version leaves out:</p>
+<ul>
+  <li>Weekly or monthly roundups</li>
+  <li>GIFs and images</li>
+  <li>Custom message text</li>
+  <li>Mentioning the person's manager</li>
+  <li>A live sync with an HR system: dates come from the profile form or a CSV export</li>
+</ul>
+<p>The 🎉 needs the <code>reactions:write</code> scope. A workspace that installed before it existed
+still gets every post, and gets the reaction once an admin re-authorises Slack.
+<a href="/setup/slack-app/">The Slack app page</a> lists every scope and why.</p>
+</div></div></section>
+'''
+    faq_html, faq_schema = faq(CELEBRATIONS_FAQ)
+    body += f'''<section class="section"><div class="wrap" style="max-width:820px">
+  <span class="eyebrow">Questions</span><h2 id="about-celebrations">About celebrations</h2>
+  <div style="margin-top:24px">{faq_html}</div></div></section>'''
+    return page(
+        path="/celebrations/",
+        title="Slack birthday bot for birthdays and work anniversaries",
+        description="Birthdays and work anniversaries posted in a Slack channel, around your "
+                    "working days and holidays. Day and month only. Free, open source.",
+        h1="Birthdays and work anniversaries, without the spreadsheet",
+        lede="Morgenruf posts them in a channel on the day, or on the last working day before it, "
+             "from dates people add themselves or HR imports once.",
+        body=body, schema=[faq_schema],
+        hero=slack_window("#celebrations, on a Friday", FRIDAY),
+        trail=[("Home", "/"), ("Celebrations", None)], current="/celebrations/",
+        define='Morgenruf Celebrations is a free, open-source (MIT) Slack birthday and work anniversary bot. It posts birthdays and work anniversaries in a channel you choose, on the last working day before any weekend or company holiday, from a member profile that stores day and month only. It runs on a free hosted instance or on your own servers, alongside async standups, coffee chats and kudos.')

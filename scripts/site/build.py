@@ -28,6 +28,7 @@ PAGES = {
     "coffee-chats/index.html": product_pages.coffee_chats,
     "kudos/index.html": product_pages.kudos,
     "insights/index.html": product_pages.insights,
+    "celebrations/index.html": product_pages.celebrations,
     "compare/index.html": compare_pages.hub,
     "compare/standup-bots/index.html": compare_pages.standup_bots,
     "donut-alternative/index.html": compare_pages.donut,
@@ -154,7 +155,7 @@ def refresh_llms():
     parts = [f"# Morgenruf: the full text of the main pages\n\nGenerated from the site on each build. "
              f"Current version {version}, released {date}. Summary and index: {shell.SITE}/llms.txt\n"]
     for rel in ["standups/index.html", "coffee-chats/index.html", "kudos/index.html",
-                "insights/index.html", "compare/index.html", "compare/standup-bots/index.html", "geekbot-alternative/index.html",
+                "insights/index.html", "celebrations/index.html", "compare/index.html", "compare/standup-bots/index.html", "geekbot-alternative/index.html",
                 "donut-alternative/index.html", "heytaco-alternative/index.html",
                 "standup-prosper-alternative/index.html", "open-source-standup-bot/index.html",
                 "self-hosted-standup-bot/index.html", "slack-standup-bot/index.html",

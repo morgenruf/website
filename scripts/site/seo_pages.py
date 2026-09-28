@@ -352,6 +352,8 @@ switching.</p>
   <li><a href="/coffee-chats/">Random coffee chats</a> that agree a time and book a Zoom meeting</li>
   <li><a href="/kudos/">Peer recognition</a> with a daily allowance and your own emoji</li>
   <li><a href="/insights/">Insights</a> across both datasets</li>
+  <li><a href="/celebrations/">Birthdays and work anniversaries</a> in a channel, from a member
+  profile that keeps day and month only</li>
   <li>Signed webhooks, automation rules, an MCP server, CSV export, a Helm chart</li>
 </ul>
 <p>Every one of those is in the repository. There is no paid tier holding anything back, and
