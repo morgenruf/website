@@ -50,6 +50,8 @@ def donut():
         ("Creates the meeting", "Zoom, at the agreed hour", "yes", "Varies by plan", "no"),
         ("Async standups in the same app", "Yes", "yes", "No", "no"),
         ("Peer recognition in the same app", "Yes", "yes", "Shoutouts", "yes"),
+        ("Birthdays and work anniversaries", "Yes, around your working days and holidays", "yes",
+         "Yes", "yes"),
         ("Runs on your own servers", "Yes", "yes", "No", "no"),
         ("Source you can read", "MIT", "yes", "Closed", "no"),
         ("Your pairing data lives in", "your database", "yes", "their cloud", "no"),
@@ -77,6 +79,13 @@ video facilitation.</p>
 <p>Most teams that pay for pairing also pay for standups and recognition. Morgenruf runs all three
 against one database, which is also what makes the cross-signal questions possible: who answers
 every standup and is thanked by nobody.</p>
+
+<h3>Birthdays and work anniversaries, too</h3>
+<p>Donut celebrates birthdays and anniversaries, and so does Morgenruf: posted in a channel you
+pick, grouped into one message per kind a day, and moved to the last working day before a weekend
+or a company holiday on your own list. Only the day and month of a birthday are kept, and anyone can
+opt out with one checkbox. Donut imports dates straight from an HRIS; here HR uploads a CSV export
+instead. <a href="/celebrations/">Celebrations</a> has the details.</p>
 
 <h3>The introduction carries a meeting</h3>
 <p>Two people being told to meet is the easy part. This proposes hours that fall inside both working
@@ -112,6 +121,10 @@ whether the introductions land, then turn Donut off. Nothing here needs a contra
          "facilitation, no, and pretending otherwise would waste your afternoon."),
         ("Can I import our Donut history?",
          "No. Run both for a couple of weeks instead and let the new pairings build their own history."),
+        ("Does Morgenruf do birthdays and work anniversaries like Donut?",
+         "Yes. Celebrations posts both in a channel, on the last working day before any weekend or "
+         "company holiday, from dates people add themselves or HR imports as a CSV. Birthdays are "
+         "day and month only. It has no weekly or monthly roundups."),
         ("Does it need Zoom?",
          "No. Without it a pairing uses whatever room link you set on the programme, or none. Zoom "
          "only adds a real meeting at the agreed hour."),

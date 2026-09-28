@@ -113,3 +113,27 @@ def allowance():
 </svg>
 <figcaption>Scarcity is the design. A budget that resets is what makes people spend it.</figcaption>
 </figure>'''
+
+
+def celebration_week():
+    """Why a Saturday birthday is posted on Friday."""
+    days = [
+        ("Thu", "working day", "#fff", "#E9E2D6", INK),
+        ("Fri", "posts here", "#FFF7EA", AMBER, INK),
+        ("Sat", "day off", "#F4F1EA", "#E9E2D6", "#5A5E74"),
+        ("Sun", "day off", "#F4F1EA", "#E9E2D6", "#5A5E74"),
+        ("Mon", "company holiday", "#F4F1EA", "#E9E2D6", "#5A5E74"),
+        ("Tue", "working day", "#fff", "#E9E2D6", INK),
+    ]
+    out, x = "", 20
+    for label, sub, fill, stroke, colour in days:
+        out += _box(x, 40, 104, 70, label, sub, fill, stroke, colour)
+        x += 120
+    return f'''<figure class="diagram">
+<svg viewBox="0 0 740 190" role="img" aria-label="With Monday to Friday working days and Monday a company holiday, birthdays on Saturday, Sunday and Monday are all posted on Friday, the last working day before them.">
+{ARROW_DEF}{out}
+<path d="M 612 118 L 612 150 L 192 150 L 192 122" fill="none" stroke="{AMBER}" stroke-width="2.5" marker-end="url(#a)"/>
+<text x="402" y="176" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">a birthday on Saturday, Sunday or the Monday holiday is posted on Friday</text>
+</svg>
+<figcaption>A celebration on a day off is posted on the last working day before it, so the team sees it on a day they are at work.</figcaption>
+</figure>'''

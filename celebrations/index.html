@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Slack birthday bot for birthdays and work anniversaries</title>
+<meta name="description" content="Birthdays and work anniversaries posted in a Slack channel, around your working days and holidays. Day and month only. Free, open source."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://morgenruf.dev/celebrations/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://morgenruf.dev/celebrations/"/>
+<meta property="og:title" content="Slack birthday bot for birthdays and work anniversaries"/>
+<meta property="og:description" content="Birthdays and work anniversaries posted in a Slack channel, around your working days and holidays. Day and month only. Free, open source."/>
+<meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Slack birthday bot for birthdays and work anniversaries"/>
+<meta name="twitter:description" content="Birthdays and work anniversaries posted in a Slack channel, around your working days and holidays. Day and month only. Free, open source."/>
+<meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="theme-color" content="#12131f"/>
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" href="/icon-512.png"/>
+<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=0e4afc264f"/>
+<script src="/assets/analytics.js" defer></script>
+<script src="/assets/nav.js?v=9bd6907975" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I get a birthday bot in Slack?", "acceptedAnswer": {"@type": "Answer", "text": "Add Morgenruf to Slack, open the Celebrations page in the dashboard, pick a channel and a timezone, save, invite @Morgenruf to that channel, and turn Celebrations on. Birthdays and work anniversaries then post there at 09:00, or whatever time you set."}}, {"@type": "Question", "name": "Does it do work anniversaries as well as birthdays?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Anniversaries are counted from each person's start date, so the post says how many years it has been. A start date less than a year ago is skipped. Either kind can be switched off on its own."}}, {"@type": "Question", "name": "What happens when a birthday falls on a weekend or a holiday?", "acceptedAnswer": {"@type": "Answer", "text": "It is posted on the last working day before it. With a Monday to Friday week, Friday posts \"Tomorrow is...\" for a Saturday and \"On Sunday it's...\" for a Sunday. The working days and the holiday list are yours to set, so a Sunday to Thursday week works too."}}, {"@type": "Question", "name": "Does anyone have to give their birth year?", "acceptedAnswer": {"@type": "Answer", "text": "No. Only the day and month are stored. There is no field for a year, and a full date in an imported file has its year dropped before it is saved."}}, {"@type": "Question", "name": "Can someone opt out?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, with one checkbox: \"Don't celebrate me publicly\" in their profile, or \"Skip me\" on the message that asks for dates. Their dates stay on file and nothing is posted about them."}}, {"@type": "Question", "name": "Can HR add everyone's dates at once?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. A workspace admin can import a CSV of email, birthday and start date, exported from the HR tool. It shows matched, unmatched and invalid rows before anything is saved, and does not overwrite dates a person entered themselves unless the admin ticks overwrite."}}, {"@type": "Question", "name": "Can we change the wording of the messages?", "acceptedAnswer": {"@type": "Answer", "text": "Not in this version. The text is fixed, short and the same for everyone, with names as mentions and no pronouns, since the profile does not store them."}}, {"@type": "Question", "name": "Does it cost anything?", "acceptedAnswer": {"@type": "Answer", "text": "No. Celebrations is part of Morgenruf, which is free on the hosted instance at any team size, and MIT licensed if you would rather run it on your own servers."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Celebrations"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "url": "https://morgenruf.dev/celebrations/", "name": "Slack birthday bot for birthdays and work anniversaries", "dateModified": "2026-09-26", "about": {"@id": "https://morgenruf.dev/#software"}, "publisher": {"@id": "https://morgenruf.dev/#organization"}}</script>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <div class="nav-links"><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/" aria-current=page>Celebrations</a><a href="/setup/">Set up</a><a href="/compare/">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
+      <a class="btn btn-sun btn-sm" href="https://api.morgenruf.dev/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+    </div>
+    <details class="nav-menu">
+      <summary aria-label="Menu"><span class="burger" aria-hidden="true"></span></summary>
+      <div class="nav-menu-panel"><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/" aria-current=page>Celebrations</a><a href="/setup/">Set up</a><a href="/compare/">Compare</a><a href="https://docs.morgenruf.dev">Docs</a><a href="https://github.com/morgenruf/morgenruf">GitHub</a></div>
+    </details>
+  </div>
+</nav>
+<div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <span>Celebrations</span></div><main>
+<header class="page-head"><div class="wrap"><div class="head-in">
+  <div>
+    <h1>Birthdays and work anniversaries, without the spreadsheet</h1>
+    <p class="lede">Morgenruf posts them in a channel on the day, or on the last working day before it, from dates people add themselves or HR imports once.</p>
+    <div class="head-cta">
+      <a class="btn btn-sun" href="https://api.morgenruf.dev/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+      <a class="btn btn-line" href="/setup/">Self-host in about 20 minutes</a>
+    </div>
+    <p class="cta-note">Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.</p>
+  </div>
+  <div><div class="slack"><div class="slack-top"><span class="slack-dots"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></span> #celebrations, on a Friday</div><div class="slack-body"><div class="msg">
+  <img class="av" src="/icon-68.png" alt="" width="34" height="34"/>
+  <div><div class="msg-who">Morgenruf <small>APP</small> <time>09:00</time></div>
+  <div class="msg-text">🎂 Tomorrow is <strong>@Priya</strong>'s birthday!<br/>Off for the weekend, so let's celebrate early. 🎈<div class="slack-btns"><span class="slack-btn" style="border-radius:999px;padding:3px 10px;font-weight:600">🎉 1</span></div></div></div>
+</div><div class="msg">
+  <img class="av" src="/icon-68.png" alt="" width="34" height="34"/>
+  <div><div class="msg-who">Morgenruf <small>APP</small> <time>09:00</time></div>
+  <div class="msg-text">🎉 Today is <strong>@Tom</strong>'s 3-year work anniversary!<br/>Thanks for three great years, Tom. 🙌<div class="slack-btns"><span class="slack-btn" style="border-radius:999px;padding:3px 10px;font-weight:600">🎉 1</span></div></div></div>
+</div></div></div></div>
+</div></div></header>
+<section class="section define"><div class="wrap"><p class="lede">Morgenruf Celebrations is a free, open-source (MIT) Slack birthday and work anniversary bot. It posts birthdays and work anniversaries in a channel you choose, on the last working day before any weekend or company holiday, from a member profile that stores day and month only. It runs on a free hosted instance or on your own servers, alongside async standups, coffee chats and kudos.</p><p class="reviewed">Last reviewed September 26, 2026</p></div></section>
+<section class="section"><div class="wrap">
+  <div class="mod" style="border-top:0">
+    <div class="mod-copy">
+      <span class="tag tag-people">How it works</span>
+      <h2 id="a-post-in-the-channel-on-the-day">A post in the channel, on the day</h2>
+      <p class="lede">Pick a channel, a timezone and a time. Each working morning, Morgenruf posts
+      whoever has a birthday or a work anniversary, and adds a 🎉 so the rest of the team can pile
+      on.</p>
+      <ul>
+        <li>Birthdays and work anniversaries, each on or off</li>
+        <li>One post per kind per day: two birthdays are one birthday double</li>
+        <li>Anniversaries count the years; under a year is skipped</li>
+        <li>Its own timezone and post time, 09:00 unless you change it</li>
+        <li>Around your working days and your company holiday list</li>
+      </ul>
+      <p>Messages are short and the same for everyone. Names are mentions, and there are no
+      pronouns, because the profile does not store them. Three or more birthdays on one day are
+      listed together, with "Happy birthday to all of you". A 29 February birthday is celebrated on
+      28 February in other years.</p>
+    </div>
+    <div><div class="slack"><div class="slack-top"><span class="slack-dots"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></span> #celebrations, on a Tuesday</div><div class="slack-body"><div class="msg">
+  <img class="av" src="/icon-68.png" alt="" width="34" height="34"/>
+  <div><div class="msg-who">Morgenruf <small>APP</small> <time>09:00</time></div>
+  <div class="msg-text">🎂 Today is a birthday double: <strong>@Priya</strong> and <strong>@Tom</strong>!<br/>Wishing you both a lovely day. 💛<div class="slack-btns"><span class="slack-btn" style="border-radius:999px;padding:3px 10px;font-weight:600">🎉 1</span></div></div></div>
+</div><div class="msg">
+  <img class="av" src="/icon-68.png" alt="" width="34" height="34"/>
+  <div><div class="msg-who">Morgenruf <small>APP</small> <time>09:00</time></div>
+  <div class="msg-text">🎉 Today is <strong>@Tom</strong>'s first work anniversary! 🥳<br/>One year already. Thanks for everything, Tom.<div class="slack-btns"><span class="slack-btn" style="border-radius:999px;padding:3px 10px;font-weight:600">🎉 1</span></div></div></div>
+</div></div></div></div>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap"><div class="prose">
+<figure class="diagram">
+<svg viewBox="0 0 740 190" role="img" aria-label="With Monday to Friday working days and Monday a company holiday, birthdays on Saturday, Sunday and Monday are all posted on Friday, the last working day before them.">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+<path d="M0 0 L10 5 L0 10 z" fill="#FFB23F"/></marker></defs><rect x="20" y="40" width="104" height="70" rx="12" fill="#fff" stroke="#E9E2D6" stroke-width="1.5"/>
+<text x="72.0" y="71.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Thu</text>
+<text x="72.0" y="91.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">working day</text><rect x="140" y="40" width="104" height="70" rx="12" fill="#FFF7EA" stroke="#FFB23F" stroke-width="1.5"/>
+<text x="192.0" y="71.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Fri</text>
+<text x="192.0" y="91.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">posts here</text><rect x="260" y="40" width="104" height="70" rx="12" fill="#F4F1EA" stroke="#E9E2D6" stroke-width="1.5"/>
+<text x="312.0" y="71.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#5A5E74">Sat</text>
+<text x="312.0" y="91.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">day off</text><rect x="380" y="40" width="104" height="70" rx="12" fill="#F4F1EA" stroke="#E9E2D6" stroke-width="1.5"/>
+<text x="432.0" y="71.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#5A5E74">Sun</text>
+<text x="432.0" y="91.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">day off</text><rect x="500" y="40" width="104" height="70" rx="12" fill="#F4F1EA" stroke="#E9E2D6" stroke-width="1.5"/>
+<text x="552.0" y="71.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#5A5E74">Mon</text>
+<text x="552.0" y="91.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">company holiday</text><rect x="620" y="40" width="104" height="70" rx="12" fill="#fff" stroke="#E9E2D6" stroke-width="1.5"/>
+<text x="672.0" y="71.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Tue</text>
+<text x="672.0" y="91.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">working day</text>
+<path d="M 612 118 L 612 150 L 192 150 L 192 122" fill="none" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/>
+<text x="402" y="176" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">a birthday on Saturday, Sunday or the Monday holiday is posted on Friday</text>
+</svg>
+<figcaption>A celebration on a day off is posted on the last working day before it, so the team sees it on a day they are at work.</figcaption>
+</figure>
+<h2 id="working-days-and-holidays">Working days and company holidays</h2>
+<p>A birthday on a Saturday posted on the Saturday is a birthday nobody sees. So whoever runs
+Celebrations sets the working days (Monday to Friday by default, Sunday to Thursday, or any other
+week) and keeps a list of company holidays, typed in or imported as <code>date,name</code>. Morgenruf
+does not ship a holiday calendar of its own: your list is the only source, so it matches the days
+your company actually takes off.</p>
+<p>A celebration on a day off is posted on the last working day before it, with wording that says
+so:</p>
+<ul>
+  <li>Saturday, from Friday: "Tomorrow is..."</li>
+  <li>Sunday, from Friday: "On Sunday it's..."</li>
+  <li>A Monday holiday, from Friday: "On Monday it's..."</li>
+  <li>25 December, when 24 to 26 December are all holidays: posted on 23 December, "On 25 December
+  it's..."</li>
+</ul>
+<p>The timezone is its own setting, not borrowed from <a href="/standups/">a standup</a>. The
+people who run standups and the people who run celebrations are often different, and a company
+celebrates on one clock even when its standup teams span several.</p>
+
+<h2 id="where-the-dates-come-from">Where the dates come from: the member profile</h2>
+<p>Slack has no birthday field, and a start date only on some Enterprise Grid plans. So Morgenruf
+keeps a short member profile of its own: birthday, start date, role, location and "ask me about".
+It is part of the core rather than a Celebrations setting, so the features planned next, intros
+and onboarding buddies, can read it too.</p>
+<ul>
+  <li><strong>People add their own</strong> from the Your profile section of the Morgenruf App Home
+  in Slack, with <code>/morgenruf profile</code>, or on My profile in the dashboard. All three open
+  the same form.</li>
+  <li><strong>HR imports the rest.</strong> A workspace admin uploads a CSV with
+  <code>email,birthday,start_date</code> from the HR tool's export, sees which rows matched before
+  anything is saved, and can edit anyone's profile from Members.</li>
+  <li><strong>The bot asks, once,</strong> as shown below.</li>
+</ul>
+</div></div></section>
+
+<section class="section"><div class="wrap">
+  <div class="mod" style="border-top:0">
+    <div class="mod-copy">
+      <span class="tag tag-people">Asking for dates</span>
+      <h2 id="asking-for-dates-once">Asking for dates, once</h2>
+      <p class="lede">Nobody has to chase a spreadsheet. When Celebrations is switched on, everyone
+      with no dates on file gets one DM, and one tap either opens the profile form or opts them
+      out.</p>
+      <ul>
+        <li>The first DM goes to each person once, not on every run</li>
+        <li>Ask for dates, on the Celebrations and Members pages, shows the count and the message
+        before it sends</li>
+        <li>At most once per person every 30 days</li>
+        <li>Joining the celebrations channel with no dates asks too</li>
+      </ul>
+    </div>
+    <div><div class="slack"><div class="slack-top"><span class="slack-dots"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></span> Direct message</div><div class="slack-body"><div class="msg">
+  <img class="av" src="/icon-68.png" alt="" width="34" height="34"/>
+  <div><div class="msg-who">Morgenruf <small>APP</small> <time>09:00</time></div>
+  <div class="msg-text">👋 Hi Priya! Your team celebrates birthdays and work anniversaries in <strong>#celebrations</strong>.<br/><br/>Add yours so nobody misses it. Only day and month are kept.<div class="slack-btns"><span class="slack-btn primary">Add my dates</span><span class="slack-btn">Skip me</span></div></div></div>
+</div></div></div></div>
+  </div>
+  <p class="shot-cap" style="margin-top:14px">The Slack windows on this page are rebuilt in markup
+  rather than screenshotted, so no real workspace's messages are shown.</p>
+</div></section>
+
+<section class="section"><div class="wrap"><div class="prose">
+<h2 id="privacy">What is kept, and for how long</h2>
+<ul>
+  <li><strong>Day and month only.</strong> No birth year is ever stored, from the form, the
+  dashboard or a CSV. No message needs an age.</li>
+  <li><strong>One-click opt out.</strong> "Don't celebrate me publicly" in the profile, or "Skip
+  me" on the DM. The dates stay; nothing is posted.</li>
+  <li><strong>People can clear their own dates</strong> at any time.</li>
+  <li><strong>Gone when someone leaves.</strong> Nobody who has left, and no deactivated member, is
+  ever posted, and their profile is deleted 30 days after they leave the workspace. Uninstalling
+  removes everything.</li>
+</ul>
+<p>What is stored, and who can see it, is set out on <a href="/privacy/">the privacy page</a>.</p>
+
+<h2 id="hr-can-run-it">HR can run it without being an admin</h2>
+<p>A workspace admin turns Celebrations on and can hand the Celebrations grant to someone in HR
+from Members, the same way <a href="/coffee-chats/">coffee chats</a> or <a href="/kudos/">kudos</a>
+can have their own owner. That person looks after the channel, the timezone, the working days, the
+holiday list and asking for dates, without getting the rest of the workspace.</p>
+
+<h2 id="what-it-does-not-do">What it does not do</h2>
+<p>Donut has done celebrations for longer, and <a href="/donut-alternative/">the Donut
+comparison</a> says where it still wins. This first version leaves out:</p>
+<ul>
+  <li>Weekly or monthly roundups</li>
+  <li>GIFs and images</li>
+  <li>Custom message text</li>
+  <li>Mentioning the person's manager</li>
+  <li>A live sync with an HR system: dates come from the profile form or a CSV export</li>
+</ul>
+<p>The 🎉 needs the <code>reactions:write</code> scope. A workspace that installed before it existed
+still gets every post, and gets the reaction once an admin re-authorises Slack.
+<a href="/setup/slack-app/">The Slack app page</a> lists every scope and why.</p>
+</div></div></section>
+<section class="section"><div class="wrap" style="max-width:820px">
+  <span class="eyebrow">Questions</span><h2 id="about-celebrations">About celebrations</h2>
+  <div style="margin-top:24px"><details open><summary>How do I get a birthday bot in Slack?</summary><p>Add Morgenruf to Slack, open the Celebrations page in the dashboard, pick a channel and a timezone, save, invite @Morgenruf to that channel, and turn Celebrations on. Birthdays and work anniversaries then post there at 09:00, or whatever time you set.</p></details><details><summary>Does it do work anniversaries as well as birthdays?</summary><p>Yes. Anniversaries are counted from each person's start date, so the post says how many years it has been. A start date less than a year ago is skipped. Either kind can be switched off on its own.</p></details><details><summary>What happens when a birthday falls on a weekend or a holiday?</summary><p>It is posted on the last working day before it. With a Monday to Friday week, Friday posts "Tomorrow is..." for a Saturday and "On Sunday it's..." for a Sunday. The working days and the holiday list are yours to set, so a Sunday to Thursday week works too.</p></details><details><summary>Does anyone have to give their birth year?</summary><p>No. Only the day and month are stored. There is no field for a year, and a full date in an imported file has its year dropped before it is saved.</p></details><details><summary>Can someone opt out?</summary><p>Yes, with one checkbox: "Don't celebrate me publicly" in their profile, or "Skip me" on the message that asks for dates. Their dates stay on file and nothing is posted about them.</p></details><details><summary>Can HR add everyone's dates at once?</summary><p>Yes. A workspace admin can import a CSV of email, birthday and start date, exported from the HR tool. It shows matched, unmatched and invalid rows before anything is saved, and does not overwrite dates a person entered themselves unless the admin ticks overwrite.</p></details><details><summary>Can we change the wording of the messages?</summary><p>Not in this version. The text is fixed, short and the same for everyone, with names as mentions and no pronouns, since the profile does not store them.</p></details><details><summary>Does it cost anything?</summary><p>No. Celebrations is part of Morgenruf, which is free on the hosted instance at any team size, and MIT licensed if you would rather run it on your own servers.</p></details></div></div></section>
+</main><section class="section">
+  <div class="wrap">
+    <div class="band">
+      <h2>Free for every seat, and that is the whole pricing page</h2>
+      <p class="lede">Add to Slack puts Morgenruf on the free hosted instance CloudDrove runs, in about two minutes. Or self-host the same MIT code with Docker Compose or Helm and pay only for the server.</p>
+      <div class="band-cta">
+        <a class="btn btn-sun" href="https://api.morgenruf.dev/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+        <a class="btn btn-ghost" href="https://github.com/morgenruf/morgenruf">Read the source</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
+        chats and recognition. Free on the hosted instance, or self-host it and keep your own
+        data.</p>
+        <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        Kitchener, Ontario 🇨🇦</p>
+      </div>
+      <div><h3>Product</h3><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/insights/">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog/">Changelog</a></div><div><h3>Set up</h3><a href="/setup/">All the ways</a><a href="/setup/docker/">Docker Compose</a><a href="/setup/kubernetes/">Kubernetes and Helm</a><a href="/setup/slack-app/">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare/">All comparisons</a><a href="/compare/standup-bots/">Standup bots compared</a><a href="/geekbot-alternative/">vs Geekbot</a><a href="/donut-alternative/">vs Donut</a><a href="/heytaco-alternative/">vs HeyTaco</a><a href="/standup-prosper-alternative/">vs Standup &amp; Prosper</a><a href="/open-source-standup-bot/">Open-source standup bot</a><a href="/self-hosted-standup-bot/">Self-hosted standup bot</a><a href="/slack-standup-bot/">Slack standup bot</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog/">Blog</a><a href="/support/">Support</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
+      <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

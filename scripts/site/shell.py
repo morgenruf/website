@@ -27,6 +27,7 @@ NAV = [
     ("Standups", "/standups/"),
     ("Coffee chats", "/coffee-chats/"),
     ("Kudos", "/kudos/"),
+    ("Celebrations", "/celebrations/"),
     ("Set up", "/setup/"),
     ("Compare", "/compare/"),
     ("Docs", "https://docs.morgenruf.dev"),
@@ -34,7 +35,8 @@ NAV = [
 
 FOOTER = [
     ("Product", [("Standups", "/standups/"), ("Coffee chats", "/coffee-chats/"),
-                 ("Kudos", "/kudos/"), ("Insights", "/insights/"),
+                 ("Kudos", "/kudos/"), ("Celebrations", "/celebrations/"),
+                 ("Insights", "/insights/"),
                  ("Roadmap", "/#roadmap"), ("Changelog", "/changelog/")]),
     ("Set up", [("All the ways", "/setup/"), ("Docker Compose", "/setup/docker/"),
                 ("Kubernetes and Helm", "/setup/kubernetes/"), ("The Slack app", "/setup/slack-app/"),

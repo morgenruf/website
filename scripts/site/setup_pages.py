@@ -448,6 +448,8 @@ it every event is rejected.</p>
   chats on.</li>
   <li><code>emoji:read</code>: so <a href="/kudos/">kudos</a> can use a custom token from your
   workspace.</li>
+  <li><code>reactions:write</code>: the 🎉 under each <a href="/celebrations/">celebration</a>
+  post. A workspace that has not granted it still gets the posts, without the reaction.</li>
   <li><code>commands</code>: the slash commands.</li>
 </ul>
 <p>There is no scope for reading channel history, because the app never does.</p>
@@ -468,6 +470,8 @@ channel before <a href="/standups/">a standup</a> can post there:</p>
   <li><code>/skip</code>: skip today</li>
   <li><code>/kudos @teammate a reason</code>: give recognition</li>
   <li><code>/help</code>: what the bot can do</li>
+  <li><code>/morgenruf profile</code>: your member profile, the birthday and start date
+  <a href="/celebrations/">celebrations</a> read</li>
 </ul>
 
 <div class="next">
