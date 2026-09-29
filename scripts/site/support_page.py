@@ -14,7 +14,7 @@ DISCUSSIONS = REPO + "/discussions"
 
 SUPPORT_FAQ = [
     ("Is there paid support?",
-     "Yes, from CloudDrove, who build and maintain Morgenruf. Installation, a managed cluster, "
+     "Yes, from CloudDrove, who sponsor Morgenruf. Installation, a managed cluster, "
      "upgrades and a contracted response time. Write to hello@morgenruf.dev."),
     ("Does paying get me features other people do not have?",
      "No. Everything is MIT and everything is in the repository. Paid work funds the project and "
@@ -79,7 +79,7 @@ def support():
   <div class="band" style="text-align:left">
     <span class="eyebrow" style="color:var(--sun)">Commercial support</span>
     <h2>Or have CloudDrove run it</h2>
-    <p class="lede" style="margin:14px 0 22px">Morgenruf is built and maintained at
+    <p class="lede" style="margin:14px 0 22px">Morgenruf is built by Anmol Nagpal and sponsored by
     <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>, a DevOps consultancy
     that runs Kubernetes for other people for a living. If you would rather not run this yourself,
     they will.</p>

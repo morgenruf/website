@@ -4,7 +4,8 @@
 > chats and peer recognition. It asks each team member the day's questions in
 > a direct message, collects the answers, and posts one summary to a channel.
 > MIT licensed and free with no per-seat pricing: on a hosted instance run by
-> CloudDrove, or self-hosted. Built by CloudDrove in Kitchener, Ontario, Canada.
+> CloudDrove, or self-hosted. Built by Anmol Nagpal in Kitchener, Ontario,
+> Canada, and sponsored by CloudDrove.
 
 Morgenruf exists because the tools that do this charge per person for
 something a team can run itself. Geekbot is free for up to 10 users, then $3
@@ -69,7 +70,8 @@ Integration
 
 ## Licence and source
 
-- Current version: 1.8.13, released 2026-09-27
+- Built by Anmol Nagpal (creator and maintainer), sponsored by CloudDrove
+- Current version: 1.9.4, released 2026-09-29
 
 MIT. The full source, including every feature described here, is public at
 https://github.com/morgenruf/morgenruf
@@ -91,12 +93,14 @@ Setup
 - [Slack app](https://morgenruf.dev/setup/slack-app/): the manifest, and every scope explained
 
 Comparisons
-- [Compare](https://morgenruf.dev/compare/): all four tools, including where each of them wins
+- [Compare](https://morgenruf.dev/compare/): all the tools, including where each of them wins
 - [Slack standup bots compared](https://morgenruf.dev/compare/standup-bots/): eleven standup bots, free plan limits and prices from each vendor's pricing page, and which fits which team
 - [Geekbot alternative](https://morgenruf.dev/geekbot-alternative/): feature and price comparison
 - [Donut alternative](https://morgenruf.dev/donut-alternative/): coffee chats and celebrations compared
 - [HeyTaco alternative](https://morgenruf.dev/heytaco-alternative/): recognition compared
 - [Standup & Prosper alternative](https://morgenruf.dev/standup-prosper-alternative/): feature and price comparison
+- [DailyBot alternative](https://morgenruf.dev/dailybot-alternative/): feature and price comparison, checked 2026-09-29
+- [Standuply alternative](https://morgenruf.dev/standuply-alternative/): feature and price comparison, checked 2026-09-29
 
 Background
 - [Open source standup bot](https://morgenruf.dev/open-source-standup-bot/): licence, source and governance
@@ -106,6 +110,7 @@ Background
 - [Why I built Morgenruf in a Tim Hortons in Kitchener](https://morgenruf.dev/blog/why-i-built-morgenruf/): what was annoying enough about per-seat pricing to spend a weekend on it
 - [The 12.5 hour standup](https://morgenruf.dev/blog/async-standups-slack-free/): running a standup people actually fill in
 - [Geekbot vs Morgenruf](https://morgenruf.dev/blog/geekbot-vs-morgenruf/): where the hosted product is the better answer
+- [30 async standup questions](https://morgenruf.dev/blog/standup-questions/): question templates for engineering, remote, lead and cross-functional teams
 - [Changelog](https://morgenruf.dev/changelog/): what shipped and when
 
 Documentation (docs.morgenruf.dev)

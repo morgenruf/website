@@ -12,10 +12,12 @@ from shell import (CTA_NOTE, INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, d
 
 
 def page(*, path, title, description, h1, lede, body, schema=(), trail=(), current="/compare/",
-         define=""):
+         define="", og=None):
+    from og_images import og_image
     crumb_html, crumb_schema = breadcrumbs(trail)
     schemas = list(schema) + ([crumb_schema] if crumb_schema else []) + [webpage_schema(path, title)]
-    return (head(title=title, description=description, path=path, schema=schemas)
+    return (head(title=title, description=description, path=path, schema=schemas,
+                 og_image=og_image(og) if og else "/og-image.png")
             + nav(current) + crumb_html
             + f'''<main>
 <header class="page-head"><div class="wrap">
@@ -145,6 +147,7 @@ whether the introductions land, then turn Donut off. Nothing here needs a contra
              "booked at that hour. Plus standups and kudos in the same app.",
         body=body, schema=[faq_schema],
         trail=[("Home", "/"), ("Compare", "/compare/"), ("vs Donut", None)],
+        og="donut-alternative",
         define='Morgenruf is a free, open-source (MIT) Donut alternative for Slack coffee chats. It pairs people from a channel, suggests hours both can make, and books the Zoom meeting. Donut has a free plan and paid plans from about $74 a month (checked 2026-09-26); Morgenruf is free at any size, hosted or self-hosted.')
 
 
@@ -221,6 +224,7 @@ month, which means the cost of thanking people grows exactly as you hire them.</
              "no per-seat bill for thanking your colleagues.",
         body=body, schema=[faq_schema],
         trail=[("Home", "/"), ("Compare", "/compare/"), ("vs HeyTaco", None)],
+        og="heytaco-alternative",
         define='Morgenruf is a free, open-source (MIT) HeyTaco alternative for recognition in Slack. Everyone gets a daily allowance of tokens, in any emoji you like, that resets at midnight in their own timezone, with leaderboards for giving and receiving. It has no rewards catalogue, runs hosted free or self-hosted, and includes standups and coffee chats.')
 
 
@@ -236,6 +240,12 @@ PRICE_ROWS = [
     ("Standup &amp; Prosper", "Async standups",
      "Free forever with unlimited standups and team members. Paid plans are $1 or $4 per "
      "standup user a month (checked 2026-09-27)."),
+    ("DailyBot", "Check-ins and standups, forms, kudos, AI reports",
+     "Free for 50 compiled check-in reports a month. Above that, $3 or $6.50 per active user a "
+     "month, or $2.40 or $5 billed annually (checked 2026-09-29)."),
+    ("Standuply", "Async standups, video and voice answers, surveys",
+     "Free for 3 users. Team is $2 to $3.50 per user a month by team size, less billed annually, "
+     "or a flat $199 a month up to 199 people (checked 2026-09-29)."),
     ("Morgenruf", "Standups, coffee chats and kudos in one app",
      "Free on the hosted instance CloudDrove runs. Self-hosted, no seat component at any size: a "
      "small server and a Postgres, a fixed line whether you are twelve people or three hundred."),
@@ -272,6 +282,10 @@ def hub():
       <p>Peer recognition, daily allowances, and where a rewards catalogue matters.</p><span class="go">Compare →</span></a>
     <a class="tile" href="/standup-prosper-alternative/"><h3>vs Standup &amp; Prosper</h3>
       <p>Another async standup bot, and the differences that actually show up in use.</p><span class="go">Compare →</span></a>
+    <a class="tile" href="/dailybot-alternative/"><h3>vs DailyBot</h3>
+      <p>Check-ins across four chat apps, against a free plan with no report cap.</p><span class="go">Compare →</span></a>
+    <a class="tile" href="/standuply-alternative/"><h3>vs Standuply</h3>
+      <p>Video answers and agile extras, against free written standups at any size.</p><span class="go">Compare →</span></a>
     <a class="tile" href="/open-source-standup-bot/"><h3>Open source options</h3>
       <p>What else you can self-host, and honestly where each one fits.</p><span class="go">Read →</span></a>
     <a class="tile" href="/self-hosted-standup-bot/"><h3>Why self-host at all</h3>
@@ -312,6 +326,17 @@ def hub():
     are already paying. It only starts to bite when you outgrow the tier or the answers cannot sit
     in somebody else's cloud, which is what the
     <a href="/standup-prosper-alternative/">Standup &amp; Prosper comparison</a> works through.</p>
+
+    <h3>DailyBot</h3>
+    <p>DailyBot runs in Slack, Google Chat, Microsoft Teams and Discord, and does forms, mood
+    tracking and workflow automation beside the check-in. If your company is split across chat
+    apps, that alone decides it. The <a href="/dailybot-alternative/">DailyBot comparison</a> has
+    the prices and the report cap on its free plan.</p>
+
+    <h3>Standuply</h3>
+    <p>Standuply takes standup answers by video or voice, runs surveys, and on its Business plan adds
+    planning poker and backlog refinement. If your team talks rather than types, read the
+    <a href="/standuply-alternative/">Standuply comparison</a> first.</p>
 
     <h2 id="what-it-costs">What the bill actually looks like</h2>
     {price_table()}
@@ -390,8 +415,8 @@ def hub():
         path="/compare/",
         title="Standup bot comparison: Morgenruf vs Geekbot and others",
         description="Honest comparisons between Morgenruf and the tools teams usually pay for: "
-                    "Geekbot, Donut, HeyTaco and Standup & Prosper, including where each of them "
-                    "wins.",
+                    "Geekbot, DailyBot, Standuply, Donut, HeyTaco and Standup & Prosper, and where "
+                    "each wins.",
         h1="Compared with the tools you are probably paying for",
         lede="One app does what three subscriptions usually do. Here is where that helps, where it "
              "does not, and what the bill and the effort come to on each side.",
@@ -463,9 +488,8 @@ from that vendor's own pricing page, read on {CHECKED}. Prices are per month unl
 otherwise. If a row is wrong, <a href="{REPO}/issues/new/choose">say so</a> and it will be fixed.</p>
 {bots_table()}
 <p class="shot-cap" style="margin-top:12px">Logos belong to their owners and are shown only
-to identify each product. Standuply is left out: its pricing page loads its prices
-with JavaScript and the newest figures its help centre publishes are from January 2024, so there is
-no current number to quote.</p>
+to identify each product. Standuply is not in this table; its prices, checked 2026-09-29, are on
+the <a href="/standuply-alternative/">Standuply comparison</a>.</p>
 
 <h2 id="which-one">Which one to pick</h2>
 <p>Most teams do not need to compare eleven tools. They need the one that fits how they work.</p>
@@ -513,10 +537,12 @@ free plans. Where annual billing is offered, it lowers these by 17 to 25 percent
 sold on credits rather than seats, with no free plan.</p>
 
 <h2 id="about-this-page">About this page</h2>
-<p>Morgenruf is built by CloudDrove, so this page is not neutral, and it says so. The rows are
+<p>Morgenruf is built by Anmol Nagpal and sponsored by CloudDrove, so this page is not neutral,
+and it says so. The rows are
 written from each vendor's own pages, and the recommendations above name another tool first
 wherever another tool fits better. For a closer look at one of them, see the
-<a href="/geekbot-alternative/">Geekbot</a> and
+<a href="/geekbot-alternative/">Geekbot</a>, <a href="/dailybot-alternative/">DailyBot</a>,
+<a href="/standuply-alternative/">Standuply</a> and
 <a href="/standup-prosper-alternative/">Standup &amp; Prosper</a> comparisons.</p>'''
     body = seo_guide(prose, [("The table", "the-table"), ("Which one to pick", "which-one"),
                              ('What "free" means', "what-free-means"),

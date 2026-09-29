@@ -8,14 +8,17 @@ else, and enough substance to be worth landing on.
 from __future__ import annotations
 
 import diagrams
+from og_images import og_image
 from product_pages import shot
 from shell import (CTA_NOTE, INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, definition, faq,
                    footer, head, nav, webpage_schema)
 
 
-def page(*, path, title, description, h1, lede, body, hero="", schema=(), trail=(), define=""):
+def page(*, path, title, description, h1, lede, body, hero="", schema=(), trail=(), define="",
+         og=None, reviewed=None):
     crumb_html, crumb_schema = breadcrumbs(trail)
-    schemas = list(schema) + ([crumb_schema] if crumb_schema else []) + [webpage_schema(path, title)]
+    schemas = (list(schema) + ([crumb_schema] if crumb_schema else [])
+               + [webpage_schema(path, title, reviewed)])
     head_in = f'''<div class="head-in">
   <div>
     <h1>{h1}</h1>
@@ -34,10 +37,11 @@ def page(*, path, title, description, h1, lede, body, hero="", schema=(), trail=
   <a class="btn btn-line" href="/setup/">Self-host in about 20 minutes</a>
 </div>
 {CTA_NOTE}'''
-    return (head(title=title, description=description, path=path, schema=schemas)
+    return (head(title=title, description=description, path=path, schema=schemas,
+                 og_image=og_image(og) if og else "/og-image.png")
             + nav() + crumb_html
             + f'<main>\n<header class="page-head"><div class="wrap">{head_in}</div></header>\n'
-            + (definition(define) if define else "") + f'{body}\n</main>'
+            + (definition(define, reviewed) if define else "") + f'{body}\n</main>'
             + cta_band() + footer())
 
 
@@ -218,6 +222,7 @@ right. Nothing here has a contract to cancel.</p>
                 body=body, schema=[faq_schema],
                 hero=shot("/screenshots/today.jpg", "The Today page showing who answered, who is blocked and recent recognition", "Your morning, on one screen.", lazy=False),
                 trail=[("Home", "/"), ("Compare", "/compare/"), ("vs Geekbot", None)],
+                og="geekbot-alternative",
         define='Morgenruf is a free, open-source (MIT) Geekbot alternative for Slack. Like Geekbot, it sends each person standup questions by DM and posts one summary to a channel. Unlike Geekbot (free up to 10 users, then $3 per user per month, checked 2026-09-26), it has no per-seat fee at any size, can run on your own servers, and adds coffee chats and kudos.')
 
 
@@ -315,6 +320,7 @@ option is cheaper than your time.</p>
                      "rituals included rather than sold separately.",
                 body=body, schema=[faq_schema],
                 trail=[("Home", "/"), ("Compare", "/compare/"), ("vs Standup & Prosper", None)],
+                og="standup-prosper-alternative",
         define='Morgenruf is a free, open-source (MIT) alternative to Standup &amp; Prosper for Slack. Both run async standups by DM with one summary in the channel. Morgenruf is free at any team size on its hosted instance, can also run on your own servers, and adds coffee chats and kudos in the same app.')
 
 
@@ -361,8 +367,8 @@ switching.</p>
 published image or your own build of it.</p>
 
 <h2 id="who-maintains-it">Who maintains it</h2>
-<p>It is built and maintained at CloudDrove, who run the free hosted instance and also sell setup
-and hosting on your own infrastructure. Paid work funds the
+<p>It is built and maintained by Anmol Nagpal and sponsored by CloudDrove, who run the free hosted
+instance and also sell setup and hosting on your own infrastructure. Paid work funds the
 project; it does not gate any of it. Issues and pull requests go to the same repository the releases
 are cut from, and the Helm chart is published from it too.
 <a href="/blog/why-i-built-morgenruf/">The weekend that produced it</a> explains why it is arranged
@@ -395,7 +401,8 @@ whole thing takes about twenty minutes, most of it in Slack's settings.</p>'''
         ("Can I run it commercially?",
          "Yes, including inside a company, without asking anyone."),
         ("Who maintains it?",
-         "It is built and maintained at CloudDrove, who also offer paid setup and hosting. Paid work "
+         "It is built and maintained by Anmol Nagpal and sponsored by CloudDrove, who also offer paid "
+         "setup and hosting. Paid work "
          "funds it but never gates it."),
         ("What if the project stops?",
          "You have the source and your database. That is the point of the arrangement."),
@@ -587,7 +594,7 @@ happens when someone is on leave. If you are still deciding,
   <span class="eyebrow">Questions</span><h2>About the Slack app</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/slack-standup-bot/",
-                title="Slack standup bot: DMs, summaries, commands",
+                title="Free Slack standup bot: DMs, summaries, commands",
                 description="A Slack standup bot that DMs each person their questions at their own "
                             "local hour and posts one summary to the channel. Slash commands, App "
                             "Home, MIT.",
@@ -598,3 +605,287 @@ happens when someone is on leave. If you are still deciding,
                 hero=shot("/screenshots/today.jpg", "The Today page showing the morning's answers and blockers", "The dashboard is for whoever runs it. Everyone else stays in Slack.", lazy=False),
                 trail=[("Home", "/"), ("Slack standup bot", None)],
         define='Morgenruf is a free Slack standup bot. It DMs each person your questions at their local hour, posts one summary to the channel, and adds slash commands and an App Home tab. It is open source (MIT), free on a hosted instance or self-hosted, and also runs coffee chats and kudos.')
+
+
+# DailyBot and Standuply figures were read on their own pricing pages on this
+# date. Standuply's prices are in the page source rather than the rendered
+# text. Re-check both before changing a number.
+CHECKED_2 = "2026-09-29"
+
+DAILYBOT_ROWS = [
+    ("Async standups by DM, one channel summary", "Yes", "yes", "Yes", "yes"),
+    ("Kudos and recognition", "Yes", "yes", "Yes", "yes"),
+    ("Coffee chat introductions", "Yes", "yes", "No", "no"),
+    ("Forms and surveys", "No", "no", "Yes", "yes"),
+    ("Chat apps", "Slack; Google Chat in beta", "", "Slack, Google Chat, Microsoft Teams, Discord",
+     "yes"),
+    ("Free plan", "Yes, any team size, no report cap", "yes",
+     "Unlimited members, 50 compiled check-in reports a month, 14 days of history", ""),
+    ("Price above the free plan", "None", "yes",
+     "$3 or $6.50 per active user monthly, $2.40 or $5 billed annually", "no"),
+    ("A 30 person team on the entry paid plan, per year", "$0 hosted", "yes", "$864 to $1,080", "no"),
+    ("Runs on your own servers", "Yes", "yes", "No", "no"),
+    ("Source you can read", "MIT, the whole app", "yes", "Closed; some side tools are MIT", "no"),
+]
+
+
+def dailybot():
+    from compare_pages import table
+    dailybot_table = table(DAILYBOT_ROWS, "DailyBot")
+    prose = f'''<h2 id="what-you-are-actually-comparing">What you are actually comparing</h2>
+<p>DailyBot is a hosted check-in and standup assistant that works across Slack, Google Chat,
+Microsoft Teams and Discord, with AI reports, forms, kudos and workflow automation on top. Morgenruf
+does the standup, plus coffee chats and recognition, for nothing per seat: free on the hosted
+instance CloudDrove runs, or on your own infrastructure with the same MIT code.</p>
+<p>The decision usually comes down to two things: which chat apps your company uses, and whether
+you want a bill that grows with every active user. The same question applies to Geekbot and
+Standup &amp; Prosper, which <a href="/compare/">the comparison pages</a> work through.</p>
+
+{diagrams.standup_flow("The standup a DailyBot team already runs: a DM at each local hour, a private nudge, one summary.")}
+
+<h2 id="side-by-side">How do Morgenruf and DailyBot compare?</h2>
+{dailybot_table}
+<p class="shot-cap" style="margin-top:12px">DailyBot plans and prices checked {CHECKED_2} on
+<a href="https://www.dailybot.com/pricing">DailyBot's pricing page</a>, chat apps and features on
+<a href="https://www.dailybot.com/">its homepage</a>. If something here is out of date, please
+<a href="{REPO}/issues/new/choose">open an issue</a>.</p>
+
+<h2 id="where-dailybot-wins">Where DailyBot wins</h2>
+<ul>
+  <li><strong>More chat apps.</strong> Slack, Google Chat, Microsoft Teams and Discord. If part of
+  the company lives outside Slack, that settles it.</li>
+  <li><strong>Forms, surveys and workflows.</strong> DailyBot does more than the morning check-in:
+  forms, mood tracking, workflow automation and an AI assistant.</li>
+  <li><strong>Nothing to run.</strong> No server, no database, no upgrade evenings.</li>
+  <li><strong>A free plan with no member limit.</strong> The cap is on usage instead: 50 compiled
+  check-in reports a month across the organisation, and 14 days of history.</li>
+</ul>
+
+<h2 id="where-this-is-different">Where is Morgenruf different from DailyBot?</h2>
+<h3>No usage cap and no seat price</h3>
+<p>DailyBot's free Starter plan allows 50 compiled check-in reports a month for the whole
+organisation. Above that, Essentials is $3 per active user a month, or $2.40
+billed annually, and Advanced is $6.50, or $5 billed annually (checked {CHECKED_2} on
+<a href="https://www.dailybot.com/pricing">DailyBot's pricing page</a>). DailyBot counts an active
+user by seat status, not by whether they used it that month. On the Morgenruf hosted instance there
+is no report cap and no seat price at any size.</p>
+
+<h3>History you keep</h3>
+<p>The free DailyBot plan keeps 14 days of history. Morgenruf keeps every answer, and self-hosted it
+keeps them in your own Postgres for as long as your backups do.</p>
+
+<h3>Coffee chats in the same app</h3>
+<p>DailyBot has kudos; Morgenruf has <a href="/kudos/">kudos</a> too, and adds
+<a href="/coffee-chats/">coffee chats</a> that pair people and book the meeting, all in one
+database, which is what makes the <a href="/insights/">cross-signal questions</a> possible.</p>
+
+<h3>The whole app is open source</h3>
+<p>DailyBot publishes some side tools under MIT, but the product itself is closed. Morgenruf is MIT
+end to end: the bot, the dashboard and the Helm chart.</p>
+
+{shot("/screenshots/standups.jpg", "Two standups in the dashboard, each with a completion sparkline and a health badge", "A standup that is quietly dying says so here before anyone notices in the channel.")}
+
+<h2 id="what-dailybot-costs">What does DailyBot cost for 10, 30 or 100 people?</h2>
+<p>Worked out from DailyBot's published Essentials price on {CHECKED_2}, per year, for teams that
+have outgrown the free plan's report cap. Advanced costs a little over twice as much.</p>
+<div class="scroll-x"><table>
+<thead><tr><th>Team size</th><th>DailyBot Essentials, monthly</th><th>DailyBot Essentials, annual</th><th class="us">Morgenruf, hosted</th><th class="us">Morgenruf, self-hosted</th></tr></thead>
+<tbody>
+<tr><td>10 people</td><td>$360</td><td>$288</td><td class="us yes">$0</td><td class="us">$60 to $240</td></tr>
+<tr><td>30 people</td><td>$1,080</td><td>$864</td><td class="us yes">$0</td><td class="us">$60 to $240</td></tr>
+<tr><td>100 people</td><td>$3,600</td><td>$2,880</td><td class="us yes">$0</td><td class="us">$60 to $240</td></tr>
+</tbody></table></div>
+
+<h2 id="moving-across">Moving across from DailyBot</h2>
+<p>There is no importer. Run both for a week with the same questions in the same channel, and turn
+DailyBot off once the new summary looks right.</p>
+<ol>
+  <li>Write down each DailyBot check-in: its channel, questions, schedule, participants and
+  timezone.</li>
+  <li>Install Morgenruf: <a href="{INSTALL}">Add to Slack</a> for the free hosted instance, or
+  <a href="/setup/docker/">run it with Docker</a> or <a href="/setup/kubernetes/">on Kubernetes</a>
+  and <a href="/setup/slack-app/">create the Slack app</a>.</li>
+  <li>Recreate each standup. <a href="/blog/standup-questions/">Thirty question templates</a> are
+  there if you want to change the questions while you are at it.</li>
+  <li>Mark anyone on leave, so the first week's completion figure means something.</li>
+  <li>Watch a week of mornings side by side, then switch DailyBot off.</li>
+</ol>'''
+    body = guide(prose, [("What you are comparing", "what-you-are-actually-comparing"),
+                         ("Side by side", "side-by-side"),
+                         ("Where DailyBot wins", "where-dailybot-wins"),
+                         ("Where this is different", "where-this-is-different"),
+                         ("What DailyBot costs", "what-dailybot-costs"),
+                         ("Moving across", "moving-across")])
+    faq_html, faq_schema = faq([
+        ("Is DailyBot free?",
+         "It has a free Starter plan with unlimited members, capped at 50 compiled check-in reports a "
+         "month and 14 days of history. Paid plans are $3 or $6.50 per active user a month, or $2.40 "
+         f"or $5 billed annually (checked {CHECKED_2})."),
+        ("Is Morgenruf free compared with DailyBot?",
+         "Yes, with no seat price and no report cap. The hosted instance is free. Self-hosted, you pay "
+         "for the server and database, roughly $5 to $20 a month regardless of headcount."),
+        ("Does Morgenruf work in Microsoft Teams or Discord?",
+         "No. Slack is first class, Google Chat is in beta, and Teams is in progress. If you need "
+         "Teams or Discord today, DailyBot is the better fit."),
+        ("Can I import my DailyBot history?",
+         "No. Run both in parallel for a week and switch over once the summaries look right."),
+    ])
+    body += f'''<section class="section"><div class="wrap" style="max-width:820px">
+  <span class="eyebrow">Questions</span><h2>Morgenruf and DailyBot</h2>
+  <div style="margin-top:24px">{faq_html}</div></div></section>'''
+    return page(path="/dailybot-alternative/",
+                title="Free, open-source DailyBot alternative for Slack",
+                description="A free, MIT-licensed DailyBot alternative for async Slack standups: no "
+                            "report cap, no per-user price, coffee chats and kudos included. Hosted "
+                            "free or self-hosted.",
+                h1="A free, open-source DailyBot alternative for Slack",
+                lede=f"Verdict: DailyBot charges $3 per active user a month once you pass its free "
+                     f"plan's 50 reports (checked {CHECKED_2}), while Morgenruf runs the same Slack "
+                     f"standup free at any size, so pick DailyBot only if you need Teams, Discord or "
+                     f"its forms.",
+                body=body, schema=[faq_schema],
+                hero=shot("/screenshots/today.jpg", "The Today page showing who answered, who is blocked and recent recognition", "Your morning, on one screen.", lazy=False),
+                trail=[("Home", "/"), ("Compare", "/compare/"), ("vs DailyBot", None)],
+                og="dailybot-alternative", reviewed=CHECKED_2,
+                define=f'Morgenruf is a free, open-source (MIT) DailyBot alternative for Slack. Like DailyBot, it sends each person standup questions by DM and posts one summary to a channel. Unlike DailyBot (free for 50 compiled reports a month, then $3 per active user per month, checked {CHECKED_2}), it has no report cap or seat price, can run on your own servers, and adds coffee chats.')
+
+
+STANDUPLY_ROWS = [
+    ("Async standups by DM, one channel summary", "Yes", "yes", "Yes", "yes"),
+    ("Video and voice answers", "No", "no", "Yes", "yes"),
+    ("Surveys", "No", "no", "Yes", "yes"),
+    ("Coffee chats and kudos in the same app", "Yes", "yes", "No", "no"),
+    ("Chat apps", "Slack; Google Chat in beta", "", "Slack, Microsoft Teams", "yes"),
+    ("Free plan", "Yes, any team size", "yes", "Starter: automation for 3 users", "no"),
+    ("Price above the free plan", "None", "yes",
+     "Team $2 to $3.50 per user monthly, Business $4 to $5.50, less billed annually", "no"),
+    ("A 30 person team on Team, per year", "$0 hosted", "yes", "$900 to $1,260", "no"),
+    ("Runs on your own servers", "Yes", "yes", "No", "no"),
+    ("Source you can read", "MIT", "yes", "Closed", "no"),
+]
+
+
+def standuply():
+    from compare_pages import table
+    standuply_table = table(STANDUPLY_ROWS, "Standuply")
+    prose = f'''<h2 id="what-you-are-actually-comparing">What you are actually comparing</h2>
+<p>Standuply is a hosted standup bot for Slack and Microsoft Teams with some extras most bots do not
+have: answers by video or voice, surveys, and on its Business plan planning poker, backlog
+refinement and 360 degree feedback. Morgenruf does the async standup, plus coffee chats and
+recognition, for nothing per seat: free on the hosted instance CloudDrove runs, or on your own
+infrastructure with the same MIT code.</p>
+<p>If your team answers standups on video or runs its agile ceremonies through the bot, Standuply
+does things this does not. If it is three written questions a morning, the difference is mostly the
+bill. <a href="/compare/">The other comparisons</a> make the same trade for Geekbot, DailyBot and
+Standup &amp; Prosper.</p>
+
+{diagrams.standup_flow("The written standup both tools run: a DM at each local hour, a private nudge, one summary.")}
+
+<h2 id="side-by-side">How do Morgenruf and Standuply compare?</h2>
+{standuply_table}
+<p class="shot-cap" style="margin-top:12px">Standuply plans and prices checked {CHECKED_2} on
+<a href="https://standuply.com/pricing">Standuply's pricing page</a> (the figures are in the page
+source; the price shown depends on the team size you pick), chat apps and features on
+<a href="https://standuply.com/">its homepage</a>. If something here is out of date, please
+<a href="{REPO}/issues/new/choose">open an issue</a>.</p>
+
+<h2 id="where-standuply-wins">Where Standuply wins</h2>
+<ul>
+  <li><strong>Video and voice answers.</strong> Standuply lets people answer by video or voice
+  message. Morgenruf is text only.</li>
+  <li><strong>Microsoft Teams.</strong> Standuply runs there today; Teams support here is in
+  progress.</li>
+  <li><strong>Agile extras.</strong> Surveys, and on the Business plan planning poker, backlog
+  refinement and 360 degree feedback.</li>
+  <li><strong>Integrations.</strong> Standuply connects to Jira, Trello and Asana, and its Team plan
+  adds GitHub, GitLab and Bitbucket.</li>
+  <li><strong>A flat fee option.</strong> Team is also sold at $199 a month, or $149 billed
+  annually, for up to 199 people, which caps the bill for a large company.</li>
+</ul>
+
+<h2 id="where-this-is-different">Where is Morgenruf different from Standuply?</h2>
+<h3>Free for the whole team, not three people</h3>
+<p>Standuply's free Starter plan covers automation for 3 users, then there is a 30 day trial of the
+paid plans. Team costs $2 per user a month for 1 to 4 users, $3 for 5 to 29 and $3.50 from 30,
+or $1.50, $2.25 and $2.50 billed annually. Business is $4, $5 and $5.50, or $3.50, $4.25 and $4.50
+billed annually (checked {CHECKED_2} on <a href="https://standuply.com/pricing">Standuply's pricing
+page</a>). On the Morgenruf hosted instance, every seat is free at any size.</p>
+
+<h3>Your answers stay in your database</h3>
+<p>Self-hosted, standup answers, blockers and participation live in Postgres you control. Standuply
+is hosted only.</p>
+
+<h3>Three rituals, one app</h3>
+<p>Standups, <a href="/coffee-chats/">coffee chats</a> and <a href="/kudos/">kudos</a> share one
+deployment and one database, which is also what makes the
+<a href="/insights/">cross-signal questions</a> possible.</p>
+
+<h3>It can be read and changed</h3>
+<p>MIT licensed, the whole repository. If the summary format is wrong for you, the file is right
+there.</p>
+
+{shot("/screenshots/standups.jpg", "Two standups in the dashboard, each with a completion sparkline and a health badge", "A standup that is quietly dying says so here before anyone notices in the channel.")}
+
+<h2 id="what-standuply-costs">What does Standuply cost for 10, 30 or 100 people?</h2>
+<p>Worked out from Standuply's published Team prices on {CHECKED_2}, per year. At 100 people the
+flat fee is cheaper than paying per user, so that is the figure shown.</p>
+<div class="scroll-x"><table>
+<thead><tr><th>Team size</th><th>Standuply Team, monthly</th><th>Standuply Team, annual</th><th class="us">Morgenruf, hosted</th><th class="us">Morgenruf, self-hosted</th></tr></thead>
+<tbody>
+<tr><td>10 people</td><td>$360</td><td>$270</td><td class="us yes">$0</td><td class="us">$60 to $240</td></tr>
+<tr><td>30 people</td><td>$1,260</td><td>$900</td><td class="us yes">$0</td><td class="us">$60 to $240</td></tr>
+<tr><td>100 people</td><td>$2,388 (flat fee)</td><td>$1,788 (flat fee)</td><td class="us yes">$0</td><td class="us">$60 to $240</td></tr>
+</tbody></table></div>
+
+<h2 id="moving-across">Moving across from Standuply</h2>
+<p>There is no importer. Run both for a week with the same questions in the same channel, and turn
+Standuply off once the new summary looks right.</p>
+<ol>
+  <li>Write down each Standuply standup: its channel, questions, schedule, participants and
+  timezone.</li>
+  <li>Install Morgenruf: <a href="{INSTALL}">Add to Slack</a> for the free hosted instance, or
+  <a href="/setup/docker/">run it with Docker</a> or <a href="/setup/kubernetes/">on Kubernetes</a>
+  and <a href="/setup/slack-app/">create the Slack app</a>.</li>
+  <li>Recreate each standup. <a href="/blog/standup-questions/">Thirty question templates</a> are
+  there if you want to change the questions while you are at it.</li>
+  <li>Mark anyone on leave, so the first week's completion figure means something.</li>
+  <li>Watch a week of mornings side by side, then switch Standuply off.</li>
+</ol>'''
+    body = guide(prose, [("What you are comparing", "what-you-are-actually-comparing"),
+                         ("Side by side", "side-by-side"),
+                         ("Where Standuply wins", "where-standuply-wins"),
+                         ("Where this is different", "where-this-is-different"),
+                         ("What Standuply costs", "what-standuply-costs"),
+                         ("Moving across", "moving-across")])
+    faq_html, faq_schema = faq([
+        ("Is Standuply free?",
+         "Its free Starter plan covers automation for 3 users, and paid plans have a 30 day trial. "
+         "Team costs $2 to $3.50 per user a month depending on team size, or $1.50 to $2.50 billed "
+         f"annually (checked {CHECKED_2})."),
+        ("Is Morgenruf free compared with Standuply?",
+         "Yes, for every seat. The hosted instance is free. Self-hosted, you pay for the server and "
+         "database, roughly $5 to $20 a month regardless of headcount."),
+        ("Can people answer by video or voice?",
+         "Not in Morgenruf. Answers are written in Slack. If video or voice answers matter to your "
+         "team, Standuply does that."),
+        ("Can I import my Standuply history?",
+         "No. Run both in parallel for a week and switch over once the summaries look right."),
+    ])
+    body += f'''<section class="section"><div class="wrap" style="max-width:820px">
+  <span class="eyebrow">Questions</span><h2>Morgenruf and Standuply</h2>
+  <div style="margin-top:24px">{faq_html}</div></div></section>'''
+    return page(path="/standuply-alternative/",
+                title="Free, open-source Standuply alternative for Slack",
+                description="A free, MIT-licensed Standuply alternative for async Slack standups, "
+                            "with coffee chats and kudos in the same app and no per-user price. "
+                            "Hosted free or self-hosted.",
+                h1="A free, open-source Standuply alternative for Slack",
+                lede=f"Verdict: Standuply is free for 3 users and then $2 to $3.50 per user a month "
+                     f"on Team (checked {CHECKED_2}), while Morgenruf runs written Slack standups free "
+                     f"at any size, so stay on Standuply only for video answers, Teams or its agile "
+                     f"extras.",
+                body=body, schema=[faq_schema],
+                hero=shot("/screenshots/today.jpg", "The Today page showing who answered, who is blocked and recent recognition", "Your morning, on one screen.", lazy=False),
+                trail=[("Home", "/"), ("Compare", "/compare/"), ("vs Standuply", None)],
+                og="standuply-alternative", reviewed=CHECKED_2,
+                define=f'Morgenruf is a free, open-source (MIT) Standuply alternative for Slack. Both send standup questions by DM and post a summary to a channel. Standuply is free for 3 users, then $2 to $3.50 per user per month on Team (checked {CHECKED_2}); Morgenruf is free at any size, can run on your own servers, and adds coffee chats and kudos.')

@@ -36,6 +36,8 @@ PAGES = {
     "support/index.html": support_page.support,
     "geekbot-alternative/index.html": seo_pages.geekbot,
     "standup-prosper-alternative/index.html": seo_pages.standup_prosper,
+    "dailybot-alternative/index.html": seo_pages.dailybot,
+    "standuply-alternative/index.html": seo_pages.standuply,
     "open-source-standup-bot/index.html": seo_pages.open_source,
     "self-hosted-standup-bot/index.html": seo_pages.self_hosted,
     "slack-standup-bot/index.html": seo_pages.slack_bot,
@@ -54,6 +56,7 @@ HAND_WRITTEN = [
     "blog/why-i-built-morgenruf/index.html",
     "blog/async-standups-slack-free/index.html",
     "blog/geekbot-vs-morgenruf/index.html",
+    "blog/standup-questions/index.html",
 ]
 
 
@@ -153,11 +156,13 @@ def refresh_llms():
     llms.write_text(text)
 
     parts = [f"# Morgenruf: the full text of the main pages\n\nGenerated from the site on each build. "
-             f"Current version {version}, released {date}. Summary and index: {shell.SITE}/llms.txt\n"]
+             f"Current version {version}, released {date}. Built by Anmol Nagpal, sponsored by "
+             f"CloudDrove. Summary and index: {shell.SITE}/llms.txt\n"]
     for rel in ["standups/index.html", "coffee-chats/index.html", "kudos/index.html",
                 "insights/index.html", "celebrations/index.html", "compare/index.html", "compare/standup-bots/index.html", "geekbot-alternative/index.html",
                 "donut-alternative/index.html", "heytaco-alternative/index.html",
-                "standup-prosper-alternative/index.html", "open-source-standup-bot/index.html",
+                "standup-prosper-alternative/index.html", "dailybot-alternative/index.html",
+                "standuply-alternative/index.html", "open-source-standup-bot/index.html",
                 "self-hosted-standup-bot/index.html", "slack-standup-bot/index.html",
                 "setup/index.html", "setup/docker/index.html", "setup/kubernetes/index.html",
                 "setup/slack-app/index.html"]:

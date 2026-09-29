@@ -1,6 +1,6 @@
 # Morgenruf: the full text of the main pages
 
-Generated from the site on each build. Current version 1.8.13, released 2026-09-27. Summary and index: https://morgenruf.dev/llms.txt
+Generated from the site on each build. Current version 1.9.4, released 2026-09-29. Built by Anmol Nagpal, sponsored by CloudDrove. Summary and index: https://morgenruf.dev/llms.txt
 
 ## Async standups in Slack, free or self-hosted
 https://morgenruf.dev/standups/
@@ -272,6 +272,10 @@ Compare → vs HeyTaco
 Peer recognition, daily allowances, and where a rewards catalogue matters.
 Compare → vs Standup & Prosper
 Another async standup bot, and the differences that actually show up in use.
+Compare → vs DailyBot
+Check-ins across four chat apps, against a free plan with no report cap.
+Compare → vs Standuply
+Video answers and agile extras, against free written standups at any size.
 Compare → Open source options
 What else you can self-host, and honestly where each one fits.
 Read → Why self-host at all
@@ -287,12 +291,18 @@ HeyTaco
 The taco is good product design and the gamification is thought through, but the real gap is the rewards catalogue: a recognition programme with a budget behind it, where thanks convert into something people can spend. Morgenruf gives you a message and a leaderboard and stops there. If HR has a recognition budget, read the HeyTaco alternative page before you move anything.
 Standup & Prosper
 A simple, well made standup bot with a free tier that covers a small team properly. If you are eight people and the free tier fits, self-hosting anything is a worse deal than the zero you are already paying. It only starts to bite when you outgrow the tier or the answers cannot sit in somebody else's cloud, which is what the Standup & Prosper comparison works through.
+DailyBot
+DailyBot runs in Slack, Google Chat, Microsoft Teams and Discord, and does forms, mood tracking and workflow automation beside the check-in. If your company is split across chat apps, that alone decides it. The DailyBot comparison has the prices and the report cap on its free plan.
+Standuply
+Standuply takes standup answers by video or voice, runs surveys, and on its Business plan adds planning poker and backlog refinement. If your team talks rather than types, read the Standuply comparison first.
 What the bill actually looks like
 ToolWhat you get for itHow the bill works
 GeekbotAsync standups, check-ins, pollsFree for up to 10 users. Above that, $3 per user per month, or $2.50 per user per month billed annually.
 DonutRandom pairings, onboarding journeys, channel promptsA free plan, then paid plans from about $74 a month.
 HeyTacoPeer recognition, leaderboards, a rewards cataloguePer person per month, and any gift cards in the catalogue come out of a budget you fund on top of the subscription.
 Standup & ProsperAsync standupsFree forever with unlimited standups and team members. Paid plans are $1 or $4 per standup user a month (checked 2026-09-27).
+DailyBotCheck-ins and standups, forms, kudos, AI reportsFree for 50 compiled check-in reports a month. Above that, $3 or $6.50 per active user a month, or $2.40 or $5 billed annually (checked 2026-09-29).
+StanduplyAsync standups, video and voice answers, surveysFree for 3 users. Team is $2 to $3.50 per user a month by team size, less billed annually, or a flat $199 a month up to 199 people (checked 2026-09-29).
 MorgenrufStandups, coffee chats and kudos in one appFree on the hosted instance CloudDrove runs. Self-hosted, no seat component at any size: a small server and a Postgres, a fixed line whether you are twelve people or three hundred.
 Prices checked 2026-09-26 against Geekbot's and Donut's pricing pages, and quoted with that date attached, because they move. Geekbot is free for up to 10 users. Past that, a team of thirty pays $900 a year on annual billing, or $1,080 paying monthly, for the morning questions alone. Add pairing and recognition at comparable per-seat rates and the same thirty people cost somewhere between two and three thousand a year, rising every time you hire. Morgenruf on the hosted instance costs nothing at any size. Self-hosted, the same three rituals are a small VPS at roughly $5 to $20 a month plus a Postgres, and that number does not change at three hundred people. Counting only money, a standup-only team of ten or fewer pays nothing either way; above that, Geekbot's per-user price passes the cost of a small server almost at once.
 What self-hosting costs you in effort
@@ -340,7 +350,7 @@ KollabeSlack standups not included$29 per space a month, flatSlack, Microsoft Te
 PollyStandups not includedFrom $19 a month billed annually, 500 responses a monthSlack, Teams, Google Chat and moreClosed
 Steady (was Status Hero)None; 100 credits per user addedCredit based, from $25 a monthSlack, Microsoft TeamsClosed
 poddailyFree, self-hostedNoneSlackMIT, self-host (Postgres and Redis)
-Logos belong to their owners and are shown only to identify each product. Standuply is left out: its pricing page loads its prices with JavaScript and the newest figures its help centre publishes are from January 2024, so there is no current number to quote.
+Logos belong to their owners and are shown only to identify each product. Standuply is not in this table; its prices, checked 2026-09-29, are on the Standuply comparison.
 Which one to pick
 Most teams do not need to compare eleven tools. They need the one that fits how they work.
 Standups only, Slack only, and you want it free with nothing to run: Standup & Prosper. Its free plan has no cap on standups or people, which is the largest free hosted plan in this table. It is the honest first answer for that team.
@@ -362,7 +372,7 @@ At list price, paying monthly, for standups only: Geekbot $1,080, DailyBot Essen
 What happened to Status Hero
 Status Hero is now called Steady. statushero.com redirects to runsteady.com, and the product is sold on credits rather than seats, with no free plan.
 About this page
-Morgenruf is built by CloudDrove, so this page is not neutral, and it says so. The rows are written from each vendor's own pages, and the recommendations above name another tool first wherever another tool fits better. For a closer look at one of them, see the Geekbot and Standup & Prosper comparisons.
+Morgenruf is built by Anmol Nagpal and sponsored by CloudDrove, so this page is not neutral, and it says so. The rows are written from each vendor's own pages, and the recommendations above name another tool first wherever another tool fits better. For a closer look at one of them, see the Geekbot, DailyBot, Standuply and Standup & Prosper comparisons.
 QuestionsSlack standup bots
 What is the best free Slack standup bot?
 For standups only on Slack with nothing to run, Standup & Prosper: its free plan has no limit on standups or people. For ten people or fewer who need Teams or polls, Geekbot. To keep answers on your own servers, or to add coffee chats and kudos, Morgenruf, which is free at any size and MIT licensed.
@@ -592,6 +602,135 @@ A small VPS and a Postgres. Many teams run it beside things they already have, i
 Can I keep using Slack the same way?
 Yes. It is a Slack app: DMs for questions, a channel for the summary, slash commands, and an App Home tab.
 
+## Free, open-source DailyBot alternative for Slack
+https://morgenruf.dev/dailybot-alternative/
+
+A free, open-source DailyBot alternative for Slack
+Verdict: DailyBot charges $3 per active user a month once you pass its free plan's 50 reports (checked 2026-09-29), while Morgenruf runs the same Slack standup free at any size, so pick DailyBot only if you need Teams, Discord or its forms.
+Add to Slack Self-host in about 20 minutes
+Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
+Your morning, on one screen.
+Morgenruf is a free, open-source (MIT) DailyBot alternative for Slack. Like DailyBot, it sends each person standup questions by DM and posts one summary to a channel. Unlike DailyBot (free for 50 compiled reports a month, then $3 per active user per month, checked 2026-09-29), it has no report cap or seat price, can run on your own servers, and adds coffee chats.
+Last reviewed September 29, 2026
+What you are actually comparing
+DailyBot is a hosted check-in and standup assistant that works across Slack, Google Chat, Microsoft Teams and Discord, with AI reports, forms, kudos and workflow automation on top. Morgenruf does the standup, plus coffee chats and recognition, for nothing per seat: free on the hosted instance CloudDrove runs, or on your own infrastructure with the same MIT code.
+The decision usually comes down to two things: which chat apps your company uses, and whether you want a bill that grows with every active user. The same question applies to Geekbot and Standup & Prosper, which the comparison pages work through.
+How do Morgenruf and DailyBot compare?
+MorgenrufDailyBot
+Async standups by DM, one channel summaryYesYes
+Kudos and recognitionYesYes
+Coffee chat introductionsYesNo
+Forms and surveysNoYes
+Chat appsSlack; Google Chat in betaSlack, Google Chat, Microsoft Teams, Discord
+Free planYes, any team size, no report capUnlimited members, 50 compiled check-in reports a month, 14 days of history
+Price above the free planNone$3 or $6.50 per active user monthly, $2.40 or $5 billed annually
+A 30 person team on the entry paid plan, per year$0 hosted$864 to $1,080
+Runs on your own serversYesNo
+Source you can readMIT, the whole appClosed; some side tools are MIT
+DailyBot plans and prices checked 2026-09-29 on DailyBot's pricing page, chat apps and features on its homepage. If something here is out of date, please open an issue.
+Where DailyBot wins
+More chat apps. Slack, Google Chat, Microsoft Teams and Discord. If part of the company lives outside Slack, that settles it.
+Forms, surveys and workflows. DailyBot does more than the morning check-in: forms, mood tracking, workflow automation and an AI assistant.
+Nothing to run. No server, no database, no upgrade evenings.
+A free plan with no member limit. The cap is on usage instead: 50 compiled check-in reports a month across the organisation, and 14 days of history.
+Where is Morgenruf different from DailyBot?
+No usage cap and no seat price
+DailyBot's free Starter plan allows 50 compiled check-in reports a month for the whole organisation. Above that, Essentials is $3 per active user a month, or $2.40 billed annually, and Advanced is $6.50, or $5 billed annually (checked 2026-09-29 on DailyBot's pricing page). DailyBot counts an active user by seat status, not by whether they used it that month. On the Morgenruf hosted instance there is no report cap and no seat price at any size.
+History you keep
+The free DailyBot plan keeps 14 days of history. Morgenruf keeps every answer, and self-hosted it keeps them in your own Postgres for as long as your backups do.
+Coffee chats in the same app
+DailyBot has kudos; Morgenruf has kudos too, and adds coffee chats that pair people and book the meeting, all in one database, which is what makes the cross-signal questions possible.
+The whole app is open source
+DailyBot publishes some side tools under MIT, but the product itself is closed. Morgenruf is MIT end to end: the bot, the dashboard and the Helm chart.
+A standup that is quietly dying says so here before anyone notices in the channel.
+What does DailyBot cost for 10, 30 or 100 people?
+Worked out from DailyBot's published Essentials price on 2026-09-29, per year, for teams that have outgrown the free plan's report cap. Advanced costs a little over twice as much.
+Team sizeDailyBot Essentials, monthlyDailyBot Essentials, annualMorgenruf, hostedMorgenruf, self-hosted
+10 people$360$288$0$60 to $240
+30 people$1,080$864$0$60 to $240
+100 people$3,600$2,880$0$60 to $240
+Moving across from DailyBot
+There is no importer. Run both for a week with the same questions in the same channel, and turn DailyBot off once the new summary looks right.
+Write down each DailyBot check-in: its channel, questions, schedule, participants and timezone.
+Install Morgenruf: Add to Slack for the free hosted instance, or run it with Docker or on Kubernetes and create the Slack app.
+Recreate each standup. Thirty question templates are there if you want to change the questions while you are at it.
+Mark anyone on leave, so the first week's completion figure means something.
+Watch a week of mornings side by side, then switch DailyBot off.
+QuestionsMorgenruf and DailyBot
+Is DailyBot free?
+It has a free Starter plan with unlimited members, capped at 50 compiled check-in reports a month and 14 days of history. Paid plans are $3 or $6.50 per active user a month, or $2.40 or $5 billed annually (checked 2026-09-29).
+Is Morgenruf free compared with DailyBot?
+Yes, with no seat price and no report cap. The hosted instance is free. Self-hosted, you pay for the server and database, roughly $5 to $20 a month regardless of headcount.
+Does Morgenruf work in Microsoft Teams or Discord?
+No. Slack is first class, Google Chat is in beta, and Teams is in progress. If you need Teams or Discord today, DailyBot is the better fit.
+Can I import my DailyBot history?
+No. Run both in parallel for a week and switch over once the summaries look right.
+
+## Free, open-source Standuply alternative for Slack
+https://morgenruf.dev/standuply-alternative/
+
+A free, open-source Standuply alternative for Slack
+Verdict: Standuply is free for 3 users and then $2 to $3.50 per user a month on Team (checked 2026-09-29), while Morgenruf runs written Slack standups free at any size, so stay on Standuply only for video answers, Teams or its agile extras.
+Add to Slack Self-host in about 20 minutes
+Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
+Your morning, on one screen.
+Morgenruf is a free, open-source (MIT) Standuply alternative for Slack. Both send standup questions by DM and post a summary to a channel. Standuply is free for 3 users, then $2 to $3.50 per user per month on Team (checked 2026-09-29); Morgenruf is free at any size, can run on your own servers, and adds coffee chats and kudos.
+Last reviewed September 29, 2026
+What you are actually comparing
+Standuply is a hosted standup bot for Slack and Microsoft Teams with some extras most bots do not have: answers by video or voice, surveys, and on its Business plan planning poker, backlog refinement and 360 degree feedback. Morgenruf does the async standup, plus coffee chats and recognition, for nothing per seat: free on the hosted instance CloudDrove runs, or on your own infrastructure with the same MIT code.
+If your team answers standups on video or runs its agile ceremonies through the bot, Standuply does things this does not. If it is three written questions a morning, the difference is mostly the bill. The other comparisons make the same trade for Geekbot, DailyBot and Standup & Prosper.
+How do Morgenruf and Standuply compare?
+MorgenrufStanduply
+Async standups by DM, one channel summaryYesYes
+Video and voice answersNoYes
+SurveysNoYes
+Coffee chats and kudos in the same appYesNo
+Chat appsSlack; Google Chat in betaSlack, Microsoft Teams
+Free planYes, any team sizeStarter: automation for 3 users
+Price above the free planNoneTeam $2 to $3.50 per user monthly, Business $4 to $5.50, less billed annually
+A 30 person team on Team, per year$0 hosted$900 to $1,260
+Runs on your own serversYesNo
+Source you can readMITClosed
+Standuply plans and prices checked 2026-09-29 on Standuply's pricing page (the figures are in the page source; the price shown depends on the team size you pick), chat apps and features on its homepage. If something here is out of date, please open an issue.
+Where Standuply wins
+Video and voice answers. Standuply lets people answer by video or voice message. Morgenruf is text only.
+Microsoft Teams. Standuply runs there today; Teams support here is in progress.
+Agile extras. Surveys, and on the Business plan planning poker, backlog refinement and 360 degree feedback.
+Integrations. Standuply connects to Jira, Trello and Asana, and its Team plan adds GitHub, GitLab and Bitbucket.
+A flat fee option. Team is also sold at $199 a month, or $149 billed annually, for up to 199 people, which caps the bill for a large company.
+Where is Morgenruf different from Standuply?
+Free for the whole team, not three people
+Standuply's free Starter plan covers automation for 3 users, then there is a 30 day trial of the paid plans. Team costs $2 per user a month for 1 to 4 users, $3 for 5 to 29 and $3.50 from 30, or $1.50, $2.25 and $2.50 billed annually. Business is $4, $5 and $5.50, or $3.50, $4.25 and $4.50 billed annually (checked 2026-09-29 on Standuply's pricing page). On the Morgenruf hosted instance, every seat is free at any size.
+Your answers stay in your database
+Self-hosted, standup answers, blockers and participation live in Postgres you control. Standuply is hosted only.
+Three rituals, one app
+Standups, coffee chats and kudos share one deployment and one database, which is also what makes the cross-signal questions possible.
+It can be read and changed
+MIT licensed, the whole repository. If the summary format is wrong for you, the file is right there.
+A standup that is quietly dying says so here before anyone notices in the channel.
+What does Standuply cost for 10, 30 or 100 people?
+Worked out from Standuply's published Team prices on 2026-09-29, per year. At 100 people the flat fee is cheaper than paying per user, so that is the figure shown.
+Team sizeStanduply Team, monthlyStanduply Team, annualMorgenruf, hostedMorgenruf, self-hosted
+10 people$360$270$0$60 to $240
+30 people$1,260$900$0$60 to $240
+100 people$2,388 (flat fee)$1,788 (flat fee)$0$60 to $240
+Moving across from Standuply
+There is no importer. Run both for a week with the same questions in the same channel, and turn Standuply off once the new summary looks right.
+Write down each Standuply standup: its channel, questions, schedule, participants and timezone.
+Install Morgenruf: Add to Slack for the free hosted instance, or run it with Docker or on Kubernetes and create the Slack app.
+Recreate each standup. Thirty question templates are there if you want to change the questions while you are at it.
+Mark anyone on leave, so the first week's completion figure means something.
+Watch a week of mornings side by side, then switch Standuply off.
+QuestionsMorgenruf and Standuply
+Is Standuply free?
+Its free Starter plan covers automation for 3 users, and paid plans have a 30 day trial. Team costs $2 to $3.50 per user a month depending on team size, or $1.50 to $2.50 billed annually (checked 2026-09-29).
+Is Morgenruf free compared with Standuply?
+Yes, for every seat. The hosted instance is free. Self-hosted, you pay for the server and database, roughly $5 to $20 a month regardless of headcount.
+Can people answer by video or voice?
+Not in Morgenruf. Answers are written in Slack. If video or voice answers matter to your team, Standuply does that.
+Can I import my Standuply history?
+No. Run both in parallel for a week and switch over once the summaries look right.
+
 ## Open-source Slack standup bot, MIT licensed
 https://morgenruf.dev/open-source-standup-bot/
 
@@ -601,7 +740,7 @@ Add to Slack Self-host in about 20 minutes
 Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
 Morgenruf is an open-source Slack standup bot under the MIT licence: one public repository, no open-core split and no paid tier. It asks standup questions by DM and posts one summary, and also runs coffee chats and kudos. Use the free hosted instance, or run the same code yourself.
 Last reviewed September 26, 2026
-MIT licence · latest release 1.8.13, 2026-09-27 · Helm chart · every release
+MIT licence · latest release 1.9.4, 2026-09-29 · Helm chart · every release
 git clone https://github.com/morgenruf/morgenruf.git cd morgenruf/app && cp .env.example .env # add your Slack app values docker compose up -d
 View on GitHub
 What the licence actually says
@@ -621,7 +760,7 @@ Birthdays and work anniversaries in a channel, from a member profile that keeps 
 Signed webhooks, automation rules, an MCP server, CSV export, a Helm chart
 Every one of those is in the repository. There is no paid tier holding anything back, and what the bot does inside Slack is the same whether you run the published image or your own build of it.
 Who maintains it
-It is built and maintained at CloudDrove, who run the free hosted instance and also sell setup and hosting on your own infrastructure. Paid work funds the project; it does not gate any of it. Issues and pull requests go to the same repository the releases are cut from, and the Helm chart is published from it too. The weekend that produced it explains why it is arranged this way.
+It is built and maintained by Anmol Nagpal and sponsored by CloudDrove, who run the free hosted instance and also sell setup and hosting on your own infrastructure. Paid work funds the project; it does not gate any of it. Issues and pull requests go to the same repository the releases are cut from, and the Helm chart is published from it too. The weekend that produced it explains why it is arranged this way.
 If that arrangement ends tomorrow, you keep the source, the chart and your own database. That is the whole point of the licence, and it is worth checking a project can say the same before you put a daily ritual on it.
 Other open-source options
 There are a few self-hosted standup tools around, mostly smaller scripts that post a message and collect replies. They are fine for one team and one question set. The things that usually run out are per-person timezones, vacation handling, a dashboard non-engineers will use, and anything beyond standups. Pick by which of those you need rather than by star count. Against the hosted products, the comparison pages are the more useful read.
@@ -634,7 +773,7 @@ Yes. One repository, one licence, no open-core split and no feature held back fo
 Can I run it commercially?
 Yes, including inside a company, without asking anyone.
 Who maintains it?
-It is built and maintained at CloudDrove, who also offer paid setup and hosting. Paid work funds it but never gates it.
+It is built and maintained by Anmol Nagpal and sponsored by CloudDrove, who also offer paid setup and hosting. Paid work funds it but never gates it.
 What if the project stops?
 You have the source and your database. That is the point of the arrangement.
 
@@ -647,7 +786,7 @@ Add to Slack Self-host in about 20 minutes
 Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
 Morgenruf is a self-hostable Slack standup bot: one container and a Postgres database, deployed with Docker Compose or Helm, with every answer stored in a database you control. It is MIT licensed and free, and the same code also runs as a free hosted instance for teams that would rather not run it.
 Last reviewed September 26, 2026
-MIT licence · latest release 1.8.13, 2026-09-27 · Helm chart · every release
+MIT licence · latest release 1.9.4, 2026-09-29 · Helm chart · every release
 git clone https://github.com/morgenruf/morgenruf.git cd morgenruf/app && cp .env.example .env # add your Slack app values docker compose up -d
 View on GitHub
 Why teams self-host a standup bot
@@ -684,7 +823,7 @@ Pull the new image and restart. Migrations run in an init container before the a
 Is there a hosted version?
 Yes. Add to Slack installs Morgenruf on a free hosted instance run by CloudDrove, in about two minutes. This page is about the other route: the same MIT code on your own servers.
 
-## Slack standup bot: DMs, summaries, commands
+## Free Slack standup bot: DMs, summaries, commands
 https://morgenruf.dev/slack-standup-bot/
 
 A Slack standup bot, from the morning DM to the summary

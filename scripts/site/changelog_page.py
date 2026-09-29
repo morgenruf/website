@@ -12,45 +12,85 @@ import re
 
 from shell import REPO, breadcrumbs, cta_band, faq, footer, head, nav
 
+# One source for the version everywhere on the site: the changelog on the app
+# repository's main branch, read at build time. The local checkout is the
+# fallback, since it can sit on an older branch, and a clone that is behind
+# kept the site on 1.8.13 while 1.9.4 was out.
+SOURCE_URL = "https://raw.githubusercontent.com/morgenruf/morgenruf/main/CHANGELOG.md"
 SOURCE = pathlib.Path.home() / "workspace/morgenruf/morgenruf/CHANGELOG.md"
+# The last release a build saw, committed, so a build with no network and no
+# local checkout still states a version rather than failing or printing none.
+LAST_KNOWN = pathlib.Path(__file__).resolve().parent / "latest_release.json"
+BUILT = pathlib.Path(__file__).resolve().parent.parent.parent / "changelog/index.html"
 KIND = {"Added": "state done", "Fixed": "state", "Changed": "state", "Removed": "state",
         "Security": "state"}
 
 
 @functools.lru_cache(maxsize=None)
+def _source_text():
+    import urllib.request
+    try:
+        with urllib.request.urlopen(SOURCE_URL, timeout=10) as resp:
+            return resp.read().decode("utf-8")
+    except Exception:
+        pass
+    if SOURCE.exists():
+        return SOURCE.read_text()
+    return ""
+
+
+@functools.lru_cache(maxsize=None)
 def _published_tags():
-    """Tags that have a GitHub release. The 0.x entries predate releases, and
-    linking them produced four 404s on a page about being well maintained."""
+    """Versions that have a tag on the app repository. A tag is what builds
+    the Docker image, so a tagged version is a released one. GitHub releases
+    stopped being cut after 1.8.13, and counting only those held every page
+    on 1.8.13. git ls-remote needs no token and uses no API quota."""
     import subprocess
     try:
         out = subprocess.run(
-            ["gh", "release", "list", "--limit", "80", "--repo", "morgenruf/morgenruf",
-             "--json", "tagName", "-q", ".[].tagName"],
-            capture_output=True, text=True, timeout=30).stdout.split()
-        tags = {t.lstrip("v") for t in out}
+            ["git", "ls-remote", "--tags", "--refs", REPO + ".git"],
+            capture_output=True, text=True, timeout=30).stdout
+        tags = set(re.findall(r"refs/tags/v?([0-9]+\.[0-9]+\.[0-9]+)$", out, re.M))
     except Exception:
         tags = set()
-    if not tags:
-        # gh missing, logged out or rate limited: keep the links the last
-        # build found rather than silently dropping every one of them.
-        built = pathlib.Path(__file__).resolve().parent.parent.parent / "changelog/index.html"
-        if built.exists():
-            tags = set(re.findall(r"/releases/tag/v([0-9.]+)", built.read_text()))
+    if not tags and BUILT.exists():
+        # Offline: keep the links the last build found rather than silently
+        # dropping every one of them.
+        tags = set(re.findall(r"/releases/tag/v([0-9.]+)", BUILT.read_text()))
     return tags
 
 
+@functools.lru_cache(maxsize=None)
 def latest_release():
-    """The newest version that has a published GitHub release, and its date."""
+    """The newest version in the changelog that has been tagged, and its date.
+
+    Falls back to the last value a build recorded when neither the changelog
+    nor the tags can be read, and records the value whenever it can."""
+    import json
     entries = _entries()
     published = _published_tags()
-    for version, date, _ in entries:
-        if version in published:
-            return version, date
-    return (entries[0][0], entries[0][1]) if entries else ("", "")
+    found = next(((v, d) for v, d, _ in entries if v in published), None)
+    if found is None and entries and not published:
+        found = (entries[0][0], entries[0][1])
+    known = json.loads(LAST_KNOWN.read_text()) if LAST_KNOWN.exists() else None
+
+    def newer(a, b):
+        return tuple(map(int, a.split("."))) > tuple(map(int, b.split(".")))
+
+    # A local checkout on an old branch must not move the version backwards.
+    if known and (not found or newer(known["version"], found[0])):
+        return known["version"], known["date"]
+    if found:
+        record = json.dumps({"version": found[0], "date": found[1]}, indent=2) + "\n"
+        if not LAST_KNOWN.exists() or LAST_KNOWN.read_text() != record:
+            LAST_KNOWN.write_text(record)
+        return found
+    return "", ""
 
 
+@functools.lru_cache(maxsize=None)
 def _entries():
-    text = SOURCE.read_text()
+    text = _source_text()
     # Markdown link references at the foot of the file are not release notes.
     # Left in, they arrived as a bullet reading "[0.1.0]: https://…" inside the
     # oldest entry.
@@ -83,6 +123,9 @@ def _entries():
 
 def changelog():
     entries = _entries()
+    if not entries and BUILT.exists():
+        # No changelog to read: keep the page the last build wrote.
+        return BUILT.read_text()
     rows = ""
     published = _published_tags()
     for version, date, sections in entries:
@@ -100,7 +143,7 @@ def changelog():
   </div>
   <div class="release-body">{blocks}</div>
 </article>'''
-    latest = entries[0][0] if entries else ""
+    latest, _ = latest_release()
     body = f'''<section class="section"><div class="wrap">
   <div class="note" style="margin-bottom:34px"><p>Every release is tagged, published with notes, and
   built from the same commit that is on <a href="{REPO}">GitHub</a>. Docker images carry the
