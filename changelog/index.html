@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Changelog: every Morgenruf release, currently 1.9.8</title>
+<title>Changelog: every Morgenruf release, currently 1.9.11</title>
 <meta name="description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/changelog/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/changelog/"/>
-<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.9.8"/>
+<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.9.11"/>
 <meta property="og:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.9.8"/>
+<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.9.11"/>
 <meta name="twitter:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="theme-color" content="#12131f"/>
@@ -47,13 +47,34 @@
 <header class="page-head"><div class="wrap">
   <h1>Changelog</h1>
   <p class="lede">Every release, what changed in it, and why. Currently on
-  <strong>1.9.8</strong>, with 38 releases documented.</p>
+  <strong>1.9.11</strong>, with 41 releases documented.</p>
 </div></header>
 <section class="section"><div class="wrap">
   <div class="note" style="margin-bottom:34px"><p>Every release is tagged, published with notes, and
   built from the same commit that is on <a href="https://github.com/morgenruf/morgenruf">GitHub</a>. Docker images carry the
   revision they were built from, so you can check what you are running matches what you read here.</p></div>
   <article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.11">1.9.11</h2>
+    <time datetime="2026-09-30">2026-09-30</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.11">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.11-security">Security</h3><ul><li><strong>OpenSSL is patched in the image.</strong> The backend image now applies Debian security updates at build time, which picks up the OpenSSL fix for CVE-2026-75804 and CVE-2026-84782. The 1.9.10 tag failed its image scan on these and was never published, so 1.9.11 is the first release with the 1.9.10 changes below.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.10">1.9.10</h2>
+    <time datetime="2026-09-30">2026-09-30</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.10">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.10-changed">Changed</h3><ul><li><strong>Setup emails need an opt-in.</strong> Installing Morgenruf no longer emails the installer. The welcome DM and the installer's Home tab offer an "Email me setup tips" button, and only after it is pressed does Morgenruf send the welcome email, the one-week check-in, the Sunday digest and the uninstall note to their Slack address. "Stop setup emails" on the Home tab turns them off, and every email carries an unsubscribe link. Emails reply to hello@morgenruf.dev.</li><li><strong>The AI summary switch only shows when it can work.</strong> The standup editor hides the AI provider and summary settings when the server has no OpenAI or Anthropic key, and the scheduler ignores the saved setting in that case.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.9">1.9.9</h2>
+    <time datetime="2026-09-30">2026-09-30</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.9">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.9-security">Security</h3><ul><li><strong>Kudos and AI summaries stay text.</strong> A kudos reason, the kudos emoji or an AI summary could carry <code>@channel</code> or a disguised link into Slack. Both are now defused, and links show their real address.</li><li><strong>People who leave lose access.</strong> Dashboard sessions check once a minute that the member and the install are still active, and a deactivated installer is no longer an admin. Assistant (MCP) keys record who created them and stop working when that person is no longer an active admin. Keys made before this release keep working until revoked.</li><li><strong>Members see only their own standups.</strong> The standups list, reports and CSV export show standups a member is in or whose channel they can see. Emails and private channel membership are shown to admins only.</li><li><strong>Workspace settings need a workspace admin.</strong> The manager digest, AI settings and Jira URL can no longer be changed by a standup admin.</li><li><strong>The public feed</strong> only shows standups from public channels, and its token is created on the server and hidden from non-admins.</li><li><strong>Zoom sign-in and email links are single purpose.</strong> Zoom state is tied to the browser that started it, and each email link works only for what it was sent for.</li><li><strong>Rate limits</strong> on the public feed, email links, the sign-in callback and failed assistant key checks.</li></ul><h3 id="v1.9.9-fixed">Fixed</h3><ul><li><strong>Streaks count.</strong> They always showed 1. They now count your scheduled working days, skip holidays, and reset after a missed day.</li><li><strong>The low participation rule</strong> fired before every standup. It now checks at report time, and the <code>participation.low</code> and <code>blocker.detected</code> webhooks are sent.</li><li><strong>Company holidays</strong> skip the standup DM, reminder, nudge, report and coffee round.</li><li><strong>"Until the report is posted"</strong> now closes answers at report time. Before, it meant no limit.</li><li><strong>Pausing, editing or deleting a standup from App Home</strong> takes effect within about 15 seconds.</li><li><strong>Reports use the dates you pick,</strong> and analytics end on your team's local day.</li><li><strong>A late answer is no longer lost.</strong> A standup session lasts 20 hours.</li><li><strong>Two reports racing</strong> no longer leave an empty thread header behind.</li></ul><h3 id="v1.9.9-changed">Changed</h3><ul><li>Delivery failures are sent to the installer by DM instead of the channel.</li><li>One help text everywhere, and <code>/morgenruf help</code> is the command to remember.</li><li>The dashboard asks before destructive actions, offers undo on quick ones, and each empty page says what to do next.</li><li>The API and assistant report the real app version.</li></ul></div>
+</article><article class="release">
   <div class="release-meta">
     <h2 id="v1.9.8">1.9.8</h2>
     <time datetime="2026-09-30">2026-09-30</time>
