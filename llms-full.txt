@@ -35,7 +35,7 @@ Silence. A private reminder works. A public callout breeds resentment.
 Knowing it is working. Fourteen days of completion on the card, with a badge when it starts slipping, so you find out before the habit dies.
 What you can do with the answers
 A digest email per standup, to a lead who does not live in Slack.
-Signed webhooks when a standup completes, a blocker is reported or participation drops, for whatever you build next.
+Signed webhooks on every completed standup, and from automation rules when a blocker comes up or participation drops.
 Automation rules: if nobody has answered by ten, post in another channel.
 Ask an assistant. The MCP server lets Claude or Cursor answer questions like "who has been blocked on the same thing for days" against your own history.
 CSV export, because it is your data.

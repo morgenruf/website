@@ -55,7 +55,8 @@ Insights
   are thanked by nobody. No productivity scores, no individual rankings.
 
 Integration
-- Webhooks signed with HMAC, for completed standups, blockers and low participation
+- Webhooks signed with HMAC on every completed standup; automation rules can also call a webhook
+  on a blocker or low participation
 - An MCP server with eighteen tools, so AI assistants can query standup history
 
 ## How it is run
