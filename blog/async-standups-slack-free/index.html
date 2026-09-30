@@ -7,15 +7,18 @@
 <meta name="description" content="A 15 minute standup costs a 10 person team 12.5 hours a week. Here is how to move it into Slack DMs, async, with a free open-source bot you can self-host."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/blog/async-standups-slack-free/"/>
-<meta property="og:type" content="website"/>
+<meta property="og:type" content="article"/>
 <meta property="og:url" content="https://morgenruf.dev/blog/async-standups-slack-free/"/>
 <meta property="og:title" content="The 12.5 hour standup: taking a team of ten async in Slack"/>
 <meta property="og:description" content="A 15 minute standup costs a 10 person team 12.5 hours a week. Here is how to move it into Slack DMs, async, with a free open-source bot you can self-host."/>
-<meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
+<meta property="og:image" content="https://morgenruf.dev/og/blog-async-standups-slack-free.png"/>
+<meta property="article:published_time" content="2026-04-05"/>
+<meta property="article:modified_time" content="2026-09-26"/>
+<meta property="article:author" content="Anmol Nagpal"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="The 12.5 hour standup: taking a team of ten async in Slack"/>
 <meta name="twitter:description" content="A 15 minute standup costs a 10 person team 12.5 hours a week. Here is how to move it into Slack DMs, async, with a free open-source bot you can self-host."/>
-<meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
+<meta name="twitter:image" content="https://morgenruf.dev/og/blog-async-standups-slack-free.png"/>
 <meta name="theme-color" content="#12131f"/>
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
@@ -24,7 +27,7 @@
 <link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="/assets/site.css?v=0e4afc264f"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://morgenruf.dev/blog/"},{"@type":"ListItem","position":3,"name":"The 12.5 hour standup: taking a team of ten async in Slack"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"The 12.5 hour standup: taking a team of ten async in Slack","description":"A 15 minute standup costs a 10 person team 12.5 hours a week. Here is how to move it into Slack DMs, async, with a free open-source bot you can self-host.","image":"https://morgenruf.dev/og-image.png","datePublished":"2026-04-05","dateModified":"2026-09-26","author":{"@type":"Person","name":"Anmol Nagpal","worksFor":{"@type":"Organization","name":"CloudDrove","url":"https://clouddrove.com"}},"publisher":{"@type":"Organization","@id":"https://morgenruf.dev/#organization","name":"Morgenruf","url":"https://morgenruf.dev/","logo":{"@type":"ImageObject","url":"https://morgenruf.dev/icon-512.png","width":512,"height":512}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://morgenruf.dev/blog/async-standups-slack-free/"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"The 12.5 hour standup: taking a team of ten async in Slack","description":"A 15 minute standup costs a 10 person team 12.5 hours a week. Here is how to move it into Slack DMs, async, with a free open-source bot you can self-host.","image":"https://morgenruf.dev/og/blog-async-standups-slack-free.png","datePublished":"2026-04-05","dateModified":"2026-09-26","author":{"@type":"Person","@id":"https://morgenruf.dev/#anmol-nagpal","name":"Anmol Nagpal","url":"https://morgenruf.dev/blog/why-i-built-morgenruf/"},"publisher":{"@type":"Organization","@id":"https://morgenruf.dev/#organization","name":"Morgenruf","url":"https://morgenruf.dev/","logo":{"@type":"ImageObject","url":"https://morgenruf.dev/icon-512.png","width":512,"height":512},"founder":{"@id":"https://morgenruf.dev/#anmol-nagpal"},"sponsor":{"@type":"Organization","@id":"https://clouddrove.com/#organization","name":"CloudDrove","url":"https://clouddrove.com"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://morgenruf.dev/blog/async-standups-slack-free/"}}</script>
 <script src="/assets/analytics.js" defer></script>
 <script src="/assets/nav.js?v=9bd6907975" defer></script>
 </head>
@@ -45,7 +48,7 @@
 </nav>
 <div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <a href="/blog/">Blog</a><span aria-hidden="true">›</span> <span>The 12.5 hour standup: taking a team of ten async in Slack</span></div><main>
 <header class="page-head"><div class="wrap"><h1>The 12.5 hour standup: taking a team of ten async in Slack</h1></div></header>
-<section class="section"><div class="wrap"><div class="prose"><p class="byline">By <strong>Anmol Nagpal</strong>, CloudDrove &middot; <time datetime="2026-04-05">April 5, 2026</time> &middot; Updated <time datetime="2026-09-26">September 26, 2026</time>: setup times, prices and the hosted instance brought up to date.</p>
+<section class="section"><div class="wrap"><div class="prose"><p class="byline">By <strong>Anmol Nagpal</strong>, creator of Morgenruf &middot; <time datetime="2026-04-05">April 5, 2026</time> &middot; Updated <time datetime="2026-09-26">September 26, 2026</time>: setup times, prices and the hosted instance brought up to date.</p>
 <p class="post-cta"><a class="btn btn-sun btn-sm" href="https://api.morgenruf.dev/install">Add to Slack, free</a> <a class="btn btn-line btn-sm" href="/setup/">Self-host it</a></p>
 <p>Your daily standup meeting is eating more time than you think. What feels like a quick 15-minute sync actually costs your team hours every week, and breaks the focus time that matters most. There is a better way, and it does not require an expensive SaaS tool.</p>
 
@@ -170,10 +173,10 @@
         <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
         Kitchener, Ontario 🇨🇦</p>
       </div>
-      <div><h3>Product</h3><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/insights/">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog/">Changelog</a></div><div><h3>Set up</h3><a href="/setup/">All the ways</a><a href="/setup/docker/">Docker Compose</a><a href="/setup/kubernetes/">Kubernetes and Helm</a><a href="/setup/slack-app/">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare/">All comparisons</a><a href="/compare/standup-bots/">Standup bots compared</a><a href="/geekbot-alternative/">vs Geekbot</a><a href="/donut-alternative/">vs Donut</a><a href="/heytaco-alternative/">vs HeyTaco</a><a href="/standup-prosper-alternative/">vs Standup &amp; Prosper</a><a href="/open-source-standup-bot/">Open-source standup bot</a><a href="/self-hosted-standup-bot/">Self-hosted standup bot</a><a href="/slack-standup-bot/">Slack standup bot</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog/">Blog</a><a href="/support/">Support</a></div>
+      <div><h3>Product</h3><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/insights/">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog/">Changelog</a></div><div><h3>Set up</h3><a href="/setup/">All the ways</a><a href="/setup/docker/">Docker Compose</a><a href="/setup/kubernetes/">Kubernetes and Helm</a><a href="/setup/slack-app/">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare/">All comparisons</a><a href="/compare/standup-bots/">Standup bots compared</a><a href="/geekbot-alternative/">vs Geekbot</a><a href="/donut-alternative/">vs Donut</a><a href="/heytaco-alternative/">vs HeyTaco</a><a href="/standup-prosper-alternative/">vs Standup &amp; Prosper</a><a href="/dailybot-alternative/">vs DailyBot</a><a href="/standuply-alternative/">vs Standuply</a><a href="/open-source-standup-bot/">Open-source standup bot</a><a href="/self-hosted-standup-bot/">Self-hosted standup bot</a><a href="/slack-standup-bot/">Slack standup bot</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog/">Blog</a><a href="/support/">Support</a></div>
     </div>
     <div class="foot-bottom">
-      <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
+      <span>MIT licensed. Built by Anmol Nagpal, sponsored by <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
       <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></span>
     </div>
   </div>

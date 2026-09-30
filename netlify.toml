@@ -77,6 +77,25 @@
   [headers.values]
     Cache-Control = "public, max-age=2592000"
 
+[[headers]]
+  for = "/og/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+# http://www used to take two hops (to https://www, then to the apex). These
+# send both www forms straight to https://morgenruf.dev in one.
+[[redirects]]
+  from = "http://www.morgenruf.dev/*"
+  to = "https://morgenruf.dev/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.morgenruf.dev/*"
+  to = "https://morgenruf.dev/:splat"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/github"
   to = "https://github.com/morgenruf/morgenruf"

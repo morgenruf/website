@@ -69,7 +69,7 @@
       </div>
     </div>
     <div>
-      <picture><source srcset="/mascot.webp" type="image/webp"/><img class="mascot" src="/mascot.png" width="600" height="512" alt="The Morgenruf rooster, in sunglasses, holding a mug of coffee"/></picture>
+      <picture><source srcset="/mascot.webp" type="image/webp"/><img class="mascot" src="/mascot.png" width="600" height="512" fetchpriority="high" alt="The Morgenruf rooster, in sunglasses, holding a mug of coffee"/></picture>
     </div>
   </div>
   <div class="proof">
@@ -449,10 +449,10 @@ order follows what people ask for, and asking moves it.</p>
         <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
         Kitchener, Ontario 🇨🇦</p>
       </div>
-      <div><h3>Product</h3><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/insights/">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog/">Changelog</a></div><div><h3>Set up</h3><a href="/setup/">All the ways</a><a href="/setup/docker/">Docker Compose</a><a href="/setup/kubernetes/">Kubernetes and Helm</a><a href="/setup/slack-app/">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare/">All comparisons</a><a href="/compare/standup-bots/">Standup bots compared</a><a href="/geekbot-alternative/">vs Geekbot</a><a href="/donut-alternative/">vs Donut</a><a href="/heytaco-alternative/">vs HeyTaco</a><a href="/standup-prosper-alternative/">vs Standup &amp; Prosper</a><a href="/open-source-standup-bot/">Open-source standup bot</a><a href="/self-hosted-standup-bot/">Self-hosted standup bot</a><a href="/slack-standup-bot/">Slack standup bot</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog/">Blog</a><a href="/support/">Support</a></div>
+      <div><h3>Product</h3><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/insights/">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog/">Changelog</a></div><div><h3>Set up</h3><a href="/setup/">All the ways</a><a href="/setup/docker/">Docker Compose</a><a href="/setup/kubernetes/">Kubernetes and Helm</a><a href="/setup/slack-app/">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare/">All comparisons</a><a href="/compare/standup-bots/">Standup bots compared</a><a href="/geekbot-alternative/">vs Geekbot</a><a href="/donut-alternative/">vs Donut</a><a href="/heytaco-alternative/">vs HeyTaco</a><a href="/standup-prosper-alternative/">vs Standup &amp; Prosper</a><a href="/dailybot-alternative/">vs DailyBot</a><a href="/standuply-alternative/">vs Standuply</a><a href="/open-source-standup-bot/">Open-source standup bot</a><a href="/self-hosted-standup-bot/">Self-hosted standup bot</a><a href="/slack-standup-bot/">Slack standup bot</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog/">Blog</a><a href="/support/">Support</a></div>
     </div>
     <div class="foot-bottom">
-      <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
+      <span>MIT licensed. Built by Anmol Nagpal, sponsored by <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
       <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></span>
     </div>
   </div>
@@ -461,8 +461,9 @@ order follows what people ask for, and asking moves it.</p>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","@id":"https://morgenruf.dev/#organization",
 "name":"Morgenruf","url":"https://morgenruf.dev/","logo":"https://morgenruf.dev/icon-512.png",
-"sameAs":["https://github.com/morgenruf/morgenruf","https://www.linkedin.com/company/morgenruf"],
-"parentOrganization":{"@type":"Organization","name":"CloudDrove","url":"https://clouddrove.com"}}
+"sameAs":["https://github.com/morgenruf/morgenruf","https://hub.docker.com/r/morgenruf/morgenruf","https://www.linkedin.com/company/morgenruf"],
+"founder":{"@type":"Person","@id":"https://morgenruf.dev/#anmol-nagpal","name":"Anmol Nagpal","url":"https://morgenruf.dev/blog/why-i-built-morgenruf/"},
+"sponsor":{"@type":"Organization","@id":"https://clouddrove.com/#organization","name":"CloudDrove","url":"https://clouddrove.com"}}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","@id":"https://morgenruf.dev/#website",
@@ -476,11 +477,12 @@ order follows what people ask for, and asking moves it.</p>
 "description":"Open-source Slack app for async standups, random coffee chats and peer recognition. Free on the hosted instance or self-hosted. MIT licensed, no per-seat pricing.",
 "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
 "license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,
-"softwareVersion":"1.8.13",
+"softwareVersion":"1.9.4",
 "downloadUrl":"https://github.com/morgenruf/morgenruf/releases",
 "sameAs":["https://github.com/morgenruf/morgenruf","https://hub.docker.com/r/morgenruf/morgenruf","https://www.linkedin.com/company/morgenruf"],
 "publisher":{"@id":"https://morgenruf.dev/#organization"},
-"creator":{"@type":"Organization","name":"CloudDrove","url":"https://clouddrove.com"}}
+"creator":{"@type":"Person","@id":"https://morgenruf.dev/#anmol-nagpal","name":"Anmol Nagpal","url":"https://morgenruf.dev/blog/why-i-built-morgenruf/"},
+"sponsor":{"@type":"Organization","@id":"https://clouddrove.com/#organization","name":"CloudDrove","url":"https://clouddrove.com"}}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

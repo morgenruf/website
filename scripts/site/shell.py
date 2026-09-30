@@ -45,6 +45,7 @@ FOOTER = [
                  ("vs Geekbot", "/geekbot-alternative/"),
                  ("vs Donut", "/donut-alternative/"), ("vs HeyTaco", "/heytaco-alternative/"),
                  ("vs Standup &amp; Prosper", "/standup-prosper-alternative/"),
+                 ("vs DailyBot", "/dailybot-alternative/"), ("vs Standuply", "/standuply-alternative/"),
                  ("Open-source standup bot", "/open-source-standup-bot/"),
                  ("Self-hosted standup bot", "/self-hosted-standup-bot/"),
                  ("Slack standup bot", "/slack-standup-bot/")]),
@@ -63,22 +64,25 @@ CTA_NOTE = ('<p class="cta-note">Add to Slack installs Morgenruf on the free hos
             'CloudDrove runs. Self-hosting is the same MIT code.</p>')
 
 
-def webpage_schema(path, title):
+def webpage_schema(path, title, reviewed=None):
     """A WebPage node with the review date, pointing at the product entity
     the homepage declares."""
     import json
     return json.dumps({"@context": "https://schema.org", "@type": "WebPage", "url": SITE + path,
-                       "name": title, "dateModified": REVIEWED,
+                       "name": title, "dateModified": reviewed or REVIEWED,
                        "about": {"@id": SITE + "/#software"},
                        "publisher": {"@id": SITE + "/#organization"}})
 
 
-def definition(text):
+def definition(text, reviewed=None):
     """One self-contained sentence or three that names the product, so a
     passage lifted out of the page still says what it is about."""
+    import datetime
+    when = (datetime.date.fromisoformat(reviewed).strftime("%B %-d, %Y") if reviewed
+            else REVIEWED_TEXT)
     return (f'<section class="section define"><div class="wrap">'
             f'<p class="lede">{text}</p>'
-            f'<p class="reviewed">Last reviewed {REVIEWED_TEXT}</p></div></section>\n')
+            f'<p class="reviewed">Last reviewed {when}</p></div></section>\n')
 
 
 def asset(path):
@@ -196,7 +200,7 @@ def footer_block():
       {cols}
     </div>
     <div class="foot-bottom">
-      <span>MIT licensed. Built and maintained at <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
+      <span>MIT licensed. Built by Anmol Nagpal, sponsored by <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
       <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></span>
     </div>
   </div>

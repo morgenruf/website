@@ -111,6 +111,11 @@ POSTS = [
      "week for a team of ten, most of it spent listening. Then what replaces it. A scheduled DM, "
      "short written answers, one summary in a channel, and the five steps to get there. It ends on "
      "the per-seat maths, which is where the case for async stops being about meetings."),
+    ("/blog/standup-questions/", "30 async standup questions, by team",
+     "Thirty questions to ask in an async standup, in four sets: engineering teams, remote and "
+     "async teams, managers and leads, and cross-functional groups. Each set says what it is for "
+     "and when to swap it in, because the three default questions stop working once people answer "
+     "them on autopilot."),
     ("/blog/geekbot-vs-morgenruf/", "Geekbot and Morgenruf, compared honestly",
      "A feature table, then the section that matters: where Geekbot wins. Zero operations, a Slack "
      "App Directory listing your IT admin already knows how to approve, years of edge cases, and a "
@@ -123,10 +128,10 @@ def blog_index():
     cards = "".join(
         f'<a class="tile" href="{href}"><h3>{title}</h3><p>{blurb}</p>'
         f'<span class="go">Read the post →</span></a>' for href, title, blurb in POSTS)
-    prose = f'''<p>Three posts so far. They get written when something is concrete enough to be
+    prose = f'''<p>Four posts so far. They get written when something is concrete enough to be
 worth a stranger's time: a decision with a number behind it, a cost that turned out to be real, or
 a comparison that is easier to make in long form than in a table. Nothing here is on a schedule,
-which is why there are three of them and not thirty.</p>
+which is why there are four of them and not forty.</p>
 
 <h2 id="the-posts">The posts</h2>
 <div class="tiles" style="margin:24px 0 8px">{cards}</div>
@@ -148,7 +153,7 @@ rewritten here.</p>
 where to say that one of them is wrong.</p>'''
     return _page(path="/blog/", title="Blog: async standups, self-hosting and team rituals",
                  description="Writing about async standups, self-hosting Slack tools and building "
-                             "an open-source alternative to per-seat team software. Three posts so "
+                             "an open-source alternative to per-seat team software. Four posts so "
                              "far, no listicles.",
                  h1="Writing about async standups and self-hosting",
                  lede="On async standups, self-hosting, and what building the alternative actually "
