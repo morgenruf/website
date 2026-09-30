@@ -141,6 +141,7 @@
       <tr><td>Member profiles</td><td>Until 30 days after the member leaves the workspace, or until you uninstall Morgenruf</td></tr>
       <tr><td>Member records (name, email address, timezone)</td><td>Until you uninstall Morgenruf</td></tr>
       <tr><td>Email opt-in and unsubscribe records</td><td>Until you uninstall Morgenruf. An unsubscribe is kept so that it keeps holding</td></tr>
+      <tr><td>Workspace history (install and removal dates, how many people, which features were used; no names, emails, Slack IDs or message text)</td><td>Kept after you uninstall, so we can see where teams get stuck during setup</td></tr>
       <tr><td>Request / error logs</td><td>30 days</td></tr>
       <tr><td>Email send logs</td><td>90 days</td></tr>
     </tbody>
@@ -168,7 +169,7 @@
 
   <h2>9. Data Deletion</h2>
   <ul>
-    <li><strong>Uninstall Morgenruf</strong> from Slack (<em>Manage Apps → Remove Morgenruf</em>). Data is deleted within 30 days of the uninstall event.</li>
+    <li><strong>Uninstall Morgenruf</strong> from Slack (<em>Manage Apps → Remove Morgenruf</em>). Personal data and content (member records, standup answers, kudos, coffee chats, tokens) are deleted within 7 days of the uninstall, usually within a day. Only the workspace history listed in section 6 is kept.</li>
     <li><strong>Immediate deletion:</strong> Email <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a> with your Slack team ID. A single member can ask for just their own data to be deleted the same way, with their Slack user ID.</li>
     <li><strong>Self-hosted:</strong> Drop your database or use the provided cleanup script.</li>
   </ul>
