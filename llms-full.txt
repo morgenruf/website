@@ -1,6 +1,6 @@
 # Morgenruf: the full text of the main pages
 
-Generated from the site on each build. Current version 1.9.4, released 2026-09-29. Built by Anmol Nagpal, sponsored by CloudDrove. Summary and index: https://morgenruf.dev/llms.txt
+Generated from the site on each build. Current version 1.9.8, released 2026-09-30. Built by Anmol Nagpal, sponsored by CloudDrove. Summary and index: https://morgenruf.dev/llms.txt
 
 ## Async standups in Slack, free or self-hosted
 https://morgenruf.dev/standups/
@@ -740,7 +740,7 @@ Add to Slack Self-host in about 20 minutes
 Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
 Morgenruf is an open-source Slack standup bot under the MIT licence: one public repository, no open-core split and no paid tier. It asks standup questions by DM and posts one summary, and also runs coffee chats and kudos. Use the free hosted instance, or run the same code yourself.
 Last reviewed September 26, 2026
-MIT licence · latest release 1.9.4, 2026-09-29 · Helm chart · every release
+MIT licence · latest release 1.9.8, 2026-09-30 · Helm chart · every release
 git clone https://github.com/morgenruf/morgenruf.git cd morgenruf/app && cp .env.example .env # add your Slack app values docker compose up -d
 View on GitHub
 What the licence actually says
@@ -786,7 +786,7 @@ Add to Slack Self-host in about 20 minutes
 Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
 Morgenruf is a self-hostable Slack standup bot: one container and a Postgres database, deployed with Docker Compose or Helm, with every answer stored in a database you control. It is MIT licensed and free, and the same code also runs as a free hosted instance for teams that would rather not run it.
 Last reviewed September 26, 2026
-MIT licence · latest release 1.9.4, 2026-09-29 · Helm chart · every release
+MIT licence · latest release 1.9.8, 2026-09-30 · Helm chart · every release
 git clone https://github.com/morgenruf/morgenruf.git cd morgenruf/app && cp .env.example .env # add your Slack app values docker compose up -d
 View on GitHub
 Why teams self-host a standup bot

@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Changelog: every Morgenruf release, currently 1.9.4</title>
+<title>Changelog: every Morgenruf release, currently 1.9.8</title>
 <meta name="description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/changelog/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/changelog/"/>
-<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.9.4"/>
+<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.9.8"/>
 <meta property="og:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.9.4"/>
+<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.9.8"/>
 <meta name="twitter:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="theme-color" content="#12131f"/>
@@ -47,13 +47,41 @@
 <header class="page-head"><div class="wrap">
   <h1>Changelog</h1>
   <p class="lede">Every release, what changed in it, and why. Currently on
-  <strong>1.9.4</strong>, with 34 releases documented.</p>
+  <strong>1.9.8</strong>, with 38 releases documented.</p>
 </div></header>
 <section class="section"><div class="wrap">
   <div class="note" style="margin-bottom:34px"><p>Every release is tagged, published with notes, and
   built from the same commit that is on <a href="https://github.com/morgenruf/morgenruf">GitHub</a>. Docker images carry the
   revision they were built from, so you can check what you are running matches what you read here.</p></div>
   <article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.8">1.9.8</h2>
+    <time datetime="2026-09-30">2026-09-30</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.8">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.8-fixed">Fixed</h3><ul><li><strong>A blank or out-of-order standup answer is no longer saved.</strong> Slack can deliver the Submit click before it has captured what was typed, and the blank was saved as the answer. The bot now asks you to submit again (send <code>pass</code> to leave a question blank on purpose). A Submit on a question already answered is ignored instead of being filed against the current one.</li><li><strong>Dates and times follow your team's timezone.</strong> App Home showed the time a standup was reported in UTC, the dashboard's Today page named the UTC date, and Insights called a standup filed today "yesterday" in the evening.</li><li><strong>Today's next coffee chat matches the Coffee chats page.</strong> It counted a week from a round run by hand, so a Monday programme showed a Tuesday.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.7">1.9.7</h2>
+    <time datetime="2026-09-30">2026-09-30</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.7">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.7-fixed">Fixed</h3><ul><li><strong>The web worker no longer shares database connections with the scheduler.</strong> The connection pool was opened in gunicorn's master before the worker was forked, so a web request and a scheduled job could use one Postgres connection at the same time. It showed up as occasional failed webhook lookups, member updates and health checks ("no results to fetch"). The worker now opens its own connections.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.6">1.9.6</h2>
+    <time datetime="2026-09-29">2026-09-29</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.6">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.6-fixed">Fixed</h3><ul><li><strong>Zoom meetings are booked only for the time a pair agrees.</strong> A first tap on an offered time created the meeting, so if the pair then settled on another time (a suggested one, say), the meeting stayed at the first.</li><li><strong>Standups are no longer delayed by long background work.</strong> Coffee chat delivery, member sync and the other background jobs run on their own threads, so a standup cannot be dropped as missed while they run.</li><li><strong>Two pods starting together no longer race on migrations.</strong></li></ul><h3 id="v1.9.6-changed">Changed</h3><ul><li><code>LOG_FORMAT=json</code> writes one JSON object per log line, including gunicorn's access and error logs. The chart sets it by default.</li><li>Helm chart 0.14.0: a startup probe, seccomp, a read-only root filesystem (toggle <code>readOnlyRootFilesystem</code>), image digest pinning, and an optional PodDisruptionBudget for more than one replica.</li><li>The image scan now fails the build on fixable critical or high findings.</li><li>An operator runbook, <code>RUNBOOK.md</code>.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.5">1.9.5</h2>
+    <time datetime="2026-09-29">2026-09-29</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.5">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.5-security">Security</h3><ul><li><strong>Signing in no longer makes a member an admin.</strong> Dashboard sign-in runs through the install flow, and finishing it granted admin to anyone. Admin now goes only to the person who first installed the app and to Slack's own workspace admins and owners.</li><li><strong>The sign-in link works once</strong> and only in the browser that started it.</li><li><strong>Webhooks cannot reach internal addresses.</strong> The target is resolved when it is sent, private addresses are refused, and redirects are not followed.</li><li><strong><code>LOG_LEVEL=DEBUG</code> is only a log level.</strong> It no longer starts Flask's debug server, and Slack tokens are never written to the logs.</li><li><strong>Standup answers stay text.</strong> Typing <code>@channel</code> or a disguised link into an answer no longer pings the channel or renders the link.</li><li><strong>Creating, editing, pausing and deleting standups from App Home</strong> needs the standup admin role, the same rule as the dashboard.</li></ul><h3 id="v1.9.5-fixed">Fixed</h3><ul><li><strong>Reports and nudges use your team's own date.</strong> They used the server's UTC date, so teams far from UTC (Sydney, or US teams reporting late in the day) got empty reports and nudges after they had already answered.</li><li><strong>The weekend reminder</strong> went to every member of the workspace. It now goes to the standup's participants.</li><li><strong>A coffee round interrupted partway through delivery now finishes</strong> instead of leaving the remaining pairs without an introduction, and a rate limited Slack no longer drops a pair.</li><li><strong>A brief database error no longer removes a workspace's coffee chat and celebration jobs.</strong></li><li><strong>Assistant (MCP) queries are limited to a year of history.</strong></li></ul><h3 id="v1.9.5-changed">Changed</h3><ul><li><code>/healthz</code> checks the database and the scheduler and returns 503 when either is down. <code>/livez</code> checks only the scheduler, for liveness probes.</li><li>The operator is alerted in Slack when a scheduled job fails or misses its time.</li></ul></div>
+</article><article class="release">
   <div class="release-meta">
     <h2 id="v1.9.4">1.9.4</h2>
     <time datetime="2026-09-29">2026-09-29</time>
