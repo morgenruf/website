@@ -35,7 +35,7 @@ Silence. A private reminder works. A public callout breeds resentment.
 Knowing it is working. Fourteen days of completion on the card, with a badge when it starts slipping, so you find out before the habit dies.
 What you can do with the answers
 A digest email per standup, to a lead who does not live in Slack.
-Signed webhooks on every completed standup, for whatever you build next.
+Signed webhooks on every completed standup, and from automation rules when a blocker comes up or participation drops.
 Automation rules: if nobody has answered by ten, post in another channel.
 Ask an assistant. The MCP server lets Claude or Cursor answer questions like "who has been blocked on the same thing for days" against your own history.
 CSV export, because it is your data.
@@ -116,7 +116,7 @@ Set the token and the allowance, and see exactly what your team will get.
 Why scarcity is the whole design
 Unlimited praise is worth nothing. If everybody can thank everybody all day, the messages become noise and people stop reading them. A small daily budget that disappears at midnight does two useful things: it makes each one mean something, and it creates a mild pressure to spend them, which is what gets somebody to notice the quiet colleague who fixed the build. Midnight is read per person, the same way a standup works out when to ask.
 How do you set up kudos in Slack?
-Turn Kudos on in the Morgenruf dashboard. Like every module it is off until you do.
+Open Kudos in the Morgenruf dashboard. It is on from the start (coffee chats and celebrations are the modules that start off), and an admin can switch it off there.
 Pick the token: any emoji in your workspace, including a custom one.
 Set the daily allowance.
 People give one with /kudos @teammate a reason or from a DM, and it posts publicly with the reason.
@@ -286,7 +286,7 @@ This is the part of the page worth reading. Every one of these tools is better t
 Geekbot
 It has been running standups since 2015, which means it has met edge cases a younger project has not: the workspace that renamed a channel mid-quarter, the person who answers in a thread three days late, the enterprise grid. It is listed in the Slack App Directory, so an IT admin can approve it through the process they already have, and it comes with support that somebody is paid to answer. Nothing to deploy, patch or back up. The longer Geekbot and Morgenruf comparison goes through the daily shape of both.
 Donut
-Donut made this category and still has the widest surface in it: onboarding journeys, channel prompts, video facilitation, and a Microsoft Teams version that works today rather than one that is in progress. If your pairing programme is really an onboarding programme, Donut is built for that and this is not. The Donut alternative page has the feature-by-feature version.
+Donut made this category and still has the widest surface in it: onboarding journeys, channel prompts, video facilitation, and a Microsoft Teams version that works today rather than one that is only planned. If your pairing programme is really an onboarding programme, Donut is built for that and this is not. The Donut alternative page has the feature-by-feature version.
 HeyTaco
 The taco is good product design and the gamification is thought through, but the real gap is the rewards catalogue: a recognition programme with a budget behind it, where thanks convert into something people can spend. Morgenruf gives you a message and a leaderboard and stops there. If HR has a recognition budget, read the HeyTaco alternative page before you move anything.
 Standup & Prosper
@@ -307,15 +307,15 @@ MorgenrufStandups, coffee chats and kudos in one appFree on the hosted instance 
 Prices checked 2026-09-26 against Geekbot's and Donut's pricing pages, and quoted with that date attached, because they move. Geekbot is free for up to 10 users. Past that, a team of thirty pays $900 a year on annual billing, or $1,080 paying monthly, for the morning questions alone. Add pairing and recognition at comparable per-seat rates and the same thirty people cost somewhere between two and three thousand a year, rising every time you hire. Morgenruf on the hosted instance costs nothing at any size. Self-hosted, the same three rituals are a small VPS at roughly $5 to $20 a month plus a Postgres, and that number does not change at three hundred people. Counting only money, a standup-only team of ten or fewer pays nothing either way; above that, Geekbot's per-user price passes the cost of a small server almost at once.
 What self-hosting costs you in effort
 None of this applies on the free hosted instance. It applies when you self-host, which is the route for keeping the data in your own database. The money argument is easy and slightly dishonest on its own, because the time is real. Here is the whole of it:
-The install. One container and a Postgres 13 or newer, about twenty minutes, most of which is creating the Slack app rather than deploying anything.
+The install. A backend and a small frontend container and a Postgres 13 or newer, about twenty minutes, most of which is creating the Slack app rather than deploying anything.
 An HTTPS URL Slack can reach. An ingress if you run Kubernetes, or a Cloudflare tunnel, which needs no open port.
-Upgrades. Pull the image and restart. Migrations run themselves in an init container before the app starts.
+Upgrades. Pull the image and restart. Migrations run in their own step before the app starts: an init container on Helm, a one-shot service in Compose.
 Backups. pg_dump. There is no other state anywhere.
 Somebody owning it. This is the honest cost. When Slack changes a scope or the disk fills, there is no support queue by default, there is you. Budget an hour a quarter once it is settled, and accept that the first bad morning is yours.
 The part that catches people is never the container. It is Slack scopes: a workspace that installed before a feature existed has not granted that feature's permissions, and the fix is a reinstall. What self-hosting involves covers the rest, and paid setup and hosting exists if you would rather buy the time back.
 Who should not pick Morgenruf
 Saying this plainly saves everybody an afternoon:
-Anyone on Microsoft Teams. Support is in progress, which means not today. Geekbot, Donut and HeyTaco all ship it now.
+Anyone on Microsoft Teams. Support is planned, not started, which means not today. Geekbot, Donut and HeyTaco all ship it now.
 Anyone who needs a rewards catalogue. Gift cards, budgets, redemption. HeyTaco or Bonusly, not this.
 Teams that need their data in-house but have nowhere to run a container and no appetite to find one. The hosted instance is free, but it is CloudDrove's database, not yours.
 Anyone who needs an App Directory listing for procurement or IT governance. Morgenruf is not listed there today, hosted or self-hosted.
@@ -403,7 +403,7 @@ MorgenrufGeekbot
 Async standups by DM, one channel summaryYesYes
 Per-person timezonesYesYes
 Polls and surveysNoYes
-Microsoft TeamsIn progressYes
+Microsoft TeamsPlannedYes
 Free planYes, any team sizeUp to 10 users
 Price above the free planNone$3 per user monthly, $2.50 billed annually
 A 30 person team, per year$0 hosted$900 to $1,080
@@ -418,8 +418,8 @@ Nothing to run. No server, no database, no upgrade evenings. That is worth real 
 Years of edge cases. A hosted product that has been at this since 2015 has met situations a younger one has not.
 Support with a contract behind it as part of the price, rather than an issue tracker and a maintainer's evening.
 A free plan for small teams. Geekbot is free for up to 10 users, so a small team pays nothing either way.
-Microsoft Teams. Geekbot runs there today; Teams support here is in progress.
-If you have no appetite for running anything, you do not have to: Add to Slack puts Morgenruf on the free hosted instance in about two minutes. Most of what follows is about the other route, one container and a Postgres of your own.
+Microsoft Teams. Geekbot runs there today; Teams support here is planned, not started.
+If you have no appetite for running anything, you do not have to: Add to Slack puts Morgenruf on the free hosted instance in about two minutes. Most of what follows is about the other route, two small containers and a Postgres of your own.
 Where is Morgenruf different from Geekbot?
 The price does not scale with hiring
 Per-seat pricing means the cost of asking your team three questions grows every time you hire. Geekbot is free for up to 10 users, then $3 per user per month, or $2.50 per user per month billed annually (prices checked 2026-09-26 on Geekbot's pricing page). A team of thirty pays $900 to $1,080 a year. On the Morgenruf hosted instance, thirty people and three hundred both cost nothing. Self-hosted, they cost the same: one small server and a database.
@@ -481,7 +481,7 @@ Birthdays and work anniversariesYes, around your working days and holidaysYes
 Runs on your own serversYesNo
 Source you can readMITClosed
 Your pairing data lives inyour databasetheir cloud
-Microsoft TeamsIn progressYes
+Microsoft TeamsPlannedYes
 PriceFree, any team sizeFree plan; paid plans from about $74 a month
 Prices checked 2026-09-26 against Donut's pricing page. Their plans change; if something here is out of date, please tell me and I will fix it.
 The honest version
@@ -499,7 +499,7 @@ Self-hosted, who met whom and who quietly opted out lives in Postgres you contro
 The price
 Free for every seat, at any size: on the free hosted instance, or self-hosted, where a thirty person team pays for a small server and a database instead of a subscription that grows with hiring.
 For people teams: nothing to install on a server
-Add to Slack puts Morgenruf on the free hosted instance, so a people ops lead can start coffee chats without anyone running a server. Each round closes by asking whether the pair met, and the answer is recorded four ways: met, did not meet, never replied, and never delivered. If your company needs the data in-house, this is the line to forward to engineering: "Morgenruf is one container and a Postgres, MIT licensed, about twenty minutes to set up: morgenruf.dev/setup/".
+Add to Slack puts Morgenruf on the free hosted instance, so a people ops lead can start coffee chats without anyone running a server. Each round closes by asking whether the pair met, and the answer is recorded four ways: met, did not meet, never replied, and never delivered. If your company needs the data in-house, this is the line to forward to engineering: "Morgenruf is two small containers and a Postgres, MIT licensed, about twenty minutes to set up: morgenruf.dev/setup/".
 Switching
 There is no importer, and pairing history is the one thing worth not losing, so the sensible move is to run both for a fortnight: point Morgenruf at the same channel with a different cadence, see whether the introductions land, then turn Donut off. Nothing here needs a contract to be cancelled.
 QuestionsMorgenruf and Donut
@@ -533,7 +533,7 @@ Async standups in the same appYesNo
 Coffee chat introductionsYesNo
 Runs on your own serversYesNo
 Source you can readMITClosed
-Microsoft TeamsIn progressYes
+Microsoft TeamsPlannedYes
 PriceFree, any team sizePer seat, monthly
 Checked against HeyTaco's public pages in September 2026.
 The honest version
@@ -547,7 +547,7 @@ Any emoji in your workspace. A maple leaf, your logo, an in-joke. The Morgenruf 
 Recognition data next to something else
 A leaderboard tells you who is thanked. Put it beside standup answers and you can ask who is contributing and being thanked by nobody, which is the question worth acting on.
 Nothing for HR to install
-Add to Slack puts Morgenruf on the free hosted instance, so whoever runs recognition can switch kudos on without an engineer. If the data has to stay in-house, the self-hosted route is one container and a Postgres; the setup page is the link to forward.
+Add to Slack puts Morgenruf on the free hosted instance, so whoever runs recognition can start using kudos without an engineer (it is on from the start). If the data has to stay in-house, the self-hosted route is two small containers and a Postgres; the setup page is the link to forward.
 The price, again
 Free for every seat, hosted or self-hosted. Recognition tools are usually priced per person per month, which means the cost of thanking people grows exactly as you hire them.
 QuestionsMorgenruf and HeyTaco
@@ -588,7 +588,7 @@ No seat maths. The bill does not move when you hire.
 Three rituals in one app rather than a standup tool plus two more subscriptions later.
 Extensible: signed webhooks, automation rules, an MCP server for AI assistants, and the source itself.
 What you take on
-Nothing, if you use the free hosted instance. Self-hosting is the trade for keeping the data in your own database, and in practice that means one container, one database, an HTTPS URL, and docker compose pull when there is a release. Migrations apply themselves on start. Running it on your own servers sets out the requirements, the upgrade path and the backups in full. If that sounds like a chore rather than a Tuesday, a hosted option is cheaper than your time.
+Nothing, if you use the free hosted instance. Self-hosting is the trade for keeping the data in your own database, and in practice that means a backend and a small frontend container, one database, an HTTPS URL, and docker compose pull when there is a release. Migrations run in their own step before the app starts. Running it on your own servers sets out the requirements, the upgrade path and the backups in full. If that sounds like a chore rather than a Tuesday, a hosted option is cheaper than your time.
 What the morning looks like once it is running.
 Switching
 Pick a way to run it and give Slack an HTTPS URL.
@@ -662,7 +662,7 @@ It has a free Starter plan with unlimited members, capped at 50 compiled check-i
 Is Morgenruf free compared with DailyBot?
 Yes, with no seat price and no report cap. The hosted instance is free. Self-hosted, you pay for the server and database, roughly $5 to $20 a month regardless of headcount.
 Does Morgenruf work in Microsoft Teams or Discord?
-No. Slack is first class, Google Chat is in beta, and Teams is in progress. If you need Teams or Discord today, DailyBot is the better fit.
+No. Slack is first class, Google Chat is in beta, and Teams is planned, not started. If you need Teams or Discord today, DailyBot is the better fit.
 Can I import my DailyBot history?
 No. Run both in parallel for a week and switch over once the summaries look right.
 
@@ -694,7 +694,7 @@ Source you can readMITClosed
 Standuply plans and prices checked 2026-09-29 on Standuply's pricing page (the figures are in the page source; the price shown depends on the team size you pick), chat apps and features on its homepage. If something here is out of date, please open an issue.
 Where Standuply wins
 Video and voice answers. Standuply lets people answer by video or voice message. Morgenruf is text only.
-Microsoft Teams. Standuply runs there today; Teams support here is in progress.
+Microsoft Teams. Standuply runs there today; Teams support here is planned, not started.
 Agile extras. Surveys, and on the Business plan planning poker, backlog refinement and 360 degree feedback.
 Integrations. Standuply connects to Jira, Trello and Asana, and its Team plan adds GitHub, GitLab and Bitbucket.
 A flat fee option. Team is also sold at $199 a month, or $149 billed annually, for up to 199 people, which caps the bill for a large company.
@@ -750,7 +750,7 @@ You can read it. A standup bot sees everything your team is stuck on. Being able
 You can change it. Summary format, question types, the wording of a nudge. Fork it and run your fork; nothing checks that you did.
 It cannot be taken away. No price change, no acquisition, no sunset email.
 The honest trade
-A licence does not run anything. Someone has to, and that is one container, a Postgres and an HTTPS URL, with migrations that apply themselves. What running it on your own servers involves is a page of its own, down to the backups. It is a small job, but it is not zero. The free hosted instance CloudDrove runs removes it entirely, on the same code. Be clear which side of that you are on before switching.
+A licence does not run anything. Someone has to, and that is a backend and a small frontend container, a Postgres and an HTTPS URL, with migrations applied as a step before each start. What running it on your own servers involves is a page of its own, down to the backups. It is a small job, but it is not zero. The free hosted instance CloudDrove runs removes it entirely, on the same code. Be clear which side of that you are on before switching.
 What is in the box
 Async standups with per-person timezones, blockers, nudges and an edit window
 Random coffee chats that agree a time and book a Zoom meeting
@@ -781,10 +781,10 @@ You have the source and your database. That is the point of the arrangement.
 https://morgenruf.dev/self-hosted-standup-bot/
 
 A standup bot on your own servers, in your own region
-One container, one database, one HTTPS URL Slack can reach. Where the answers physically sit, and what it takes to keep them there.
+Two small containers, one database, one HTTPS URL Slack can reach. Where the answers physically sit, and what it takes to keep them there.
 Add to Slack Self-host in about 20 minutes
 Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
-Morgenruf is a self-hostable Slack standup bot: one container and a Postgres database, deployed with Docker Compose or Helm, with every answer stored in a database you control. It is MIT licensed and free, and the same code also runs as a free hosted instance for teams that would rather not run it.
+Morgenruf is a self-hostable Slack standup bot: a backend, a small frontend and a Postgres database, deployed with Docker Compose or Helm, with every answer stored in a database you control. It is MIT licensed and free, and the same code also runs as a free hosted instance for teams that would rather not run it.
 Last reviewed September 26, 2026
 MIT licence · latest release 1.9.8, 2026-09-30 · Helm chart · every release
 git clone https://github.com/morgenruf/morgenruf.git cd morgenruf/app && cp .env.example .env # add your Slack app values docker compose up -d
@@ -795,8 +795,8 @@ The answers are sensitive. A standup is a daily log of what is broken, what is l
 The bill grows with the team. Per-seat pricing means the cost of three questions a morning rises every time you hire.
 They already run things. If you have a cluster and a Postgres, adding one more small service is an afternoon.
 What running it actually involves
-One container. A Python process. Not a queue, a worker pool and a cache.
-One database. Postgres 13 or newer. Migrations run themselves on start.
+Two small containers. A Python backend and a frontend that serves the dashboard. No queue and no worker pool. The Helm chart adds a small Redis that keeps in-progress standups across restarts.
+One database. Postgres 13 or newer. Migrations run as a separate step before the app starts: a one-shot service in Compose, an init container in Helm.
 An HTTPS URL. Slack posts events to it. A Cloudflare tunnel is enough and needs no open port.
 Upgrades. Pull the image and restart, or helm upgrade.
 Backups. pg_dump. There is no other state.
@@ -815,7 +815,7 @@ The part people underestimate
 Not the install. The Slack app: scopes, a redirect URL, and the fact that a workspace which installed before a feature existed has not granted that feature's scopes. That page exists because it is where setups actually stall. It helps to read what the bot does inside Slack first, because the scopes follow from it and half of them are for features you may not switch on. If you would rather hand the whole job over, CloudDrove does paid setup and hosting on your own infrastructure.
 QuestionsAbout self-hosting
 What are the minimum requirements?
-One small container and a Postgres. A single vCPU with 512MB is enough for a team of dozens; the work is bursty and short.
+Two small containers (backend and frontend) and a Postgres. A single vCPU with 512MB is enough for a team of dozens; the work is bursty and short.
 Does it need a public IP?
 No. A Cloudflare tunnel gives Slack an HTTPS URL without opening a port or running an ingress controller.
 How do upgrades work?
@@ -856,15 +856,15 @@ Yes. It uses standard app APIs available on the free plan.
 Can it post to a different channel from the one it asks in?
 Yes. Questions go by DM, and the summary can post anywhere the bot has been invited.
 Does it read our channel messages?
-No. It reads replies to its own DMs and channel membership where you point it. It has no history scope.
+No. It reads replies to its own DMs and channel membership where you point it. It has no channel history scope.
 What about Microsoft Teams or Google Chat?
-Google Chat is in beta; Teams as a platform is in progress. Slack is first class.
+Google Chat is in beta; Teams as a platform is planned, not started. Slack is first class.
 
 ## Self-host Morgenruf: Docker Compose or Helm
 https://morgenruf.dev/setup/
 
 Set it up yourself, in about twenty minutes
-Morgenruf is one process and a Postgres database. Pick whichever of these you already have, and the Slack side is the same either way. Would rather not run anything? Add to Slack puts it on the free hosted instance in about two minutes.
+Morgenruf is a backend, a small frontend and a Postgres database. Pick whichever of these you already have, and the Slack side is the same either way. Would rather not run anything? Add to Slack puts it on the free hosted instance in about two minutes.
 Three ways in Pick a way to run it
 Docker Compose
 The shortest path. One file, one command, runs on a laptop, a VPS or a spare Mac mini.
@@ -874,21 +874,21 @@ Set it up with Helm → The Slack app
 Creating the app from the manifest, the scopes it asks for and why, and installing it.
 Create the Slack app →
 What you need before you start
-Somewhere to run it. Any machine with Docker, or a Kubernetes cluster. It is a single Python process and a Postgres database; it is not demanding.
-Postgres. Anything from 13 up. Migrations apply themselves when the app starts, so an empty database is enough.
+Somewhere to run it. Any machine with Docker, or a Kubernetes cluster. It is a Python backend, a small frontend and a Postgres database, plus Redis on Helm; it is not demanding.
+Postgres. Migrations run as a separate step before the app starts, so an empty database is enough.
 An HTTPS URL Slack can reach. Slack posts events to your app, so it needs a public address. A Cloudflare tunnel works and needs no open port.
 A Slack workspace where you can install apps. Whoever installs it becomes the first admin.
 The shape of it
 Three things talk to each other: Slack, the app, and your database. Slack sends events to your URL, the app writes to Postgres, and a scheduler inside the app sends the messages that start standups and coffee chats. A self-hosted install talks to Slack only, plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator turns those on.
-One value people miss: FLASK_SECRET_KEY signs dashboard sessions. Generate a real one with openssl rand -hex 32. Leaving it blank means nobody can stay logged in.
+One value people miss: FLASK_SECRET_KEY signs dashboard sessions. Generate a real one with openssl rand -hex 32. The app will not start without it.
 After it is running
 Open your app URL and sign in with Slack. You are the first admin.
 Create a standup: pick a channel, the questions, the hour, and who takes part.
-Turn on coffee chats and kudos when you want them. Both are off until you say so.
+Kudos is on from the start. Turn on coffee chats and celebrations when you want them; both are off until you say so.
 Optional: connect Zoom so coffee chats book a real meeting, and set up a digest email.
 Questions Before you begin
 How long does it take to set up?
-About twenty minutes end to end: ten to create the Slack app from the manifest, five to start the containers, and five to point it at a channel. Migrations run themselves on first start, so there is no database step beyond having a Postgres URL.
+About twenty minutes end to end: ten to create the Slack app from the manifest, five to start the containers, and five to point it at a channel. Migrations run as their own step before the app starts (a one-shot service in Compose, an init container in Helm), so an empty database is enough.
 What do I actually need?
 A machine that can run Docker or a Kubernetes cluster, a Postgres database, and an HTTPS URL Slack can reach. A Cloudflare tunnel covers the last one without opening a port.
 Can I try it without a server?
@@ -911,21 +911,22 @@ Do this first, because the next step wants three values from it. The Slack app p
 2. Clone and configure
 git clone https://github.com/morgenruf/morgenruf.git cd morgenruf/app cp .env.example .env
 Open .env and set at least these:
-SLACK_CLIENT_ID=... SLACK_CLIENT_SECRET=... SLACK_SIGNING_SECRET=... DATABASE_URL=postgresql://morgenruf:password@db:5432/morgenruf APP_URL=https://standups.your-domain.com FLASK_SECRET_KEY=$(openssl rand -hex 32)
+DB_PASSWORD=... SLACK_CLIENT_ID=... SLACK_CLIENT_SECRET=... SLACK_SIGNING_SECRET=... APP_URL=https://standups.your-domain.com FLASK_SECRET_KEY=... # paste the output of: openssl rand -hex 32
+There is no DATABASE_URL to set: the compose file builds it from DB_PASSWORD for the bundled Postgres, and a value in .env would be overridden. The app will not start without FLASK_SECRET_KEY.
 APP_URL has to be the address Slack will call, not localhost. If you are using a tunnel, put the tunnel's URL here and restart after it changes.
 3. Start it
-docker compose up -d docker compose logs -f app
-The log will show migrations applying and then Scheduler started. That is the whole startup: there is no separate migration step and no seed data to load.
+docker compose up -d docker compose logs migrate docker compose logs -f app
+Four services start: Postgres, a one-shot migrate service, the app and the frontend. The migrate log shows the migrations applying; it exits when they are done, and only then does the app start. The app log then shows Scheduler started. There is no seed data to load.
 4. Let Slack reach it
 Slack posts events to your app, so it needs a public HTTPS address. If you already run a reverse proxy, point it at port 3000. If you do not:
 cloudflared tunnel --url http://localhost:3000
-Copy the https://….trycloudflare.com address it prints, set it as APP_URL, and restart with docker compose restart app. For anything permanent, use a named tunnel rather than a quick one, because the quick URL changes each run.
+Copy the https://….trycloudflare.com address it prints, set it as APP_URL, and apply it with docker compose up -d (a plain restart does not pick up a changed .env). For anything permanent, use a named tunnel rather than a quick one, because the quick URL changes each run.
 5. Install it
 Open your app URL in a browser and authorise the workspace. You become the first admin, and the dashboard opens on an empty Standups page. Create one: channel, questions, the hour, and who takes part. What a standup does once it is running is described separately, as are coffee chats, which stay off until you turn them on.
 Keeping it running
-Upgrades: docker compose pull && docker compose up -d. Migrations apply on start.
+Upgrades: docker compose pull && docker compose up -d. The migrate service applies new migrations before the app starts.
 Backups: it is one Postgres database. pg_dump is the whole story.
-Logs: docker compose logs -f app. Standups, coffee chat rounds and delivery failures all appear there.
+Logs: docker compose logs -f app. Standups, coffee chat rounds and delivery failures all appear there. docker compose logs migrate shows the migrations.
 Stuck? The issue tracker and discussions are where setup questions get answered, and CloudDrove will do the whole thing for you if you would rather not.
 The Slack app
 The manifest, the scopes and why each one is asked for.
@@ -936,9 +937,9 @@ QuestionsRunning it with Docker
 Can I run this on a Mac mini or a Raspberry Pi?
 A Mac mini yes, and it is a good home for it. On a Pi you would need an arm64 image; the published image is amd64, so build it yourself on the Pi or use a small cloud VM instead.
 Does Docker Compose bring its own Postgres?
-Yes, the bundled compose file starts one for you. For anything you care about, point DATABASE_URL at a managed Postgres instead and keep backups out of the container's lifecycle.
+Yes, the bundled compose file starts one for you. The compose file sets DATABASE_URL for the app and migrate services itself, so to use a managed Postgres, change it there, not in .env.
 How do I upgrade?
-Pull the new image and restart: docker compose pull && docker compose up -d. Migrations run on start, and they are written to be safe to run against a live database.
+Pull the new image and restart: docker compose pull && docker compose up -d. The migrate service applies any new migrations before the app starts again.
 How do I back it up?
 It is one Postgres database, so pg_dump is the whole backup story. No state lives in the container.
 
@@ -950,16 +951,17 @@ A published chart, an external Postgres, and whichever way you already expose th
 Install
 helm repo add morgenruf https://charts.morgenruf.dev helm repo update helm upgrade --install morgenruf morgenruf/morgenruf \ --namespace morgenruf --create-namespace \ --set slack.clientId="YOUR_CLIENT_ID" \ --set slack.clientSecret="YOUR_CLIENT_SECRET" \ --set slack.signingSecret="YOUR_SIGNING_SECRET" \ --set externalDatabase.url="postgresql://user:pass@host:5432/morgenruf" \ --set flaskSecretKey="$(openssl rand -hex 32)" \ --set app.url="https://standups.your-domain.com"
 Use a real database. The chart can start one for you, which is fine for a look, but point externalDatabase.url at managed Postgres for anything you intend to keep. The data outliving the release is the point.
+A release runs the backend (with a migrate init container), a small frontend that serves the dashboard and proxies everything else to the backend, and a Redis that holds standup sessions across restarts. Set redis.enabled=false and externalRedis.url to use a managed Redis instead.
 Exposing it
 Slack has to reach the app over HTTPS. Three ways, in order of how common they are:
-Ingress. Set ingress.enabled=true and your host. Standard annotations for cert-manager work.
+Ingress. On by default, with the nginx class and a cert-manager annotation. Set ingress.hosts and ingress.tls to your own domain, since the defaults name api.morgenruf.dev.
 Gateway API. An HTTPRoute is supported for clusters that have moved on from Ingress.
 Cloudflare tunnel. No ingress controller, no public load balancer, no open port. Useful on a homelab cluster or anywhere the cluster is not internet-facing.
 One replica, on purpose
-The scheduler that fires standups, coffee chat rounds and the midnight kudos reset runs inside the app process. Two replicas would both wake up at nine and both send the morning message. Until that moves behind a shared lock, run one replica and let Kubernetes restart it; a restart mid-round resumes rather than repeating, because delivery is recorded per person as it happens.
+The scheduler that fires standups, coffee chat rounds and the midnight kudos reset runs inside the app process. Each pod runs its own, and every scheduled firing is claimed in the database before it runs, so two pods overlapping during a rollout do not both send the morning message. One replica is still the default and enough for most teams; let Kubernetes restart it, and a restart mid-round resumes rather than repeating, because delivery is recorded per person as it happens.
 Upgrades
 helm repo update helm upgrade morgenruf morgenruf/morgenruf --reuse-values
-Migrations run in an init container before the new app container starts. If you pin an image tag rather than using the chart's, set it on both the app and the migrate container, or you will run the previous release's migrations against the new code.
+Migrations run in an init container before the new app container starts. If you pin an image tag rather than using the chart's, image.tag (or image.digest) covers both the app and the migrate container; set frontend.image.tag to the same release.
 What to watch
 kubectl logs deploy/morgenruf -c migrate after a rollout, to see which migrations applied.
 Scheduler started with N jobs in the app log. N should grow when you add a standup.
@@ -974,11 +976,11 @@ QuestionsRunning it on Kubernetes
 Does the chart ship a database?
 It can, but do not use it for anything you care about. Point externalDatabase.url at a managed Postgres so the data outlives the release.
 How do migrations run?
-An init container runs them before the app container starts, so a rollout is also a migration. When you pin an image tag, set it on both containers or the init container will run the old migrations against the new code.
+An init container runs them before the app container starts, so a rollout is also a migration. When you pin an image, image.tag or image.digest covers both the app and the init container; pin frontend.image.tag to the same release.
 Can it run without an ingress controller?
-Yes. A Cloudflare tunnel in the same namespace works, and the chart has values for it. Nothing needs a public load balancer.
+Yes. Set ingress.enabled=false and run a Cloudflare tunnel in the same namespace, pointed at the morgenruf Service. The chart does not deploy the tunnel for you. Nothing needs a public load balancer.
 How many replicas?
-One. The scheduler lives in the process, and two replicas would both try to send the morning standup. Horizontal scaling is on the roadmap behind a shared lock; until then, one.
+One is the default and plenty. Every scheduled firing is claimed in the database first, so pods that overlap during a rollout do not send the morning standup twice. The chart runs Redis by default, which more than one replica needs for standup sessions.
 
 ## Create the Slack app: manifest, scopes, install
 https://morgenruf.dev/setup/slack-app/
@@ -996,12 +998,16 @@ This has to match the APP_URL you configured, including https.
 From Basic Information, copy the client id, client secret and signing secret into your environment or Helm values. The signing secret is what lets the app verify a request genuinely came from Slack; without it every event is rejected.
 4. What it asks for, and why
 Scopes are the part people read carefully, so here is each group and what it is for.
+app_mentions:read: so the bot can answer when somebody @-mentions it in a channel.
+team:read: the workspace name, shown in the dashboard and the digest.
 channels:read, groups:read: to see who is in the channel a standup or a coffee chat draws from.
 chat:write: to post the summary and the introductions.
 im:write, im:history: to ask each person their questions in a DM and read their answers to it.
-users:read, users:read.email: names and email, for the dashboard and the digest.
-users.profile:read: timezones, so nobody is asked at midnight.
-mpim:write, mpim:history: the group DM a coffee chat introduction happens in. Only needed if you turn coffee chats on.
+im:read: to list the app's own direct message conversations.
+users:read: names and timezones, so nobody is asked at midnight.
+users:read.email: the address a digest email is sent to.
+users.profile:read: working hours, for suggesting a coffee chat time both people can make.
+mpim:write, mpim:history: the group DM a coffee chat introduction happens in, and following it so a pair who are already talking is not nudged. Only coffee chats use them.
 emoji:read: so kudos can use a custom token from your workspace.
 reactions:write: the 🎉 under each celebration post. A workspace that has not granted it still gets the posts, without the reaction.
 commands: the slash commands.
@@ -1011,10 +1017,10 @@ If you installed before coffee chats existed, your workspace will not have grant
 Open your app URL, authorise, and you are the first admin. Then invite the bot to the channel the summary posts in, and to any channel you want coffee chats to pair from. The bot has to be in the channel before a standup can post there:
 /invite @Morgenruf
 Slash commands you get
-/standup: start your standup now
-/skip: skip today
-/kudos @teammate a reason: give recognition
-/help: what the bot can do
+/standup (or /morgenruf-standup): start your standup now
+/skip (or /morgenruf-skip): skip today
+/kudos @teammate a reason (or /morgenruf-kudos): give recognition
+/morgenruf: what the bot can do
 /morgenruf profile: your member profile, the birthday and start date celebrations read
 Docker Compose
 Get the app itself running in a few minutes.
@@ -1023,9 +1029,9 @@ The Helm chart, values and rollouts.
 Read it →
 QuestionsAbout the Slack app
 Why does it ask for so many scopes?
-It does not ask for all of them at once. Standups need the basics: reading channel membership, writing messages, and opening DMs. Coffee chats add three more, because a group introduction is a multi-person DM. Kudos needs emoji read access to use your own token. A workspace that never turns on coffee chats never grants those scopes.
+Each one has a single job, listed on this page. Standups need the basics: reading channel membership, writing messages, and opening DMs. Coffee chats add three more, because a group introduction is a multi-person DM. Kudos needs emoji read access to use your own token. All of them are requested at install, so a feature switched on later works without reinstalling.
 What are the three extra coffee chat scopes?
-mpim:write and mpim:history, to open and follow the group DM an introduction lives in, and users.profile:read, to know each person's timezone so a suggested hour is not the middle of their night.
+mpim:write and mpim:history, to open and follow the group DM an introduction lives in, and users.profile:read, to read each person's working hours so a suggested time suits both.
 Can I restrict it to one channel?
 Yes. The bot only acts in channels it has been invited to, and each standup names its own channel. Nothing happens anywhere it has not been asked.
 Does it read our messages?

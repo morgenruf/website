@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="/assets/site.css?v=0e4afc264f"/>
 <script src="/assets/analytics.js" defer></script>
 <script src="/assets/nav.js?v=9bd6907975" defer></script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How long does it take to set up?", "acceptedAnswer": {"@type": "Answer", "text": "About twenty minutes end to end: ten to create the Slack app from the manifest, five to start the containers, and five to point it at a channel. Migrations run themselves on first start, so there is no database step beyond having a Postgres URL."}}, {"@type": "Question", "name": "What do I actually need?", "acceptedAnswer": {"@type": "Answer", "text": "A machine that can run Docker or a Kubernetes cluster, a Postgres database, and an HTTPS URL Slack can reach. A Cloudflare tunnel covers the last one without opening a port."}}, {"@type": "Question", "name": "Can I try it without a server?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Add to Slack installs it on the free hosted instance CloudDrove runs, in about two minutes. To try the self-hosted route, run it on your laptop with Docker Compose and expose it with a tunnel. Nothing about that is different from the production path except where it runs."}}, {"@type": "Question", "name": "Do I need a paid Slack plan?", "acceptedAnswer": {"@type": "Answer", "text": "No. Morgenruf uses the standard Slack app APIs available on the free plan."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How long does it take to set up?", "acceptedAnswer": {"@type": "Answer", "text": "About twenty minutes end to end: ten to create the Slack app from the manifest, five to start the containers, and five to point it at a channel. Migrations run as their own step before the app starts (a one-shot service in Compose, an init container in Helm), so an empty database is enough."}}, {"@type": "Question", "name": "What do I actually need?", "acceptedAnswer": {"@type": "Answer", "text": "A machine that can run Docker or a Kubernetes cluster, a Postgres database, and an HTTPS URL Slack can reach. A Cloudflare tunnel covers the last one without opening a port."}}, {"@type": "Question", "name": "Can I try it without a server?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Add to Slack installs it on the free hosted instance CloudDrove runs, in about two minutes. To try the self-hosted route, run it on your laptop with Docker Compose and expose it with a tunnel. Nothing about that is different from the production path except where it runs."}}, {"@type": "Question", "name": "Do I need a paid Slack plan?", "acceptedAnswer": {"@type": "Answer", "text": "No. Morgenruf uses the standard Slack app APIs available on the free plan."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Set up"}]}</script>
 </head>
 <body>
@@ -46,7 +46,7 @@
 <div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <span>Set up</span></div><main>
 <header class="page-head"><div class="wrap">
   <h1>Set it up yourself, in about twenty minutes</h1>
-  <p class="lede">Morgenruf is one process and a Postgres database. Pick whichever of these you already have, and the Slack side is the same either way. Would rather not run anything? <a href="https://api.morgenruf.dev/install">Add to Slack</a> puts it on the free hosted instance in about two minutes.</p>
+  <p class="lede">Morgenruf is a backend, a small frontend and a Postgres database. Pick whichever of these you already have, and the Slack side is the same either way. Would rather not run anything? <a href="https://api.morgenruf.dev/install">Add to Slack</a> puts it on the free hosted instance in about two minutes.</p>
 </div></header>
 <section class="section"><div class="wrap">
   <span class="eyebrow">Three ways in</span>
@@ -79,7 +79,7 @@
 <text x="105.0" y="136.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">your workspace</text>
 <rect x="295" y="80" width="170" height="80" rx="12" fill="#fff" stroke="#E9E2D6" stroke-width="1.5"/>
 <text x="380.0" y="116.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Morgenruf</text>
-<text x="380.0" y="136.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">one process</text>
+<text x="380.0" y="136.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">app and frontend</text>
 <rect x="570" y="80" width="170" height="80" rx="12" fill="#FFF7EA" stroke="#F0E4CE" stroke-width="1.5"/>
 <text x="655.0" y="116.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Postgres</text>
 <text x="655.0" y="136.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">your database</text>
@@ -87,19 +87,20 @@
 <line x1="290" y1="138" x2="192" y2="138" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="241.0" y="129.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12" fill="#5A5E74">messages</text>
 <line x1="465" y1="120" x2="566" y2="120" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="515.5" y="111.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12" fill="#5A5E74">reads and writes</text>
 <rect x="295" y="192" width="170" height="36" rx="10" fill="#12131F"/>
-<text x="380" y="215" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#F6F3EC">scheduler, inside the process</text>
+<text x="380" y="215" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#F6F3EC">scheduler, inside the app</text>
 <line x1="380" y1="160" x2="380" y2="190" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/>
 <text x="380" y="30" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="#12131F">Three things at the core</text>
-<text x="380" y="52" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">No queue, no cache, optional services off by default</text>
+<text x="380" y="52" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">Migrations run first; Helm adds Redis; optional services off</text>
 </svg>
-<figcaption>Everything runs in one process against one database. A self-hosted install talks to Slack only, plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator turns those on.</figcaption>
+<figcaption>A backend and a small frontend in front of it, against one database, with migrations applied as a separate step before the app starts. A self-hosted install talks to Slack only, plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator turns those on.</figcaption>
 </figure>
     <h2 id="what-you-need-before-you-start">What you need before you start</h2>
     <ul>
       <li><strong>Somewhere to run it.</strong> Any machine with Docker, or a Kubernetes cluster.
-      It is a single Python process and a Postgres database; it is not demanding.</li>
-      <li><strong>Postgres.</strong> Anything from 13 up. Migrations apply themselves when the app
-      starts, so an empty database is enough.</li>
+      It is a Python backend, a small frontend and a Postgres database, plus Redis on Helm; it is
+      not demanding.</li>
+      <li><strong>Postgres.</strong> Migrations run as a separate step before the app starts, so an
+      empty database is enough.</li>
       <li><strong>An HTTPS URL Slack can reach.</strong> Slack posts events to your app, so it needs
       a public address. A Cloudflare tunnel works and needs no open port.</li>
       <li><strong>A Slack workspace where you can install apps.</strong> Whoever installs it becomes
@@ -113,16 +114,17 @@
     (Resend), an AI provider or PostHog analytics if the operator turns those on.</p>
 
     <div class="note"><p><strong>One value people miss:</strong> <code>FLASK_SECRET_KEY</code> signs
-    dashboard sessions. Generate a real one with <code>openssl rand -hex 32</code>. Leaving it blank
-    means nobody can stay logged in.</p></div>
+    dashboard sessions. Generate a real one with <code>openssl rand -hex 32</code>. The app will not
+    start without it.</p></div>
 
     <h2 id="after-it-is-running">After it is running</h2>
     <ol>
       <li>Open your app URL and sign in with Slack. You are the first admin.</li>
       <li>Create <a href="/standups/">a standup</a>: pick a channel, the questions, the hour, and
       who takes part.</li>
-      <li>Turn on <a href="/coffee-chats/">coffee chats</a> and <a href="/kudos/">kudos</a> when you
-      want them. Both are off until you say so.</li>
+      <li><a href="/kudos/">Kudos</a> is on from the start. Turn on
+      <a href="/coffee-chats/">coffee chats</a> and <a href="/celebrations/">celebrations</a> when
+      you want them; both are off until you say so.</li>
       <li>Optional: connect Zoom so coffee chats book a real meeting, and set up a digest email.</li>
     </ol>
   </div>
@@ -130,7 +132,7 @@
 <section class="section"><div class="wrap" style="max-width:820px">
   <span class="eyebrow">Questions</span>
   <h2 id="before-you-begin">Before you begin</h2>
-  <div style="margin-top:24px"><details open><summary>How long does it take to set up?</summary><p>About twenty minutes end to end: ten to create the Slack app from the manifest, five to start the containers, and five to point it at a channel. Migrations run themselves on first start, so there is no database step beyond having a Postgres URL.</p></details><details><summary>What do I actually need?</summary><p>A machine that can run Docker or a Kubernetes cluster, a Postgres database, and an HTTPS URL Slack can reach. A Cloudflare tunnel covers the last one without opening a port.</p></details><details><summary>Can I try it without a server?</summary><p>Yes. Add to Slack installs it on the free hosted instance CloudDrove runs, in about two minutes. To try the self-hosted route, run it on your laptop with Docker Compose and expose it with a tunnel. Nothing about that is different from the production path except where it runs.</p></details><details><summary>Do I need a paid Slack plan?</summary><p>No. Morgenruf uses the standard Slack app APIs available on the free plan.</p></details></div>
+  <div style="margin-top:24px"><details open><summary>How long does it take to set up?</summary><p>About twenty minutes end to end: ten to create the Slack app from the manifest, five to start the containers, and five to point it at a channel. Migrations run as their own step before the app starts (a one-shot service in Compose, an init container in Helm), so an empty database is enough.</p></details><details><summary>What do I actually need?</summary><p>A machine that can run Docker or a Kubernetes cluster, a Postgres database, and an HTTPS URL Slack can reach. A Cloudflare tunnel covers the last one without opening a port.</p></details><details><summary>Can I try it without a server?</summary><p>Yes. Add to Slack installs it on the free hosted instance CloudDrove runs, in about two minutes. To try the self-hosted route, run it on your laptop with Docker Compose and expose it with a tunnel. Nothing about that is different from the production path except where it runs.</p></details><details><summary>Do I need a paid Slack plan?</summary><p>No. Morgenruf uses the standard Slack app APIs available on the free plan.</p></details></div>
 </div></section>
 </main><section class="section">
   <div class="wrap">
