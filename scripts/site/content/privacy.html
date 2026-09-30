@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Privacy Policy — Morgenruf</title>
-  <meta name="description" content="Morgenruf Privacy Policy — how we collect, use and protect your data. GDPR compliant."/>
+  <title>Privacy Policy, Morgenruf</title>
+  <meta name="description" content="Morgenruf Privacy Policy: how we collect, use and protect your data. GDPR compliant."/>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>&#x1F305;</text></svg>"/>
   
   
@@ -14,7 +14,7 @@
   <meta property="og:site_name" content="Morgenruf"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/privacy"/>
-<meta property="og:title" content="Privacy — Morgenruf"/>
+<meta property="og:title" content="Privacy, Morgenruf"/>
 <meta property="og:description" content="What Morgenruf stores, what it never sends anywhere, and what self-hosting means for your data."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
@@ -23,13 +23,13 @@
 <body>
   <a href="/">← Back to morgenruf.dev</a>
   
-  <p>Effective date: April 5, 2026 · Last updated: September 28, 2026</p>
+  <p>Effective date: April 5, 2026 · Last updated: September 30, 2026</p>
 
-  <p>Morgenruf ("we", "our", "us") operates the Slack application Morgenruf and the website at morgenruf.dev. This policy explains what personal data we collect, why, how we protect it, and your rights.</p>
+  <p>The hosted Morgenruf Slack app and the website at morgenruf.dev are operated by Anmol Nagpal ("we", "our", "us"). This policy explains what personal data we collect, why, how we protect it, and your rights.</p>
 
   <h2>1. Who We Are</h2>
-  <p>Morgenruf is an open-source Slack standup bot. The hosted cloud version is operated by the Morgenruf project. Source code is available at <a href="https://github.com/morgenruf/morgenruf">github.com/morgenruf/morgenruf</a> under the MIT license.</p>
-  <p>Privacy inquiries: <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a></p>
+  <p>Morgenruf is an open-source Slack app for standups, coffee chats, kudos and celebrations. The hosted service is operated by Anmol Nagpal, in Canada. It is sponsored and hosted by CloudDrove, which runs the servers and the database in a Canadian data centre and is listed as a sub-processor in section 5. Source code is available at <a href="https://github.com/morgenruf/morgenruf">github.com/morgenruf/morgenruf</a> under the MIT license.</p>
+  <p>Privacy inquiries, including requests to access, transfer or delete your data: <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a></p>
 
   <h2>2. Data We Collect</h2>
   <table>
@@ -38,7 +38,7 @@
       <tr><td>Slack workspace ID and name</td><td>Slack OAuth</td><td>Identify your workspace</td></tr>
       <tr><td>Slack bot token</td><td>Slack OAuth</td><td>Authenticate API calls</td></tr>
       <tr><td>Slack user IDs and display names</td><td>Slack API</td><td>Send DMs, display in dashboard</td></tr>
-      <tr><td>Email addresses (if scope granted)</td><td>Slack API</td><td>Transactional emails</td></tr>
+      <tr><td>Email addresses</td><td>Slack API (users:read.email)</td><td>Stored with the member record. Emailed only as described under "Email addresses" below</td></tr>
       <tr><td>User timezones</td><td>Slack API</td><td>Schedule standups correctly</td></tr>
       <tr><td>Standup responses (text)</td><td>Users via bot DM</td><td>Core functionality</td></tr>
       <tr><td>Standup configuration</td><td>Admin via dashboard</td><td>Core functionality</td></tr>
@@ -47,7 +47,26 @@
       <tr><td>Member profile: birthday (day and month only, never the year), start date, role, location, "ask me about", and whether the member opted out of celebrations</td><td>The member, or a workspace admin (form or CSV import)</td><td>Celebrations, and the features that read the profile</td></tr>
     </tbody>
   </table>
-  <p>We do <strong>not</strong> read any Slack messages outside of direct messages sent to the Morgenruf bot. We do <strong>not</strong> collect payment information.</p>
+  <p>We do <strong>not</strong> read Slack channel messages. The only messages Morgenruf receives are direct messages sent to the Morgenruf bot, and the only other conversations it looks at are the coffee chat group messages it opens itself (see "Data we receive but do not use" below). We do <strong>not</strong> collect payment information.</p>
+
+  <h3>Email addresses</h3>
+  <p>Morgenruf asks Slack for the users:read.email permission, so Slack gives it the email address on each member's Slack profile, including the person who installed the app. These addresses are stored with the member record.</p>
+  <ul>
+    <li><strong>The person who installed Morgenruf</strong> is emailed only after they opt in inside Slack, by pressing the "Email me setup tips" button. Nothing is sent to them before that. They can withdraw at any time, from the unsubscribe link in any email or by writing to <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a>, and we stop emailing them.</li>
+    <li><strong>Everybody else's address is never emailed</strong> by us, and no address is used for marketing, sold, or shared with anybody outside the sub-processors in section 5.</li>
+    <li><strong>The standup digest email</strong>, if a workspace admin turns it on, goes to the address that admin types into the standup settings.</li>
+    <li><strong>When Morgenruf is installed</strong>, the installing person's name, email address, job title and timezone are posted once to a private Slack channel the operator reads, so a new install does not go unnoticed. Nobody outside the operator sees it.</li>
+  </ul>
+
+  <h3>Data we receive but do not use</h3>
+  <p>Slack sends Morgenruf some data it has no use for. It is discarded, not stored:</p>
+  <ul>
+    <li><strong>Direct messages to the bot</strong> that are not a command (such as <code>help</code> or <code>kudos @name</code>) or an answer to a standup the bot asked are ignored and not stored. So are the events Slack sends for the bot's own messages and for edits and deletions.</li>
+    <li><strong>@-mentions of the bot</strong> in a channel: Slack delivers the message text, and Morgenruf replies with a fixed pointer to its help. The text is not read, used or stored.</li>
+    <li><strong>Coffee chat group messages</strong>: to avoid nudging a pair who are already talking, Morgenruf checks whether anybody has written in the group message it opened for them. It looks only at whether a message exists. What was said is not read or stored.</li>
+    <li><strong>Slack profiles</strong>: when Slack returns a member's profile, Morgenruf keeps the name, display name, email address, timezone and profile photo link. The rest (such as phone number and status) is dropped. The one exception is the install notice described above, which includes the installer's job title.</li>
+    <li><strong>Channel joins</strong>: when someone joins a channel the bot is in, Morgenruf records them as a member (name, email address and timezone, as above) and sends a welcome DM only if that channel runs a standup, a coffee chat or celebrations. Nothing else about the channel is kept.</li>
+  </ul>
   <h3>Member profiles</h3>
   <p>Each member can keep a short profile. It holds a birthday as a day and month only; the year is never stored, and a full date in an imported file has its year removed before it is saved. It also holds a start date (with its year, because anniversaries count years), a role, a location, an "ask me about" line, and an opt-out flag for celebrations.</p>
   <ul>
@@ -58,19 +77,20 @@
     <li>Profiles can also be read through the MCP server with an API key, which only a workspace admin can create.</li>
   </ul>
   <p>When a member leaves the workspace, their profile is deleted 30 days later. If they return within those 30 days, it is kept. Uninstalling Morgenruf removes every profile along with the rest of the workspace's data (see section 9).</p>
-  <div><p><strong>Self-hosted:</strong> If you self-host Morgenruf, you are the data controller. We have no access to your data — it stays entirely on your infrastructure.</p></div>
+  <div><p><strong>Self-hosted:</strong> If you self-host Morgenruf, you are the data controller. We have no access to your data. It stays entirely on your infrastructure.</p></div>
 
   <h2>3. How We Use Your Data</h2>
   <ul>
     <li>Deliver standup prompts to team members at scheduled times</li>
     <li>Post formatted standup summaries to your Slack channel</li>
     <li>Display analytics (participation, history) in the web dashboard</li>
-    <li>Send transactional emails: install confirmation, weekly digest, inactive nudges</li>
+    <li>Email setup tips to the person who installed Morgenruf, only after they opt in inside Slack</li>
+    <li>Send the standup digest email to the address a workspace admin sets, if they turn it on</li>
     <li>Post birthdays and work anniversaries to the channel your workspace chooses, if Celebrations is turned on</li>
-    <li>Generate AI-powered standup summaries (only if you enable this feature — see §5)</li>
+    <li>AI standup summaries are <strong>not</strong> part of the hosted service. They exist only on self-hosted installs whose operator configures their own OpenAI or Anthropic key (see section 5)</li>
     <li>Debug errors and maintain service reliability via Sentry</li>
   </ul>
-  <p>We do <strong>not</strong> use your data for advertising, profiling, or selling to third parties.</p>
+  <p>We do <strong>not</strong> use your data for advertising, profiling, or selling to third parties. We never use Slack data to train AI or machine learning models, and the hosted service does not send it to any AI provider.</p>
 
   <h2>4. Legal Basis for Processing (GDPR)</h2>
   <p>For users in the EEA, we process data under the following legal bases:</p>
@@ -80,7 +100,8 @@
       <tr><td>Delivering standup prompts and summaries</td><td>Performance of contract (Art. 6(1)(b))</td></tr>
       <tr><td>Analytics and dashboard</td><td>Legitimate interests (Art. 6(1)(f))</td></tr>
       <tr><td>Website and product usage counts</td><td>Legitimate interests (Art. 6(1)(f))</td></tr>
-      <tr><td>Transactional emails</td><td>Performance of contract / Legitimate interests</td></tr>
+      <tr><td>Standup digest email</td><td>Performance of contract / Legitimate interests</td></tr>
+      <tr><td>Setup tips email to the installer</td><td>Consent (Art. 6(1)(a)), given in Slack and withdrawable at any time</td></tr>
 
       <tr><td>Security logging</td><td>Legitimate interests</td></tr>
     </tbody>
@@ -91,13 +112,22 @@
   <table>
     <thead><tr><th>Sub-processor</th><th>Purpose</th><th>Location</th></tr></thead>
     <tbody>
-      <tr><td><a href="https://slack.com/privacy">Slack Technologies</a></td><td>Slack API — message delivery</td><td>USA/EU</td></tr>
+      <tr><td><a href="https://slack.com/privacy">Slack Technologies</a></td><td>Slack API, message delivery</td><td>USA/EU</td></tr>
       <tr><td>CloudDrove</td><td>Database and application hosting, on servers CloudDrove operates in a Canadian data centre</td><td>Canada</td></tr>
       <tr><td><a href="https://resend.com/legal/privacy-policy">Resend</a></td><td>Transactional email delivery</td><td>USA</td></tr>
       <tr><td><a href="https://www.netlify.com/privacy/">Netlify</a></td><td>Website hosting</td><td>USA</td></tr>
       <tr><td><a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a></td><td>CDN, and privacy-preserving page view counts (no cookies, no cross-site tracking)</td><td>USA</td></tr>
       <tr><td><a href="https://sentry.io/privacy/">Sentry</a></td><td>Error monitoring (no standup content)</td><td>USA</td></tr>
       <tr><td><a href="https://posthog.com/privacy">PostHog</a></td><td>Product and website analytics. Site pages are counted without cookies. Product events are counted per workspace and carry no Slack user ID and no standup content</td><td>USA</td></tr>
+    </tbody>
+  </table>
+  <h3>Not used by the hosted service</h3>
+  <p>Morgenruf can talk to a few more services, but only on a self-hosted install whose operator configures them with their own account. The hosted service has none of them configured and sends them nothing.</p>
+  <table>
+    <thead><tr><th>Service</th><th>What it would do on a self-hosted install</th></tr></thead>
+    <tbody>
+      <tr><td>OpenAI or Anthropic</td><td>AI standup summaries, using the operator's own API key. The hosted service does not send any data to an AI provider.</td></tr>
+      <tr><td>Zoom</td><td>Optional. Booking a meeting for a coffee chat pair, using the operator's own Zoom app.</td></tr>
     </tbody>
   </table>
   <h2>6. Data Retention</h2>
@@ -109,6 +139,8 @@
       <tr><td>Website and product usage events</td><td>12 months</td></tr>
       <tr><td>Slack tokens</td><td>Until you uninstall Morgenruf</td></tr>
       <tr><td>Member profiles</td><td>Until 30 days after the member leaves the workspace, or until you uninstall Morgenruf</td></tr>
+      <tr><td>Member records (name, email address, timezone)</td><td>Until you uninstall Morgenruf</td></tr>
+      <tr><td>Email opt-in and unsubscribe records</td><td>Until you uninstall Morgenruf. An unsubscribe is kept so that it keeps holding</td></tr>
       <tr><td>Request / error logs</td><td>30 days</td></tr>
       <tr><td>Email send logs</td><td>90 days</td></tr>
     </tbody>
@@ -126,17 +158,23 @@
 
   <h2>8. Your Rights</h2>
   <p>Depending on your location, you may have the right to: <strong>access</strong>, <strong>rectify</strong>, <strong>erase</strong>, receive a <strong>portable copy</strong> (CSV export available in dashboard), <strong>restrict processing</strong>, or <strong>object</strong> to processing. EEA users may also lodge a complaint with their national data protection authority.</p>
-  <p>To exercise any right, email <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a> with your Slack workspace ID. We will respond within 30 days.</p>
+  <p>To exercise any right, email <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a> with your Slack workspace ID. No account is needed. We will respond within 30 days. In particular:</p>
+  <ul>
+    <li><strong>Access:</strong> ask for a copy of the personal data we hold about you or your workspace.</li>
+    <li><strong>Transfer:</strong> ask for that data in a machine-readable format (CSV or JSON). Workspace admins can also export standup history as CSV from the dashboard at any time.</li>
+    <li><strong>Deletion:</strong> ask for your data, or your whole workspace's data, to be deleted. See section 9 for the ways to do it.</li>
+    <li><strong>Correction:</strong> members can edit their own profile in Slack, and we will correct anything else on request.</li>
+  </ul>
 
   <h2>9. Data Deletion</h2>
   <ul>
-    <li><strong>Uninstall Morgenruf</strong> from Slack (<em>Manage Apps → Remove Morgenruf</em>) — data is deleted within 30 days of the uninstall event.</li>
-    <li><strong>Immediate deletion:</strong> Email <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a> with your Slack team ID.</li>
+    <li><strong>Uninstall Morgenruf</strong> from Slack (<em>Manage Apps → Remove Morgenruf</em>). Data is deleted within 30 days of the uninstall event.</li>
+    <li><strong>Immediate deletion:</strong> Email <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a> with your Slack team ID. A single member can ask for just their own data to be deleted the same way, with their Slack user ID.</li>
     <li><strong>Self-hosted:</strong> Drop your database or use the provided cleanup script.</li>
   </ul>
 
   <h2>10. International Data Transfers</h2>
-  <p>Our hosting is based in the United States. For EEA/UK users, data is transferred to the USA. We rely on Standard Contractual Clauses (SCCs) and the adequacy frameworks of our sub-processors. You can request transfer mechanism details at <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a>.</p>
+  <p>The hosted service runs in Canada, on servers CloudDrove operates. Some sub-processors in section 5 (Slack, Resend, Sentry, PostHog, Netlify and Cloudflare) are in the USA, so data they handle is transferred there. For EEA/UK users, Canada has an EU adequacy decision, and for the US sub-processors we rely on Standard Contractual Clauses (SCCs) and the adequacy frameworks of those sub-processors. You can request transfer mechanism details at <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a>.</p>
 
   <h2>11. Children's Privacy</h2>
   <p>Morgenruf is not directed at children under 13. We do not knowingly collect data from children. If you believe a child has provided us data, please contact <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a>.</p>
