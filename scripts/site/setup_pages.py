@@ -51,8 +51,9 @@ def page(*, path, title, description, h1, lede, body, schema=(), trail=(), curre
 HUB_FAQ = [
     ("How long does it take to set up?",
      "About twenty minutes end to end: ten to create the Slack app from the manifest, five to start "
-     "the containers, and five to point it at a channel. Migrations run themselves on first start, "
-     "so there is no database step beyond having a Postgres URL."),
+     "the containers, and five to point it at a channel. Migrations run as their own step before "
+     "the app starts (a one-shot service in Compose, an init container in Helm), so an empty "
+     "database is enough."),
     ("What do I actually need?",
      "A machine that can run Docker or a Kubernetes cluster, a Postgres database, and an HTTPS URL "
      "Slack can reach. A Cloudflare tunnel covers the last one without opening a port."),
@@ -93,9 +94,10 @@ def hub():
     <h2 id="what-you-need-before-you-start">What you need before you start</h2>
     <ul>
       <li><strong>Somewhere to run it.</strong> Any machine with Docker, or a Kubernetes cluster.
-      It is a single Python process and a Postgres database; it is not demanding.</li>
-      <li><strong>Postgres.</strong> Anything from 13 up. Migrations apply themselves when the app
-      starts, so an empty database is enough.</li>
+      It is a Python backend, a small frontend and a Postgres database, plus Redis on Helm; it is
+      not demanding.</li>
+      <li><strong>Postgres.</strong> Migrations run as a separate step before the app starts, so an
+      empty database is enough.</li>
       <li><strong>An HTTPS URL Slack can reach.</strong> Slack posts events to your app, so it needs
       a public address. A Cloudflare tunnel works and needs no open port.</li>
       <li><strong>A Slack workspace where you can install apps.</strong> Whoever installs it becomes
@@ -109,16 +111,17 @@ def hub():
     (Resend), an AI provider or PostHog analytics if the operator turns those on.</p>
 
     <div class="note"><p><strong>One value people miss:</strong> <code>FLASK_SECRET_KEY</code> signs
-    dashboard sessions. Generate a real one with <code>openssl rand -hex 32</code>. Leaving it blank
-    means nobody can stay logged in.</p></div>
+    dashboard sessions. Generate a real one with <code>openssl rand -hex 32</code>. The app will not
+    start without it.</p></div>
 
     <h2 id="after-it-is-running">After it is running</h2>
     <ol>
       <li>Open your app URL and sign in with Slack. You are the first admin.</li>
       <li>Create <a href="/standups/">a standup</a>: pick a channel, the questions, the hour, and
       who takes part.</li>
-      <li>Turn on <a href="/coffee-chats/">coffee chats</a> and <a href="/kudos/">kudos</a> when you
-      want them. Both are off until you say so.</li>
+      <li><a href="/kudos/">Kudos</a> is on from the start. Turn on
+      <a href="/coffee-chats/">coffee chats</a> and <a href="/celebrations/">celebrations</a> when
+      you want them; both are off until you say so.</li>
       <li>Optional: connect Zoom so coffee chats book a real meeting, and set up a digest email.</li>
     </ol>
   </div>
@@ -136,7 +139,7 @@ def hub():
         description="Run Morgenruf yourself with Docker Compose, or on Kubernetes with Helm: what you "
                     "need, the Slack app, and about twenty minutes end to end.",
         h1="Set it up yourself, in about twenty minutes",
-        lede="Morgenruf is one process and a Postgres database. Pick whichever of these you already "
+        lede="Morgenruf is a backend, a small frontend and a Postgres database. Pick whichever of these you already "
              "have, and the Slack side is the same either way. Would rather not run anything? "
              f'<a href="{INSTALL}">Add to Slack</a> puts it on the free hosted instance in about two '
              "minutes.",
@@ -148,9 +151,9 @@ DOCKER_STEPS = [
     ("Create the Slack app", "Create an app from the manifest in the repository, add your redirect "
      "URL under OAuth and Permissions, and copy the client id, client secret and signing secret."),
     ("Clone and configure", "Clone the repository, copy .env.example to .env, and fill in the three "
-     "Slack values, a Postgres URL, APP_URL and a generated FLASK_SECRET_KEY."),
-    ("Start the containers", "Run docker compose up -d. Migrations apply themselves on first start, "
-     "so an empty database is enough."),
+     "Slack values, DB_PASSWORD, APP_URL and a generated FLASK_SECRET_KEY."),
+    ("Start the containers", "Run docker compose up -d. A one-shot migrate service applies the "
+     "migrations, then the app and the frontend start."),
     ("Give Slack a URL it can reach", "Expose the app over HTTPS, with a reverse proxy or a "
      "Cloudflare tunnel, and set that address as APP_URL."),
     ("Install it into Slack", "Open your app URL, authorise the workspace, and create your first "
@@ -162,11 +165,11 @@ DOCKER_FAQ = [
      "A Mac mini yes, and it is a good home for it. On a Pi you would need an arm64 image; the "
      "published image is amd64, so build it yourself on the Pi or use a small cloud VM instead."),
     ("Does Docker Compose bring its own Postgres?",
-     "Yes, the bundled compose file starts one for you. For anything you care about, point "
-     "DATABASE_URL at a managed Postgres instead and keep backups out of the container's lifecycle."),
+     "Yes, the bundled compose file starts one for you. The compose file sets DATABASE_URL for the "
+     "app and migrate services itself, so to use a managed Postgres, change it there, not in .env."),
     ("How do I upgrade?",
-     "Pull the new image and restart: docker compose pull && docker compose up -d. Migrations run "
-     "on start, and they are written to be safe to run against a live database."),
+     "Pull the new image and restart: docker compose pull && docker compose up -d. The migrate "
+     "service applies any new migrations before the app starts again."),
     ("How do I back it up?",
      "It is one Postgres database, so pg_dump is the whole backup story. No state lives in the "
      "container."),
@@ -194,28 +197,35 @@ copy the client id, client secret and signing secret.</p>
 cd morgenruf/app
 cp .env.example .env</code></pre>
 <p>Open <code>.env</code> and set at least these:</p>
-<pre><code>SLACK_CLIENT_ID=...
+<pre><code>DB_PASSWORD=...
+SLACK_CLIENT_ID=...
 SLACK_CLIENT_SECRET=...
 SLACK_SIGNING_SECRET=...
-DATABASE_URL=postgresql://morgenruf:password@db:5432/morgenruf
 APP_URL=https://standups.your-domain.com
-FLASK_SECRET_KEY=$(openssl rand -hex 32)</code></pre>
+FLASK_SECRET_KEY=...   # paste the output of: openssl rand -hex 32</code></pre>
+<p>There is no <code>DATABASE_URL</code> to set: the compose file builds it from
+<code>DB_PASSWORD</code> for the bundled Postgres, and a value in <code>.env</code> would be
+overridden. The app will not start without <code>FLASK_SECRET_KEY</code>.</p>
 
 <div class="note"><p><strong>APP_URL has to be the address Slack will call</strong>, not localhost.
 If you are using a tunnel, put the tunnel's URL here and restart after it changes.</p></div>
 
 <h2 id="3-start-it">3. Start it</h2>
 <pre><code>docker compose up -d
+docker compose logs migrate
 docker compose logs -f app</code></pre>
-<p>The log will show migrations applying and then <code>Scheduler started</code>. That is the whole
-startup: there is no separate migration step and no seed data to load.</p>
+<p>Four services start: Postgres, a one-shot <code>migrate</code> service, the app and the
+frontend. The migrate log shows the migrations applying; it exits when they are done, and only then
+does the app start. The app log then shows <code>Scheduler started</code>. There is no seed data to
+load.</p>
 
 <h2 id="4-let-slack-reach-it">4. Let Slack reach it</h2>
 <p>Slack posts events to your app, so it needs a public HTTPS address. If you already run a reverse
 proxy, point it at port 3000. If you do not:</p>
 <pre><code>cloudflared tunnel --url http://localhost:3000</code></pre>
 <p>Copy the <code>https://….trycloudflare.com</code> address it prints, set it as
-<code>APP_URL</code>, and restart with <code>docker compose restart app</code>. For anything
+<code>APP_URL</code>, and apply it with <code>docker compose up -d</code> (a plain restart does not
+pick up a changed <code>.env</code>). For anything
 permanent, use a named tunnel rather than a quick one, because the quick URL changes each run.</p>
 
 <h2 id="5-install-it">5. Install it</h2>
@@ -227,11 +237,12 @@ part. What <a href="/standups/">a standup does once it is running</a> is describ
 <h2 id="keeping-it-running">Keeping it running</h2>
 <ul>
   <li><strong>Upgrades:</strong> <code>docker compose pull &amp;&amp; docker compose up -d</code>.
-  Migrations apply on start.</li>
+  The migrate service applies new migrations before the app starts.</li>
   <li><strong>Backups:</strong> it is one Postgres database. <code>pg_dump</code> is the whole
   story.</li>
   <li><strong>Logs:</strong> <code>docker compose logs -f app</code>. Standups, coffee chat rounds
-  and delivery failures all appear there.</li>
+  and delivery failures all appear there. <code>docker compose logs migrate</code> shows the
+  migrations.</li>
 </ul>
 
 <div class="note"><p><strong>Stuck?</strong> The
@@ -282,14 +293,16 @@ K8S_FAQ = [
      "Postgres so the data outlives the release."),
     ("How do migrations run?",
      "An init container runs them before the app container starts, so a rollout is also a migration. "
-     "When you pin an image tag, set it on both containers or the init container will run the old "
-     "migrations against the new code."),
+     "When you pin an image, image.tag or image.digest covers both the app and the init container; "
+     "pin frontend.image.tag to the same release."),
     ("Can it run without an ingress controller?",
-     "Yes. A Cloudflare tunnel in the same namespace works, and the chart has values for it. "
-     "Nothing needs a public load balancer."),
+     "Yes. Set ingress.enabled=false and run a Cloudflare tunnel in the same namespace, pointed at "
+     "the morgenruf Service. The chart does not deploy the tunnel for you. Nothing needs a public "
+     "load balancer."),
     ("How many replicas?",
-     "One. The scheduler lives in the process, and two replicas would both try to send the morning "
-     "standup. Horizontal scaling is on the roadmap behind a shared lock; until then, one."),
+     "One is the default and plenty. Every scheduled firing is claimed in the database first, so "
+     "pods that overlap during a rollout do not send the morning standup twice. The chart runs Redis "
+     "by default, which more than one replica needs for standup sessions."),
 ]
 
 
@@ -310,12 +323,17 @@ helm upgrade --install morgenruf morgenruf/morgenruf \\
 <div class="note"><p><strong>Use a real database.</strong> The chart can start one for you, which is
 fine for a look, but point <code>externalDatabase.url</code> at managed Postgres for anything you
 intend to keep. The data outliving the release is the point.</p></div>
+<p>A release runs the backend (with a <code>migrate</code> init container), a small frontend that
+serves the dashboard and proxies everything else to the backend, and a Redis that holds standup
+sessions across restarts. Set <code>redis.enabled=false</code> and <code>externalRedis.url</code> to
+use a managed Redis instead.</p>
 
 <h2 id="exposing-it">Exposing it</h2>
 <p>Slack has to reach the app over HTTPS. Three ways, in order of how common they are:</p>
 <ul>
-  <li><strong>Ingress.</strong> Set <code>ingress.enabled=true</code> and your host. Standard
-  annotations for cert-manager work.</li>
+  <li><strong>Ingress.</strong> On by default, with the nginx class and a cert-manager
+  annotation. Set <code>ingress.hosts</code> and <code>ingress.tls</code> to your own domain, since
+  the defaults name <code>api.morgenruf.dev</code>.</li>
   <li><strong>Gateway API.</strong> An HTTPRoute is supported for clusters that have moved on from
   Ingress.</li>
   <li><strong>Cloudflare tunnel.</strong> No ingress controller, no public load balancer, no open
@@ -324,17 +342,18 @@ intend to keep. The data outliving the release is the point.</p></div>
 
 <h2 id="one-replica-on-purpose">One replica, on purpose</h2>
 <p>The scheduler that fires <a href="/standups/">standups</a>, <a href="/coffee-chats/">coffee chat
-rounds</a> and the midnight <a href="/kudos/">kudos</a> reset runs inside the app process. Two
-replicas would both wake up at nine and both send the morning message. Until that moves behind a
-shared lock, run one replica and let Kubernetes restart it; a restart mid-round resumes rather than
+rounds</a> and the midnight <a href="/kudos/">kudos</a> reset runs inside the app process. Each pod
+runs its own, and every scheduled firing is claimed in the database before it runs, so two pods
+overlapping during a rollout do not both send the morning message. One replica is still the default
+and enough for most teams; let Kubernetes restart it, and a restart mid-round resumes rather than
 repeating, because delivery is recorded per person as it happens.</p>
 
 <h2 id="upgrades">Upgrades</h2>
 <pre><code>helm repo update
 helm upgrade morgenruf morgenruf/morgenruf --reuse-values</code></pre>
 <p>Migrations run in an init container before the new app container starts. If you pin an image tag
-rather than using the chart's, set it on <strong>both</strong> the app and the migrate container, or
-you will run the previous release's migrations against the new code.</p>
+rather than using the chart's, <code>image.tag</code> (or <code>image.digest</code>) covers both the
+app and the migrate container; set <code>frontend.image.tag</code> to the same release.</p>
 
 <h2 id="what-to-watch">What to watch</h2>
 <ul>
@@ -391,14 +410,13 @@ SLACK_STEPS = [
 
 SLACK_FAQ = [
     ("Why does it ask for so many scopes?",
-     "It does not ask for all of them at once. Standups need the basics: reading channel membership, "
-     "writing messages, and opening DMs. Coffee chats add three more, because a group introduction is "
-     "a multi-person DM. Kudos needs emoji read access to use your own token. A workspace that never "
-     "turns on coffee chats never grants those scopes."),
+     "Each one has a single job, listed on this page. Standups need the basics: reading channel "
+     "membership, writing messages, and opening DMs. Coffee chats add three more, because a group "
+     "introduction is a multi-person DM. Kudos needs emoji read access to use your own token. All of "
+     "them are requested at install, so a feature switched on later works without reinstalling."),
     ("What are the three extra coffee chat scopes?",
      "mpim:write and mpim:history, to open and follow the group DM an introduction lives in, and "
-     "users.profile:read, to know each person's timezone so a suggested hour is not the middle of "
-     "their night."),
+     "users.profile:read, to read each person's working hours so a suggested time suits both."),
     ("Can I restrict it to one channel?",
      "Yes. The bot only acts in channels it has been invited to, and each standup names its own "
      "channel. Nothing happens anywhere it has not been asked."),
@@ -435,17 +453,22 @@ it every event is rejected.</p>
 <h2 id="4-what-it-asks-for-and-why">4. What it asks for, and why</h2>
 <p>Scopes are the part people read carefully, so here is each group and what it is for.</p>
 <ul>
+  <li><code>app_mentions:read</code>: so the bot can answer when somebody @-mentions it in a
+  channel.</li>
+  <li><code>team:read</code>: the workspace name, shown in the dashboard and the digest.</li>
   <li><code>channels:read</code>, <code>groups:read</code>: to see who is in the channel a standup
   or a coffee chat draws from.</li>
   <li><code>chat:write</code>: to post the summary and the introductions.</li>
   <li><code>im:write</code>, <code>im:history</code>: to ask each person their questions in a DM and
   read their answers to it.</li>
-  <li><code>users:read</code>, <code>users:read.email</code>: names and email, for the dashboard and
-  the digest.</li>
-  <li><code>users.profile:read</code>: timezones, so nobody is asked at midnight.</li>
+  <li><code>im:read</code>: to list the app's own direct message conversations.</li>
+  <li><code>users:read</code>: names and timezones, so nobody is asked at midnight.</li>
+  <li><code>users:read.email</code>: the address a digest email is sent to.</li>
+  <li><code>users.profile:read</code>: working hours, for suggesting a coffee chat time both people
+  can make.</li>
   <li><code>mpim:write</code>, <code>mpim:history</code>: the group DM a
-  <a href="/coffee-chats/">coffee chat</a> introduction happens in. Only needed if you turn coffee
-  chats on.</li>
+  <a href="/coffee-chats/">coffee chat</a> introduction happens in, and following it so a pair who
+  are already talking is not nudged. Only coffee chats use them.</li>
   <li><code>emoji:read</code>: so <a href="/kudos/">kudos</a> can use a custom token from your
   workspace.</li>
   <li><code>reactions:write</code>: the 🎉 under each <a href="/celebrations/">celebration</a>
@@ -466,10 +489,11 @@ channel before <a href="/standups/">a standup</a> can post there:</p>
 
 <h2 id="slash-commands-you-get">Slash commands you get</h2>
 <ul>
-  <li><code>/standup</code>: start your standup now</li>
-  <li><code>/skip</code>: skip today</li>
-  <li><code>/kudos @teammate a reason</code>: give recognition</li>
-  <li><code>/help</code>: what the bot can do</li>
+  <li><code>/standup</code> (or <code>/morgenruf-standup</code>): start your standup now</li>
+  <li><code>/skip</code> (or <code>/morgenruf-skip</code>): skip today</li>
+  <li><code>/kudos @teammate a reason</code> (or <code>/morgenruf-kudos</code>): give
+  recognition</li>
+  <li><code>/morgenruf</code>: what the bot can do</li>
   <li><code>/morgenruf profile</code>: your member profile, the birthday and start date
   <a href="/celebrations/">celebrations</a> read</li>
 </ul>

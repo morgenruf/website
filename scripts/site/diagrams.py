@@ -27,22 +27,22 @@ ARROW_DEF = f'''<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" marke
 <path d="M0 0 L10 5 L0 10 z" fill="{AMBER}"/></marker></defs>'''
 
 
-def architecture(caption="Everything runs in one process against one database. A self-hosted install talks to Slack only, plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator turns those on."):
+def architecture(caption="A backend and a small frontend in front of it, against one database, with migrations applied as a separate step before the app starts. A self-hosted install talks to Slack only, plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator turns those on."):
     """What talks to what, for the setup hub."""
     return f'''<figure class="diagram">
 <svg viewBox="0 0 760 240" role="img" aria-label="Slack sends events to the Morgenruf app, which reads and writes your own Postgres database. A scheduler inside the app sends standups and coffee chat introductions.">
 {ARROW_DEF}
 {_box(20, 80, 170, 80, "Slack", "your workspace", "#FFF7EA", "#F0E4CE", INK)}
-{_box(295, 80, 170, 80, "Morgenruf", "one process", "#fff", "#E9E2D6", INK)}
+{_box(295, 80, 170, 80, "Morgenruf", "app and frontend", "#fff", "#E9E2D6", INK)}
 {_box(570, 80, 170, 80, "Postgres", "your database", "#FFF7EA", "#F0E4CE", INK)}
 {_arrow(190, 105, 290, 105, "events")}
 {_arrow(290, 138, 192, 138, "messages")}
 {_arrow(465, 120, 566, 120, "reads and writes")}
 <rect x="295" y="192" width="170" height="36" rx="10" fill="{INK}"/>
-<text x="380" y="215" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#F6F3EC">scheduler, inside the process</text>
+<text x="380" y="215" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#F6F3EC">scheduler, inside the app</text>
 <line x1="380" y1="160" x2="380" y2="190" stroke="{AMBER}" stroke-width="2.5" marker-end="url(#a)"/>
 <text x="380" y="30" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="{INK}">Three things at the core</text>
-<text x="380" y="52" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">No queue, no cache, optional services off by default</text>
+<text x="380" y="52" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">Migrations run first; Helm adds Redis; optional services off</text>
 </svg>
 <figcaption>{caption}</figcaption>
 </figure>'''

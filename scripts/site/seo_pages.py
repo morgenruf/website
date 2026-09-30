@@ -71,7 +71,7 @@ GEEKBOT_ROWS = [
     ("Async standups by DM, one channel summary", "Yes", "yes", "Yes", "yes"),
     ("Per-person timezones", "Yes", "yes", "Yes", "yes"),
     ("Polls and surveys", "No", "no", "Yes", "yes"),
-    ("Microsoft Teams", "In progress", "no", "Yes", "yes"),
+    ("Microsoft Teams", "Planned", "no", "Yes", "yes"),
     ("Free plan", "Yes, any team size", "yes", "Up to 10 users", ""),
     ("Price above the free plan", "None", "yes", "$3 per user monthly, $2.50 billed annually", "no"),
     ("A 30 person team, per year", "$0 hosted", "yes", "$900 to $1,080", "no"),
@@ -115,12 +115,12 @@ please <a href="{REPO}/issues/new/choose">open an issue</a>.</p>
   tracker and a maintainer's evening.</li>
   <li><strong>A free plan for small teams.</strong> Geekbot is free for up to 10 users, so a small
   team pays nothing either way.</li>
-  <li><strong>Microsoft Teams.</strong> Geekbot runs there today; Teams support here is in
-  progress.</li>
+  <li><strong>Microsoft Teams.</strong> Geekbot runs there today; Teams support here is planned,
+  not started.</li>
 </ul>
 <p>If you have no appetite for running anything, you do not have to: Add to Slack puts Morgenruf on
 the free hosted instance in about two minutes. Most of what follows is about the other route,
-<a href="/self-hosted-standup-bot/">one container and a Postgres of your own</a>.</p>
+<a href="/self-hosted-standup-bot/">two small containers and a Postgres of your own</a>.</p>
 
 <h2 id="where-this-is-different">Where is Morgenruf different from Geekbot?</h2>
 <h3>The price does not scale with hiring</h3>
@@ -277,8 +277,9 @@ month.</p>
 
 <h2 id="what-you-take-on">What you take on</h2>
 <p>Nothing, if you use the free hosted instance. Self-hosting is the trade for keeping the data in
-your own database, and in practice that means one container, one database, an HTTPS URL, and
-<code>docker compose pull</code> when there is a release. Migrations apply themselves on start.
+your own database, and in practice that means a backend and a small frontend container, one database, an HTTPS URL,
+and <code>docker compose pull</code> when there is a release. Migrations run in their own step
+before the app starts.
 <a href="/self-hosted-standup-bot/">Running it on your own servers</a> sets out the requirements, the
 upgrade path and the backups in full. If that sounds like a chore rather than a Tuesday, a hosted
 option is cheaper than your time.</p>
@@ -341,11 +342,11 @@ travels with it. There is no contributor agreement assigning your changes to any
   <li><strong>It cannot be taken away.</strong> No price change, no acquisition, no sunset email.</li>
 </ul>
 
-{diagrams.architecture("The whole of what you would be running: one process, one Postgres, and Slack on the other end.")}
+{diagrams.architecture("The whole of what you would be running: the app and its frontend, one Postgres, and Slack on the other end.")}
 
 <h2 id="the-honest-trade">The honest trade</h2>
-<p>A licence does not run anything. Someone has to, and that is one container, a Postgres and an
-HTTPS URL, with migrations that apply themselves.
+<p>A licence does not run anything. Someone has to, and that is a backend and a small frontend container, a
+Postgres and an HTTPS URL, with migrations applied as a step before each start.
 <a href="/self-hosted-standup-bot/">What running it on your own servers involves</a> is a page of its
 own, down to the backups. It is a small job, but it is not zero. The free hosted instance CloudDrove
 runs removes it entirely, on the same code. Be clear which side of that you are on before
@@ -443,8 +444,11 @@ answers. Everything else on this page follows from that. Three reasons come up, 
 
 <h2 id="what-running-it-involves">What running it actually involves</h2>
 <ul>
-  <li><strong>One container.</strong> A Python process. Not a queue, a worker pool and a cache.</li>
-  <li><strong>One database.</strong> Postgres 13 or newer. Migrations run themselves on start.</li>
+  <li><strong>Two small containers.</strong> A Python backend and a frontend that serves the
+  dashboard. No queue and no worker pool. The Helm chart adds a small Redis that keeps
+  in-progress standups across restarts.</li>
+  <li><strong>One database.</strong> Postgres 13 or newer. Migrations run as a separate step before
+  the app starts: a one-shot service in Compose, an init container in Helm.</li>
   <li><strong>An HTTPS URL.</strong> Slack posts events to it. A Cloudflare tunnel is enough and
   needs no open port.</li>
   <li><strong>Upgrades.</strong> Pull the image and restart, or <code>helm upgrade</code>.</li>
@@ -500,7 +504,7 @@ infrastructure.</p>'''
                          ("The underestimated part", "the-part-people-underestimate")])
     faq_html, faq_schema = faq([
         ("What are the minimum requirements?",
-         "One small container and a Postgres. A single vCPU with 512MB is enough for a team of "
+         "Two small containers (backend and frontend) and a Postgres. A single vCPU with 512MB is enough for a team of "
          "dozens; the work is bursty and short."),
         ("Does it need a public IP?",
          "No. A Cloudflare tunnel gives Slack an HTTPS URL without opening a port or running an "
@@ -517,15 +521,15 @@ infrastructure.</p>'''
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/self-hosted-standup-bot/",
                 title="Self-hosted standup bot: where your data lives",
-                description="Run the standup bot on your own servers: one container, one Postgres, "
+                description="Run the standup bot on your own servers: two small containers, one Postgres, "
                             "one HTTPS URL. Docker or Kubernetes, in your region, answers in your "
                             "own database.",
                 h1="A standup bot on your own servers, in your own region",
-                lede="One container, one database, one HTTPS URL Slack can reach. Where the answers "
+                lede="Two small containers, one database, one HTTPS URL Slack can reach. Where the answers "
                      "physically sit, and what it takes to keep them there.",
                 body=body, schema=[faq_schema],
                 trail=[("Home", "/"), ("Self-hosted standup bot", None)],
-        define='Morgenruf is a self-hostable Slack standup bot: one container and a Postgres database, deployed with Docker Compose or Helm, with every answer stored in a database you control. It is MIT licensed and free, and the same code also runs as a free hosted instance for teams that would rather not run it.')
+        define='Morgenruf is a self-hostable Slack standup bot: a backend, a small frontend and a Postgres database, deployed with Docker Compose or Helm, with every answer stored in a database you control. It is MIT licensed and free, and the same code also runs as a free hosted instance for teams that would rather not run it.')
 
 
 def slack_bot():
@@ -586,9 +590,9 @@ happens when someone is on leave. If you are still deciding,
          "Yes. Questions go by DM, and the summary can post anywhere the bot has been invited."),
         ("Does it read our channel messages?",
          "No. It reads replies to its own DMs and channel membership where you point it. It has no "
-         "history scope."),
+         "channel history scope."),
         ("What about Microsoft Teams or Google Chat?",
-         "Google Chat is in beta; Teams as a platform is in progress. Slack is first class."),
+         "Google Chat is in beta; Teams as a platform is planned, not started. Slack is first class."),
     ])
     body += f'''<section class="section"><div class="wrap" style="max-width:820px">
   <span class="eyebrow">Questions</span><h2>About the Slack app</h2>
@@ -725,7 +729,7 @@ DailyBot off once the new summary looks right.</p>
          "Yes, with no seat price and no report cap. The hosted instance is free. Self-hosted, you pay "
          "for the server and database, roughly $5 to $20 a month regardless of headcount."),
         ("Does Morgenruf work in Microsoft Teams or Discord?",
-         "No. Slack is first class, Google Chat is in beta, and Teams is in progress. If you need "
+         "No. Slack is first class, Google Chat is in beta, and Teams is planned, not started. If you need "
          "Teams or Discord today, DailyBot is the better fit."),
         ("Can I import my DailyBot history?",
          "No. Run both in parallel for a week and switch over once the summaries look right."),
@@ -793,8 +797,8 @@ source; the price shown depends on the team size you pick), chat apps and featur
 <ul>
   <li><strong>Video and voice answers.</strong> Standuply lets people answer by video or voice
   message. Morgenruf is text only.</li>
-  <li><strong>Microsoft Teams.</strong> Standuply runs there today; Teams support here is in
-  progress.</li>
+  <li><strong>Microsoft Teams.</strong> Standuply runs there today; Teams support here is planned,
+  not started.</li>
   <li><strong>Agile extras.</strong> Surveys, and on the Business plan planning poker, backlog
   refinement and 360 degree feedback.</li>
   <li><strong>Integrations.</strong> Standuply connects to Jira, Trello and Asana, and its Team plan

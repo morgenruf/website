@@ -5,10 +5,11 @@ Their content was fine. Their stylesheet was a different website.
 
 from __future__ import annotations
 
+import json
 import pathlib
 import re
 
-from shell import INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, footer, head, nav
+from shell import INSTALL, REPO, SITE, SLACK_MARK, breadcrumbs, cta_band, footer, head, nav
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 
@@ -32,11 +33,11 @@ def _extract(name):
     return inner.strip()
 
 
-def _page(*, path, title, description, h1, lede, prose, trail, noindex=False):
+def _page(*, path, title, description, h1, lede, prose, trail, noindex=False, schema=()):
     crumb_html, crumb_schema = breadcrumbs(trail)
     extra = '\n<meta name="robots" content="noindex, follow"/>' if noindex else ""
     html = head(title=title, description=description, path=path,
-                schema=[crumb_schema] if crumb_schema else [], extra_head=extra)
+                schema=list(schema) + ([crumb_schema] if crumb_schema else []), extra_head=extra)
     if noindex:
         html = html.replace('<meta name="robots" content="index, follow"/>', "")
     return (html + nav() + crumb_html
@@ -124,6 +125,26 @@ POSTS = [
 ]
 
 
+def _blog_schema():
+    """Blog with each post as a BlogPosting, read from the posts' own JSON-LD so
+    a headline or date changed on a post reaches the listing on the next build."""
+    posts = []
+    for href, _title, _blurb in POSTS:
+        html = (ROOT / href.strip("/") / "index.html").read_text()
+        found = re.search(r'<script type="application/ld\+json">(\{"@context":"https://schema.org",'
+                          r'"@type":"BlogPosting".*?)</script>', html, re.S)
+        post = json.loads(found.group(1))
+        posts.append({"@type": "BlogPosting", "headline": post["headline"],
+                      "url": SITE + href, "datePublished": post["datePublished"],
+                      "dateModified": post["dateModified"],
+                      "author": {"@id": post["author"]["@id"]}})
+    return json.dumps({
+        "@context": "https://schema.org", "@type": "Blog", "@id": SITE + "/blog/#blog",
+        "name": "Morgenruf blog", "url": SITE + "/blog/", "inLanguage": "en",
+        "publisher": {"@id": SITE + "/#organization"}, "blogPost": posts,
+    }, separators=(",", ":"), ensure_ascii=False)
+
+
 def blog_index():
     cards = "".join(
         f'<a class="tile" href="{href}"><h3>{title}</h3><p>{blurb}</p>'
@@ -158,4 +179,4 @@ where to say that one of them is wrong.</p>'''
                  h1="Writing about async standups and self-hosting",
                  lede="On async standups, self-hosting, and what building the alternative actually "
                       "involves.",
-                 prose=prose, trail=[("Home", "/"), ("Blog", None)])
+                 prose=prose, trail=[("Home", "/"), ("Blog", None)], schema=[_blog_schema()])

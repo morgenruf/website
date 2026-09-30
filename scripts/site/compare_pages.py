@@ -57,7 +57,7 @@ def donut():
         ("Runs on your own servers", "Yes", "yes", "No", "no"),
         ("Source you can read", "MIT", "yes", "Closed", "no"),
         ("Your pairing data lives in", "your database", "yes", "their cloud", "no"),
-        ("Microsoft Teams", "In progress", "no", "Yes", "yes"),
+        ("Microsoft Teams", "Planned", "no", "Yes", "yes"),
         ("Price", "Free, any team size", "yes", "Free plan; paid plans from about $74 a month", ""),
     ]
     body = f'''<section class="section"><div class="wrap">
@@ -108,7 +108,7 @@ hiring.</p>
 <p>Add to Slack puts Morgenruf on the free hosted instance, so a people ops lead can start coffee
 chats without anyone running a server. Each round closes by asking whether the pair met, and the
 answer is recorded four ways: met, did not meet, never replied, and never delivered. If your company
-needs the data in-house, this is the line to forward to engineering: "Morgenruf is one container
+needs the data in-house, this is the line to forward to engineering: "Morgenruf is two small containers
 and a Postgres, MIT licensed, about twenty minutes to set up: morgenruf.dev/setup/".</p>
 
 <h2 id="switching">Switching</h2>
@@ -162,7 +162,7 @@ def heytaco():
         ("Coffee chat introductions", "Yes", "yes", "No", "no"),
         ("Runs on your own servers", "Yes", "yes", "No", "no"),
         ("Source you can read", "MIT", "yes", "Closed", "no"),
-        ("Microsoft Teams", "In progress", "no", "Yes", "yes"),
+        ("Microsoft Teams", "Planned", "no", "Yes", "yes"),
         ("Price", "Free, any team size", "yes", "Per seat, monthly", "no"),
     ]
     body = f'''<section class="section"><div class="wrap">
@@ -192,9 +192,9 @@ custom emoji and the bot picks it up on its own.</p>
 contributing and being thanked by nobody, which is the question worth acting on.</p>
 
 <h3>Nothing for HR to install</h3>
-<p>Add to Slack puts Morgenruf on the free hosted instance, so whoever runs recognition can switch
-kudos on without an engineer. If the data has to stay in-house, the self-hosted route is one
-container and a Postgres; <a href="/setup/">the setup page</a> is the link to forward.</p>
+<p>Add to Slack puts Morgenruf on the free hosted instance, so whoever runs recognition can start
+using kudos without an engineer (it is on from the start). If the data has to stay in-house, the
+self-hosted route is two small containers and a Postgres; <a href="/setup/">the setup page</a> is the link to forward.</p>
 
 <h3>The price, again</h3>
 <p>Free for every seat, hosted or self-hosted. Recognition tools are usually priced per person per
@@ -309,7 +309,7 @@ def hub():
     <h3>Donut</h3>
     <p>Donut made this category and still has the widest surface in it: onboarding journeys, channel
     prompts, video facilitation, and a Microsoft Teams version that works today rather than one that
-    is in progress. If your pairing programme is really an onboarding programme, Donut is built for
+    is only planned. If your pairing programme is really an onboarding programme, Donut is built for
     that and this is not. The
     <a href="/donut-alternative/">Donut alternative page</a> has the feature-by-feature version.</p>
 
@@ -357,13 +357,14 @@ def hub():
     the route for keeping the data in your own database. The money argument is easy and slightly
     dishonest on its own, because the time is real. Here is the whole of it:</p>
     <ul>
-      <li><strong>The install.</strong> One container and a Postgres 13 or newer, about twenty
+      <li><strong>The install.</strong> A backend and a small frontend container and a Postgres 13 or
+      newer, about twenty
       minutes, most of which is <a href="/setup/">creating the Slack app</a> rather than deploying
       anything.</li>
       <li><strong>An HTTPS URL Slack can reach.</strong> An ingress if you run Kubernetes, or a
       Cloudflare tunnel, which needs no open port.</li>
-      <li><strong>Upgrades.</strong> Pull the image and restart. Migrations run themselves in an
-      init container before the app starts.</li>
+      <li><strong>Upgrades.</strong> Pull the image and restart. Migrations run in their own step
+      before the app starts: an init container on Helm, a one-shot service in Compose.</li>
       <li><strong>Backups.</strong> <code>pg_dump</code>. There is no other state anywhere.</li>
       <li><strong>Somebody owning it.</strong> This is the honest cost. When Slack changes a scope
       or the disk fills, there is no support queue by default, there is you. Budget an hour a
@@ -377,7 +378,8 @@ def hub():
     <h2 id="who-should-not">Who should not pick Morgenruf</h2>
     <p>Saying this plainly saves everybody an afternoon:</p>
     <ul>
-      <li><strong>Anyone on Microsoft Teams.</strong> Support is in progress, which means not today.
+      <li><strong>Anyone on Microsoft Teams.</strong> Support is planned, not started, which means not
+      today.
       Geekbot, Donut and HeyTaco all ship it now.</li>
       <li><strong>Anyone who needs a rewards catalogue.</strong> Gift cards, budgets, redemption.
       HeyTaco or Bonusly, not this.</li>

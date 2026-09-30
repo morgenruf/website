@@ -110,8 +110,9 @@ month.</p>
 
 <h2 id="what-you-take-on">What you take on</h2>
 <p>Nothing, if you use the free hosted instance. Self-hosting is the trade for keeping the data in
-your own database, and in practice that means one container, one database, an HTTPS URL, and
-<code>docker compose pull</code> when there is a release. Migrations apply themselves on start.
+your own database, and in practice that means a backend and a small frontend container, one database, an HTTPS URL,
+and <code>docker compose pull</code> when there is a release. Migrations run in their own step
+before the app starts.
 <a href="/self-hosted-standup-bot/">Running it on your own servers</a> sets out the requirements, the
 upgrade path and the backups in full. If that sounds like a chore rather than a Tuesday, a hosted
 option is cheaper than your time.</p>

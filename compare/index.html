@@ -102,7 +102,7 @@
     <h3>Donut</h3>
     <p>Donut made this category and still has the widest surface in it: onboarding journeys, channel
     prompts, video facilitation, and a Microsoft Teams version that works today rather than one that
-    is in progress. If your pairing programme is really an onboarding programme, Donut is built for
+    is only planned. If your pairing programme is really an onboarding programme, Donut is built for
     that and this is not. The
     <a href="/donut-alternative/">Donut alternative page</a> has the feature-by-feature version.</p>
 
@@ -150,13 +150,14 @@
     the route for keeping the data in your own database. The money argument is easy and slightly
     dishonest on its own, because the time is real. Here is the whole of it:</p>
     <ul>
-      <li><strong>The install.</strong> One container and a Postgres 13 or newer, about twenty
+      <li><strong>The install.</strong> A backend and a small frontend container and a Postgres 13 or
+      newer, about twenty
       minutes, most of which is <a href="/setup/">creating the Slack app</a> rather than deploying
       anything.</li>
       <li><strong>An HTTPS URL Slack can reach.</strong> An ingress if you run Kubernetes, or a
       Cloudflare tunnel, which needs no open port.</li>
-      <li><strong>Upgrades.</strong> Pull the image and restart. Migrations run themselves in an
-      init container before the app starts.</li>
+      <li><strong>Upgrades.</strong> Pull the image and restart. Migrations run in their own step
+      before the app starts: an init container on Helm, a one-shot service in Compose.</li>
       <li><strong>Backups.</strong> <code>pg_dump</code>. There is no other state anywhere.</li>
       <li><strong>Somebody owning it.</strong> This is the honest cost. When Slack changes a scope
       or the disk fills, there is no support queue by default, there is you. Budget an hour a
@@ -170,7 +171,8 @@
     <h2 id="who-should-not">Who should not pick Morgenruf</h2>
     <p>Saying this plainly saves everybody an afternoon:</p>
     <ul>
-      <li><strong>Anyone on Microsoft Teams.</strong> Support is in progress, which means not today.
+      <li><strong>Anyone on Microsoft Teams.</strong> Support is planned, not started, which means not
+      today.
       Geekbot, Donut and HeyTaco all ship it now.</li>
       <li><strong>Anyone who needs a rewards catalogue.</strong> Gift cards, budgets, redemption.
       HeyTaco or Bonusly, not this.</li>

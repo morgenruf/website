@@ -135,7 +135,8 @@ a hosted tool in <a href="/geekbot-alternative/">the comparison with Geekbot</a>
 <h2 id="what-you-can-do-with-the-answers">What you can do with the answers</h2>
 <ul>
   <li><strong>A digest email</strong> per standup, to a lead who does not live in Slack.</li>
-  <li><strong>Signed webhooks</strong> on every completed standup, for whatever you build next.</li>
+  <li><strong>Signed webhooks</strong> when a standup completes, a blocker is reported or
+  participation drops, for whatever you build next.</li>
   <li><strong>Automation rules</strong>: if nobody has answered by ten, post in another channel.</li>
   <li><strong>Ask an assistant.</strong> The MCP server lets Claude or Cursor answer questions like
   "who has been blocked on the same thing for days" against your own history.</li>
@@ -308,7 +309,8 @@ the same way <a href="/standups/">a standup</a> works out when to ask.</p>
 
 <h2 id="setting-up-kudos">How do you set up kudos in Slack?</h2>
 <ol>
-  <li>Turn Kudos on in the Morgenruf dashboard. Like every module it is off until you do.</li>
+  <li>Open Kudos in the Morgenruf dashboard. It is on from the start (coffee chats and
+  celebrations are the modules that start off), and an admin can switch it off there.</li>
   <li>Pick the token: any emoji in your workspace, including a custom one.</li>
   <li>Set the daily allowance.</li>
   <li>People give one with <code>/kudos @teammate a reason</code> or from a DM, and it posts
