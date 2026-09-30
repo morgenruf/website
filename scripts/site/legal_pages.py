@@ -85,7 +85,7 @@ rebuilt, or the link may have been wrong to begin with.</p>
   twenty minutes.</p><span class="go">Start here →</span></a>
   <a class="tile" href="/standups/"><h3>Standups</h3><p>What the daily check-in does and how it
   behaves.</p><span class="go">Read →</span></a>
-  <a class="tile" href="/support/"><h3>Help</h3><p>Issues, discussions and commercial support.</p>
+  <a class="tile" href="/support/"><h3>Help</h3><p>Email, issues, discussions and commercial support.</p>
   <span class="go">Get help →</span></a>
 </div>
 <p>If a link on this site brought you here, that is a bug:
