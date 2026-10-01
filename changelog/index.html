@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Changelog: every Morgenruf release, currently 1.9.13</title>
+<title>Changelog: every Morgenruf release, currently 1.9.14</title>
 <meta name="description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/changelog/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/changelog/"/>
-<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.9.13"/>
+<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.9.14"/>
 <meta property="og:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.9.13"/>
+<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.9.14"/>
 <meta name="twitter:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="theme-color" content="#12131f"/>
@@ -47,13 +47,20 @@
 <header class="page-head"><div class="wrap">
   <h1>Changelog</h1>
   <p class="lede">Every release, what changed in it, and why. Currently on
-  <strong>1.9.13</strong>, with 43 releases documented.</p>
+  <strong>1.9.14</strong>, with 44 releases documented.</p>
 </div></header>
 <section class="section"><div class="wrap">
   <div class="note" style="margin-bottom:34px"><p>Every release is tagged, published with notes, and
   built from the same commit that is on <a href="https://github.com/morgenruf/morgenruf">GitHub</a>. Docker images carry the
   revision they were built from, so you can check what you are running matches what you read here.</p></div>
   <article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.14">1.9.14</h2>
+    <time datetime="2026-10-01">2026-10-01</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.14">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.14-added">Added</h3><ul><li><strong>Polls.</strong> <code>/morgenruf poll</code> opens a form, or <code>/morgenruf poll "Question" "Option 1" "Option 2"</code> posts one in the current channel. People vote with buttons on the message and the bars update live. Polls can be anonymous, allow more than one choice, hide results until they close, and close on their own. Anonymous votes are stored under a per-poll key that is deleted when the poll closes, so closed votes cannot be tied to anyone. There is a Polls page in the dashboard.</li><li><strong>Pulse.</strong> An optional weekly check-in by DM: how work was this week (1 to 5), and eNPS every fourth week. Answers are kept only as counts, the list of who answered is deleted when a check-in closes, and results show only after it closes: averages from 5 answers, breakdown and eNPS from 10. Off by default; a workspace admin turns it on from the Pulse page.</li><li><strong>Modules can add <code>/morgenruf</code> subcommands</strong>, and are told when they are turned off so they can close what they have open.</li></ul><h3 id="v1.9.14-changed">Changed</h3><ul><li>The "one step left" DM after a quick start now also names the Slack menu path for adding Morgenruf to a channel, since <code>/invite</code> can open a menu.</li></ul></div>
+</article><article class="release">
   <div class="release-meta">
     <h2 id="v1.9.13">1.9.13</h2>
     <time datetime="2026-10-01">2026-10-01</time>

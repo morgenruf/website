@@ -71,7 +71,7 @@ Integration
 ## Licence and source
 
 - Built by Anmol Nagpal (creator and maintainer), sponsored by CloudDrove
-- Current version: 1.9.13, released 2026-10-01
+- Current version: 1.9.14, released 2026-10-01
 
 MIT. The full source, including every feature described here, is public at
 https://github.com/morgenruf/morgenruf
