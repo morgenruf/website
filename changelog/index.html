@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Changelog: every Morgenruf release, currently 1.9.11</title>
+<title>Changelog: every Morgenruf release, currently 1.9.12</title>
 <meta name="description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/changelog/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/changelog/"/>
-<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.9.11"/>
+<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.9.12"/>
 <meta property="og:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.9.11"/>
+<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.9.12"/>
 <meta name="twitter:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="theme-color" content="#12131f"/>
@@ -47,13 +47,20 @@
 <header class="page-head"><div class="wrap">
   <h1>Changelog</h1>
   <p class="lede">Every release, what changed in it, and why. Currently on
-  <strong>1.9.11</strong>, with 41 releases documented.</p>
+  <strong>1.9.12</strong>, with 42 releases documented.</p>
 </div></header>
 <section class="section"><div class="wrap">
   <div class="note" style="margin-bottom:34px"><p>Every release is tagged, published with notes, and
   built from the same commit that is on <a href="https://github.com/morgenruf/morgenruf">GitHub</a>. Docker images carry the
   revision they were built from, so you can check what you are running matches what you read here.</p></div>
   <article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.12">1.9.12</h2>
+    <time datetime="2026-09-30">2026-09-30</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.12">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.12-fixed">Fixed</h3><ul><li><strong>Removing the app deletes the workspace's data.</strong> Workspaces whose Slack token stopped working (<code>account_inactive</code>, revoked tokens) were marked inactive but kept their members, answers and settings. A daily sweep now deletes that data 24 hours after removal, or 7 days after for <code>invalid_auth</code>, which can be a token problem on our side. It runs as a dry run that only logs what it would delete until <code>PURGE_INACTIVE_WORKSPACES=1</code> (Helm: <code>ops.purgeInactiveWorkspaces</code>).</li><li><strong>Uninstall now deletes every table.</strong> Nine tables with a team ID had no cascade and kept data after a normal uninstall, including Zoom tokens, standup threads, away and skip records, workflow rules and assistant keys.</li></ul><h3 id="v1.9.12-added">Added</h3><ul><li><strong>Workspace history.</strong> One row per workspace with dates and counts only (no names, emails, Slack IDs or message text), refreshed nightly and kept after removal, so it stays possible to see where teams stop during setup.</li></ul><h3 id="v1.9.12-added">Added</h3><ul><li><strong>Workspace history.</strong> A new <code>workspace_history</code> table keeps one row per workspace with counts and dates only: members, standups created, answers, kudos, delivered coffee matches, modules used, days installed. No user IDs, names, addresses or text. A nightly job refreshes it for every installation.</li></ul><h3 id="v1.9.12-fixed">Fixed</h3><ul><li><strong>Removed workspaces have their data deleted.</strong> Workspaces Slack reports as <code>account_inactive</code> or with a revoked token are purged 24 hours after they are retired, and <code>invalid_auth</code> after 7 days, since that can be a token refresh problem a reinstall fixes. A workspace that comes back is never purged. The sweep is a dry run that only logs what it would delete until <code>PURGE_INACTIVE_WORKSPACES=1</code> (Helm: <code>ops.purgeInactiveWorkspaces: true</code>).</li><li><strong>Uninstall deletes everything.</strong> The uninstall events relied on foreign key cascades, which missed Zoom links, standup threads, away and skip days, automation rules, module admins, MCP keys and install email records. The purge now deletes every table explicitly, records history first, and keeps only a bare installation row with its tokens cleared.</li></ul></div>
+</article><article class="release">
   <div class="release-meta">
     <h2 id="v1.9.11">1.9.11</h2>
     <time datetime="2026-09-30">2026-09-30</time>
