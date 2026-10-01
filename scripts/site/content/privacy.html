@@ -23,7 +23,7 @@
 <body>
   <a href="/">← Back to morgenruf.dev</a>
   
-  <p>Effective date: April 5, 2026 · Last updated: September 30, 2026</p>
+  <p>Effective date: April 5, 2026 · Last updated: October 1, 2026</p>
 
   <p>The hosted Morgenruf Slack app and the website at morgenruf.dev are operated by Anmol Nagpal ("we", "our", "us"). This policy explains what personal data we collect, why, how we protect it, and your rights.</p>
 
@@ -44,6 +44,8 @@
       <tr><td>Standup configuration</td><td>Admin via dashboard</td><td>Core functionality</td></tr>
       <tr><td>Kudos messages</td><td>Users via Slack</td><td>Kudos/recognition feature</td></tr>
       <tr><td>Mood ratings (optional)</td><td>Users via bot DM</td><td>Mood analytics</td></tr>
+      <tr><td>Polls: question, options, the channel and who started it; votes</td><td>Users via Slack</td><td>Polls feature</td></tr>
+      <tr><td>Pulse check-in counts (how many people picked each value), and while a check-in is open, who has answered (not what)</td><td>Users via bot DM</td><td>Pulse feature, if a workspace admin turns it on</td></tr>
       <tr><td>Member profile: birthday (day and month only, never the year), start date, role, location, "ask me about", and whether the member opted out of celebrations</td><td>The member, or a workspace admin (form or CSV import)</td><td>Celebrations, and the features that read the profile</td></tr>
     </tbody>
   </table>
@@ -66,6 +68,15 @@
     <li><strong>Coffee chat group messages</strong>: to avoid nudging a pair who are already talking, Morgenruf checks whether anybody has written in the group message it opened for them. It looks only at whether a message exists. What was said is not read or stored.</li>
     <li><strong>Slack profiles</strong>: when Slack returns a member's profile, Morgenruf keeps the name, display name, email address, timezone and profile photo link. The rest (such as phone number and status) is dropped. The one exception is the install notice described above, which includes the installer's job title.</li>
     <li><strong>Channel joins</strong>: when someone joins a channel the bot is in, Morgenruf records them as a member (name, email address and timezone, as above) and sends a welcome DM only if that channel runs a standup, a coffee chat or celebrations. Nothing else about the channel is kept.</li>
+  </ul>
+  <h3>Polls and pulse</h3>
+  <ul>
+    <li><strong>Named polls</strong> store who voted for what, and show it on the poll message.</li>
+    <li><strong>Anonymous polls</strong> store each vote under a code made from the voter's Slack ID and a random key for that poll. While the poll is open, the code only lets Morgenruf know a person already voted, so they can change their vote. When the poll closes, the key is deleted, and nobody, us included, can tell who cast which vote. The key is never written to backups.</li>
+    <li><strong>Results hidden until close</strong> are not shown anywhere, in Slack or the dashboard, before the poll closes.</li>
+    <li><strong>Pulse answers</strong> are never stored one by one. Morgenruf keeps only how many people picked each value. While a check-in is open, it also keeps who has answered (not what), so it can remind people once; when the check-in closes, that list is deleted and only the counts stay. The list is never written to backups.</li>
+    <li><strong>Pulse results</strong> show only after a check-in closes, and only as team figures: an average from 5 answers, the breakdown and eNPS from 10. There is no free text and no view of one person's answers, for admins or anybody else.</li>
+    <li>On the hosted service, Morgenruf runs the servers, so while a check-in is open someone with direct access to the database could in principle work out the most recent answer. Once it closes, nothing that links an answer to a person remains.</li>
   </ul>
   <h3>Member profiles</h3>
   <p>Each member can keep a short profile. It holds a birthday as a day and month only; the year is never stored, and a full date in an imported file has its year removed before it is saved. It also holds a start date (with its year, because anniversaries count years), a role, a location, an "ask me about" line, and an opt-out flag for celebrations.</p>
