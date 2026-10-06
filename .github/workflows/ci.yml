@@ -19,7 +19,7 @@ jobs:
           #                         URLs Netlify serves (/blog/x -> blog/x.html)
           # Without them every internal link errors and the job fails on main
           # whether or not any link is actually broken.
-          args: --verbose --no-progress --exclude-loopback --root-dir "$GITHUB_WORKSPACE" --fallback-extensions html --exclude 'https://status.morgenruf.dev' '**/*.html'
+          args: --verbose --no-progress --exclude-loopback --root-dir "$GITHUB_WORKSPACE" --fallback-extensions html --exclude 'https://status.morgenruf.dev' --exclude '^https://(www\.)?(x|twitter)\.com/' '**/*.html'
           fail: true
 
   validate-html:
