@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Changelog: every Morgenruf release, currently 1.9.14</title>
+<title>Changelog: every Morgenruf release, currently 1.9.22</title>
 <meta name="description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/changelog/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/changelog/"/>
-<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.9.14"/>
+<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.9.22"/>
 <meta property="og:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.9.14"/>
+<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.9.22"/>
 <meta name="twitter:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="theme-color" content="#12131f"/>
@@ -47,13 +47,69 @@
 <header class="page-head"><div class="wrap">
   <h1>Changelog</h1>
   <p class="lede">Every release, what changed in it, and why. Currently on
-  <strong>1.9.14</strong>, with 44 releases documented.</p>
+  <strong>1.9.22</strong>, with 52 releases documented.</p>
 </div></header>
 <section class="section"><div class="wrap">
   <div class="note" style="margin-bottom:34px"><p>Every release is tagged, published with notes, and
   built from the same commit that is on <a href="https://github.com/morgenruf/morgenruf">GitHub</a>. Docker images carry the
   revision they were built from, so you can check what you are running matches what you read here.</p></div>
   <article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.22">1.9.22</h2>
+    <time datetime="2026-10-11">2026-10-11</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.22">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.22-security">Security</h3><ul><li><strong>Slack and Zoom tokens can be encrypted in the database.</strong> Set <code>TOKEN_ENCRYPTION_KEY</code> (<code>tokenEncryptionKey</code> in the Helm chart) and bot tokens, their refresh tokens and Zoom tokens are stored as ciphertext, so a leaked dump or backup cannot be used to act as a workspace. Before this they were plain text. Without the key nothing changes. On an existing install, set the key, let the rollout finish, then run <code>python src/encrypt_tokens.py</code> once to encrypt the tokens already stored. Keep a copy of the key: without it the stored tokens cannot be read and every workspace has to reinstall. Do not roll back to an older image after encrypting, because it would send the ciphertext to Slack as if it were the token.</li><li><strong>The dashboard can no longer be framed by another site.</strong> Every response from the frontend container now sends <code>X-Frame-Options: DENY</code>, <code>Content-Security-Policy: frame-ancestors 'none'</code>, <code>nosniff</code>, a strict referrer policy, <code>Cross-Origin-Opener-Policy: same-origin</code> and a permissions policy that turns off camera, microphone and location. Before this, a page elsewhere could load a signed-in dashboard in a hidden frame and trick an admin into clicking it.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.21">1.9.21</h2>
+    <time datetime="2026-10-03">2026-10-03</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.21">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.21-added">Added</h3><ul><li><strong>Send feedback from the dashboard.</strong> A "Send feedback" item in the sidebar opens a short form: report a bug, suggest an improvement, or anything else. Anyone signed in can send one, up to five an hour. Each report is filed as an issue in a GitHub repository with the workspace, sender, page and browser, so it can be reproduced and answered. Self-hosted installs set <code>FEEDBACK_GITHUB_TOKEN</code> and <code>FEEDBACK_GITHUB_REPO</code> (a private repository); without both the item is hidden.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.20">1.9.20</h2>
+    <time datetime="2026-10-02">2026-10-02</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.20">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.20-added">Added</h3><ul><li><strong>Activation checklist.</strong> Workspace admins see "Get your team going" at the top of the Home tab: start a standup, add @Morgenruf to its channel, get the first answers ("Send it now" sends today's questions straight away), add one more ritual, and share the load with another admin or a standup manager. Each step ticks itself off from what the workspace has done, and the card goes away when all five are done or someone clicks Hide. The installer also gets one DM on day 3 if the standup has no answers yet, and one on day 7 if fewer than three steps are done. The Monday report shows each workspace's progress.</li></ul><h3 id="v1.9.20-changed">Changed</h3><ul><li><strong>Dashboard login page.</strong> The main button is now "Open Morgenruf in Slack", which opens the app in the person's workspace; its Dashboard button signs them in with no admin needed. Installing is a small link underneath, so members no longer land in the install flow and get asked to request admin approval. Self-hosted installs set <code>SLACK_APP_ID</code> for the button.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.19">1.9.19</h2>
+    <time datetime="2026-10-02">2026-10-02</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.19">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.19-added">Added</h3><ul><li><strong>Watercooler.</strong> A conversation question posted to a channel on the days and at the time you pick, skipping company holidays and days off; people reply in the thread. About 150 built-in questions in four categories (light, work, remote life, this or that), plus your own. Hide any built-in question for your workspace only. Run it in several channels, each with its own schedule and question mix, never repeating a question until the channel has seen them all. Set it up with <code>/morgenruf watercooler</code>, from the Home tab or on the new Watercooler page, where you can also post one straight away. The standup quick start offers it as a ticked box. Off by default; a workspace admin can put someone in charge of it.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.18">1.9.18</h2>
+    <time datetime="2026-10-02">2026-10-02</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.18">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.18-security">Security</h3><ul><li><strong>Members could read other people's data in the dashboard.</strong> Writes were guarded but most reads were not, which went unnoticed while only the installer could sign in; 1.9.16 let every member sign in. A member could see every coworker's standup answers on Today (private channels included), long-running blockers on Insights, per-person Analytics and Stats, coffee chat pairs, attendance and opt-outs, automation rules, webhooks and API key details. These now need the matching admin grant (Standups or Coffee chats) or a workspace admin, the sidebar hides them, and a test fails any new read route that has not been decided on.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.17">1.9.17</h2>
+    <time datetime="2026-10-02">2026-10-02</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.17">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.17-added">Added</h3><ul><li><strong>Standup managers.</strong> A Standups admin can name up to ten managers for a standup, in its settings. A manager can change that standup's questions, schedule, participants and reminders, and pause it, from the Home tab or the dashboard, without administering every other standup. Managers cannot create or delete standups, move one to another channel, change where it reports or emails, change workspace settings or name other managers. New managers are told in Slack, and members who manage nothing see who to ask.</li></ul><h3 id="v1.9.17-fixed">Fixed</h3><ul><li><strong>People who leave Slack lose dashboard access within minutes.</strong> A signed-in person is checked with Slack every ten minutes. A deactivated or deleted account is signed out and stops being asked for standups straight away, instead of at the next six-hourly member sync.</li><li><strong>Celebration banners load.</strong> The dashboard proxy now passes banner images through to the app, so Slack shows them instead of falling back to text.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.16">1.9.16</h2>
+    <time datetime="2026-10-02">2026-10-02</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.16">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.16-security">Security</h3><ul><li><strong>Frontend image.</strong> Alpine packages are upgraded at build time, which picks up the pcre2 fix for CVE-2026-103111 before the upstream nginx image does.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.15">1.9.15</h2>
+    <time datetime="2026-10-02">2026-10-02</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.15">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.15-fixed">Fixed</h3><ul><li><strong>Members can sign in to the dashboard.</strong> "Sign in with Slack" is the install flow, so in a workspace that approves apps anyone but an admin was asked to request an install and never got in. The Dashboard button on the Home tab and the new <code>/morgenruf dashboard</code> now hand the person a sign-in link of their own (one use, five minutes), with no admin needed. The login page says so.</li></ul><h3 id="v1.9.15-added">Added</h3><ul><li><strong>Celebration banners.</strong> Each birthday and work anniversary post carries an image: sixteen of them (a neon sign, a newspaper front page, a boarding pass, an arcade level-up and more), picked at random and never the same twice in a row. No name or year is in the picture, so any banner fits anyone. They ship inside the app, so self-hosted installs have them too; if Slack cannot reach the app's URL the post goes out as text. Turn them off in Celebrations settings.</li><li><strong>CSV templates.</strong> The holiday import and the birthday and start date import each have a "Download template" link with the right columns.</li></ul><h3 id="v1.9.15-changed">Changed</h3><ul><li><strong>Import dialogs.</strong> The preview runs as soon as a CSV is pasted or a file is chosen, the file picker is a drop zone that shows the file name, the example no longer looks like real input, and the save button appears only once there is something to save.</li></ul></div>
+</article><article class="release">
   <div class="release-meta">
     <h2 id="v1.9.14">1.9.14</h2>
     <time datetime="2026-10-01">2026-10-01</time>

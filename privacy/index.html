@@ -47,7 +47,7 @@
   <h1>Privacy</h1>
   <p class="lede">This covers the free hosted instance and this website. If you self-host Morgenruf, you are the data controller and this policy does not apply to your deployment.</p>
 </div></header>
-<section class="section"><div class="wrap"><div class="prose"><p>Effective date: April 5, 2026 · Last updated: October 1, 2026</p>
+<section class="section"><div class="wrap"><div class="prose"><p>Effective date: April 5, 2026 · Last updated: October 11, 2026</p>
 
   <p>The hosted Morgenruf Slack app and the website at morgenruf.dev are operated by Anmol Nagpal ("we", "our", "us"). This policy explains what personal data we collect, why, how we protect it, and your rights.</p>
 
@@ -191,7 +191,7 @@
   <h2>7. Security</h2>
   <ul>
     <li>All data in transit is encrypted via TLS/HTTPS</li>
-    <li>Slack bot tokens are stored in the application database</li>
+    <li>Slack bot tokens are encrypted before they are stored in the database. The key is kept outside the database, so a copy of the database or a backup cannot be used without it</li>
     <li>MCP API keys are stored only as a hash; a webhook signing secret is shown once, when it is created or rotated</li>
     <li>Dashboard sign-in links work once, only in the browser that started the sign-in</li>
     <li>Standups in progress are held in Redis and expire after four hours</li>
