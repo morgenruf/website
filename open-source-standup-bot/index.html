@@ -84,7 +84,7 @@ travels with it. There is no contributor agreement assigning your changes to any
 <text x="105.0" y="136.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">your workspace</text>
 <rect x="295" y="80" width="170" height="80" rx="12" fill="#fff" stroke="#E9E2D6" stroke-width="1.5"/>
 <text x="380.0" y="116.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Morgenruf</text>
-<text x="380.0" y="136.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">one process</text>
+<text x="380.0" y="136.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">app and frontend</text>
 <rect x="570" y="80" width="170" height="80" rx="12" fill="#FFF7EA" stroke="#F0E4CE" stroke-width="1.5"/>
 <text x="655.0" y="116.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Postgres</text>
 <text x="655.0" y="136.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">your database</text>
@@ -92,17 +92,17 @@ travels with it. There is no contributor agreement assigning your changes to any
 <line x1="290" y1="138" x2="192" y2="138" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="241.0" y="129.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12" fill="#5A5E74">messages</text>
 <line x1="465" y1="120" x2="566" y2="120" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="515.5" y="111.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12" fill="#5A5E74">reads and writes</text>
 <rect x="295" y="192" width="170" height="36" rx="10" fill="#12131F"/>
-<text x="380" y="215" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#F6F3EC">scheduler, inside the process</text>
+<text x="380" y="215" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#F6F3EC">scheduler, inside the app</text>
 <line x1="380" y1="160" x2="380" y2="190" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/>
 <text x="380" y="30" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="#12131F">Three things at the core</text>
-<text x="380" y="52" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">No queue, no cache, optional services off by default</text>
+<text x="380" y="52" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">Migrations run first; Helm adds Redis; optional services off</text>
 </svg>
-<figcaption>The whole of what you would be running: one process, one Postgres, and Slack on the other end.</figcaption>
+<figcaption>The whole of what you would be running: the app and its frontend, one Postgres, and Slack on the other end.</figcaption>
 </figure>
 
 <h2 id="the-honest-trade">The honest trade</h2>
-<p>A licence does not run anything. Someone has to, and that is one container, a Postgres and an
-HTTPS URL, with migrations that apply themselves.
+<p>A licence does not run anything. Someone has to, and that is a backend and a small frontend container, a
+Postgres and an HTTPS URL, with migrations applied as a step before each start.
 <a href="/self-hosted-standup-bot/">What running it on your own servers involves</a> is a page of its
 own, down to the backups. It is a small job, but it is not zero. The free hosted instance CloudDrove
 runs removes it entirely, on the same code. Be clear which side of that you are on before

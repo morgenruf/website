@@ -47,6 +47,10 @@
       <tr><td>Polls: question, options, the channel and who started it; votes</td><td>Users via Slack</td><td>Polls feature</td></tr>
       <tr><td>Pulse check-in counts (how many people picked each value), and while a check-in is open, who has answered (not what)</td><td>Users via bot DM</td><td>Pulse feature, if a workspace admin turns it on</td></tr>
       <tr><td>Member profile: birthday (day and month only, never the year), start date, role, location, "ask me about", and whether the member opted out of celebrations</td><td>The member, or a workspace admin (form or CSV import)</td><td>Celebrations, and the features that read the profile</td></tr>
+      <tr><td>Coffee chat pairings: who was paired with whom, whether the pair met, and the meeting times each person voted for</td><td>Coffee chats, and the pair's replies in Slack</td><td>Coffee chats (only if the workspace turns them on)</td></tr>
+      <tr><td>MCP API keys (stored only as a hash, with a short prefix to tell keys apart)</td><td>Workspace admin via dashboard</td><td>Letting an AI assistant read the workspace's data</td></tr>
+      <tr><td>Webhooks: target URL, signing secret, and a short log of recent delivery attempts</td><td>Workspace admin via dashboard</td><td>Sending signed events to a URL the workspace chooses</td></tr>
+      <tr><td>Sign-in link identifiers</td><td>Dashboard sign-in</td><td>Making each sign-in link work only once. Deleted after an hour</td></tr>
     </tbody>
   </table>
   <p>We do <strong>not</strong> read Slack channel messages. The only messages Morgenruf receives are direct messages sent to the Morgenruf bot, and the only other conversations it looks at are the coffee chat group messages it opens itself (see "Data we receive but do not use" below). We do <strong>not</strong> collect payment information.</p>
@@ -145,10 +149,12 @@
   <table>
     <thead><tr><th>Data type</th><th>Retention period</th></tr></thead>
     <tbody>
-      <tr><td>Standup responses</td><td>90 days (auto-deleted)</td></tr>
+      <tr><td>Standup responses</td><td>Until you uninstall Morgenruf, or until you ask us to delete them</td></tr>
       <tr><td>Analytics aggregates</td><td>12 months</td></tr>
       <tr><td>Website and product usage events</td><td>12 months</td></tr>
       <tr><td>Slack tokens</td><td>Until you uninstall Morgenruf</td></tr>
+      <tr><td>Coffee chat pairings, kudos, webhooks and MCP keys</td><td>Until you uninstall Morgenruf, or until an admin deletes the webhook or key</td></tr>
+      <tr><td>Sign-in link identifiers</td><td>1 hour</td></tr>
       <tr><td>Member profiles</td><td>Until 30 days after the member leaves the workspace, or until you uninstall Morgenruf</td></tr>
       <tr><td>Member records (name, email address, timezone)</td><td>Until you uninstall Morgenruf</td></tr>
       <tr><td>Email opt-in and unsubscribe records</td><td>Until you uninstall Morgenruf. An unsubscribe is kept so that it keeps holding</td></tr>
@@ -161,8 +167,10 @@
   <h2>7. Security</h2>
   <ul>
     <li>All data in transit is encrypted via TLS/HTTPS</li>
-    <li>Slack bot tokens are stored encrypted at rest (AES-256)</li>
-    <li>Sessions are backed by Redis with expiry</li>
+    <li>Slack bot tokens are stored in the application database</li>
+    <li>MCP API keys are stored only as a hash; a webhook signing secret is shown once, when it is created or rotated</li>
+    <li>Dashboard sign-in links work once, only in the browser that started the sign-in</li>
+    <li>Standups in progress are held in Redis and expire after four hours</li>
     <li>Signing secret validation on every Slack event</li>
     <li>Access to production systems is restricted to authorised contributors</li>
     <li>Periodic security reviews of infrastructure</li>
