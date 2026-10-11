@@ -51,7 +51,9 @@ FOOTER = [
                  ("Slack standup bot", "/slack-standup-bot/")]),
     ("Project", [("GitHub", REPO), ("Helm charts", "https://charts.morgenruf.dev"),
                  ("Status", "https://status.morgenruf.dev"), ("Blog", "/blog/"),
-                 ("Support", "/support/")]),
+                 ("Support", "/support/"),
+                 ("LinkedIn", "https://www.linkedin.com/company/morgenruf"),
+                 ("X", "https://x.com/morgenruf_dev")]),
 ]
 
 

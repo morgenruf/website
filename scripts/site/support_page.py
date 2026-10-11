@@ -3,29 +3,40 @@
 Two audiences with different questions. Somebody stuck at 2am wants the issue
 tracker and a search box. Somebody deciding whether to self-host at all wants
 to know there is a company behind it who will pick up the phone.
+
+Email comes first for both. Slack's Marketplace asks for a support address that
+works without an account and a reply within two business days, and that is
+also the simplest promise to make to anybody.
 """
 
 from __future__ import annotations
 
 from shell import INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, faq, footer, head, nav
 
+EMAIL = "hello@morgenruf.dev"
+MAILTO = f"mailto:{EMAIL}?subject=Morgenruf%20support"
 ISSUES = REPO + "/issues"
 DISCUSSIONS = REPO + "/discussions"
 
 SUPPORT_FAQ = [
+    ("How do I contact support?",
+     "Email hello@morgenruf.dev. It is free, it needs no account or signup, and it covers the "
+     "hosted Slack app and self-hosted installs alike. We reply within 2 business days."),
     ("Is there paid support?",
      "Yes, from CloudDrove, who sponsor Morgenruf. Installation, a managed cluster, "
-     "upgrades and a contracted response time. Write to hello@morgenruf.dev."),
+     "upgrades and a contracted response time. Write to hello@morgenruf.dev. You do not need it "
+     "to get an answer: free support is by email too, at the same address."),
     ("Does paying get me features other people do not have?",
      "No. Everything is MIT and everything is in the repository. Paid work funds the project and "
      "buys you somebody else's time, never a private build."),
-    ("How fast do community issues get answered?",
-     "Usually within a day or two, by one person who also has a job. Bugs with a clear reproduction "
-     "get fixed fastest, because the hard part is already done."),
+    ("How fast will I hear back?",
+     "We reply to email within 2 business days. GitHub issues and discussions are read by the same "
+     "person and usually get an answer about as quickly. Bugs with a clear reproduction get fixed "
+     "fastest, because the hard part is already done."),
     ("Something is broken in production. What do I do first?",
      "Check the app logs and the migrate init container's logs; they say more than the dashboard "
-     "does. Then open an issue with the version, how it is deployed, and what the logs said. If you "
-     "have a support agreement, email instead and include the same three things."),
+     "does. Then open an issue with the version, how it is deployed, and what the logs said, or email "
+     "hello@morgenruf.dev with the same three things. You do not need a support agreement to email."),
     ("Can I ask for a feature?",
      "Yes, in Discussions under Ideas. The roadmap order follows what people ask for, and a "
      "well-argued request from one person has moved it before."),
@@ -36,8 +47,22 @@ SUPPORT_FAQ = [
 
 def support():
     body = f'''<section class="section"><div class="wrap">
-  <span class="eyebrow">Free routes</span>
-  <h2 id="where-to-start" style="margin-bottom:24px">Three places to start</h2>
+  <div class="prose">
+    <span class="eyebrow">Support by email</span>
+    <h2 id="email">Email {EMAIL}</h2>
+    <p>This is the support address for Morgenruf, for everybody: people using the free hosted Slack
+    app, people running it on their own servers, and people who have not installed it yet. You do not
+    need an account, a GitHub login or a support agreement to use it. <strong>We reply within 2
+    business days.</strong></p>
+    <p>Say which workspace or install you mean, and for anything broken, the three things listed
+    under "Before you open an issue" below. It saves a round trip.</p>
+    <p><a class="btn btn-ink" href="{MAILTO}">Email {EMAIL}</a></p>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <span class="eyebrow">Also free</span>
+  <h2 id="where-to-start" style="margin-bottom:24px">Three more places to start</h2>
   <div class="tiles">
     <a class="tile" href="{ISSUES}"><h3>Report a bug</h3>
       <p>The issue tracker. Templates for bugs, and the fastest route to a fix if you can say how to
@@ -65,6 +90,7 @@ def support():
 
     <h2>Where things get answered</h2>
     <ul>
+      <li><a href="{MAILTO}">{EMAIL}</a>, for anything at all. We reply within 2 business days.</li>
       <li><a href="{ISSUES}">Issues</a>, for bugs and anything with a reproduction.</li>
       <li><a href="{DISCUSSIONS}">Discussions</a>, for questions, ideas, and "is this supposed to happen".</li>
       <li><a href="https://status.morgenruf.dev">Status</a>, for the free hosted instance. Self-hosted
@@ -109,7 +135,8 @@ def support():
       <a class="btn btn-ghost" href="https://clouddrove.com">About CloudDrove</a>
     </div>
     <p style="margin:22px 0 0;font-size:14px;color:var(--on-ink-muted)">Paid support funds the work
-    but never gates it. A bug is a bug, and it gets fixed for everybody.</p>
+    but never gates it. Free support is by email too, at the same address, with the same 2 business
+    day reply. A bug is a bug, and it gets fixed for everybody.</p>
   </div>
 </div></section>
 '''
@@ -117,21 +144,22 @@ def support():
     body += f'''<section class="section"><div class="wrap" style="max-width:820px">
   <span class="eyebrow">Questions</span><h2>Getting help</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
-    return (head(title="Morgenruf support: issues, discussions and paid help",
-                 description="Where to get help with Morgenruf: the GitHub issue tracker, "
-                             "discussions, the documentation, and paid setup, hosting and upgrades "
-                             "from CloudDrove.",
+    return (head(title="Morgenruf support: email, issues and paid help",
+                 description="Email hello@morgenruf.dev for free Morgenruf support, no signup "
+                             "needed, with a reply within 2 business days. Also GitHub issues, "
+                             "discussions, the docs, and paid help from CloudDrove.",
                  path="/support/", schema=[faq_schema, breadcrumbs(
                      [("Home", "/"), ("Support", None)])[1]])
             + nav() + breadcrumbs([("Home", "/"), ("Support", None)])[0]
             + f'''<main>
 <header class="page-head"><div class="wrap">
   <h1>Getting help</h1>
-  <p class="lede">Two routes, and both are real: a public issue tracker where the maintainer answers,
-  and a company that will run the whole thing for you.</p>
+  <p class="lede">Email <a href="{MAILTO}">{EMAIL}</a>. It is free, needs no signup, and we reply
+  within 2 business days. GitHub issues and discussions work too, and CloudDrove will run the whole
+  thing for you if you would rather pay.</p>
   <div class="head-cta">
-    <a class="btn btn-ink" href="{ISSUES}">Open an issue</a>
-    <a class="btn btn-line" href="mailto:hello@morgenruf.dev?subject=Morgenruf%20support">Ask about paid support</a>
+    <a class="btn btn-ink" href="{MAILTO}">Email {EMAIL}</a>
+    <a class="btn btn-line" href="{ISSUES}">Open an issue</a>
   </div>
 </div></header>
 {body}
