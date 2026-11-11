@@ -122,7 +122,7 @@ def head(*, title, description, path, og_image="/og-image.png", schema=None, ext
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preload" href="/assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="/assets/fonts/geist-1.9.2.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="{asset("/assets/site.css")}"/>
 <script src="/assets/analytics.js" defer></script>
 <script src="{asset("/assets/nav.js")}" defer></script>{extra_head}{blocks}
