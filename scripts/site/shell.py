@@ -113,11 +113,11 @@ def head(*, title, description, path, og_image="/og-image.png", schema=None, ext
 <meta property="og:url" content="{url}"/>
 <meta property="og:title" content="{title}"/>
 <meta property="og:description" content="{description}"/>
-<meta property="og:image" content="{SITE}{og_image}"/>
+<meta property="og:image" content="{SITE}{asset(og_image)}"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="{title}"/>
 <meta name="twitter:description" content="{description}"/>
-<meta name="twitter:image" content="{SITE}{og_image}"/>
+<meta name="twitter:image" content="{SITE}{asset(og_image)}"/>
 <meta name="theme-color" content="#12131f"/>
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>

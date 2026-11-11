@@ -62,6 +62,9 @@ def main(ids):
                         base + f"?card={card_id}"],
                        check=True, capture_output=True)
         print(f"og/{card_id}.png written")
+        if card_id == "home":  # the site-wide card every other page falls back to
+            shutil.copyfile(out, ROOT / "og-image.png")
+            print("og-image.png written")
     server.shutdown()
 
 

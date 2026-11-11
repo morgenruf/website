@@ -1,464 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
-  <title>OG Image Generator — Morgenruf (Internal Tool)</title>
-  <style>
-    @font-face { font-family: 'Geist'; font-weight: 100 900; font-display: block; src: url(/assets/fonts/geist-1.9.2.woff2) format('woff2'); }
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>OG Cards, Morgenruf (internal)</title>
+<style>
+  @font-face { font-family: 'Geist'; font-weight: 100 900; font-display: block; src: url(/assets/fonts/geist-1.9.2.woff2) format('woff2'); }
+  :root {
+    --ink: #12131F; --paper: #FFFDF8; --amber: #FFB23F; --sun: #FFD166; --rooster: #E0322E;
+    --on-ink: #F6F3EC; --on-ink-muted: #B9BCCD; --text: #191B2A; --muted: #5A5E74;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Geist', system-ui, sans-serif; background: #2A2D42; padding: 40px; color: var(--on-ink); -webkit-font-smoothing: antialiased; }
+  .intro { color: var(--on-ink-muted); font-size: 15px; margin-bottom: 32px; max-width: 70ch; line-height: 1.5; }
+  .card-label { font-size: 13px; color: var(--on-ink-muted); margin: 0 0 8px; }
+  .card-wrapper { margin-bottom: 40px; }
 
-    body {
-      font-family: 'Geist', system-ui, -apple-system, sans-serif;
-      background: #f1f5f9;
-      padding: 40px;
-      color: #1e293b;
-    }
+  .og { width: 1200px; height: 630px; position: relative; overflow: hidden; display: flex; flex-direction: column; padding: 64px 72px; }
+  .brand { display: flex; align-items: center; gap: 14px; font-size: 28px; font-weight: 600; letter-spacing: -0.03em; position: relative; z-index: 2; }
+  .brand img { width: 48px; height: 48px; border-radius: 10px; }
+  .brand .wm { width: auto; height: 30px; border-radius: 0; }
+  .body { flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
+  h1 { font-weight: 600; letter-spacing: -0.045em; line-height: 1.04; text-wrap: balance; }
+  .sub { font-size: 30px; line-height: 1.35; letter-spacing: -0.015em; margin-top: 24px; text-wrap: balance; }
+  .foot { font-size: 22px; font-weight: 500; letter-spacing: -0.01em; position: relative; z-index: 2; display: flex; gap: 14px; align-items: center; }
+  .foot b { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: .5; }
 
-    h1 {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
+  /* Product: the site hero. Ink sky, sun coming up behind the rooster. */
+  .product { background: var(--ink); color: var(--on-ink); }
+  .product::before { content: ""; position: absolute; right: -160px; bottom: -260px; width: 900px; height: 900px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,178,63,.55) 0%, rgba(255,178,63,.18) 38%, rgba(18,19,31,0) 68%); }
+  .product .body { max-width: 690px; }
+  .product h1 { font-size: 76px; }
+  .product h1 em { font-style: normal; color: var(--sun); }
+  .product .sub { color: var(--on-ink-muted); max-width: 600px; }
+  .product .foot { color: var(--sun); }
+  .product .mascot { position: absolute; right: 40px; bottom: -40px; width: 430px; z-index: 1; }
 
-    .intro {
-      color: #64748b;
-      font-size: 15px;
-      margin-bottom: 48px;
-      max-width: 640px;
-      line-height: 1.5;
-    }
-
-    .card-wrapper {
-      margin-bottom: 64px;
-    }
-
-    .card-label {
-      font-size: 13px;
-      font-weight: 600;
-      color: #64748b;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 12px;
-    }
-
-    .og-card {
-      width: 1200px;
-      height: 630px;
-      position: relative;
-      overflow: hidden;
-      border: 2px solid #cbd5e1;
-      border-radius: 4px;
-      background-color: #ffffff;
-      background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px);
-      background-size: 24px 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 64px 72px;
-    }
-
-    /* Accent bar on left */
-    .og-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 8px;
-      height: 100%;
-      background: #4f46e5;
-    }
-
-    /* Subtle gradient overlay at bottom */
-    .og-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 120px;
-      background: linear-gradient(to top, rgba(79, 70, 229, 0.04), transparent);
-      pointer-events: none;
-    }
-
-    .og-top {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .og-logo {
-      font-size: 36px;
-      line-height: 1;
-    }
-
-    .og-brand {
-      font-size: 22px;
-      font-weight: 700;
-      color: #4f46e5;
-      letter-spacing: -0.01em;
-    }
-
-    .og-body {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-right: 40px;
-    }
-
-    .og-headline {
-      font-size: 64px;
-      font-weight: 600;
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-      text-wrap: balance;
-      color: #0f172a;
-      margin-bottom: 20px;
-    }
-
-    .og-subtitle {
-      font-size: 26px;
-      font-weight: 500;
-      color: #64748b;
-      line-height: 1.4;
-    }
-
-    .og-bottom {
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
-      position: relative;
-      z-index: 1;
-    }
-
-    .og-url {
-      font-size: 20px;
-      font-weight: 600;
-      color: #4f46e5;
-      letter-spacing: -0.01em;
-    }
-  </style>
-<script src="/assets/analytics.js" defer></script>
+  /* Blog: paper, editorial, the title does the work. */
+  .blog { background: var(--paper); color: var(--text); }
+  .blog::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 10px;
+    background: linear-gradient(90deg, var(--rooster), var(--amber) 55%, var(--sun)); }
+  .blog .body { max-width: 1000px; }
+  .blog .kicker { font-size: 22px; font-weight: 600; color: var(--rooster); margin-bottom: 22px; letter-spacing: -0.01em; }
+  .blog h1 { font-size: 72px; }
+  .blog .foot { color: var(--muted); }
+</style>
 <script>
-  // ?card=<id> shows that card alone at exactly 1200x630, which is what
-  // scripts/site/og_images.py screenshots into /og/<id>.png.
+  // ?card=<id> shows one card alone at 1200x630 for scripts/site/og_images.py
   (function () {
     var id = new URLSearchParams(location.search).get('card');
     if (!id) return;
     document.addEventListener('DOMContentLoaded', function () {
       var keep = document.getElementById(id);
       if (!keep) return;
-      document.querySelectorAll('h1, .intro, .card-wrapper, .card-label').forEach(function (el) {
-        if (el !== keep) el.style.display = 'none';
-      });
-      document.body.style.padding = '0';
-      document.body.style.background = '#ffffff';
-      var c = keep.querySelector('.og-card');
-      c.style.border = '0';
-      c.style.borderRadius = '0';
+      document.querySelectorAll('.intro, .card-wrapper').forEach(function (el) { if (el !== keep) el.remove(); });
+      keep.querySelector('.card-label').remove();
       keep.style.margin = '0';
+      document.body.style.padding = '0';
     });
   })();
 </script>
 </head>
 <body>
+<p class="intro">Internal tool. Each card with an id is rendered to /og/&lt;id&gt;.png by
+python3 scripts/site/og_images.py (the home card also becomes /og-image.png).
+Open ?card=&lt;id&gt; to see one card alone at 1200x630.</p>
 
-  <h1>OG Image Cards — Morgenruf</h1>
-  <p class="intro">
-    Internal tool. Each card with an id is rendered to /og/&lt;id&gt;.png by
-    python3 scripts/site/og_images.py. Open ?card=&lt;id&gt; to see one card alone at
-    1200x630. Cards are not linked from the site nav.
-  </p>
+<div class="card-wrapper" id="home"><div class="card-label">Home, and every page without its own card</div>
+<div class="og product">
+  <div class="brand"><img class="wm" src="/og/wordmark.png" alt="Morgenruf"></div>
+  <div class="body"><h1>Standups, kudos and coffee chats. <em>No seat fees.</em></h1>
+    <p class="sub">One open-source Slack app.</p></div>
+  <div class="foot">Free and MIT licensed<b></b>morgenruf.dev</div>
+  <img class="mascot" src="/mascot.png" alt="">
+</div></div>
 
-  <!-- 1. Homepage -->
-  <div class="card-wrapper">
-    <div class="card-label">Homepage</div>
-    <div class="og-card">
-      <div class="og-top">
-        <span class="og-logo">&#x1F305;</span>
-        <span class="og-brand">morgenruf</span>
-      </div>
-      <div class="og-body">
-        <div class="og-headline">Run standups your team actually love</div>
-        <div class="og-subtitle">Free, open-source Slack standup bot</div>
-      </div>
-      <div class="og-bottom">
-        <span class="og-url">morgenruf.dev</span>
-      </div>
-    </div>
-  </div>
+<div class="card-wrapper" id="geekbot-alternative"><div class="card-label">vs Geekbot</div>
+<div class="og product">
+  <div class="brand"><img class="wm" src="/og/wordmark.png" alt="Morgenruf"></div>
+  <div class="body"><h1>The free <em>Geekbot</em> alternative</h1>
+    <p class="sub">Async standups in Slack. Open source, no seat fees.</p></div>
+  <div class="foot">Free and MIT licensed<b></b>morgenruf.dev</div>
+  <img class="mascot" src="/mascot.png" alt="">
+</div></div>
 
-  <!-- 2. Geekbot Alternative -->
-  <div class="card-wrapper" id="geekbot-alternative">
-    <div class="card-label">Geekbot Alternative</div>
-    <div class="og-card">
-      <div class="og-top">
-        <span class="og-logo">&#x1F305;</span>
-        <span class="og-brand">morgenruf</span>
-      </div>
-      <div class="og-body">
-        <div class="og-headline">The Free Geekbot Alternative</div>
-        <div class="og-subtitle">Async standups in Slack, free at any team size.</div>
-      </div>
-      <div class="og-bottom">
-        <span class="og-url">morgenruf.dev</span>
-      </div>
-    </div>
-  </div>
+<div class="card-wrapper" id="dailybot-alternative"><div class="card-label">vs DailyBot</div>
+<div class="og product">
+  <div class="brand"><img class="wm" src="/og/wordmark.png" alt="Morgenruf"></div>
+  <div class="body"><h1>The free <em>DailyBot</em> alternative</h1>
+    <p class="sub">Async standups in Slack. Open source, no seat fees.</p></div>
+  <div class="foot">Free and MIT licensed<b></b>morgenruf.dev</div>
+  <img class="mascot" src="/mascot.png" alt="">
+</div></div>
 
-  <!-- 3. Standup & Prosper Alternative -->
-  <div class="card-wrapper" id="standup-prosper-alternative">
-    <div class="card-label">Standup &amp; Prosper Alternative</div>
-    <div class="og-card">
-      <div class="og-top">
-        <span class="og-logo">&#x1F305;</span>
-        <span class="og-brand">morgenruf</span>
-      </div>
-      <div class="og-body">
-        <div class="og-headline">Free Standup &amp; Prosper Alternative</div>
-        <div class="og-subtitle">More features. Zero cost. Full control.</div>
-      </div>
-      <div class="og-bottom">
-        <span class="og-url">morgenruf.dev</span>
-      </div>
-    </div>
-  </div>
+<div class="card-wrapper" id="standuply-alternative"><div class="card-label">vs Standuply</div>
+<div class="og product">
+  <div class="brand"><img class="wm" src="/og/wordmark.png" alt="Morgenruf"></div>
+  <div class="body"><h1>The free <em>Standuply</em> alternative</h1>
+    <p class="sub">Async standups in Slack. Open source, no seat fees.</p></div>
+  <div class="foot">Free and MIT licensed<b></b>morgenruf.dev</div>
+  <img class="mascot" src="/mascot.png" alt="">
+</div></div>
 
-  <!-- 4. Open Source Standup Bot -->
-  <div class="card-wrapper">
-    <div class="card-label">Open Source Standup Bot</div>
-    <div class="og-card">
-      <div class="og-top">
-        <span class="og-logo">&#x1F305;</span>
-        <span class="og-brand">morgenruf</span>
-      </div>
-      <div class="og-body">
-        <div class="og-headline">Open-Source Slack Standup Bot</div>
-        <div class="og-subtitle">MIT licensed. Self-hosted. Free forever.</div>
-      </div>
-      <div class="og-bottom">
-        <span class="og-url">morgenruf.dev</span>
-      </div>
-    </div>
-  </div>
+<div class="card-wrapper" id="standup-prosper-alternative"><div class="card-label">vs Standup &amp; Prosper</div>
+<div class="og product">
+  <div class="brand"><img class="wm" src="/og/wordmark.png" alt="Morgenruf"></div>
+  <div class="body"><h1>The free <em>Standup &amp; Prosper</em> alternative</h1>
+    <p class="sub">Standups, kudos and coffee chats in one Slack app.</p></div>
+  <div class="foot">Free and MIT licensed<b></b>morgenruf.dev</div>
+  <img class="mascot" src="/mascot.png" alt="">
+</div></div>
 
-  <!-- 5. Self-Hosted Standup Bot -->
-  <div class="card-wrapper">
-    <div class="card-label">Self-Hosted Standup Bot</div>
-    <div class="og-card">
-      <div class="og-top">
-        <span class="og-logo">&#x1F305;</span>
-        <span class="og-brand">morgenruf</span>
-      </div>
-      <div class="og-body">
-        <div class="og-headline">Self-Hosted Standup Bot</div>
-        <div class="og-subtitle">Your servers. Your data. Your rules.</div>
-      </div>
-      <div class="og-bottom">
-        <span class="og-url">morgenruf.dev</span>
-      </div>
-    </div>
-  </div>
+<div class="card-wrapper" id="donut-alternative"><div class="card-label">vs Donut</div>
+<div class="og product">
+  <div class="brand"><img class="wm" src="/og/wordmark.png" alt="Morgenruf"></div>
+  <div class="body"><h1>The free <em>Donut</em> alternative</h1>
+    <p class="sub">Coffee chats in Slack, with standups and kudos included.</p></div>
+  <div class="foot">Free and MIT licensed<b></b>morgenruf.dev</div>
+  <img class="mascot" src="/mascot.png" alt="">
+</div></div>
 
-  <!-- 6. Slack Standup Bot -->
-  <div class="card-wrapper">
-    <div class="card-label">Slack Standup Bot</div>
-    <div class="og-card">
-      <div class="og-top">
-        <span class="og-logo">&#x1F305;</span>
-        <span class="og-brand">morgenruf</span>
-      </div>
-      <div class="og-body">
-        <div class="og-headline">Free Slack Standup Bot</div>
-        <div class="og-subtitle">Automate daily standups. No per-user pricing.</div>
-      </div>
-      <div class="og-bottom">
-        <span class="og-url">morgenruf.dev</span>
-      </div>
-    </div>
-  </div>
+<div class="card-wrapper" id="heytaco-alternative"><div class="card-label">vs HeyTaco</div>
+<div class="og product">
+  <div class="brand"><img class="wm" src="/og/wordmark.png" alt="Morgenruf"></div>
+  <div class="body"><h1>The free <em>HeyTaco</em> alternative</h1>
+    <p class="sub">Peer recognition in Slack, with no per-seat bill.</p></div>
+  <div class="foot">Free and MIT licensed<b></b>morgenruf.dev</div>
+  <img class="mascot" src="/mascot.png" alt="">
+</div></div>
 
-  <!-- 7. Blog -->
-  <div class="card-wrapper">
-    <div class="card-label">Blog Index</div>
-    <div class="og-card">
-      <div class="og-top">
-        <span class="og-logo">&#x1F305;</span>
-        <span class="og-brand">morgenruf</span>
-      </div>
-      <div class="og-body">
-        <div class="og-headline">Morgenruf Blog</div>
-        <div class="og-subtitle">Async standups, Slack automation &amp; open-source dev tools</div>
-      </div>
-      <div class="og-bottom">
-        <span class="og-url">morgenruf.dev</span>
-      </div>
-    </div>
-  </div>
+<div class="card-wrapper" id="blog-why-i-built-morgenruf"><div class="card-label">Blog</div>
+<div class="og blog">
+  <div class="brand"><img src="/logo-mark.png" alt=""><img class="wm" src="/og/wordmark.png" alt="Morgenruf"></div>
+  <div class="body"><p class="kicker">Blog</p><h1>Why I built Morgenruf in a Tim Hortons in Kitchener</h1></div>
+  <div class="foot">Anmol Nagpal<b></b>morgenruf.dev/blog</div>
+</div></div>
 
-  <!-- 8. Blog: Why I Built Morgenruf -->
-  <div class="card-wrapper" id="blog-why-i-built-morgenruf">
-    <div class="card-label">Blog: Why I Built Morgenruf</div>
-    <div class="og-card">
-      <div class="og-top">
-        <span class="og-logo">&#x1F305;</span>
-        <span class="og-brand">morgenruf</span>
-      </div>
-      <div class="og-body">
-        <div class="og-headline" style="font-size: 52px;">Why I Built Morgenruf in a Tim Hortons in Kitchener</div>
-        <div class="og-subtitle">The origin story</div>
-      </div>
-      <div class="og-bottom">
-        <span class="og-url">morgenruf.dev</span>
-      </div>
-    </div>
-  </div>
+<div class="card-wrapper" id="blog-geekbot-vs-morgenruf"><div class="card-label">Blog</div>
+<div class="og blog">
+  <div class="brand"><img src="/logo-mark.png" alt=""><img class="wm" src="/og/wordmark.png" alt="Morgenruf"></div>
+  <div class="body"><p class="kicker">Blog</p><h1>Geekbot vs Morgenruf: an honest comparison</h1></div>
+  <div class="foot">Anmol Nagpal<b></b>morgenruf.dev/blog</div>
+</div></div>
 
-  <!-- 9. Blog: Async Standups -->
-  <div class="card-wrapper" id="blog-async-standups-slack-free">
-    <div class="card-label">Blog: Async Standups</div>
-    <div class="og-card">
-      <div class="og-top">
-        <span class="og-logo">&#x1F305;</span>
-        <span class="og-brand">morgenruf</span>
-      </div>
-      <div class="og-body">
-        <div class="og-headline" style="font-size: 56px;">How to Run Async Standups in Slack</div>
-        <div class="og-subtitle">Without paying per user</div>
-      </div>
-      <div class="og-bottom">
-        <span class="og-url">morgenruf.dev</span>
-      </div>
-    </div>
-  </div>
+<div class="card-wrapper" id="blog-async-standups-slack-free"><div class="card-label">Blog</div>
+<div class="og blog">
+  <div class="brand"><img src="/logo-mark.png" alt=""><img class="wm" src="/og/wordmark.png" alt="Morgenruf"></div>
+  <div class="body"><p class="kicker">Blog</p><h1>The 12.5 hour standup: taking a team of ten async in Slack</h1></div>
+  <div class="foot">Anmol Nagpal<b></b>morgenruf.dev/blog</div>
+</div></div>
 
-  <!-- 10. Blog: Geekbot vs Morgenruf -->
-  <div class="card-wrapper" id="blog-geekbot-vs-morgenruf">
-    <div class="card-label">Blog: Geekbot vs Morgenruf</div>
-    <div class="og-card">
-      <div class="og-top">
-        <span class="og-logo">&#x1F305;</span>
-        <span class="og-brand">morgenruf</span>
-      </div>
-      <div class="og-body">
-        <div class="og-headline">Geekbot vs Morgenruf</div>
-        <div class="og-subtitle">An honest side-by-side comparison</div>
-      </div>
-      <div class="og-bottom">
-        <span class="og-url">morgenruf.dev</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 11. Changelog -->
-  <div class="card-wrapper">
-    <div class="card-label">Changelog</div>
-    <div class="og-card">
-      <div class="og-top">
-        <span class="og-logo">&#x1F305;</span>
-        <span class="og-brand">morgenruf</span>
-      </div>
-      <div class="og-body">
-        <div class="og-headline">Changelog</div>
-        <div class="og-subtitle">What's new in Morgenruf</div>
-      </div>
-      <div class="og-bottom">
-        <span class="og-url">morgenruf.dev</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 12. Donut Alternative -->
-  <div class="card-wrapper" id="donut-alternative">
-    <div class="card-label">Donut Alternative</div>
-    <div class="og-card">
-      <div class="og-top">
-        <span class="og-logo">&#x1F305;</span>
-        <span class="og-brand">morgenruf</span>
-      </div>
-      <div class="og-body">
-        <div class="og-headline">Free Donut Alternative</div>
-        <div class="og-subtitle">Coffee chats in Slack, with standups and kudos included.</div>
-      </div>
-      <div class="og-bottom">
-        <span class="og-url">morgenruf.dev</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 13. HeyTaco Alternative -->
-  <div class="card-wrapper" id="heytaco-alternative">
-    <div class="card-label">HeyTaco Alternative</div>
-    <div class="og-card">
-      <div class="og-top">
-        <span class="og-logo">&#x1F305;</span>
-        <span class="og-brand">morgenruf</span>
-      </div>
-      <div class="og-body">
-        <div class="og-headline">Free HeyTaco Alternative</div>
-        <div class="og-subtitle">Peer recognition in Slack. Any emoji, no per-seat bill.</div>
-      </div>
-      <div class="og-bottom">
-        <span class="og-url">morgenruf.dev</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 14. DailyBot Alternative -->
-  <div class="card-wrapper" id="dailybot-alternative">
-    <div class="card-label">DailyBot Alternative</div>
-    <div class="og-card">
-      <div class="og-top">
-        <span class="og-logo">&#x1F305;</span>
-        <span class="og-brand">morgenruf</span>
-      </div>
-      <div class="og-body">
-        <div class="og-headline">Free DailyBot Alternative</div>
-        <div class="og-subtitle">Async standups in Slack, free at any team size.</div>
-      </div>
-      <div class="og-bottom">
-        <span class="og-url">morgenruf.dev</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 15. Standuply Alternative -->
-  <div class="card-wrapper" id="standuply-alternative">
-    <div class="card-label">Standuply Alternative</div>
-    <div class="og-card">
-      <div class="og-top">
-        <span class="og-logo">&#x1F305;</span>
-        <span class="og-brand">morgenruf</span>
-      </div>
-      <div class="og-body">
-        <div class="og-headline">Free Standuply Alternative</div>
-        <div class="og-subtitle">Async standups in Slack, free at any team size.</div>
-      </div>
-      <div class="og-bottom">
-        <span class="og-url">morgenruf.dev</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 16. Blog: Standup Questions -->
-  <div class="card-wrapper" id="blog-standup-questions">
-    <div class="card-label">Blog: Standup Questions</div>
-    <div class="og-card">
-      <div class="og-top">
-        <span class="og-logo">&#x1F305;</span>
-        <span class="og-brand">morgenruf</span>
-      </div>
-      <div class="og-body">
-        <div class="og-headline" style="font-size: 60px;">30 Async Standup Questions</div>
-        <div class="og-subtitle">Templates for engineering, remote, leads and cross-functional teams</div>
-      </div>
-      <div class="og-bottom">
-        <span class="og-url">morgenruf.dev</span>
-      </div>
-    </div>
-  </div>
-
+<div class="card-wrapper" id="blog-standup-questions"><div class="card-label">Blog</div>
+<div class="og blog">
+  <div class="brand"><img src="/logo-mark.png" alt=""><img class="wm" src="/og/wordmark.png" alt="Morgenruf"></div>
+  <div class="body"><p class="kicker">Blog</p><h1>30 async standup questions, grouped by team</h1></div>
+  <div class="foot">Anmol Nagpal<b></b>morgenruf.dev/blog</div>
+</div></div>
 </body>
 </html>

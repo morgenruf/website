@@ -64,6 +64,10 @@ def refresh_assets(html):
     """Point a hand-written page at the current versions of the shared assets."""
     for path in ("/assets/site.css", "/assets/nav.js"):
         html = re.sub(re.escape(path) + r'(\?v=[0-9a-f]+)?"', shell.asset(path) + '"', html)
+    # Share cards sit behind a 30-day Cloudflare cache, so a redrawn card
+    # needs a new URL before LinkedIn or X will pick it up.
+    html = re.sub(r'(?<=morgenruf\.dev)(/og-image\.png|/og/[a-z0-9-]+\.png)(\?v=[0-9a-f]+)?"',
+                  lambda m: shell.asset(m.group(1)) + '"', html)
     return html
 
 
