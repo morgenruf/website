@@ -95,7 +95,7 @@ def standups():
         <li>An optional mood check alongside the questions, to spot a rough week early</li>
       </ul>
     </div>
-    <div>{shot("/screenshots/standups.jpg", "Two standups in the dashboard, each with a completion sparkline and a health badge", "Each standup carries fourteen days of completion, so one that is slipping says so.")}</div>
+    <div>{shot("/screenshots/standup-summary.jpg", "The standup summary in Slack: who is blocked at the top, then each person's answers", "One summary in the channel, with blockers pulled to the top.")}</div>
   </div>
 
   <div class="mod">
@@ -111,7 +111,7 @@ def standups():
         <li>When the next coffee chat round goes out, and whether it is overdue</li>
       </ul>
     </div>
-    <div>{shot("/screenshots/today.jpg", "The Today page showing answered and blocked counts, this morning's answers and recent kudos", "Today, for a team of eight.")}</div>
+    <div>{shot("/screenshots/today.jpg", "The Today page: this morning's answers with each person's mood, one marked blocked, and who is still to answer", "Today, for a team of eight.")}</div>
   </div>
 </div></section>
 
@@ -162,7 +162,7 @@ write-up on running async standups in Slack for free</a> is the shorter version 
         lede="Morgenruf asks each person in a DM at a sensible local hour. One summary lands in the "
              "channel. Nobody sits in a call to hear what they could have read.",
         body=body, schema=[faq_schema],
-        hero=shot("/screenshots/today.jpg", "The Today page: who has answered, who is blocked, and recent recognition", "Today, for a team of eight.", lazy=False),
+        hero=shot("/screenshots/today.jpg", "The Today page: this morning's answers with each person's mood, one marked blocked, and who is still to answer", "Today, for a team of eight.", lazy=False),
         trail=[("Home", "/"), ("Standups", None)], current="/standups/",
         define='Morgenruf is a free, open-source (MIT) Slack app for async standups. It asks each person your questions by DM at their own local hour and posts one summary to the channel, with blockers pulled out. It runs free on a hosted instance CloudDrove operates, or on your own servers, and also handles coffee chats and kudos.')
 
@@ -207,7 +207,7 @@ def coffee_chats():
         <li>One quiet nudge on day three if nothing has happened</li>
       </ul>
     </div>
-    <div>{shot("/screenshots/coffee-chat-settings.jpg", "Coffee chat settings beside a live preview of the Slack introduction", "Settings on the left, the message they produce on the right.")}</div>
+    <div>{shot("/screenshots/coffee-chat-intro.jpg", "The coffee chat introduction in Slack: who was matched, a starter question, and hours that suit both timezones", "The introduction each pair gets, previewed live as you change the settings.")}</div>
   </div>
 </div></section>
 
@@ -256,7 +256,7 @@ which is the question the attendance table exists to answer.</p>
         lede="Random pairings from a channel, on a cadence, that end in an actual meeting rather than "
              "two people agreeing they should find a time.",
         body=body, schema=[faq_schema],
-        hero=shot("/screenshots/coffee-chat-settings.jpg", "Coffee chat settings beside a live preview of the Slack introduction", "The settings, and the message they produce.", lazy=False),
+        hero=shot("/screenshots/coffee-chat-intro.jpg", "The coffee chat introduction in Slack: who was matched, a starter question, and hours that suit both timezones", "The introduction each pair gets.", lazy=False),
         trail=[("Home", "/"), ("Coffee chats", None)], current="/coffee-chats/",
         define='Morgenruf is a free, open-source (MIT) Slack app that runs random coffee chats. It pairs people from a channel on a cadence, avoids repeat matches, suggests hours that suit both timezones and can book the Zoom meeting. It runs on a free hosted instance or on your own servers, alongside async standups and kudos.')
 
@@ -294,7 +294,7 @@ def kudos():
         <li>Everything stored in your database, exportable as CSV</li>
       </ul>
     </div>
-    <div>{shot("/screenshots/kudos.jpg", "Kudos settings showing the token, the daily allowance, and a preview of the message", "Set the token and the allowance, and see exactly what your team will get.")}</div>
+    <div>{shot("/screenshots/kudos-leaderboards.jpg", "Kudos leaderboards: who was recognised most, and who recognises others most", "Who gets thanked, and who does the thanking.")}</div>
   </div>
 </div></section>
 
@@ -349,7 +349,7 @@ visible in a way neither dataset shows alone.</p>
         lede="A handful of tokens a day each, given publicly with a reason, gone at midnight if "
              "unspent.",
         body=body, schema=[faq_schema],
-        hero=shot("/screenshots/kudos.jpg", "Kudos settings: the token, the daily allowance and a preview of the message", "Your token, your allowance.", lazy=False),
+        hero=shot("/screenshots/kudos-slack.jpg", "A kudos post in Slack naming the person and quoting the reason", "The thank-you lands in the channel, reason and all.", lazy=False),
         trail=[("Home", "/"), ("Kudos", None)], current="/kudos/",
         define='Morgenruf is a free, open-source (MIT) Slack app whose kudos module gives everyone a small daily allowance of recognition tokens, in any emoji you choose, that resets at midnight in their own timezone. It runs on a free hosted instance or on your own servers, alongside async standups and coffee chats.')
 
@@ -417,7 +417,7 @@ place</a>.</p>
         lede="Standups tell you who is blocked. Kudos tell you who was thanked. Together they tell "
              "you something neither can on its own.",
         body=body, schema=[faq_schema],
-        hero=shot("/screenshots/members.jpg", "Member cards showing which features each person runs", "Who runs what, at a glance.", lazy=False),
+        hero=shot("/screenshots/insights.jpg", "Insights: a teammate filing standups with no recognition, and a blocker repeated for three days", "Who shows up without thanks, and which blockers keep coming back.", lazy=False),
         trail=[("Home", "/"), ("Insights", None)], current="/insights/",
         define='Morgenruf Insights reads standup answers and kudos together, to show blockers nobody has cleared in days and people who contribute every morning without being thanked. It is part of Morgenruf, a free, open-source (MIT) Slack app for standups, coffee chats and kudos, hosted free or self-hosted.')
 
@@ -523,7 +523,7 @@ def celebrations():
 </div></section>
 
 <section class="section"><div class="wrap"><div class="prose">
-''' + diagrams.celebration_week() + '''
+''' + shot("/screenshots/celebrations.jpg", "Coming up: two birthdays and two work anniversaries, one posted early on Friday", "The next 30 days, and the day each one is posted.") + diagrams.celebration_week() + '''
 <h2 id="working-days-and-holidays">Working days and company holidays</h2>
 <p>A birthday on a Saturday posted on the Saturday is a birthday nobody sees. So whoever runs
 Celebrations sets the working days (Monday to Friday by default, Sunday to Thursday, or any other

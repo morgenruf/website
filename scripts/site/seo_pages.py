@@ -156,7 +156,7 @@ deployment and one database, which is also what makes the
   when it slips.</li>
 </ul>
 
-{shot("/screenshots/standups.jpg", "Two standups in the dashboard, each with a completion sparkline and a health badge", "A standup that is quietly dying says so here before anyone notices in the channel.")}
+{shot("/screenshots/standup-summary.jpg", "The standup summary in Slack: who is blocked at the top, then each person's answers", "One summary in the channel. Blockers go to the top.")}
 
 <h2 id="what-geekbot-costs">What does Geekbot cost for 10, 30 or 100 people?</h2>
 <p>Worked out from Geekbot's published prices on 2026-09-26, per year. Morgenruf's self-hosted figure
@@ -220,7 +220,7 @@ right. Nothing here has a contract to cancel.</p>
                      "on your own servers, with coffee chats and kudos included rather than sold "
                      "separately.",
                 body=body, schema=[faq_schema],
-                hero=shot("/screenshots/today.jpg", "The Today page showing who answered, who is blocked and recent recognition", "Your morning, on one screen.", lazy=False),
+                hero=shot("/screenshots/today.jpg", "The Today page: this morning's answers with each person's mood, one marked blocked, and who is still to answer", "Your morning, on one screen.", lazy=False),
                 trail=[("Home", "/"), ("Compare", "/compare/"), ("vs Geekbot", None)],
                 og="geekbot-alternative",
         define='Morgenruf is a free, open-source (MIT) Geekbot alternative for Slack. Like Geekbot, it sends each person standup questions by DM and posts one summary to a channel. Unlike Geekbot (free up to 10 users, then $3 per user per month, checked 2026-09-26), it has no per-seat fee at any size, can run on your own servers, and adds coffee chats and kudos.')
@@ -284,7 +284,7 @@ before the app starts.
 upgrade path and the backups in full. If that sounds like a chore rather than a Tuesday, a hosted
 option is cheaper than your time.</p>
 
-{shot("/screenshots/today.jpg", "The Today page showing answered, waiting and blocked counts", "What the morning looks like once it is running.")}
+{shot("/screenshots/today.jpg", "The Today page: this morning's answers with each person's mood, one marked blocked, and who is still to answer", "What the morning looks like once it is running.")}
 
 <h2 id="switching">Switching</h2>
 <ol>
@@ -487,7 +487,7 @@ you want to do the arithmetic for your own team.</p>
 <p>The same image and the same database either way. <a href="/setup/">Every way of running it</a> is
 written up step by step, and the choice is mostly about what your team already operates.</p>
 
-{shot("/screenshots/standups.jpg", "Standups in the dashboard with completion sparklines", "The dashboard runs on your own domain, behind your own auth.")}
+{shot("/screenshots/today-summary.jpg", "Answered, still to answer and blocked counts, with today's blocker", "The dashboard runs on your own domain, behind your own auth.")}
 
 <h2 id="the-part-people-underestimate">The part people underestimate</h2>
 <p>Not the install. The Slack app: scopes, a redirect URL, and the fact that a workspace which
@@ -562,7 +562,7 @@ scopes for group DMs and timezones. Kudos needs emoji read access to use your ow
 scope for reading channel history, because it never does.
 <a href="/setup/slack-app/">Every scope, with the reason</a>.</p>
 
-{shot("/screenshots/coffee-chat-settings.jpg", "Coffee chat settings with a live preview of the Slack message", "The settings page shows the Slack message it will produce, as you edit it.")}
+{shot("/screenshots/coffee-chat-intro.jpg", "The coffee chat introduction in Slack: who was matched, a starter question, and hours that suit both timezones", "The settings page previews the Slack message it will produce, as you edit it.")}
 
 <h2 id="what-it-is-not">What it is not</h2>
 <ul>
@@ -606,7 +606,7 @@ happens when someone is on leave. If you are still deciding,
                 lede="Questions by DM at each person's local hour, one summary in the channel, "
                      "slash commands and an App Home tab. Nobody opens a dashboard to take part.",
                 body=body, schema=[faq_schema],
-                hero=shot("/screenshots/today.jpg", "The Today page showing the morning's answers and blockers", "The dashboard is for whoever runs it. Everyone else stays in Slack.", lazy=False),
+                hero=shot("/screenshots/today.jpg", "The Today page: this morning's answers with each person's mood, one marked blocked, and who is still to answer", "The dashboard is for whoever runs it. Everyone else stays in Slack.", lazy=False),
                 trail=[("Home", "/"), ("Slack standup bot", None)],
         define='Morgenruf is a free Slack standup bot. It DMs each person your questions at their local hour, posts one summary to the channel, and adds slash commands and an App Home tab. It is open source (MIT), free on a hosted instance or self-hosted, and also runs coffee chats and kudos.')
 
@@ -687,7 +687,7 @@ database, which is what makes the <a href="/insights/">cross-signal questions</a
 <p>DailyBot publishes some side tools under MIT, but the product itself is closed. Morgenruf is MIT
 end to end: the bot, the dashboard and the Helm chart.</p>
 
-{shot("/screenshots/standups.jpg", "Two standups in the dashboard, each with a completion sparkline and a health badge", "A standup that is quietly dying says so here before anyone notices in the channel.")}
+{shot("/screenshots/standup-summary.jpg", "The standup summary in Slack: who is blocked at the top, then each person's answers", "One summary in the channel. Blockers go to the top.")}
 
 <h2 id="what-dailybot-costs">What does DailyBot cost for 10, 30 or 100 people?</h2>
 <p>Worked out from DailyBot's published Essentials price on {CHECKED_2}, per year, for teams that
@@ -748,7 +748,7 @@ DailyBot off once the new summary looks right.</p>
                      f"standup free at any size, so pick DailyBot only if you need Teams, Discord or "
                      f"its forms.",
                 body=body, schema=[faq_schema],
-                hero=shot("/screenshots/today.jpg", "The Today page showing who answered, who is blocked and recent recognition", "Your morning, on one screen.", lazy=False),
+                hero=shot("/screenshots/today.jpg", "The Today page: this morning's answers with each person's mood, one marked blocked, and who is still to answer", "Your morning, on one screen.", lazy=False),
                 trail=[("Home", "/"), ("Compare", "/compare/"), ("vs DailyBot", None)],
                 og="dailybot-alternative", reviewed=CHECKED_2,
                 define=f'Morgenruf is a free, open-source (MIT) DailyBot alternative for Slack. Like DailyBot, it sends each person standup questions by DM and posts one summary to a channel. Unlike DailyBot (free for 50 compiled reports a month, then $3 per active user per month, checked {CHECKED_2}), it has no report cap or seat price, can run on your own servers, and adds coffee chats.')
@@ -828,7 +828,7 @@ deployment and one database, which is also what makes the
 <p>MIT licensed, the whole repository. If the summary format is wrong for you, the file is right
 there.</p>
 
-{shot("/screenshots/standups.jpg", "Two standups in the dashboard, each with a completion sparkline and a health badge", "A standup that is quietly dying says so here before anyone notices in the channel.")}
+{shot("/screenshots/standup-summary.jpg", "The standup summary in Slack: who is blocked at the top, then each person's answers", "One summary in the channel. Blockers go to the top.")}
 
 <h2 id="what-standuply-costs">What does Standuply cost for 10, 30 or 100 people?</h2>
 <p>Worked out from Standuply's published Team prices on {CHECKED_2}, per year. At 100 people the
@@ -889,7 +889,7 @@ Standuply off once the new summary looks right.</p>
                      f"at any size, so stay on Standuply only for video answers, Teams or its agile "
                      f"extras.",
                 body=body, schema=[faq_schema],
-                hero=shot("/screenshots/today.jpg", "The Today page showing who answered, who is blocked and recent recognition", "Your morning, on one screen.", lazy=False),
+                hero=shot("/screenshots/today.jpg", "The Today page: this morning's answers with each person's mood, one marked blocked, and who is still to answer", "Your morning, on one screen.", lazy=False),
                 trail=[("Home", "/"), ("Compare", "/compare/"), ("vs Standuply", None)],
                 og="standuply-alternative", reviewed=CHECKED_2,
                 define=f'Morgenruf is a free, open-source (MIT) Standuply alternative for Slack. Both send standup questions by DM and post a summary to a channel. Standuply is free for 3 users, then $2 to $3.50 per user per month on Team (checked {CHECKED_2}); Morgenruf is free at any size, can run on your own servers, and adds coffee chats and kudos.')

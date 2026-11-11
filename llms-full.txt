@@ -19,7 +19,7 @@ Answers in a thread or the channel, grouped by person or by question
 Blockers highlighted so they are not buried in paragraph three
 A private nudge for whoever has not filed yet
 An optional mood check alongside the questions, to spot a rough week early
-Each standup carries fourteen days of completion, so one that is slipping says so.
+One summary in the channel, with blockers pulled to the top.
 Every morning The page you check with your coffee
 Who has answered, who is still to file, and who is blocked, on one screen. The blocked list is the point: it is the thing a standup exists to surface and the thing a transcript buries.
 Counts that reconcile: expected, answered, waiting, blocked
@@ -62,7 +62,7 @@ Introduce the people who never talk
 Random pairings from a channel, on a cadence, that end in an actual meeting rather than two people agreeing they should find a time.
 Add to Slack Self-host in about 20 minutes
 Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
-The settings, and the message they produce.
+The introduction each pair gets.
 Morgenruf is a free, open-source (MIT) Slack app that runs random coffee chats. It pairs people from a channel on a cadence, avoids repeat matches, suggests hours that suit both timezones and can book the Zoom meeting. It runs on a free hosted instance or on your own servers, alongside async standups and kudos.
 Last reviewed September 26, 2026
 How it works Pick a channel and a cadence
@@ -71,7 +71,7 @@ Never repeats a pairing until everyone has met
 Groups of two to eight, with a sensible remainder
 An icebreaker, so the first message is not "hi"
 One quiet nudge on day three if nothing has happened
-Settings on the left, the message they produce on the right.
+The introduction each pair gets, previewed live as you change the settings.
 The part most pairing tools leave out
 Two people get introduced, say "we should find a time", and never do. The introduction has to carry the meeting or the meeting does not happen. Where a hosted product still wins on this is set out in the comparison with Donut.
 Hours that suit both. Each person's working day comes from their Slack timezone. The suggestions are the overlap, not your convenience.
@@ -103,7 +103,7 @@ Praise that means something because it runs out
 A handful of tokens a day each, given publicly with a reason, gone at midnight if unspent.
 Add to Slack Self-host in about 20 minutes
 Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
-Your token, your allowance.
+The thank-you lands in the channel, reason and all.
 Morgenruf is a free, open-source (MIT) Slack app whose kudos module gives everyone a small daily allowance of recognition tokens, in any emoji you choose, that resets at midnight in their own timezone. It runs on a free hosted instance or on your own servers, alongside async standups and coffee chats.
 Last reviewed September 26, 2026
 How it works A daily budget, not an applause button
@@ -112,7 +112,7 @@ Your own token: any emoji in your workspace
 Resets at midnight in each person's own timezone
 Leaderboards for giving as well as receiving
 Everything stored in your database, exportable as CSV
-Set the token and the allowance, and see exactly what your team will get.
+Who gets thanked, and who does the thanking.
 Why scarcity is the whole design
 Unlimited praise is worth nothing. If everybody can thank everybody all day, the messages become noise and people stop reading them. A small daily budget that disappears at midnight does two useful things: it makes each one mean something, and it creates a mild pressure to spend them, which is what gets somebody to notice the quiet colleague who fixed the build. Midnight is read per person, the same way a standup works out when to ask.
 How do you set up kudos in Slack?
@@ -145,7 +145,7 @@ The questions that need two datasets
 Standups tell you who is blocked. Kudos tell you who was thanked. Together they tell you something neither can on its own.
 Add to Slack Self-host in about 20 minutes
 Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
-Who runs what, at a glance.
+Who shows up without thanks, and which blockers keep coming back.
 Morgenruf Insights reads standup answers and kudos together, to show blockers nobody has cleared in days and people who contribute every morning without being thanked. It is part of Morgenruf, a free, open-source (MIT) Slack app for standups, coffee chats and kudos, hosted free or self-hosted.
 Last reviewed September 26, 2026
 Two questions worth asking
@@ -196,6 +196,7 @@ Morgenruf APP 09:00
 🎂 Today is a birthday double: @Priya and @Tom!Wishing you both a lovely day. 💛🎉 1
 Morgenruf APP 09:00
 🎉 Today is @Tom's first work anniversary! 🥳One year already. Thanks for everything, Tom.🎉 1
+The next 30 days, and the day each one is posted.
 Working days and company holidays
 A birthday on a Saturday posted on the Saturday is a birthday nobody sees. So whoever runs Celebrations sets the working days (Monday to Friday by default, Sunday to Thursday, or any other week) and keeps a list of company holidays, typed in or imported as date,name. Morgenruf does not ship a holiday calendar of its own: your list is the only source, so it matches the days your company actually takes off.
 A celebration on a day off is posted on the last working day before it, with wording that says so:
@@ -435,7 +436,7 @@ Leave that skips people rather than nagging them, and does not drag the completi
 A private nudge for whoever has not filed, instead of a public callout.
 An edit window, because people send early and remember something a minute later.
 Knowing it is working: fourteen days of completion on the card and a badge when it slips.
-A standup that is quietly dying says so here before anyone notices in the channel.
+One summary in the channel. Blockers go to the top.
 What does Geekbot cost for 10, 30 or 100 people?
 Worked out from Geekbot's published prices on 2026-09-26, per year. Morgenruf's self-hosted figure is the small server and Postgres it runs on, which does not move with headcount.
 Team sizeGeekbot, billed monthlyGeekbot, billed annuallyMorgenruf, hostedMorgenruf, self-hosted
@@ -642,7 +643,7 @@ Coffee chats in the same app
 DailyBot has kudos; Morgenruf has kudos too, and adds coffee chats that pair people and book the meeting, all in one database, which is what makes the cross-signal questions possible.
 The whole app is open source
 DailyBot publishes some side tools under MIT, but the product itself is closed. Morgenruf is MIT end to end: the bot, the dashboard and the Helm chart.
-A standup that is quietly dying says so here before anyone notices in the channel.
+One summary in the channel. Blockers go to the top.
 What does DailyBot cost for 10, 30 or 100 people?
 Worked out from DailyBot's published Essentials price on 2026-09-29, per year, for teams that have outgrown the free plan's report cap. Advanced costs a little over twice as much.
 Team sizeDailyBot Essentials, monthlyDailyBot Essentials, annualMorgenruf, hostedMorgenruf, self-hosted
@@ -707,7 +708,7 @@ Three rituals, one app
 Standups, coffee chats and kudos share one deployment and one database, which is also what makes the cross-signal questions possible.
 It can be read and changed
 MIT licensed, the whole repository. If the summary format is wrong for you, the file is right there.
-A standup that is quietly dying says so here before anyone notices in the channel.
+One summary in the channel. Blockers go to the top.
 What does Standuply cost for 10, 30 or 100 people?
 Worked out from Standuply's published Team prices on 2026-09-29, per year. At 100 people the flat fee is cheaper than paying per user, so that is the figure shown.
 Team sizeStanduply Team, monthlyStanduply Team, annualMorgenruf, hostedMorgenruf, self-hosted
@@ -843,7 +844,7 @@ An App Home tab with your standups, your streak, your remaining kudos, and butto
 Group introductions for coffee chats, with the time vote in the message.
 The scopes it asks for
 Standups need to read channel membership, write messages, and open DMs. Coffee chats add three scopes for group DMs and timezones. Kudos needs emoji read access to use your own token. There is no scope for reading channel history, because it never does. Every scope, with the reason.
-The settings page shows the Slack message it will produce, as you edit it.
+The settings page previews the Slack message it will produce, as you edit it.
 What it is not
 Not a meeting recorder or a transcript bot.
 Not a productivity score. There is no ranking of people by output.

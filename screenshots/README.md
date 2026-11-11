@@ -1,11 +1,38 @@
 # Product screenshots
 
-The landing page currently shows a Slack conversation rebuilt in HTML and CSS
-(`.slack-mock` in `index.html`) rather than the product. See website#2 for why
-that costs credibility against Geekbot and the other named competitors.
+Last refreshed 2026-11-11, all from invented demo data (the Northstar Studio team). No
+production workspace, real person or real Slack message appears in any of them.
 
-Replacing it needs real captures. This file is the spec so the capture session
-is short and the results are consistent.
+## How they are made
+
+**Dashboard shots** come from the real frontend running against the app's in-memory browser
+fixture, filled with demo data. From `morgenruf/morgenruf`:
+
+    .venv/bin/python frontend/scripts/demo-backend.py &          # 127.0.0.1:3008
+    (cd frontend && API_PROXY_TARGET=http://127.0.0.1:3008 ./node_modules/.bin/vite --host 127.0.0.1 --port 5174 --strictPort &)
+    cd frontend && VIEWPORT_WIDTH=960 node scripts/capture-screens.mjs <outDir> [page ...]
+
+A 960px window stacks the cards, so text stays readable once the image is shrunk onto a page.
+Use 1440 for wide tables.
+
+**Slack shots** are the app's own Block Kit messages, built by calling the message functions in
+`app/src/modules/*` with demo data and rendered in Slack's Block Kit Builder. Only the sender name,
+icon, time and mention styling are set in the preview, because the demo people do not exist.
+
+Convert to JPEG under 1600px wide and run `scripts/site/build.py`; it writes the WebP copies.
+
+| File | Shows |
+|---|---|
+| `standup-summary.jpg` | Slack: the channel summary, blocker on top |
+| `kudos-slack.jpg` | Slack: a kudos post with the reason quoted |
+| `poll-slack.jpg` | Slack: a named poll with results |
+| `today.jpg` | Dashboard: Today's responses, mood, blocked badge, still to answer |
+| `today-summary.jpg` | Dashboard: answered, waiting, blocked counts and the blocker |
+| `coffee-chat-intro.jpg` | Dashboard: the live preview of the coffee chat introduction |
+| `kudos-leaderboards.jpg` | Dashboard: most recognised and most encouraging |
+| `members.jpg` | Dashboard: member cards with per-feature admin chips |
+| `insights.jpg` | Dashboard: recognition gaps and persistent blockers |
+| `celebrations.jpg` | Dashboard: coming up birthdays and anniversaries |
 
 ## Do not capture from the live production workspace
 
@@ -16,24 +43,6 @@ private repositories. None of that can ship.
 Capture from a dedicated demo Slack workspace with invented people and invented
 work. That workspace is also what onboarding should be tested against, so it
 pays for itself twice.
-
-## Blocked on
-
-morgenruf/morgenruf#61. Reports currently renders raw Slack markup: links show
-as `<https://...|label>`, bold as `*text*`, mentions as `<@U071G30EEKV>`.
-Photograph it today and the bug ships as marketing. Capture after that lands.
-
-## Shot list
-
-| # | Shot | Where | Why it earns its place |
-|---|------|-------|------------------------|
-| 1 | Standup DM, question and answer | Slack DM with the bot | The core interaction. Replaces the CSS mock in the hero. |
-| 2 | Posted summary in a channel | Slack channel | What the team actually sees each morning. |
-| 3 | Reports, a few days of responses | Dashboard, Reports | The manager view, and the strongest proof the product is finished. |
-| 4 | Standups list | Dashboard, Standups | Shows multi-schedule support, which competitors charge for. |
-| 5 | Analytics | Dashboard, Analytics | Backs the "every feature from paid tools" claim. |
-| 6 | New Standup modal | Dashboard, Standups | Shows questions, days and timezone control in one frame. |
-| 7 | App Home | Slack App Home tab | Backs the "no dashboard needed" line in the features grid. |
 
 ## Capture settings
 
