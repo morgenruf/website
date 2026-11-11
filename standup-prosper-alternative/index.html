@@ -20,9 +20,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="/assets/site.css?v=0e4afc264f"/>
+<link rel="preload" href="/assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=53230c49e3"/>
 <script src="/assets/analytics.js" defer></script>
 <script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is self-hosting worth it for a team of ten?", "acceptedAnswer": {"@type": "Answer", "text": "Not for the price: Standup & Prosper's free plan has no user limit. It becomes worth it when standup answers cannot sit with a third party, when you want to keep full history in your own database, or when you want coffee chats and recognition too."}}, {"@type": "Question", "name": "What does it cost to run?", "acceptedAnswer": {"@type": "Answer", "text": "A small VPS and a Postgres. Many teams run it beside things they already have, in which case the marginal cost is close to nothing."}}, {"@type": "Question", "name": "Can I keep using Slack the same way?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It is a Slack app: DMs for questions, a channel for the summary, slash commands, and an App Home tab."}}]}</script>
@@ -64,18 +63,18 @@ will not tell you anything different.</p>
 <svg viewBox="0 0 700 180" role="img" aria-label="A standup morning: the bot sends a direct message at the scheduled hour, people answer in their own time, whoever has not filed gets a private nudge, and one summary posts to the channel.">
 <line x1="60" y1="96" x2="600" y2="96" stroke="#E9E2D6" stroke-width="3"/>
 <circle cx="60" cy="96" r="9" fill="#00A3DE"/>
-<text x="60" y="74" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="#12131F">09:30</text>
-<text x="60" y="128" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">The bot DMs</text>
-<text x="60" y="146" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">each person</text><circle cx="240" cy="96" r="9" fill="#4B3BD0"/>
-<text x="240" y="74" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="#12131F">09:31</text>
-<text x="240" y="128" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">They answer in</text>
-<text x="240" y="146" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">their own time</text><circle cx="420" cy="96" r="9" fill="#0E8A5F"/>
-<text x="420" y="74" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="#12131F">10:30</text>
-<text x="420" y="128" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">One summary posts</text>
-<text x="420" y="146" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">to the channel</text><circle cx="600" cy="96" r="9" fill="#E0322E"/>
-<text x="600" y="74" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="#12131F">10:10</text>
-<text x="600" y="128" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">A private nudge</text>
-<text x="600" y="146" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">to whoever has not</text>
+<text x="60" y="74" text-anchor="middle" font-family="Geist,sans-serif" font-size="14" font-weight="600" fill="#12131F">09:30</text>
+<text x="60" y="128" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">The bot DMs</text>
+<text x="60" y="146" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">each person</text><circle cx="240" cy="96" r="9" fill="#4B3BD0"/>
+<text x="240" y="74" text-anchor="middle" font-family="Geist,sans-serif" font-size="14" font-weight="600" fill="#12131F">09:31</text>
+<text x="240" y="128" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">They answer in</text>
+<text x="240" y="146" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">their own time</text><circle cx="420" cy="96" r="9" fill="#0E8A5F"/>
+<text x="420" y="74" text-anchor="middle" font-family="Geist,sans-serif" font-size="14" font-weight="600" fill="#12131F">10:30</text>
+<text x="420" y="128" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">One summary posts</text>
+<text x="420" y="146" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">to the channel</text><circle cx="600" cy="96" r="9" fill="#E0322E"/>
+<text x="600" y="74" text-anchor="middle" font-family="Geist,sans-serif" font-size="14" font-weight="600" fill="#12131F">10:10</text>
+<text x="600" y="128" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">A private nudge</text>
+<text x="600" y="146" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">to whoever has not</text>
 </svg>
 <figcaption>What a Standup &amp; Prosper team would recognise: questions by DM, answers in their own time, one post.</figcaption>
 </figure>
@@ -144,10 +143,10 @@ option is cheaper than your time.</p>
     <div class="foot-grid">
       <div>
         <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
-        <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
+        <p style="max-width:34ch;font-size:15.5px">One open-source Slack app for standups, coffee
         chats and recognition. Free on the hosted instance, or self-host it and keep your own
         data.</p>
-        <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        <p style="font-size:14.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
         Kitchener, Ontario 🇨🇦</p>
       </div>
       <div><h3>Product</h3><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/insights/">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog/">Changelog</a></div><div><h3>Set up</h3><a href="/setup/">All the ways</a><a href="/setup/docker/">Docker Compose</a><a href="/setup/kubernetes/">Kubernetes and Helm</a><a href="/setup/slack-app/">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare/">All comparisons</a><a href="/compare/standup-bots/">Standup bots compared</a><a href="/geekbot-alternative/">vs Geekbot</a><a href="/donut-alternative/">vs Donut</a><a href="/heytaco-alternative/">vs HeyTaco</a><a href="/standup-prosper-alternative/">vs Standup &amp; Prosper</a><a href="/dailybot-alternative/">vs DailyBot</a><a href="/standuply-alternative/">vs Standuply</a><a href="/open-source-standup-bot/">Open-source standup bot</a><a href="/self-hosted-standup-bot/">Self-hosted standup bot</a><a href="/slack-standup-bot/">Slack standup bot</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog/">Blog</a><a href="/support/">Support</a><a href="https://www.linkedin.com/company/morgenruf">LinkedIn</a><a href="https://x.com/morgenruf_dev">X</a></div>

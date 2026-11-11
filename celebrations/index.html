@@ -20,9 +20,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="/assets/site.css?v=0e4afc264f"/>
+<link rel="preload" href="/assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=53230c49e3"/>
 <script src="/assets/analytics.js" defer></script>
 <script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I get a birthday bot in Slack?", "acceptedAnswer": {"@type": "Answer", "text": "Add Morgenruf to Slack, open the Celebrations page in the dashboard, pick a channel and a timezone, save, invite @Morgenruf to that channel, and turn Celebrations on. Birthdays and work anniversaries then post there at 09:00, or whatever time you set."}}, {"@type": "Question", "name": "Does it do work anniversaries as well as birthdays?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Anniversaries are counted from each person's start date, so the post says how many years it has been. A start date less than a year ago is skipped. Either kind can be switched off on its own."}}, {"@type": "Question", "name": "What happens when a birthday falls on a weekend or a holiday?", "acceptedAnswer": {"@type": "Answer", "text": "It is posted on the last working day before it. With a Monday to Friday week, Friday posts \"Tomorrow is...\" for a Saturday and \"On Sunday it's...\" for a Sunday. The working days and the holiday list are yours to set, so a Sunday to Thursday week works too."}}, {"@type": "Question", "name": "Does anyone have to give their birth year?", "acceptedAnswer": {"@type": "Answer", "text": "No. Only the day and month are stored. There is no field for a year, and a full date in an imported file has its year dropped before it is saved."}}, {"@type": "Question", "name": "Can someone opt out?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, with one checkbox: \"Don't celebrate me publicly\" in their profile, or \"Skip me\" on the message that asks for dates. Their dates stay on file and nothing is posted about them."}}, {"@type": "Question", "name": "Can HR add everyone's dates at once?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. A workspace admin can import a CSV of email, birthday and start date, exported from the HR tool. It shows matched, unmatched and invalid rows before anything is saved, and does not overwrite dates a person entered themselves unless the admin ticks overwrite."}}, {"@type": "Question", "name": "Can we change the wording of the messages?", "acceptedAnswer": {"@type": "Answer", "text": "Not in this version. The text is fixed, short and the same for everyone, with names as mentions and no pronouns, since the profile does not store them."}}, {"@type": "Question", "name": "Does it cost anything?", "acceptedAnswer": {"@type": "Answer", "text": "No. Celebrations is part of Morgenruf, which is free on the hosted instance at any team size, and MIT licensed if you would rather run it on your own servers."}}]}</script>
@@ -103,20 +102,20 @@
 <svg viewBox="0 0 740 190" role="img" aria-label="With Monday to Friday working days and Monday a company holiday, birthdays on Saturday, Sunday and Monday are all posted on Friday, the last working day before them.">
 <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
 <path d="M0 0 L10 5 L0 10 z" fill="#FFB23F"/></marker></defs><rect x="20" y="40" width="104" height="70" rx="12" fill="#fff" stroke="#E9E2D6" stroke-width="1.5"/>
-<text x="72.0" y="71.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Thu</text>
-<text x="72.0" y="91.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">working day</text><rect x="140" y="40" width="104" height="70" rx="12" fill="#FFF7EA" stroke="#FFB23F" stroke-width="1.5"/>
-<text x="192.0" y="71.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Fri</text>
-<text x="192.0" y="91.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">posts here</text><rect x="260" y="40" width="104" height="70" rx="12" fill="#F4F1EA" stroke="#E9E2D6" stroke-width="1.5"/>
-<text x="312.0" y="71.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#5A5E74">Sat</text>
-<text x="312.0" y="91.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">day off</text><rect x="380" y="40" width="104" height="70" rx="12" fill="#F4F1EA" stroke="#E9E2D6" stroke-width="1.5"/>
-<text x="432.0" y="71.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#5A5E74">Sun</text>
-<text x="432.0" y="91.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">day off</text><rect x="500" y="40" width="104" height="70" rx="12" fill="#F4F1EA" stroke="#E9E2D6" stroke-width="1.5"/>
-<text x="552.0" y="71.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#5A5E74">Mon</text>
-<text x="552.0" y="91.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">company holiday</text><rect x="620" y="40" width="104" height="70" rx="12" fill="#fff" stroke="#E9E2D6" stroke-width="1.5"/>
-<text x="672.0" y="71.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Tue</text>
-<text x="672.0" y="91.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">working day</text>
+<text x="72.0" y="71.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="15" font-weight="600" fill="#12131F">Thu</text>
+<text x="72.0" y="91.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">working day</text><rect x="140" y="40" width="104" height="70" rx="12" fill="#FFF7EA" stroke="#FFB23F" stroke-width="1.5"/>
+<text x="192.0" y="71.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="15" font-weight="600" fill="#12131F">Fri</text>
+<text x="192.0" y="91.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">posts here</text><rect x="260" y="40" width="104" height="70" rx="12" fill="#F4F1EA" stroke="#E9E2D6" stroke-width="1.5"/>
+<text x="312.0" y="71.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="15" font-weight="600" fill="#5A5E74">Sat</text>
+<text x="312.0" y="91.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">day off</text><rect x="380" y="40" width="104" height="70" rx="12" fill="#F4F1EA" stroke="#E9E2D6" stroke-width="1.5"/>
+<text x="432.0" y="71.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="15" font-weight="600" fill="#5A5E74">Sun</text>
+<text x="432.0" y="91.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">day off</text><rect x="500" y="40" width="104" height="70" rx="12" fill="#F4F1EA" stroke="#E9E2D6" stroke-width="1.5"/>
+<text x="552.0" y="71.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="15" font-weight="600" fill="#5A5E74">Mon</text>
+<text x="552.0" y="91.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">company holiday</text><rect x="620" y="40" width="104" height="70" rx="12" fill="#fff" stroke="#E9E2D6" stroke-width="1.5"/>
+<text x="672.0" y="71.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="15" font-weight="600" fill="#12131F">Tue</text>
+<text x="672.0" y="91.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">working day</text>
 <path d="M 612 118 L 612 150 L 192 150 L 192 122" fill="none" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/>
-<text x="402" y="176" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">a birthday on Saturday, Sunday or the Monday holiday is posted on Friday</text>
+<text x="402" y="176" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">a birthday on Saturday, Sunday or the Monday holiday is posted on Friday</text>
 </svg>
 <figcaption>A celebration on a day off is posted on the last working day before it, so the team sees it on a day they are at work.</figcaption>
 </figure>
@@ -235,10 +234,10 @@ still gets every post, and gets the reaction once an admin re-authorises Slack.
     <div class="foot-grid">
       <div>
         <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
-        <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
+        <p style="max-width:34ch;font-size:15.5px">One open-source Slack app for standups, coffee
         chats and recognition. Free on the hosted instance, or self-host it and keep your own
         data.</p>
-        <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        <p style="font-size:14.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
         Kitchener, Ontario 🇨🇦</p>
       </div>
       <div><h3>Product</h3><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/insights/">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog/">Changelog</a></div><div><h3>Set up</h3><a href="/setup/">All the ways</a><a href="/setup/docker/">Docker Compose</a><a href="/setup/kubernetes/">Kubernetes and Helm</a><a href="/setup/slack-app/">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare/">All comparisons</a><a href="/compare/standup-bots/">Standup bots compared</a><a href="/geekbot-alternative/">vs Geekbot</a><a href="/donut-alternative/">vs Donut</a><a href="/heytaco-alternative/">vs HeyTaco</a><a href="/standup-prosper-alternative/">vs Standup &amp; Prosper</a><a href="/dailybot-alternative/">vs DailyBot</a><a href="/standuply-alternative/">vs Standuply</a><a href="/open-source-standup-bot/">Open-source standup bot</a><a href="/self-hosted-standup-bot/">Self-hosted standup bot</a><a href="/slack-standup-bot/">Slack standup bot</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog/">Blog</a><a href="/support/">Support</a><a href="https://www.linkedin.com/company/morgenruf">LinkedIn</a><a href="https://x.com/morgenruf_dev">X</a></div>

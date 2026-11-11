@@ -122,8 +122,7 @@ def head(*, title, description, path, og_image="/og-image.png", schema=None, ext
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="/assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="{asset("/assets/site.css")}"/>
 <script src="/assets/analytics.js" defer></script>
 <script src="{asset("/assets/nav.js")}" defer></script>{extra_head}{blocks}
@@ -193,10 +192,10 @@ def footer_block():
     <div class="foot-grid">
       <div>
         <a class="brand" href="/" style="margin-bottom:12px">{MARK} morgenruf</a>
-        <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
+        <p style="max-width:34ch;font-size:15.5px">One open-source Slack app for standups, coffee
         chats and recognition. Free on the hosted instance, or self-host it and keep your own
         data.</p>
-        <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        <p style="font-size:14.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
         Kitchener, Ontario 🇨🇦</p>
       </div>
       {cols}

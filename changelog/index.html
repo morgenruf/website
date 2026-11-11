@@ -3,26 +3,25 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Changelog: every Morgenruf release, currently 1.9.22</title>
+<title>Changelog: every Morgenruf release, currently 1.9.27</title>
 <meta name="description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/changelog/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/changelog/"/>
-<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.9.22"/>
+<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.9.27"/>
 <meta property="og:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.9.22"/>
+<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.9.27"/>
 <meta name="twitter:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png"/>
 <meta name="theme-color" content="#12131f"/>
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="/assets/site.css?v=0e4afc264f"/>
+<link rel="preload" href="/assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=53230c49e3"/>
 <script src="/assets/analytics.js" defer></script>
 <script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How often are there releases?", "acceptedAnswer": {"@type": "Answer", "text": "Whenever something is ready. Some months see several in a week and others none; the dates above are the record. Fixes have gone out within an hour of being reported."}}, {"@type": "Question", "name": "How do I upgrade?", "acceptedAnswer": {"@type": "Answer", "text": "Pull the new image and restart, or helm upgrade. Migrations run themselves before the app starts."}}, {"@type": "Question", "name": "Do you follow semantic versioning?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Breaking changes would move the major, and there have not been any since 1.0."}}]}</script>
@@ -47,13 +46,48 @@
 <header class="page-head"><div class="wrap">
   <h1>Changelog</h1>
   <p class="lede">Every release, what changed in it, and why. Currently on
-  <strong>1.9.22</strong>, with 52 releases documented.</p>
+  <strong>1.9.27</strong>, with 57 releases documented.</p>
 </div></header>
 <section class="section"><div class="wrap">
   <div class="note" style="margin-bottom:34px"><p>Every release is tagged, published with notes, and
   built from the same commit that is on <a href="https://github.com/morgenruf/morgenruf">GitHub</a>. Docker images carry the
   revision they were built from, so you can check what you are running matches what you read here.</p></div>
   <article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.27">1.9.27</h2>
+    <time datetime="2026-11-01">2026-11-01</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.27">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.27-added">Added</h3><ul><li><strong>A day-10 DM about the other rituals.</strong> Teams whose standup gets answers pass the day-7 nudge and were never pointed at kudos, coffee chats, celebrations, polls or watercooler questions. The installer now gets one DM on day 10 when the standup has answers and nothing else is on, with a button that opens the ritual picker.</li></ul><h3 id="v1.9.27-changed">Changed</h3><ul><li>Dependency bumps (#275, #277, #267, #281, #288).</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.26">1.9.26</h2>
+    <time datetime="2026-10-28">2026-10-28</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.26">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.26-added">Added</h3><ul><li><strong>Socket Mode for self-hosted installs.</strong> Set <code>SLACK_APP_TOKEN</code> (an app-level token with <code>connections:write</code>, Helm <code>slack.appToken</code>) and Morgenruf receives Slack events over an outbound websocket instead of serving <code>/slack/events</code> and <code>/slack/interactions</code>, so Slack never needs to reach the server. The signing secret is not needed in this mode (#274, #279).</li></ul><h3 id="v1.9.26-fixed">Fixed</h3><ul><li>A Connect test assumed Amsterdam summer time and failed every build after 25 October (#278).</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.25">1.9.25</h2>
+    <time datetime="2026-10-18">2026-10-18</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.25">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.25-fixed">Fixed</h3><ul><li><strong>Release builds refresh OS packages every time.</strong> 1.9.24 failed the release scan on libx11 1.8.13 (CVE-2026-88806) after Alpine had shipped the fix, and was never published. 1.9.25 carries its changes (#273).</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.24">1.9.24</h2>
+    <time datetime="2026-10-18">2026-10-18</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.24">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.24-fixed">Fixed</h3><ul><li><strong>No standup before setup.</strong> A new workspace no longer gets a hidden default standup at 09:00 UTC that reached only the installer. Workspaces get scheduled jobs once their first standup exists (#272).</li></ul><h3 id="v1.9.24-changed">Changed</h3><ul><li>Dependency updates (#263, #264).</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.23">1.9.23</h2>
+    <time datetime="2026-10-15">2026-10-15</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.23">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.23-added">Added</h3><ul><li><strong>MCP tools for Polls, Pulse, Celebrations and Watercooler.</strong> <code>list_polls</code>, <code>get_poll_results</code>, <code>list_pulse_surveys</code>, <code>get_pulse_results</code>, <code>get_upcoming_celebrations</code>, <code>get_celebration_history</code> and <code>list_watercooler_topics</code>, each shown only when its module is on. Read only. Anonymous polls return counts and never names; pulse results keep the dashboard's group floors (nothing under 5 respondents, no breakdown under 10).</li></ul></div>
+</article><article class="release">
   <div class="release-meta">
     <h2 id="v1.9.22">1.9.22</h2>
     <time datetime="2026-10-11">2026-10-11</time>
@@ -438,10 +472,10 @@
     <div class="foot-grid">
       <div>
         <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
-        <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
+        <p style="max-width:34ch;font-size:15.5px">One open-source Slack app for standups, coffee
         chats and recognition. Free on the hosted instance, or self-host it and keep your own
         data.</p>
-        <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        <p style="font-size:14.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
         Kitchener, Ontario 🇨🇦</p>
       </div>
       <div><h3>Product</h3><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/insights/">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog/">Changelog</a></div><div><h3>Set up</h3><a href="/setup/">All the ways</a><a href="/setup/docker/">Docker Compose</a><a href="/setup/kubernetes/">Kubernetes and Helm</a><a href="/setup/slack-app/">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare/">All comparisons</a><a href="/compare/standup-bots/">Standup bots compared</a><a href="/geekbot-alternative/">vs Geekbot</a><a href="/donut-alternative/">vs Donut</a><a href="/heytaco-alternative/">vs HeyTaco</a><a href="/standup-prosper-alternative/">vs Standup &amp; Prosper</a><a href="/dailybot-alternative/">vs DailyBot</a><a href="/standuply-alternative/">vs Standuply</a><a href="/open-source-standup-bot/">Open-source standup bot</a><a href="/self-hosted-standup-bot/">Self-hosted standup bot</a><a href="/slack-standup-bot/">Slack standup bot</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog/">Blog</a><a href="/support/">Support</a><a href="https://www.linkedin.com/company/morgenruf">LinkedIn</a><a href="https://x.com/morgenruf_dev">X</a></div>

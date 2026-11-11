@@ -12,13 +12,13 @@ INK, AMBER, SUN, ROOSTER, SKY, VIOLET, LEAF = (
 
 def _box(x, y, w, h, label, sub, fill="#fff", stroke="#E9E2D6", accent=INK):
     return f'''<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="12" fill="{fill}" stroke="{stroke}" stroke-width="1.5"/>
-<text x="{x + w/2}" y="{y + h/2 - 4}" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="{accent}">{label}</text>
-<text x="{x + w/2}" y="{y + h/2 + 16}" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">{sub}</text>'''
+<text x="{x + w/2}" y="{y + h/2 - 4}" text-anchor="middle" font-family="Geist,sans-serif" font-size="15" font-weight="600" fill="{accent}">{label}</text>
+<text x="{x + w/2}" y="{y + h/2 + 16}" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">{sub}</text>'''
 
 
 def _arrow(x1, y1, x2, y2, label="", colour=AMBER):
     mid_x, mid_y = (x1 + x2) / 2, (y1 + y2) / 2
-    text = (f'<text x="{mid_x}" y="{mid_y - 9}" text-anchor="middle" font-family="Manrope,sans-serif" '
+    text = (f'<text x="{mid_x}" y="{mid_y - 9}" text-anchor="middle" font-family="Geist,sans-serif" '
             f'font-size="12" fill="#5A5E74">{label}</text>') if label else ""
     return f'''<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{colour}" stroke-width="2.5" marker-end="url(#a)"/>{text}'''
 
@@ -39,10 +39,10 @@ def architecture(caption="A backend and a small frontend in front of it, against
 {_arrow(290, 138, 192, 138, "messages")}
 {_arrow(465, 120, 566, 120, "reads and writes")}
 <rect x="295" y="192" width="170" height="36" rx="10" fill="{INK}"/>
-<text x="380" y="215" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#F6F3EC">scheduler, inside the app</text>
+<text x="380" y="215" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#F6F3EC">scheduler, inside the app</text>
 <line x1="380" y1="160" x2="380" y2="190" stroke="{AMBER}" stroke-width="2.5" marker-end="url(#a)"/>
-<text x="380" y="30" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="{INK}">Three things at the core</text>
-<text x="380" y="52" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">Migrations run first; Helm adds Redis; optional services off</text>
+<text x="380" y="30" text-anchor="middle" font-family="Geist,sans-serif" font-size="14" font-weight="600" fill="{INK}">Three things at the core</text>
+<text x="380" y="52" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">Migrations run first; Helm adds Redis; optional services off</text>
 </svg>
 <figcaption>{caption}</figcaption>
 </figure>'''
@@ -62,9 +62,9 @@ def standup_flow(caption="One morning, in the order it happens. The nudge is pri
         line1 = " ".join(words[:3])
         line2 = " ".join(words[3:])
         dots += f'''<circle cx="{x}" cy="96" r="9" fill="{colour}"/>
-<text x="{x}" y="74" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="{INK}">{time}</text>
-<text x="{x}" y="128" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">{line1}</text>
-<text x="{x}" y="146" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">{line2}</text>'''
+<text x="{x}" y="74" text-anchor="middle" font-family="Geist,sans-serif" font-size="14" font-weight="600" fill="{INK}">{time}</text>
+<text x="{x}" y="128" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">{line1}</text>
+<text x="{x}" y="146" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">{line2}</text>'''
     return f'''<figure class="diagram">
 <svg viewBox="0 0 700 180" role="img" aria-label="A standup morning: the bot sends a direct message at the scheduled hour, people answer in their own time, whoever has not filed gets a private nudge, and one summary posts to the channel.">
 <line x1="60" y1="96" x2="600" y2="96" stroke="#E9E2D6" stroke-width="3"/>
@@ -85,8 +85,8 @@ def pairing_flow():
     out, x = "", 18
     for label, sub, colour in steps:
         out += f'''<rect x="{x}" y="40" width="150" height="86" rx="12" fill="#fff" stroke="{colour}" stroke-width="2"/>
-<text x="{x + 75}" y="76" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="{INK}">{label}</text>
-<text x="{x + 75}" y="98" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11.5" fill="#5A5E74">{sub[:26]}</text>'''
+<text x="{x + 75}" y="76" text-anchor="middle" font-family="Geist,sans-serif" font-size="15" font-weight="600" fill="{INK}">{label}</text>
+<text x="{x + 75}" y="98" text-anchor="middle" font-family="Geist,sans-serif" font-size="11.5" fill="#5A5E74">{sub[:26]}</text>'''
         if x < 520:
             out += f'<line x1="{x + 152}" y1="83" x2="{x + 186}" y2="83" stroke="{AMBER}" stroke-width="2.5" marker-end="url(#a)"/>'
         x += 188
@@ -103,13 +103,13 @@ def allowance():
     return f'''<figure class="diagram">
 <svg viewBox="0 0 700 176" role="img" aria-label="Each person gets five tokens a day. Spent ones post publicly with a reason. Unspent ones expire at midnight in that person's own timezone.">
 {ARROW_DEF}
-<text x="350" y="28" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="{INK}">Five a day, each</text>
+<text x="350" y="28" text-anchor="middle" font-family="Geist,sans-serif" font-size="14" font-weight="600" fill="{INK}">Five a day, each</text>
 {''.join(f'<circle cx="{120 + i*34}" cy="70" r="13" fill="{SUN}" stroke="{AMBER}" stroke-width="2"/>' for i in range(5))}
 {_arrow(300, 70, 380, 70, "given")}
 <rect x="392" y="46" width="180" height="48" rx="10" fill="{LEAF}" opacity=".12"/>
-<text x="482" y="70" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#0E8A5F">posted publicly, with a reason</text>
+<text x="482" y="70" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#0E8A5F">posted publicly, with a reason</text>
 {_arrow(200, 104, 200, 140, "", ROOSTER)}
-<text x="330" y="150" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">whatever is left expires at midnight, in that person's own timezone</text>
+<text x="330" y="150" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">whatever is left expires at midnight, in that person's own timezone</text>
 </svg>
 <figcaption>Scarcity is the design. A budget that resets is what makes people spend it.</figcaption>
 </figure>'''
@@ -133,7 +133,7 @@ def celebration_week():
 <svg viewBox="0 0 740 190" role="img" aria-label="With Monday to Friday working days and Monday a company holiday, birthdays on Saturday, Sunday and Monday are all posted on Friday, the last working day before them.">
 {ARROW_DEF}{out}
 <path d="M 612 118 L 612 150 L 192 150 L 192 122" fill="none" stroke="{AMBER}" stroke-width="2.5" marker-end="url(#a)"/>
-<text x="402" y="176" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">a birthday on Saturday, Sunday or the Monday holiday is posted on Friday</text>
+<text x="402" y="176" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">a birthday on Saturday, Sunday or the Monday holiday is posted on Friday</text>
 </svg>
 <figcaption>A celebration on a day off is posted on the last working day before it, so the team sees it on a day they are at work.</figcaption>
 </figure>'''

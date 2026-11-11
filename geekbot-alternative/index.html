@@ -20,9 +20,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="/assets/site.css?v=0e4afc264f"/>
+<link rel="preload" href="/assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=53230c49e3"/>
 <script src="/assets/analytics.js" defer></script>
 <script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Morgenruf free compared with Geekbot?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, with no per-seat fee at all. The hosted instance is free. Self-hosted, you pay for the server and database you run it on, roughly $5 to $20 a month regardless of headcount."}}, {"@type": "Question", "name": "Can I import my Geekbot history?", "acceptedAnswer": {"@type": "Answer", "text": "No. Run both in parallel for a week and switch over once the summaries look right."}}, {"@type": "Question", "name": "Does it do everything Geekbot does?", "acceptedAnswer": {"@type": "Answer", "text": "For async standups, the everyday shape is the same: questions, schedules, timezones, summaries, reminders, analytics. Geekbot has more years of edge cases and a support contract; this has coffee chats and recognition in the same app, and your data in your own database."}}, {"@type": "Question", "name": "How long does it take to set up?", "acceptedAnswer": {"@type": "Answer", "text": "About two minutes on the free hosted instance. Self-hosted, about twenty minutes, most of it creating the Slack app."}}]}</script>
@@ -73,18 +72,18 @@ Standup &amp; Prosper, which is what <a href="/compare/">the comparison pages</a
 <svg viewBox="0 0 700 180" role="img" aria-label="A standup morning: the bot sends a direct message at the scheduled hour, people answer in their own time, whoever has not filed gets a private nudge, and one summary posts to the channel.">
 <line x1="60" y1="96" x2="600" y2="96" stroke="#E9E2D6" stroke-width="3"/>
 <circle cx="60" cy="96" r="9" fill="#00A3DE"/>
-<text x="60" y="74" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="#12131F">09:30</text>
-<text x="60" y="128" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">The bot DMs</text>
-<text x="60" y="146" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">each person</text><circle cx="240" cy="96" r="9" fill="#4B3BD0"/>
-<text x="240" y="74" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="#12131F">09:31</text>
-<text x="240" y="128" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">They answer in</text>
-<text x="240" y="146" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">their own time</text><circle cx="420" cy="96" r="9" fill="#0E8A5F"/>
-<text x="420" y="74" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="#12131F">10:30</text>
-<text x="420" y="128" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">One summary posts</text>
-<text x="420" y="146" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">to the channel</text><circle cx="600" cy="96" r="9" fill="#E0322E"/>
-<text x="600" y="74" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="#12131F">10:10</text>
-<text x="600" y="128" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">A private nudge</text>
-<text x="600" y="146" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">to whoever has not</text>
+<text x="60" y="74" text-anchor="middle" font-family="Geist,sans-serif" font-size="14" font-weight="600" fill="#12131F">09:30</text>
+<text x="60" y="128" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">The bot DMs</text>
+<text x="60" y="146" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">each person</text><circle cx="240" cy="96" r="9" fill="#4B3BD0"/>
+<text x="240" y="74" text-anchor="middle" font-family="Geist,sans-serif" font-size="14" font-weight="600" fill="#12131F">09:31</text>
+<text x="240" y="128" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">They answer in</text>
+<text x="240" y="146" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">their own time</text><circle cx="420" cy="96" r="9" fill="#0E8A5F"/>
+<text x="420" y="74" text-anchor="middle" font-family="Geist,sans-serif" font-size="14" font-weight="600" fill="#12131F">10:30</text>
+<text x="420" y="128" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">One summary posts</text>
+<text x="420" y="146" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">to the channel</text><circle cx="600" cy="96" r="9" fill="#E0322E"/>
+<text x="600" y="74" text-anchor="middle" font-family="Geist,sans-serif" font-size="14" font-weight="600" fill="#12131F">10:10</text>
+<text x="600" y="128" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">A private nudge</text>
+<text x="600" y="146" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">to whoever has not</text>
 </svg>
 <figcaption>The shape of morning a Geekbot team already knows: a DM at each local hour, a private nudge, one summary.</figcaption>
 </figure>
@@ -194,10 +193,10 @@ right. Nothing here has a contract to cancel.</p>
     <div class="foot-grid">
       <div>
         <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
-        <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
+        <p style="max-width:34ch;font-size:15.5px">One open-source Slack app for standups, coffee
         chats and recognition. Free on the hosted instance, or self-host it and keep your own
         data.</p>
-        <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        <p style="font-size:14.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
         Kitchener, Ontario 🇨🇦</p>
       </div>
       <div><h3>Product</h3><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/insights/">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog/">Changelog</a></div><div><h3>Set up</h3><a href="/setup/">All the ways</a><a href="/setup/docker/">Docker Compose</a><a href="/setup/kubernetes/">Kubernetes and Helm</a><a href="/setup/slack-app/">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare/">All comparisons</a><a href="/compare/standup-bots/">Standup bots compared</a><a href="/geekbot-alternative/">vs Geekbot</a><a href="/donut-alternative/">vs Donut</a><a href="/heytaco-alternative/">vs HeyTaco</a><a href="/standup-prosper-alternative/">vs Standup &amp; Prosper</a><a href="/dailybot-alternative/">vs DailyBot</a><a href="/standuply-alternative/">vs Standuply</a><a href="/open-source-standup-bot/">Open-source standup bot</a><a href="/self-hosted-standup-bot/">Self-hosted standup bot</a><a href="/slack-standup-bot/">Slack standup bot</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog/">Blog</a><a href="/support/">Support</a><a href="https://www.linkedin.com/company/morgenruf">LinkedIn</a><a href="https://x.com/morgenruf_dev">X</a></div>

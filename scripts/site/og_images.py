@@ -2,7 +2,9 @@
 
 Run: python3 scripts/site/og_images.py [id ...]
 
-Uses headless Chrome, which is on the machines that build this site. The PNGs
+Uses headless Chrome, which is on the machines that build this site. The page
+is served over a throwaway local HTTP server because Chrome refuses web fonts
+on file:// URLs, which would quietly render the cards in a fallback font. The PNGs
 are committed, so the page build does not need Chrome, and pages point their
 og:image at /og/<id>.png through og_image() below.
 """
@@ -10,10 +12,13 @@ og:image at /og/<id>.png through og_image() below.
 from __future__ import annotations
 
 import pathlib
+import functools
+import http.server
 import re
 import shutil
 import subprocess
 import sys
+import threading
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 GENERATOR = ROOT / "og/index.html"
@@ -22,6 +27,11 @@ CHROME = [
     shutil.which("google-chrome") or "",
     shutil.which("chromium") or "",
 ]
+
+
+class _QuietHandler(http.server.SimpleHTTPRequestHandler):
+    def log_message(self, *args):
+        pass
 
 
 def card_ids():
@@ -40,14 +50,19 @@ def main(ids):
     chrome = next((c for c in CHROME if c and pathlib.Path(c).exists()), None)
     if not chrome:
         sys.exit("Chrome not found; the committed PNGs are left as they are.")
+    handler = functools.partial(_QuietHandler, directory=str(ROOT))
+    server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), handler)
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    base = f"http://127.0.0.1:{server.server_port}/og/index.html"
     for card_id in ids or card_ids():
         out = ROOT / "og" / f"{card_id}.png"
         subprocess.run([chrome, "--headless=new", "--disable-gpu", "--hide-scrollbars",
                         "--force-device-scale-factor=1", "--window-size=1200,630",
                         "--virtual-time-budget=5000", f"--screenshot={out}",
-                        GENERATOR.as_uri() + f"?card={card_id}"],
+                        base + f"?card={card_id}"],
                        check=True, capture_output=True)
         print(f"og/{card_id}.png written")
+    server.shutdown()
 
 
 if __name__ == "__main__":

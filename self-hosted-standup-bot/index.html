@@ -20,9 +20,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="/assets/site.css?v=0e4afc264f"/>
+<link rel="preload" href="/assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=53230c49e3"/>
 <script src="/assets/analytics.js" defer></script>
 <script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What are the minimum requirements?", "acceptedAnswer": {"@type": "Answer", "text": "Two small containers (backend and frontend) and a Postgres. A single vCPU with 512MB is enough for a team of dozens; the work is bursty and short."}}, {"@type": "Question", "name": "Does it need a public IP?", "acceptedAnswer": {"@type": "Answer", "text": "No. A Cloudflare tunnel gives Slack an HTTPS URL without opening a port or running an ingress controller."}}, {"@type": "Question", "name": "How do upgrades work?", "acceptedAnswer": {"@type": "Answer", "text": "Pull the new image and restart. Migrations run in an init container before the app starts, and are written to be safe against a live database."}}, {"@type": "Question", "name": "Is there a hosted version?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Add to Slack installs Morgenruf on a free hosted instance run by CloudDrove, in about two minutes. This page is about the other route: the same MIT code on your own servers."}}]}</script>
@@ -54,7 +53,7 @@
 <p class="cta-note">Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.</p></div></header>
 <section class="section define"><div class="wrap"><p class="lede">Morgenruf is a self-hostable Slack standup bot: a backend, a small frontend and a Postgres database, deployed with Docker Compose or Helm, with every answer stored in a database you control. It is MIT licensed and free, and the same code also runs as a free hosted instance for teams that would rather not run it.</p><p class="reviewed">Last reviewed September 26, 2026</p></div></section>
 <section class="section"><div class="wrap"><div class="guide"><nav class="toc" aria-label="On this page"><strong>On this page</strong><div class="toc-links"><a href="#why-teams-self-host-this">Why teams self-host</a><a href="#what-running-it-involves">What running it involves</a><a href="#what-leaves-your-network">What leaves your network</a><a href="#what-it-costs">What it costs</a><a href="#where-it-runs">Where it runs</a><a href="#the-part-people-underestimate">The underestimated part</a></div></nav><div class="prose"><div class="note"><p><strong>MIT licence</strong> &middot; latest release
-<a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.22">1.9.22</a>, 2026-10-11 &middot;
+<a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.27">1.9.27</a>, 2026-11-01 &middot;
 <a href="https://charts.morgenruf.dev">Helm chart</a> &middot; <a href="/changelog/">every release</a></p>
 <pre><code>git clone https://github.com/morgenruf/morgenruf.git
 cd morgenruf/app &amp;&amp; cp .env.example .env   # add your Slack app values
@@ -79,22 +78,22 @@ answers. Everything else on this page follows from that. Three reasons come up, 
 <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
 <path d="M0 0 L10 5 L0 10 z" fill="#FFB23F"/></marker></defs>
 <rect x="20" y="80" width="170" height="80" rx="12" fill="#FFF7EA" stroke="#F0E4CE" stroke-width="1.5"/>
-<text x="105.0" y="116.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Slack</text>
-<text x="105.0" y="136.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">your workspace</text>
+<text x="105.0" y="116.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="15" font-weight="600" fill="#12131F">Slack</text>
+<text x="105.0" y="136.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">your workspace</text>
 <rect x="295" y="80" width="170" height="80" rx="12" fill="#fff" stroke="#E9E2D6" stroke-width="1.5"/>
-<text x="380.0" y="116.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Morgenruf</text>
-<text x="380.0" y="136.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">app and frontend</text>
+<text x="380.0" y="116.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="15" font-weight="600" fill="#12131F">Morgenruf</text>
+<text x="380.0" y="136.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">app and frontend</text>
 <rect x="570" y="80" width="170" height="80" rx="12" fill="#FFF7EA" stroke="#F0E4CE" stroke-width="1.5"/>
-<text x="655.0" y="116.0" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Postgres</text>
-<text x="655.0" y="136.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">your database</text>
-<line x1="190" y1="105" x2="290" y2="105" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="240.0" y="96.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12" fill="#5A5E74">events</text>
-<line x1="290" y1="138" x2="192" y2="138" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="241.0" y="129.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12" fill="#5A5E74">messages</text>
-<line x1="465" y1="120" x2="566" y2="120" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="515.5" y="111.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12" fill="#5A5E74">reads and writes</text>
+<text x="655.0" y="116.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="15" font-weight="600" fill="#12131F">Postgres</text>
+<text x="655.0" y="136.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">your database</text>
+<line x1="190" y1="105" x2="290" y2="105" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="240.0" y="96.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="12" fill="#5A5E74">events</text>
+<line x1="290" y1="138" x2="192" y2="138" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="241.0" y="129.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="12" fill="#5A5E74">messages</text>
+<line x1="465" y1="120" x2="566" y2="120" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="515.5" y="111.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="12" fill="#5A5E74">reads and writes</text>
 <rect x="295" y="192" width="170" height="36" rx="10" fill="#12131F"/>
-<text x="380" y="215" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#F6F3EC">scheduler, inside the app</text>
+<text x="380" y="215" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#F6F3EC">scheduler, inside the app</text>
 <line x1="380" y1="160" x2="380" y2="190" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/>
-<text x="380" y="30" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="#12131F">Three things at the core</text>
-<text x="380" y="52" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">Migrations run first; Helm adds Redis; optional services off</text>
+<text x="380" y="30" text-anchor="middle" font-family="Geist,sans-serif" font-size="14" font-weight="600" fill="#12131F">Three things at the core</text>
+<text x="380" y="52" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">Migrations run first; Helm adds Redis; optional services off</text>
 </svg>
 <figcaption>Where the answers physically sit when you self-host: your Postgres, in the region you chose.</figcaption>
 </figure>
@@ -173,10 +172,10 @@ infrastructure.</p></div></div></div></section><section class="section"><div cla
     <div class="foot-grid">
       <div>
         <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
-        <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
+        <p style="max-width:34ch;font-size:15.5px">One open-source Slack app for standups, coffee
         chats and recognition. Free on the hosted instance, or self-host it and keep your own
         data.</p>
-        <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        <p style="font-size:14.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
         Kitchener, Ontario 🇨🇦</p>
       </div>
       <div><h3>Product</h3><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/insights/">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog/">Changelog</a></div><div><h3>Set up</h3><a href="/setup/">All the ways</a><a href="/setup/docker/">Docker Compose</a><a href="/setup/kubernetes/">Kubernetes and Helm</a><a href="/setup/slack-app/">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare/">All comparisons</a><a href="/compare/standup-bots/">Standup bots compared</a><a href="/geekbot-alternative/">vs Geekbot</a><a href="/donut-alternative/">vs Donut</a><a href="/heytaco-alternative/">vs HeyTaco</a><a href="/standup-prosper-alternative/">vs Standup &amp; Prosper</a><a href="/dailybot-alternative/">vs DailyBot</a><a href="/standuply-alternative/">vs Standuply</a><a href="/open-source-standup-bot/">Open-source standup bot</a><a href="/self-hosted-standup-bot/">Self-hosted standup bot</a><a href="/slack-standup-bot/">Slack standup bot</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog/">Blog</a><a href="/support/">Support</a><a href="https://www.linkedin.com/company/morgenruf">LinkedIn</a><a href="https://x.com/morgenruf_dev">X</a></div>

@@ -20,9 +20,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="/assets/site.css?v=0e4afc264f"/>
+<link rel="preload" href="/assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=53230c49e3"/>
 <script src="/assets/analytics.js" defer></script>
 <script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How does it pick who meets whom?", "acceptedAnswer": {"@type": "Answer", "text": "It avoids whoever you met last, and keeps avoiding them until everyone in the pool has been met once. With an odd number, one group of three forms so nobody sits out."}}, {"@type": "Question", "name": "Can we have groups of three or four?", "acceptedAnswer": {"@type": "Answer", "text": "Group size runs from two to eight. A remainder of two or more forms its own group rather than being folded into a larger one, so ten people in fours are four, four and two."}}, {"@type": "Question", "name": "How does the pair agree on a time?", "acceptedAnswer": {"@type": "Answer", "text": "The introduction offers hours that fall inside both people's working days, and each presses a button. When they both pick the same hour, that is the meeting. Nobody's calendar is read, and the message says so rather than pretending otherwise."}}, {"@type": "Question", "name": "Does it create the meeting?", "acceptedAnswer": {"@type": "Answer", "text": "With Zoom connected, yes: the meeting is created at the agreed hour on the account of whoever in the pair linked theirs. Otherwise the programme's own room link is used, or none at all."}}, {"@type": "Question", "name": "What if somebody does not want to be matched this round?", "acceptedAnswer": {"@type": "Answer", "text": "They can skip a round or pause entirely from the Slack App Home, and ask for a different match once per round. None of that needs an admin."}}, {"@type": "Question", "name": "How do we know if it is working?", "acceptedAnswer": {"@type": "Answer", "text": "The round closes by asking whether the pair met, and the answer is recorded four ways: met, did not meet, never replied, and never delivered. The last one is our bug, not their behaviour, and folding it into 'did not meet' would blame the wrong party."}}]}</script>
@@ -82,14 +81,14 @@
 <svg viewBox="0 0 760 150" role="img" aria-label="A coffee chat round: people are paired avoiding last round's match, introduced in a group message, they agree an hour by pressing a button, and Zoom books the meeting.">
 <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
 <path d="M0 0 L10 5 L0 10 z" fill="#FFB23F"/></marker></defs><rect x="18" y="40" width="150" height="86" rx="12" fill="#fff" stroke="#4B3BD0" stroke-width="2"/>
-<text x="93" y="76" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Pair</text>
-<text x="93" y="98" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11.5" fill="#5A5E74">avoiding last round's matc</text><line x1="170" y1="83" x2="204" y2="83" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><rect x="206" y="40" width="150" height="86" rx="12" fill="#fff" stroke="#00A3DE" stroke-width="2"/>
-<text x="281" y="76" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Introduce</text>
-<text x="281" y="98" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11.5" fill="#5A5E74">in a group DM, with an ope</text><line x1="358" y1="83" x2="392" y2="83" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><rect x="394" y="40" width="150" height="86" rx="12" fill="#fff" stroke="#FFB23F" stroke-width="2"/>
-<text x="469" y="76" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Agree an hour</text>
-<text x="469" y="98" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11.5" fill="#5A5E74">both press the same button</text><line x1="546" y1="83" x2="580" y2="83" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><rect x="582" y="40" width="150" height="86" rx="12" fill="#fff" stroke="#0E8A5F" stroke-width="2"/>
-<text x="657" y="76" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="15" font-weight="700" fill="#12131F">Meet</text>
-<text x="657" y="98" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11.5" fill="#5A5E74">Zoom books it at that hour</text>
+<text x="93" y="76" text-anchor="middle" font-family="Geist,sans-serif" font-size="15" font-weight="600" fill="#12131F">Pair</text>
+<text x="93" y="98" text-anchor="middle" font-family="Geist,sans-serif" font-size="11.5" fill="#5A5E74">avoiding last round's matc</text><line x1="170" y1="83" x2="204" y2="83" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><rect x="206" y="40" width="150" height="86" rx="12" fill="#fff" stroke="#00A3DE" stroke-width="2"/>
+<text x="281" y="76" text-anchor="middle" font-family="Geist,sans-serif" font-size="15" font-weight="600" fill="#12131F">Introduce</text>
+<text x="281" y="98" text-anchor="middle" font-family="Geist,sans-serif" font-size="11.5" fill="#5A5E74">in a group DM, with an ope</text><line x1="358" y1="83" x2="392" y2="83" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><rect x="394" y="40" width="150" height="86" rx="12" fill="#fff" stroke="#FFB23F" stroke-width="2"/>
+<text x="469" y="76" text-anchor="middle" font-family="Geist,sans-serif" font-size="15" font-weight="600" fill="#12131F">Agree an hour</text>
+<text x="469" y="98" text-anchor="middle" font-family="Geist,sans-serif" font-size="11.5" fill="#5A5E74">both press the same button</text><line x1="546" y1="83" x2="580" y2="83" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><rect x="582" y="40" width="150" height="86" rx="12" fill="#fff" stroke="#0E8A5F" stroke-width="2"/>
+<text x="657" y="76" text-anchor="middle" font-family="Geist,sans-serif" font-size="15" font-weight="600" fill="#12131F">Meet</text>
+<text x="657" y="98" text-anchor="middle" font-family="Geist,sans-serif" font-size="11.5" fill="#5A5E74">Zoom books it at that hour</text>
 </svg>
 <figcaption>The last two steps are the ones most pairing tools leave to the humans, which is where they stall.</figcaption>
 </figure>
@@ -142,10 +141,10 @@ which is the question the attendance table exists to answer.</p>
     <div class="foot-grid">
       <div>
         <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
-        <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
+        <p style="max-width:34ch;font-size:15.5px">One open-source Slack app for standups, coffee
         chats and recognition. Free on the hosted instance, or self-host it and keep your own
         data.</p>
-        <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        <p style="font-size:14.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
         Kitchener, Ontario 🇨🇦</p>
       </div>
       <div><h3>Product</h3><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/insights/">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog/">Changelog</a></div><div><h3>Set up</h3><a href="/setup/">All the ways</a><a href="/setup/docker/">Docker Compose</a><a href="/setup/kubernetes/">Kubernetes and Helm</a><a href="/setup/slack-app/">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare/">All comparisons</a><a href="/compare/standup-bots/">Standup bots compared</a><a href="/geekbot-alternative/">vs Geekbot</a><a href="/donut-alternative/">vs Donut</a><a href="/heytaco-alternative/">vs HeyTaco</a><a href="/standup-prosper-alternative/">vs Standup &amp; Prosper</a><a href="/dailybot-alternative/">vs DailyBot</a><a href="/standuply-alternative/">vs Standuply</a><a href="/open-source-standup-bot/">Open-source standup bot</a><a href="/self-hosted-standup-bot/">Self-hosted standup bot</a><a href="/slack-standup-bot/">Slack standup bot</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog/">Blog</a><a href="/support/">Support</a><a href="https://www.linkedin.com/company/morgenruf">LinkedIn</a><a href="https://x.com/morgenruf_dev">X</a></div>

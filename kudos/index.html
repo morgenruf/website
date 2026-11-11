@@ -20,9 +20,8 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
-<link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="preload" href="/assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="/assets/site.css?v=0e4afc264f"/>
+<link rel="preload" href="/assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=53230c49e3"/>
 <script src="/assets/analytics.js" defer></script>
 <script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many can each person give?", "acceptedAnswer": {"@type": "Answer", "text": "You choose. Five a day is a sensible default. Unused ones do not carry over, which is the entire mechanic: a budget that resets is what makes people spend it."}}, {"@type": "Question", "name": "When does the allowance reset?", "acceptedAnswer": {"@type": "Answer", "text": "Midnight in each person's own timezone, not yours. Somebody in Sydney should not get a fresh allowance in the middle of their afternoon."}}, {"@type": "Question", "name": "Can we use our own emoji?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Pick any emoji in your workspace as the token. The Morgenruf icon can be imported as a custom emoji and the bot picks it up on its own, falling back gracefully if it is ever removed."}}, {"@type": "Question", "name": "Is there a leaderboard?", "acceptedAnswer": {"@type": "Answer", "text": "Two: who is recognised, and who does the recognising. The second is the one worth watching, because a recognition habit dies when the givers stop."}}, {"@type": "Question", "name": "Can somebody give themselves kudos?", "acceptedAnswer": {"@type": "Answer", "text": "No."}}]}</script>
@@ -81,13 +80,13 @@
 <svg viewBox="0 0 700 176" role="img" aria-label="Each person gets five tokens a day. Spent ones post publicly with a reason. Unspent ones expire at midnight in that person's own timezone.">
 <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
 <path d="M0 0 L10 5 L0 10 z" fill="#FFB23F"/></marker></defs>
-<text x="350" y="28" text-anchor="middle" font-family="Bricolage Grotesque,sans-serif" font-size="14" font-weight="700" fill="#12131F">Five a day, each</text>
+<text x="350" y="28" text-anchor="middle" font-family="Geist,sans-serif" font-size="14" font-weight="600" fill="#12131F">Five a day, each</text>
 <circle cx="120" cy="70" r="13" fill="#FFD166" stroke="#FFB23F" stroke-width="2"/><circle cx="154" cy="70" r="13" fill="#FFD166" stroke="#FFB23F" stroke-width="2"/><circle cx="188" cy="70" r="13" fill="#FFD166" stroke="#FFB23F" stroke-width="2"/><circle cx="222" cy="70" r="13" fill="#FFD166" stroke="#FFB23F" stroke-width="2"/><circle cx="256" cy="70" r="13" fill="#FFD166" stroke="#FFB23F" stroke-width="2"/>
-<line x1="300" y1="70" x2="380" y2="70" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="340.0" y="61.0" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12" fill="#5A5E74">given</text>
+<line x1="300" y1="70" x2="380" y2="70" stroke="#FFB23F" stroke-width="2.5" marker-end="url(#a)"/><text x="340.0" y="61.0" text-anchor="middle" font-family="Geist,sans-serif" font-size="12" fill="#5A5E74">given</text>
 <rect x="392" y="46" width="180" height="48" rx="10" fill="#0E8A5F" opacity=".12"/>
-<text x="482" y="70" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#0E8A5F">posted publicly, with a reason</text>
+<text x="482" y="70" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#0E8A5F">posted publicly, with a reason</text>
 <line x1="200" y1="104" x2="200" y2="140" stroke="#E0322E" stroke-width="2.5" marker-end="url(#a)"/>
-<text x="330" y="150" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" fill="#5A5E74">whatever is left expires at midnight, in that person's own timezone</text>
+<text x="330" y="150" text-anchor="middle" font-family="Geist,sans-serif" font-size="12.5" fill="#5A5E74">whatever is left expires at midnight, in that person's own timezone</text>
 </svg>
 <figcaption>Scarcity is the design. A budget that resets is what makes people spend it.</figcaption>
 </figure>
@@ -145,10 +144,10 @@ visible in a way neither dataset shows alone.</p>
     <div class="foot-grid">
       <div>
         <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
-        <p style="max-width:34ch;font-size:14.5px">One open-source Slack app for standups, coffee
+        <p style="max-width:34ch;font-size:15.5px">One open-source Slack app for standups, coffee
         chats and recognition. Free on the hosted instance, or self-host it and keep your own
         data.</p>
-        <p style="font-size:13.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        <p style="font-size:14.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
         Kitchener, Ontario 🇨🇦</p>
       </div>
       <div><h3>Product</h3><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/insights/">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog/">Changelog</a></div><div><h3>Set up</h3><a href="/setup/">All the ways</a><a href="/setup/docker/">Docker Compose</a><a href="/setup/kubernetes/">Kubernetes and Helm</a><a href="/setup/slack-app/">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare/">All comparisons</a><a href="/compare/standup-bots/">Standup bots compared</a><a href="/geekbot-alternative/">vs Geekbot</a><a href="/donut-alternative/">vs Donut</a><a href="/heytaco-alternative/">vs HeyTaco</a><a href="/standup-prosper-alternative/">vs Standup &amp; Prosper</a><a href="/dailybot-alternative/">vs DailyBot</a><a href="/standuply-alternative/">vs Standuply</a><a href="/open-source-standup-bot/">Open-source standup bot</a><a href="/self-hosted-standup-bot/">Self-hosted standup bot</a><a href="/slack-standup-bot/">Slack standup bot</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog/">Blog</a><a href="/support/">Support</a><a href="https://www.linkedin.com/company/morgenruf">LinkedIn</a><a href="https://x.com/morgenruf_dev">X</a></div>
