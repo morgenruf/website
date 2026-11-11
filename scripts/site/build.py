@@ -66,6 +66,8 @@ def refresh_assets(html):
         html = re.sub(re.escape(path) + r'(\?v=[0-9a-f]+)?"', shell.asset(path) + '"', html)
     # Share cards sit behind a 30-day Cloudflare cache, so a redrawn card
     # needs a new URL before LinkedIn or X will pick it up.
+    html = re.sub(r'(/screenshots/[a-z0-9-]+\.(?:jpg|webp))(\?v=[0-9a-f]+)?"',
+                  lambda m: shell.asset(m.group(1)) + '"', html)
     html = re.sub(r'(?<=morgenruf\.dev)(/og-image\.png|/og/[a-z0-9-]+\.png)(\?v=[0-9a-f]+)?"',
                   lambda m: shell.asset(m.group(1)) + '"', html)
     return html

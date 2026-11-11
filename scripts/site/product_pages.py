@@ -52,8 +52,10 @@ def shot(src, alt, caption, w=None, h=None, lazy=True):
             w, h = 1100, 700
     load = 'loading="lazy"' if lazy else 'fetchpriority="high"'
     webp = src.rsplit(".", 1)[0] + ".webp"
-    return (f'<div class="shot"><picture><source srcset="{webp}" type="image/webp"/>'
-            f'<img src="{src}" width="{w}" height="{h}" {load} alt="{alt}"/></picture></div>'
+    # Screenshots sit behind a 30-day cache, so a replaced one needs a new URL.
+    from shell import asset
+    return (f'<div class="shot"><picture><source srcset="{asset(webp)}" type="image/webp"/>'
+            f'<img src="{asset(src)}" width="{w}" height="{h}" {load} alt="{alt}"/></picture></div>'
             f'<p class="shot-cap">{caption}</p>')
 
 
