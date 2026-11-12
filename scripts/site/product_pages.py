@@ -287,9 +287,12 @@ def kudos():
     <div class="mod-copy">
       <span class="tag tag-kudos">How it works</span>
       <h2 id="a-daily-budget-not-an-applause-button">A daily budget, not an applause button</h2>
-      <p class="lede">Everyone gets a handful of tokens a day. Give one with a message in a DM or a
-      slash command, and it posts publicly with the reason. What is not spent is gone at midnight.</p>
+      <p class="lede">Everyone gets a handful of tokens a day. Give one by reacting to a message with
+      the kudos emoji, by pressing Give kudos on the Home tab, or with a DM or slash command. It posts
+      publicly with the reason. What is not spent is gone at midnight.</p>
       <ul>
+        <li>React with the emoji to thank someone for a message, nothing to type</li>
+        <li>A Give kudos button: pick a person, say why, send</li>
         <li>Your own token: any emoji in your workspace</li>
         <li>Resets at midnight in each person's own timezone</li>
         <li>Leaderboards for giving as well as receiving</li>
@@ -315,9 +318,17 @@ the same way <a href="/standups/">a standup</a> works out when to ask.</p>
   celebrations are the modules that start off), and an admin can switch it off there.</li>
   <li>Pick the token: any emoji in your workspace, including a custom one.</li>
   <li>Set the daily allowance.</li>
-  <li>People give one with <code>/kudos @teammate a reason</code> or from a DM, and it posts
-  publicly with the reason.</li>
+  <li>People give one by reacting to a teammate's message with the kudos emoji, by pressing
+  <strong>Give kudos</strong> on the Morgenruf Home tab, or with <code>/kudos @teammate a reason</code>
+  or a DM. It posts publicly with the reason. Reactions count in channels Morgenruf has been
+  invited to.</li>
 </ol>
+
+<h2 id="kudos-without-commands">Kudos for people who will never type a command</h2>
+<p>Schools, shops and teams outside engineering do not want to learn slash commands. The emoji
+reaction needs nothing new: if you can react to a message, you can give kudos, and the person gets
+it with a link to what they were thanked for. The Give kudos button covers the rest: a short form
+with a person picker and a box for the reason.</p>
 
 <h2 id="choosing-the-allowance">Choosing the daily allowance</h2>
 <p>Five a day is a sensible place to start. Fewer makes each one weigh more; more makes it easier to

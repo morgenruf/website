@@ -156,6 +156,7 @@ def heytaco():
         ("Peer recognition in Slack", "Yes", "yes", "Yes", "yes"),
         ("Daily allowance that resets", "Yes, midnight in each timezone", "yes", "Yes", "yes"),
         ("Your own emoji as the token", "Yes", "yes", "Tacos", "no"),
+        ("Give by reacting with the emoji", "Yes", "yes", "Yes", "yes"),
         ("Leaderboards for giving", "Yes", "yes", "Yes", "yes"),
         ("Rewards catalogue and gift cards", "No", "no", "Yes", "yes"),
         ("Async standups in the same app", "Yes", "yes", "No", "no"),

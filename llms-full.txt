@@ -1,6 +1,6 @@
 # Morgenruf: the full text of the main pages
 
-Generated from the site on each build. Current version 1.9.28, released 2026-11-11. Built by Anmol Nagpal, sponsored by CloudDrove. Summary and index: https://morgenruf.dev/llms.txt
+Generated from the site on each build. Current version 1.9.32, released 2026-11-12. Built by Anmol Nagpal, sponsored by CloudDrove. Summary and index: https://morgenruf.dev/llms.txt
 
 ## Async standups in Slack, free or self-hosted
 https://morgenruf.dev/standups/
@@ -107,7 +107,9 @@ The thank-you lands in the channel, reason and all.
 Morgenruf is a free, open-source (MIT) Slack app whose kudos module gives everyone a small daily allowance of recognition tokens, in any emoji you choose, that resets at midnight in their own timezone. It runs on a free hosted instance or on your own servers, alongside async standups and coffee chats.
 Last reviewed September 26, 2026
 How it works A daily budget, not an applause button
-Everyone gets a handful of tokens a day. Give one with a message in a DM or a slash command, and it posts publicly with the reason. What is not spent is gone at midnight.
+Everyone gets a handful of tokens a day. Give one by reacting to a message with the kudos emoji, by pressing Give kudos on the Home tab, or with a DM or slash command. It posts publicly with the reason. What is not spent is gone at midnight.
+React with the emoji to thank someone for a message, nothing to type
+A Give kudos button: pick a person, say why, send
 Your own token: any emoji in your workspace
 Resets at midnight in each person's own timezone
 Leaderboards for giving as well as receiving
@@ -119,7 +121,9 @@ How do you set up kudos in Slack?
 Open Kudos in the Morgenruf dashboard. It is on from the start (coffee chats and celebrations are the modules that start off), and an admin can switch it off there.
 Pick the token: any emoji in your workspace, including a custom one.
 Set the daily allowance.
-People give one with /kudos @teammate a reason or from a DM, and it posts publicly with the reason.
+People give one by reacting to a teammate's message with the kudos emoji, by pressing Give kudos on the Morgenruf Home tab, or with /kudos @teammate a reason or a DM. It posts publicly with the reason. Reactions count in channels Morgenruf has been invited to.
+Kudos for people who will never type a command
+Schools, shops and teams outside engineering do not want to learn slash commands. The emoji reaction needs nothing new: if you can react to a message, you can give kudos, and the person gets it with a link to what they were thanked for. The Give kudos button covers the rest: a short form with a person picker and a box for the reason.
 Choosing the daily allowance
 Five a day is a sensible place to start. Fewer makes each one weigh more; more makes it easier to thank the small things. Watch the givers leaderboard for a few weeks: if most people run out before lunch, raise it, and if hardly anyone spends more than one, lower it. The number matters less than the reset, because a budget that disappears at midnight is what gets it spent.
 What it is not
@@ -528,6 +532,7 @@ MorgenrufHeyTaco
 Peer recognition in SlackYesYes
 Daily allowance that resetsYes, midnight in each timezoneYes
 Your own emoji as the tokenYesTacos
+Give by reacting with the emojiYesYes
 Leaderboards for givingYesYes
 Rewards catalogue and gift cardsNoYes
 Async standups in the same appYesNo
@@ -741,7 +746,7 @@ Add to Slack Self-host in about 20 minutes
 Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
 Morgenruf is an open-source Slack standup bot under the MIT licence: one public repository, no open-core split and no paid tier. It asks standup questions by DM and posts one summary, and also runs coffee chats and kudos. Use the free hosted instance, or run the same code yourself.
 Last reviewed September 26, 2026
-MIT licence · latest release 1.9.28, 2026-11-11 · Helm chart · every release
+MIT licence · latest release 1.9.32, 2026-11-12 · Helm chart · every release
 git clone https://github.com/morgenruf/morgenruf.git cd morgenruf/app && cp .env.example .env # add your Slack app values docker compose up -d
 View on GitHub
 What the licence actually says
@@ -787,7 +792,7 @@ Add to Slack Self-host in about 20 minutes
 Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
 Morgenruf is a self-hostable Slack standup bot: a backend, a small frontend and a Postgres database, deployed with Docker Compose or Helm, with every answer stored in a database you control. It is MIT licensed and free, and the same code also runs as a free hosted instance for teams that would rather not run it.
 Last reviewed September 26, 2026
-MIT licence · latest release 1.9.28, 2026-11-11 · Helm chart · every release
+MIT licence · latest release 1.9.32, 2026-11-12 · Helm chart · every release
 git clone https://github.com/morgenruf/morgenruf.git cd morgenruf/app && cp .env.example .env # add your Slack app values docker compose up -d
 View on GitHub
 Why teams self-host a standup bot
