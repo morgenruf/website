@@ -4,24 +4,24 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Blog: async standups, self-hosting and team rituals</title>
-<meta name="description" content="Writing about async standups, self-hosting Slack tools and building an open-source alternative to per-seat team software. Four posts so far, no listicles."/>
+<meta name="description" content="Writing about async standups, self-hosting Slack tools and building an open-source alternative to per-seat team software. A handful of posts so far, no listicles."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/blog/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/blog/"/>
 <meta property="og:title" content="Blog: async standups, self-hosting and team rituals"/>
-<meta property="og:description" content="Writing about async standups, self-hosting Slack tools and building an open-source alternative to per-seat team software. Four posts so far, no listicles."/>
+<meta property="og:description" content="Writing about async standups, self-hosting Slack tools and building an open-source alternative to per-seat team software. A handful of posts so far, no listicles."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png?v=bf05fd1f1a"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Blog: async standups, self-hosting and team rituals"/>
-<meta name="twitter:description" content="Writing about async standups, self-hosting Slack tools and building an open-source alternative to per-seat team software. Four posts so far, no listicles."/>
+<meta name="twitter:description" content="Writing about async standups, self-hosting Slack tools and building an open-source alternative to per-seat team software. A handful of posts so far, no listicles."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png?v=bf05fd1f1a"/>
 <meta name="theme-color" content="#12131f"/>
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
 <link rel="preload" href="/assets/fonts/geist-1.9.2.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="/assets/site.css?v=98f9a9cd63"/>
+<link rel="stylesheet" href="/assets/site.css?v=5cffbc07d1"/>
 <script src="/assets/analytics.js" defer></script>
 <script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","@id":"https://morgenruf.dev/blog/#blog","name":"Morgenruf blog","url":"https://morgenruf.dev/blog/","inLanguage":"en","publisher":{"@id":"https://morgenruf.dev/#organization"},"blogPost":[{"@type":"BlogPosting","headline":"Why I built Morgenruf in a Tim Hortons in Kitchener","url":"https://morgenruf.dev/blog/why-i-built-morgenruf/","datePublished":"2026-04-05","dateModified":"2026-09-26","author":{"@id":"https://morgenruf.dev/#anmol-nagpal"}},{"@type":"BlogPosting","headline":"The 12.5 hour standup: taking a team of ten async in Slack","url":"https://morgenruf.dev/blog/async-standups-slack-free/","datePublished":"2026-04-05","dateModified":"2026-09-26","author":{"@id":"https://morgenruf.dev/#anmol-nagpal"}},{"@type":"BlogPosting","headline":"30 async standup questions, grouped by team","url":"https://morgenruf.dev/blog/standup-questions/","datePublished":"2026-09-29","dateModified":"2026-09-29","author":{"@id":"https://morgenruf.dev/#anmol-nagpal"}},{"@type":"BlogPosting","headline":"Geekbot vs Morgenruf: An Honest Comparison","url":"https://morgenruf.dev/blog/geekbot-vs-morgenruf/","datePublished":"2026-04-05","dateModified":"2026-09-26","author":{"@id":"https://morgenruf.dev/#anmol-nagpal"}}]}</script>
@@ -47,13 +47,13 @@
   <h1>Writing about async standups and self-hosting</h1>
   <p class="lede">On async standups, self-hosting, and what building the alternative actually involves.</p>
 </div></header>
-<section class="section"><div class="wrap"><div class="prose"><p>Four posts so far. They get written when something is concrete enough to be
+<section class="section"><div class="wrap"><div class="prose"><p>A handful of posts so far. They get written when something is concrete enough to be
 worth a stranger's time: a decision with a number behind it, a cost that turned out to be real, or
 a comparison that is easier to make in long form than in a table. Nothing here is on a schedule,
-which is why there are four of them and not forty.</p>
+which is why there are a handful of them and not forty.</p>
 
 <h2 id="the-posts">The posts</h2>
-<div class="tiles" style="margin:24px 0 8px"><a class="tile" href="/blog/why-i-built-morgenruf/"><h3>Why I built Morgenruf in a Tim Hortons in Kitchener</h3><p>A Saturday at a Tim Hortons in Kitchener, a monthly SaaS bill, and one line on it: $2.50 per person per month for a bot that DMs three questions and pastes the answers into a channel. The post works through how small the core loop really is, what the weekend produced, and which features went in afterwards because they cost nothing once the foundation existed: mood tracking, webhooks, CSV export and an MCP server.</p><span class="go">Read the post →</span></a><a class="tile" href="/blog/async-standups-slack-free/"><h3>The 12.5 hour standup: taking a team of ten async in Slack</h3><p>The arithmetic first: a quarter hour a day is 75 minutes a week per person, and 12.5 hours a week for a team of ten, most of it spent listening. Then what replaces it. A scheduled DM, short written answers, one summary in a channel, and the five steps to get there. It ends on the per-seat maths, which is where the case for async stops being about meetings.</p><span class="go">Read the post →</span></a><a class="tile" href="/blog/standup-questions/"><h3>30 async standup questions, by team</h3><p>Thirty questions to ask in an async standup, in four sets: engineering teams, remote and async teams, managers and leads, and cross-functional groups. Each set says what it is for and when to swap it in, because the three default questions stop working once people answer them on autopilot.</p><span class="go">Read the post →</span></a><a class="tile" href="/blog/geekbot-vs-morgenruf/"><h3>Geekbot and Morgenruf, compared honestly</h3><p>A feature table, then the section that matters: where Geekbot wins. Zero operations, a Slack App Directory listing your IT admin already knows how to approve, years of edge cases, and a funded team behind it. After that, the parts self-hosting wins, and a straight answer on who should choose which. If you only read one of these before switching, read this one.</p><span class="go">Read the post →</span></a></div>
+<div class="tiles tiles-list" style="margin:24px 0 8px"><a class="tile" href="/blog/why-i-built-morgenruf/"><h3>Why I built Morgenruf in a Tim Hortons in Kitchener</h3><p>A Saturday at a Tim Hortons in Kitchener, a monthly SaaS bill, and one line on it: $2.50 per person per month for a bot that DMs three questions and pastes the answers into a channel. The post works through how small the core loop really is, what the weekend produced, and which features went in afterwards because they cost nothing once the foundation existed: mood tracking, webhooks, CSV export and an MCP server.</p><span class="go">Read the post →</span></a><a class="tile" href="/blog/async-standups-slack-free/"><h3>The 12.5 hour standup: taking a team of ten async in Slack</h3><p>The arithmetic first: a quarter hour a day is 75 minutes a week per person, and 12.5 hours a week for a team of ten, most of it spent listening. Then what replaces it. A scheduled DM, short written answers, one summary in a channel, and the five steps to get there. It ends on the per-seat maths, which is where the case for async stops being about meetings.</p><span class="go">Read the post →</span></a><a class="tile" href="/blog/standup-questions/"><h3>30 async standup questions, by team</h3><p>Thirty questions to ask in an async standup, in four sets: engineering teams, remote and async teams, managers and leads, and cross-functional groups. Each set says what it is for and when to swap it in, because the three default questions stop working once people answer them on autopilot.</p><span class="go">Read the post →</span></a><a class="tile" href="/blog/geekbot-vs-morgenruf/"><h3>Geekbot and Morgenruf, compared honestly</h3><p>A feature table, then the section that matters: where Geekbot wins. Zero operations, a Slack App Directory listing your IT admin already knows how to approve, years of edge cases, and a funded team behind it. After that, the parts self-hosting wins, and a straight answer on who should choose which. If you only read one of these before switching, read this one.</p><span class="go">Read the post →</span></a></div>
 
 <div id="soro-blog"></div>
 <script src="https://app.trysoro.com/api/embed/8bb533f4-55ea-4c1e-b09a-843dcf0f3f55" defer></script>

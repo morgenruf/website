@@ -149,13 +149,13 @@ def blog_index():
     cards = "".join(
         f'<a class="tile" href="{href}"><h3>{title}</h3><p>{blurb}</p>'
         f'<span class="go">Read the post →</span></a>' for href, title, blurb in POSTS)
-    prose = f'''<p>Four posts so far. They get written when something is concrete enough to be
+    prose = f'''<p>A handful of posts so far. They get written when something is concrete enough to be
 worth a stranger's time: a decision with a number behind it, a cost that turned out to be real, or
 a comparison that is easier to make in long form than in a table. Nothing here is on a schedule,
-which is why there are four of them and not forty.</p>
+which is why there are a handful of them and not forty.</p>
 
 <h2 id="the-posts">The posts</h2>
-<div class="tiles" style="margin:24px 0 8px">{cards}</div>
+<div class="tiles tiles-list" style="margin:24px 0 8px">{cards}</div>
 
 <div id="soro-blog"></div>
 <script src="https://app.trysoro.com/api/embed/8bb533f4-55ea-4c1e-b09a-843dcf0f3f55" defer></script>
@@ -177,8 +177,8 @@ rewritten here.</p>
 where to say that one of them is wrong.</p>'''
     return _page(path="/blog/", title="Blog: async standups, self-hosting and team rituals",
                  description="Writing about async standups, self-hosting Slack tools and building "
-                             "an open-source alternative to per-seat team software. Four posts so "
-                             "far, no listicles.",
+                             "an open-source alternative to per-seat team software. A handful of posts "
+                             "so far, no listicles.",
                  h1="Writing about async standups and self-hosting",
                  lede="On async standups, self-hosting, and what building the alternative actually "
                       "involves.",
