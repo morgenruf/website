@@ -277,6 +277,7 @@ footer a:hover{color:var(--sun)}
 .tiles-list{grid-template-columns:1fr}
 .prose .tile h3{margin-top:0}
 #soro-blog{font-family:var(--sans); color:var(--text); max-width:none; margin:18px 0 8px}
+#soro-blog .soro-blog{font-family:inherit; color:inherit; max-width:none}
 #soro-blog .soro-blog-list{gap:18px}
 #soro-blog .soro-blog-card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:24px; gap:20px; box-shadow:none; transition:border-color .12s, transform .12s}
 #soro-blog .soro-blog-card:hover{border-color:var(--amber); transform:translateY(-2px)}
