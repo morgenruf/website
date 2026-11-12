@@ -149,16 +149,17 @@ def blog_index():
     cards = "".join(
         f'<a class="tile" href="{href}"><h3>{title}</h3><p>{blurb}</p>'
         f'<span class="go">Read the post →</span></a>' for href, title, blurb in POSTS)
-    prose = f'''<p>A handful of posts so far. They get written when something is concrete enough to be
-worth a stranger's time: a decision with a number behind it, a cost that turned out to be real, or
-a comparison that is easier to make in long form than in a table. Nothing here is on a schedule,
-which is why there are a handful of them and not forty.</p>
+    prose = f'''<p>Two kinds of posts live here. Short ones go out most days, on the questions people
+ask when they are picking a standup tool. The long reads below them get written when something is
+concrete enough to be worth a stranger's time: a decision with a number behind it, a cost that
+turned out to be real, or a comparison that is easier to make in long form than in a table.</p>
 
-<h2 id="the-posts">The posts</h2>
-<div class="tiles tiles-list" style="margin:24px 0 8px">{cards}</div>
-
+<h2 id="latest">Latest</h2>
 <div id="soro-blog"></div>
 <script src="https://app.trysoro.com/api/embed/8bb533f4-55ea-4c1e-b09a-843dcf0f3f55" defer></script>
+
+<h2 id="the-posts">Long reads</h2>
+<div class="tiles tiles-list" style="margin:24px 0 8px">{cards}</div>
 
 <h2 id="what-gets-written">What gets written here, and what does not</h2>
 <p>The subjects are the ones this project keeps running into: async standups and whether they
@@ -167,19 +168,27 @@ and the parts of building an alternative to per-seat software that turned out ha
 Where a post compares Morgenruf with something people pay for, it says where the paid tool wins,
 for the same reason the <a href="/compare/">comparison pages</a> do: a page that claims the
 competitor is bad at everything convinces nobody.</p>
-<p>What you will not find is a list of the ten best standup bots of the year, a post written to
-hold a keyword, or an announcement dressed as an essay. Releases go in the
+<p>What you will not find is a list of the ten best standup bots of the year, or an
+announcement dressed as an essay. Releases go in the
 <a href="/changelog/">changelog</a>, and how each part of the app behaves is documented on the
 <a href="/standups/">standups</a>, <a href="/coffee-chats/">coffee chats</a>,
 <a href="/kudos/">kudos</a> and <a href="/celebrations/">celebrations</a> pages rather than being
 rewritten here.</p>
 <p>New posts are announced in <a href="{REPO}/discussions">GitHub discussions</a>, which is also
 where to say that one of them is wrong.</p>'''
-    return _page(path="/blog/", title="Blog: async standups, self-hosting and team rituals",
+    # Soro posts open at /blog/?post=<slug> and the embed adds its own canonical
+    # for them. A static canonical here would be a second, conflicting one on
+    # every post, so this page carries none (and no og:url) and lets Soro own it.
+    html = _page(path="/blog/", title="Blog: async standups, self-hosting and team rituals",
                  description="Writing about async standups, self-hosting Slack tools and building "
-                             "an open-source alternative to per-seat team software. A handful of posts "
-                             "so far, no listicles.",
+                             "an open-source alternative to per-seat team software. Short posts most "
+                             "days, long reads when there is something to say.",
                  h1="Writing about async standups and self-hosting",
                  lede="On async standups, self-hosting, and what building the alternative actually "
                       "involves.",
                  prose=prose, trail=[("Home", "/"), ("Blog", None)], schema=[_blog_schema()])
+    tags = (f'<link rel="canonical" href="{SITE}/blog/"/>\n', f'<meta property="og:url" content="{SITE}/blog/"/>\n')
+    for tag in tags:
+        assert tag in html, tag
+        html = html.replace(tag, "")
+    return html
