@@ -12,7 +12,7 @@ import pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 SITE = "https://morgenruf.dev"
-INSTALL = "https://api.morgenruf.dev/install"
+INSTALL = "https://app.morgenruf.dev/install"
 REPO = "https://github.com/morgenruf/morgenruf"
 
 MARK = '<img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/>' 

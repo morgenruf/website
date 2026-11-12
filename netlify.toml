@@ -109,12 +109,12 @@
 
 [[redirects]]
   from = "/install"
-  to = "https://api.morgenruf.dev/install"
+  to = "https://app.morgenruf.dev/install"
   status = 302
 
 [[redirects]]
   from = "/slack"
-  to = "https://api.morgenruf.dev/install"
+  to = "https://app.morgenruf.dev/install"
   status = 302
 
 [[headers]]

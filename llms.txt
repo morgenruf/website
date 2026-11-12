@@ -61,7 +61,7 @@ Integration
 
 ## How it is run
 
-- "Add to Slack" (https://api.morgenruf.dev/install) installs it on a free
+- "Add to Slack" (https://app.morgenruf.dev/install) installs it on a free
   hosted instance run by CloudDrove, in about two minutes
 - Or self-hosted with Docker Compose, or on Kubernetes with the published Helm
   chart; same MIT code
