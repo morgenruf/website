@@ -157,6 +157,9 @@ which is why there are four of them and not forty.</p>
 <h2 id="the-posts">The posts</h2>
 <div class="tiles" style="margin:24px 0 8px">{cards}</div>
 
+<div id="soro-blog"></div>
+<script src="https://app.trysoro.com/api/embed/8bb533f4-55ea-4c1e-b09a-843dcf0f3f55" defer></script>
+
 <h2 id="what-gets-written">What gets written here, and what does not</h2>
 <p>The subjects are the ones this project keeps running into: async standups and whether they
 actually replace the meeting, what self-hosting a small Slack app costs in money and in evenings,
