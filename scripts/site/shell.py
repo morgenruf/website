@@ -125,6 +125,13 @@ def head(*, title, description, path, og_image="/og-image.png", schema=None, ext
 <link rel="preload" href="/assets/fonts/geist-1.9.2.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="{asset("/assets/site.css")}"/>
 <script src="/assets/analytics.js" defer></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QM8RKPLDF4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', 'G-QM8RKPLDF4');
+</script>
 <script src="{asset("/assets/nav.js")}" defer></script>{extra_head}{blocks}
 </head>
 <body>
