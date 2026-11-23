@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Changelog: every Morgenruf release, currently 1.9.32</title>
+<title>Changelog: every Morgenruf release, currently 1.9.40</title>
 <meta name="description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/changelog/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/changelog/"/>
-<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.9.32"/>
+<meta property="og:title" content="Changelog: every Morgenruf release, currently 1.9.40"/>
 <meta property="og:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png?v=bf05fd1f1a"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.9.32"/>
+<meta name="twitter:title" content="Changelog: every Morgenruf release, currently 1.9.40"/>
 <meta name="twitter:description" content="Every Morgenruf release and what changed in it: new modules, fixes and the occasional removal, generated straight from the repository's own changelog file."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png?v=bf05fd1f1a"/>
 <meta name="theme-color" content="#12131f"/>
@@ -46,13 +46,69 @@
 <header class="page-head"><div class="wrap">
   <h1>Changelog</h1>
   <p class="lede">Every release, what changed in it, and why. Currently on
-  <strong>1.9.32</strong>, with 62 releases documented.</p>
+  <strong>1.9.40</strong>, with 70 releases documented.</p>
 </div></header>
 <section class="section"><div class="wrap">
   <div class="note" style="margin-bottom:34px"><p>Every release is tagged, published with notes, and
   built from the same commit that is on <a href="https://github.com/morgenruf/morgenruf">GitHub</a>. Docker images carry the
   revision they were built from, so you can check what you are running matches what you read here.</p></div>
   <article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.40">1.9.40</h2>
+    <time datetime="2026-11-20">2026-11-20</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.40">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.40-fixed">Fixed</h3><ul><li>The Prometheus scrape's active workspace count no longer shows up in tracing as a stray root <code>SELECT</code> trace on every scrape.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.39">1.9.39</h2>
+    <time datetime="2026-11-20">2026-11-20</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.39">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.39-fixed">Fixed</h3><ul><li>The <code>/healthz</code> readiness check's database query no longer shows up in tracing as a stray root <code>SELECT</code> trace every few seconds.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.38">1.9.38</h2>
+    <time datetime="2026-11-20">2026-11-20</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.38">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.38-added">Added</h3><ul><li><strong>Kudos in the channel, the way Donut does it.</strong> In any channel Morgenruf is in, <code>@teammate</code> plus the workspace's kudos emoji and a reason gives each person mentioned a kudos. The message gets a check mark instead of a reply, the recipient gets a DM, and the card is not repeated when the message is already in the kudos channel. Needs two new scopes, <code>channels:history</code> and <code>groups:history</code>, so existing workspaces reinstall once (the What's new card offers it). Only messages carrying the kudos emoji and a mention are acted on.</li></ul><h3 id="v1.9.38-changed">Changed</h3><ul><li><strong>Traces now connect.</strong> Work that Slack Bolt and the scheduler run on worker threads (database queries, Slack API calls) used to be traces of their own, so a Slack event showed one bare span and the database queries showed up as hundreds of loose traces an hour. Threading and urllib (slack_sdk) instrumentation keep them in the request's trace. Each scheduled job run is now one <code>job <name></code> span with its queries under it.</li><li>JSON log lines include <code>trace_id</code> and <code>span_id</code> while a span is active, so Grafana links a log line to its trace and a trace to its log lines.</li></ul><h3 id="v1.9.38-fixed">Fixed</h3><ul><li>Reaction kudos ignored every unicode token except the maple leaf, so a workspace using, say, a heart-eyes emoji could never give kudos by reaction. Unicode tokens are now matched by their Slack names (emoji 2.16.0).</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.37">1.9.37</h2>
+    <time datetime="2026-11-20">2026-11-20</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.37">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.37-security">Security</h3><ul><li>Frontend image now builds on <code>ghcr.io/nginx/nginx-unprivileged:stable-alpine</code>, which already ships nginx 1.30.7 (fixes CVE-2026-113425, CVE-2026-121810, CVE-2026-123007, CVE-2026-123633, CVE-2026-118899, CVE-2026-123634). Docker Hub was still on 1.30.6, so the 1.9.36 tag failed its image scan and never published.</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.36">1.9.36</h2>
+    <time datetime="2026-11-20">2026-11-20</time>
+    
+  </div>
+  <div class="release-body"><h3 id="v1.9.36-added">Added</h3><ul><li><strong>OpenTelemetry tracing, off by default.</strong> When <code>OTEL_EXPORTER_OTLP_ENDPOINT</code> is set, the backend sends traces over OTLP/HTTP for Flask under gunicorn, psycopg2, redis, requests and httpx. Unset, nothing is loaded. Chart 0.16.0 adds <code>tracing.endpoint</code> (#319, helm-charts#8).</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.35">1.9.35</h2>
+    <time datetime="2026-11-14">2026-11-14</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.35">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.35-added">Added</h3><ul><li><strong>Prometheus metrics.</strong> The backend serves <code>/metrics</code> on its own port (<code>METRICS_PORT</code>, default 9090), never through the frontend or the public hostname: HTTP requests by route, Slack events and API calls (including rate limits), scheduler job runs and durations, messages sent per job, installs, active workspaces, DB pool usage and build info. Chart 0.15.0 adds the <code>metrics</code> port and a PodMonitor when the Prometheus Operator is installed (#318, helm-charts#7).</li><li>posthog 7.87.1 (#317).</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.34">1.9.34</h2>
+    <time datetime="2026-11-14">2026-11-14</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.34">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.34-security">Security</h3><ul><li>Dependency fixes for open Dependabot alerts: seroval 1.8.1, systeminformation 5.33.22, minimatch 11.0.8 (override), eslint 10.15.0. deepmerge has no patched release yet (#315).</li></ul></div>
+</article><article class="release">
+  <div class="release-meta">
+    <h2 id="v1.9.33">1.9.33</h2>
+    <time datetime="2026-11-14">2026-11-14</time>
+    <a href="https://github.com/morgenruf/morgenruf/releases/tag/v1.9.33">Release notes ↗</a>
+  </div>
+  <div class="release-body"><h3 id="v1.9.33-changed">Changed</h3><ul><li>Backend image runs on Python 3.15 (python:3.15-slim) (#314).</li><li>Dependency updates: gunicorn 27.0.0, resend 2.53.2, posthog 7.87.0, jsdom 31, npm minor and patch group including vite 8.3.8 and playwright 1.65.0 (#314).</li></ul><h3 id="v1.9.33-fixed">Fixed</h3><ul><li>The timezone test fixture no longer crashes pytest on Python 3.15 (#314).</li></ul></div>
+</article><article class="release">
   <div class="release-meta">
     <h2 id="v1.9.32">1.9.32</h2>
     <time datetime="2026-11-12">2026-11-12</time>

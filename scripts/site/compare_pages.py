@@ -78,7 +78,8 @@ video facilitation.</p>
 
 <h2 id="where-this-is-different">Where this is different</h2>
 <h3>It is one app, not three subscriptions</h3>
-<p>Most teams that pay for pairing also pay for standups and recognition. Morgenruf runs all three
+<p>Most teams that pay for pairing also pay for standups and recognition. Morgenruf runs all three,
+with the <a href="/coffee-chats/">Slack coffee chat bot</a> as one of them,
 against one database, which is also what makes the cross-signal questions possible: who answers
 every standup and is thanked by nobody.</p>
 
@@ -102,7 +103,7 @@ turns those on. Leaving is not a migration because the data is already yours.</p
 <h3>The price</h3>
 <p>Free for every seat, at any size: on the free hosted instance, or self-hosted, where a thirty
 person team pays for a small server and a database instead of a subscription that grows with
-hiring.</p>
+hiring. <a href="/compare/">All comparisons</a> are on one page.</p>
 
 <h2 id="for-people-teams">For people teams: nothing to install on a server</h2>
 <p>Add to Slack puts Morgenruf on the free hosted instance, so a people ops lead can start coffee
@@ -139,9 +140,9 @@ whether the introductions land, then turn Donut off. Nothing here needs a contra
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/donut-alternative/",
-        title="Free, open-source Donut alternative for Slack coffee chats",
-        description="A free Donut alternative for random coffee chats in Slack, plus standups and "
-                    "kudos in the same app. MIT licensed, no per-seat fee, hosted or self-hosted.",
+        title="Donut alternatives for Slack: a free, open-source pick",
+        description="Looking for a Donut alternative? Morgenruf runs random coffee chats in Slack "
+                    "for free at any team size, with standups and kudos included. MIT licensed.",
         h1="A free, open-source Donut alternative for Slack",
         lede="Random introductions from a channel, a time both people actually pick, and the meeting "
              "booked at that hour. Plus standups and kudos in the same app.",
@@ -181,7 +182,7 @@ than a leaderboard.</p>
 
 <h2 id="where-this-is-different">Where this is different</h2>
 <h3>Recognition is one of three things it does</h3>
-<p>Standups, coffee chats and kudos in one app, one database, one deployment. Teams rarely want only
+<p>Standups, coffee chats and the <a href="/kudos/">Slack kudos bot</a> in one app, one database, one deployment. Teams rarely want only
 one of the three, and three subscriptions is how most of them end up.</p>
 
 <h3>The token is yours</h3>
@@ -190,7 +191,8 @@ custom emoji and the bot picks it up on its own.</p>
 
 <h3>Recognition data next to something else</h3>
 <p>A leaderboard tells you who is thanked. Put it beside standup answers and you can ask who is
-contributing and being thanked by nobody, which is the question worth acting on.</p>
+contributing and being thanked by nobody, which is the question worth acting on.
+<a href="/insights/">Insights</a> is where that unthanked work shows up.</p>
 
 <h3>Nothing for HR to install</h3>
 <p>Add to Slack puts Morgenruf on the free hosted instance, so whoever runs recognition can start
@@ -199,7 +201,8 @@ self-hosted route is two small containers and a Postgres; <a href="/setup/">the 
 
 <h3>The price, again</h3>
 <p>Free for every seat, hosted or self-hosted. Recognition tools are usually priced per person per
-month, which means the cost of thanking people grows exactly as you hire them.</p>
+month, which means the cost of thanking people grows exactly as you hire them.
+<a href="/compare/">All comparisons</a> are on one page.</p>
 </div></div></section>
 '''
     faq_html, faq_schema = faq([
@@ -217,9 +220,9 @@ month, which means the cost of thanking people grows exactly as you hire them.</
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/heytaco-alternative/",
-        title="Free, open-source HeyTaco alternative for Slack kudos",
-        description="A free HeyTaco alternative for Slack recognition: any emoji as the token, a "
-                    "daily allowance per timezone, plus standups and coffee chats. MIT licensed.",
+        title="HeyTaco alternatives: a free, open-source Slack kudos bot",
+        description="A free HeyTaco alternative for Slack: any emoji as the token, a daily allowance "
+                    "per timezone and leaderboards for giving. MIT licensed, hosted or self-hosted.",
         h1="A free, open-source HeyTaco alternative for Slack",
         lede="A daily allowance, your own emoji, leaderboards for giving as well as receiving, and "
              "no per-seat bill for thanking your colleagues.",
@@ -417,9 +420,9 @@ def hub():
     return page(
         path="/compare/",
         title="Standup bot comparison: Morgenruf vs Geekbot and others",
-        description="Honest comparisons between Morgenruf and the tools teams usually pay for: "
-                    "Geekbot, DailyBot, Standuply, Donut, HeyTaco and Standup & Prosper, and where "
-                    "each wins.",
+        description="Honest comparisons of Morgenruf with the tools teams pay for: Geekbot, "
+                    "DailyBot, Standuply, Donut, HeyTaco and Standup and Prosper, and where each "
+                    "one wins.",
         h1="Compared with the tools you are probably paying for",
         lede="One app does what three subscriptions usually do. Here is where that helps, where it "
              "does not, and what the bill and the effort come to on each side.",
@@ -575,10 +578,10 @@ wherever another tool fits better. For a closer look at one of them, see the
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/compare/standup-bots/",
-        title="Slack standup bots compared: free plans and prices, 2026",
-        description="Eleven Slack standup bots compared on free plan limits and price, from each "
-                    f"vendor's pricing page ({CHECKED}), with honest advice on which fits.",
-        h1="Slack standup bots compared",
+        title="Best Slack standup bots in 2026: 11 compared on price",
+        description="The best Slack standup bots for 2026, compared on free plan limits and per-user "
+                    "price: Geekbot, DailyBot, Standuply and eight more, from vendor pages.",
+        h1="The best Slack standup bots, compared",
         lede="Free plan limits and prices for eleven standup bots, read from each vendor's own "
              "pricing page, and which one fits which team.",
         body=body, schema=[faq_schema],

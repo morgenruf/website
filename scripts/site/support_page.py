@@ -145,9 +145,9 @@ def support():
   <span class="eyebrow">Questions</span><h2>Getting help</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return (head(title="Morgenruf support: email, issues and paid help",
-                 description="Email hello@morgenruf.dev for free Morgenruf support, no signup "
-                             "needed, with a reply within 2 business days. Also GitHub issues, "
-                             "discussions, the docs, and paid help from CloudDrove.",
+                 description="Free Morgenruf support by email at hello@morgenruf.dev, with a reply "
+                             "within 2 business days. GitHub issues for bugs, and paid help from "
+                             "CloudDrove.",
                  path="/support/", schema=[faq_schema, breadcrumbs(
                      [("Home", "/"), ("Support", None)])[1]])
             + nav() + breadcrumbs([("Home", "/"), ("Support", None)])[0]

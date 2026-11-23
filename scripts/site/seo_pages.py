@@ -95,7 +95,9 @@ or on your own infrastructure with the same MIT code. There is
 blog, written while switching a team across.</p>
 <p>The decision is rarely about features. It is about where your team's answers live and whether you
 want a subscription that grows with headcount. The same question applies to Donut, HeyTaco and
-Standup &amp; Prosper, which is what <a href="/compare/">the comparison pages</a> work through.</p>
+Standup &amp; Prosper, which is what <a href="/compare/">the comparison pages</a> work through,
+and Geekbot sits beside the rest in <a href="/compare/standup-bots/">eleven standup bots compared</a>
+on free plans and price.</p>
 
 {diagrams.standup_flow("The shape of morning a Geekbot team already knows: a DM at each local hour, a private nudge, one summary.")}
 
@@ -211,10 +213,10 @@ right. Nothing here has a contract to cancel.</p>
   <span class="eyebrow">Questions</span><h2>Morgenruf and Geekbot</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/geekbot-alternative/",
-                title="Free, open-source Geekbot alternative for Slack standups",
-                description="A free, MIT-licensed Geekbot alternative for async Slack standups, "
-                            "with coffee chats and recognition in the same app. Hosted free, or "
-                            "self-hosted.",
+                title="Geekbot alternative: free, open-source Slack standup bot",
+                description="Geekbot costs $3 per user a month after 10 users. Morgenruf runs the "
+                            "same async Slack standups free at any size, hosted or on your own "
+                            "servers. MIT licensed.",
                 h1="A free, open-source Geekbot alternative for Slack",
                 lede="The same morning questions and channel summary, free on the hosted instance or "
                      "on your own servers, with coffee chats and kudos included rather than sold "
@@ -312,11 +314,11 @@ option is cheaper than your time.</p>
   <span class="eyebrow">Questions</span><h2>Morgenruf and Standup &amp; Prosper</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/standup-prosper-alternative/",
-                title="Free, open-source Standup &amp; Prosper alternative for Slack",
+                title="Standup and Prosper alternative: free and open source",
                 description="An open-source, self-hosted Standup &amp; Prosper alternative for Slack "
                             "standups, with coffee chats and kudos in the same app and no per-seat "
                             "bill as you hire.",
-                h1="A free, open-source Standup &amp; Prosper alternative",
+                h1="A free, open-source Standup and Prosper alternative",
                 lede="Same async standups, run on your own infrastructure, with two more team "
                      "rituals included rather than sold separately.",
                 body=body, schema=[faq_schema],
@@ -539,7 +541,9 @@ somewhere the team will actually read them. That is the whole category. Morgenru
 inside Slack: a direct message at your local hour, a summary in the channel an hour later, and
 nothing to log into. The dashboard is for whoever sets it up, and most weeks they do not open it
 either.</p>
-<p>This page is the general one. The two questions that follow it usually are the licence and the
+<p>This page is the general one, about how the bot behaves in Slack. For the
+<a href="/">free Slack standup bot</a> as a whole, with coffee chats and kudos, start at the home
+page. The two questions that follow it usually are the licence and the
 hosting, which have pages of their own:
 <a href="/open-source-standup-bot/">what the MIT licence covers</a> and
 <a href="/self-hosted-standup-bot/">where the container and the database end up</a>.</p>
@@ -598,10 +602,10 @@ happens when someone is on leave. If you are still deciding,
   <span class="eyebrow">Questions</span><h2>About the Slack app</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/slack-standup-bot/",
-                title="Free Slack standup bot: DMs, summaries, commands",
-                description="A Slack standup bot that DMs each person their questions at their own "
-                            "local hour and posts one summary to the channel. Slash commands, App "
-                            "Home, MIT.",
+                title="Slack standup bot: the morning DM, nudge and summary",
+                description="A Slack standup bot that DMs each person at their local hour, nudges "
+                            "whoever is late, and posts one summary with blockers pulled out. Free "
+                            "and MIT licensed.",
                 h1="A Slack standup bot, from the morning DM to the summary",
                 lede="Questions by DM at each person's local hour, one summary in the channel, "
                      "slash commands and an App Home tab. Nobody opens a dashboard to take part.",
@@ -741,7 +745,7 @@ DailyBot off once the new summary looks right.</p>
                 title="Free, open-source DailyBot alternative for Slack",
                 description="A free, MIT-licensed DailyBot alternative for async Slack standups: no "
                             "report cap, no per-user price, coffee chats and kudos included. Hosted "
-                            "free or self-hosted.",
+                            "or self-hosted.",
                 h1="A free, open-source DailyBot alternative for Slack",
                 lede=f"Verdict: DailyBot charges $3 per active user a month once you pass its free "
                      f"plan's 50 reports (checked {CHECKED_2}), while Morgenruf runs the same Slack "
@@ -882,7 +886,7 @@ Standuply off once the new summary looks right.</p>
                 title="Free, open-source Standuply alternative for Slack",
                 description="A free, MIT-licensed Standuply alternative for async Slack standups, "
                             "with coffee chats and kudos in the same app and no per-user price. "
-                            "Hosted free or self-hosted.",
+                            "Hosted or self-hosted.",
                 h1="A free, open-source Standuply alternative for Slack",
                 lede=f"Verdict: Standuply is free for 3 users and then $2 to $3.50 per user a month "
                      f"on Team (checked {CHECKED_2}), while Morgenruf runs written Slack standups free "

@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Free Slack standup bot: DMs, summaries, commands</title>
-<meta name="description" content="A Slack standup bot that DMs each person their questions at their own local hour and posts one summary to the channel. Slash commands, App Home, MIT."/>
+<title>Slack standup bot: the morning DM, nudge and summary</title>
+<meta name="description" content="A Slack standup bot that DMs each person at their local hour, nudges whoever is late, and posts one summary with blockers pulled out. Free and MIT licensed."/>
 <meta name="robots" content="index, follow"/>
 <link rel="canonical" href="https://morgenruf.dev/slack-standup-bot/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://morgenruf.dev/slack-standup-bot/"/>
-<meta property="og:title" content="Free Slack standup bot: DMs, summaries, commands"/>
-<meta property="og:description" content="A Slack standup bot that DMs each person their questions at their own local hour and posts one summary to the channel. Slash commands, App Home, MIT."/>
+<meta property="og:title" content="Slack standup bot: the morning DM, nudge and summary"/>
+<meta property="og:description" content="A Slack standup bot that DMs each person at their local hour, nudges whoever is late, and posts one summary with blockers pulled out. Free and MIT licensed."/>
 <meta property="og:image" content="https://morgenruf.dev/og-image.png?v=bf05fd1f1a"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Free Slack standup bot: DMs, summaries, commands"/>
-<meta name="twitter:description" content="A Slack standup bot that DMs each person their questions at their own local hour and posts one summary to the channel. Slash commands, App Home, MIT."/>
+<meta name="twitter:title" content="Slack standup bot: the morning DM, nudge and summary"/>
+<meta name="twitter:description" content="A Slack standup bot that DMs each person at their local hour, nudges whoever is late, and posts one summary with blockers pulled out. Free and MIT licensed."/>
 <meta name="twitter:image" content="https://morgenruf.dev/og-image.png?v=bf05fd1f1a"/>
 <meta name="theme-color" content="#12131f"/>
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
@@ -26,7 +26,7 @@
 <script src="/assets/nav.js?v=9bd6907975" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does it work on Slack's free plan?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It uses standard app APIs available on the free plan."}}, {"@type": "Question", "name": "Can it post to a different channel from the one it asks in?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Questions go by DM, and the summary can post anywhere the bot has been invited."}}, {"@type": "Question", "name": "Does it read our channel messages?", "acceptedAnswer": {"@type": "Answer", "text": "No. It reads replies to its own DMs and channel membership where you point it. It has no channel history scope."}}, {"@type": "Question", "name": "What about Microsoft Teams or Google Chat?", "acceptedAnswer": {"@type": "Answer", "text": "Google Chat is in beta; Teams as a platform is planned, not started. Slack is first class."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Slack standup bot"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "url": "https://morgenruf.dev/slack-standup-bot/", "name": "Free Slack standup bot: DMs, summaries, commands", "dateModified": "2026-09-26", "about": {"@id": "https://morgenruf.dev/#software"}, "publisher": {"@id": "https://morgenruf.dev/#organization"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "url": "https://morgenruf.dev/slack-standup-bot/", "name": "Slack standup bot: the morning DM, nudge and summary", "dateModified": "2026-09-26", "about": {"@id": "https://morgenruf.dev/#software"}, "publisher": {"@id": "https://morgenruf.dev/#organization"}}</script>
 </head>
 <body>
 <nav class="nav">
@@ -63,7 +63,9 @@ somewhere the team will actually read them. That is the whole category. Morgenru
 inside Slack: a direct message at your local hour, a summary in the channel an hour later, and
 nothing to log into. The dashboard is for whoever sets it up, and most weeks they do not open it
 either.</p>
-<p>This page is the general one. The two questions that follow it usually are the licence and the
+<p>This page is the general one, about how the bot behaves in Slack. For the
+<a href="/">free Slack standup bot</a> as a whole, with coffee chats and kudos, start at the home
+page. The two questions that follow it usually are the licence and the
 hosting, which have pages of their own:
 <a href="/open-source-standup-bot/">what the MIT licence covers</a> and
 <a href="/self-hosted-standup-bot/">where the container and the database end up</a>.</p>

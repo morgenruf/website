@@ -1,6 +1,6 @@
 # Morgenruf: the full text of the main pages
 
-Generated from the site on each build. Current version 1.9.32, released 2026-11-12. Built by Anmol Nagpal, sponsored by CloudDrove. Summary and index: https://morgenruf.dev/llms.txt
+Generated from the site on each build. Current version 1.9.40, released 2026-11-20. Built by Anmol Nagpal, sponsored by CloudDrove. Summary and index: https://morgenruf.dev/llms.txt
 
 ## Async standups in Slack, free or self-hosted
 https://morgenruf.dev/standups/
@@ -96,7 +96,7 @@ They can skip a round or pause entirely from the Slack App Home, and ask for a d
 How do we know if it is working?
 The round closes by asking whether the pair met, and the answer is recorded four ways: met, did not meet, never replied, and never delivered. The last one is our bug, not their behaviour, and folding it into 'did not meet' would blame the wrong party.
 
-## Slack kudos bot: peer recognition with a daily allowance
+## Slack kudos bot: free peer recognition, daily allowance
 https://morgenruf.dev/kudos/
 
 Praise that means something because it runs out
@@ -127,7 +127,7 @@ Schools, shops and teams outside engineering do not want to learn slash commands
 Choosing the daily allowance
 Five a day is a sensible place to start. Fewer makes each one weigh more; more makes it easier to thank the small things. Watch the givers leaderboard for a few weeks: if most people run out before lunch, raise it, and if hardly anyone spends more than one, lower it. The number matters less than the reset, because a budget that disappears at midnight is what gets it spent.
 What it is not
-There is no points store, no gift card catalogue, no vendor taking a cut of a reward budget. Recognition here is a message to a channel and a number in a leaderboard. If your programme needs prizes, this is the wrong tool and an honest answer now saves you a migration later. The HeyTaco comparison is where that trade is spelled out.
+There is no points store, no gift card catalogue, no vendor taking a cut of a reward budget. Recognition here is a message to a channel and a number in a leaderboard. If your programme needs prizes, this is the wrong tool and an honest answer now saves you a migration later. The HeyTaco comparison is where that trade is spelled out. Birthdays and work anniversaries are a separate module, the Slack birthday bot.
 Reading the room
 Recognition data is only interesting next to something else, which is why it feeds Insights: somebody who answers every standup and has never been thanked is visible in a way neither dataset shows alone.
 QuestionsAbout kudos
@@ -332,10 +332,10 @@ How these pages are written
 Each comparison says where the other tool wins, because they all win somewhere and a page that claims otherwise is not worth reading. Prices are quoted with the date they were checked, so you can tell at a glance how stale they are rather than trusting a number with no age on it.
 All of them were checked in September 2026. If something is wrong, it is a bug like any other: open an issue.
 
-## Slack standup bots compared: free plans and prices, 2026
+## Best Slack standup bots in 2026: 11 compared on price
 https://morgenruf.dev/compare/standup-bots/
 
-Slack standup bots compared
+The best Slack standup bots, compared
 Free plan limits and prices for eleven standup bots, read from each vendor's own pricing page, and which one fits which team.
 Add to Slack Self-host in about 20 minutes
 Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
@@ -390,7 +390,7 @@ For teams of up to 10 users. Above that it costs $3 per participant a month, or 
 What happened to Status Hero?
 It was renamed Steady. It now charges for credits rather than seats and has no free plan.
 
-## Free, open-source Geekbot alternative for Slack standups
+## Geekbot alternative: free, open-source Slack standup bot
 https://morgenruf.dev/geekbot-alternative/
 
 A free, open-source Geekbot alternative for Slack
@@ -402,7 +402,7 @@ Morgenruf is a free, open-source (MIT) Geekbot alternative for Slack. Like Geekb
 Last reviewed September 26, 2026
 What you are actually comparing
 Geekbot is a hosted async standup bot. It is mature, it works, and for a lot of teams the monthly per-person fee is the right trade for never thinking about a server. Morgenruf is the same job, plus coffee chats and recognition, for nothing per seat: free on the hosted instance CloudDrove runs, or on your own infrastructure with the same MIT code. There is a longer and less tidy version of this comparison on the blog, written while switching a team across.
-The decision is rarely about features. It is about where your team's answers live and whether you want a subscription that grows with headcount. The same question applies to Donut, HeyTaco and Standup & Prosper, which is what the comparison pages work through.
+The decision is rarely about features. It is about where your team's answers live and whether you want a subscription that grows with headcount. The same question applies to Donut, HeyTaco and Standup & Prosper, which is what the comparison pages work through, and Geekbot sits beside the rest in eleven standup bots compared on free plans and price.
 How do Morgenruf and Geekbot compare?
 MorgenrufGeekbot
 Async standups by DM, one channel summaryYesYes
@@ -466,7 +466,7 @@ For async standups, the everyday shape is the same: questions, schedules, timezo
 How long does it take to set up?
 About two minutes on the free hosted instance. Self-hosted, about twenty minutes, most of it creating the Slack app.
 
-## Free, open-source Donut alternative for Slack coffee chats
+## Donut alternatives for Slack: a free, open-source pick
 https://morgenruf.dev/donut-alternative/
 
 A free, open-source Donut alternative for Slack
@@ -494,7 +494,7 @@ Donut is a good product and the one that made this category. It has years of pol
 Where they win. If you need Microsoft Teams today, or onboarding journeys, or a video facilitation layer, Donut is the better answer and you should use it.
 Where this is different
 It is one app, not three subscriptions
-Most teams that pay for pairing also pay for standups and recognition. Morgenruf runs all three against one database, which is also what makes the cross-signal questions possible: who answers every standup and is thanked by nobody.
+Most teams that pay for pairing also pay for standups and recognition. Morgenruf runs all three, with the Slack coffee chat bot as one of them, against one database, which is also what makes the cross-signal questions possible: who answers every standup and is thanked by nobody.
 Birthdays and work anniversaries, too
 Donut celebrates birthdays and anniversaries, and so does Morgenruf: posted in a channel you pick, grouped into one message per kind a day, and moved to the last working day before a weekend or a company holiday on your own list. Only the day and month of a birthday are kept, and anyone can opt out with one checkbox. Donut imports dates straight from an HRIS; here HR uploads a CSV export instead. Celebrations has the details.
 The introduction carries a meeting
@@ -502,7 +502,7 @@ Two people being told to meet is the easy part. This proposes hours that fall in
 Your data stays yours
 Self-hosted, who met whom and who quietly opted out lives in Postgres you control. The install talks to Slack only, plus Zoom, email (Resend), an AI provider or PostHog analytics if the operator turns those on. Leaving is not a migration because the data is already yours.
 The price
-Free for every seat, at any size: on the free hosted instance, or self-hosted, where a thirty person team pays for a small server and a database instead of a subscription that grows with hiring.
+Free for every seat, at any size: on the free hosted instance, or self-hosted, where a thirty person team pays for a small server and a database instead of a subscription that grows with hiring. All comparisons are on one page.
 For people teams: nothing to install on a server
 Add to Slack puts Morgenruf on the free hosted instance, so a people ops lead can start coffee chats without anyone running a server. Each round closes by asking whether the pair met, and the answer is recorded four ways: met, did not meet, never replied, and never delivered. If your company needs the data in-house, this is the line to forward to engineering: "Morgenruf is two small containers and a Postgres, MIT licensed, about twenty minutes to set up: morgenruf.dev/setup/".
 Switching
@@ -519,7 +519,7 @@ No. Without it a pairing uses whatever room link you set on the programme, or no
 What does it cost for 200 people?
 Nothing per seat. On the hosted instance, nothing at all. Self-hosted, the server and database you run it on, which for 200 people is a small instance.
 
-## Free, open-source HeyTaco alternative for Slack kudos
+## HeyTaco alternatives: a free, open-source Slack kudos bot
 https://morgenruf.dev/heytaco-alternative/
 
 A free, open-source HeyTaco alternative for Slack
@@ -547,15 +547,15 @@ HeyTaco is the best-known recognition bot for a reason: the taco is a genuinely 
 Where they win. If you want a rewards catalogue, gift cards, or a recognition programme with a budget attached, HeyTaco does that and Morgenruf does not. Do not switch and then discover it.
 Where this is different
 Recognition is one of three things it does
-Standups, coffee chats and kudos in one app, one database, one deployment. Teams rarely want only one of the three, and three subscriptions is how most of them end up.
+Standups, coffee chats and the Slack kudos bot in one app, one database, one deployment. Teams rarely want only one of the three, and three subscriptions is how most of them end up.
 The token is yours
 Any emoji in your workspace. A maple leaf, your logo, an in-joke. The Morgenruf icon imports as a custom emoji and the bot picks it up on its own.
 Recognition data next to something else
-A leaderboard tells you who is thanked. Put it beside standup answers and you can ask who is contributing and being thanked by nobody, which is the question worth acting on.
+A leaderboard tells you who is thanked. Put it beside standup answers and you can ask who is contributing and being thanked by nobody, which is the question worth acting on. Insights is where that unthanked work shows up.
 Nothing for HR to install
 Add to Slack puts Morgenruf on the free hosted instance, so whoever runs recognition can start using kudos without an engineer (it is on from the start). If the data has to stay in-house, the self-hosted route is two small containers and a Postgres; the setup page is the link to forward.
 The price, again
-Free for every seat, hosted or self-hosted. Recognition tools are usually priced per person per month, which means the cost of thanking people grows exactly as you hire them.
+Free for every seat, hosted or self-hosted. Recognition tools are usually priced per person per month, which means the cost of thanking people grows exactly as you hire them. All comparisons are on one page.
 QuestionsMorgenruf and HeyTaco
 Does Morgenruf do rewards or gift cards?
 No. Recognition here is a public message and a leaderboard. If you need a catalogue, HeyTaco or Bonusly is the right tool.
@@ -564,10 +564,10 @@ You can use any emoji in your workspace as the token, including a taco, though t
 Can I import our recognition history?
 No importer today. Leaderboards start fresh, which some teams treat as a feature.
 
-## Free, open-source Standup & Prosper alternative for Slack
+## Standup and Prosper alternative: free and open source
 https://morgenruf.dev/standup-prosper-alternative/
 
-A free, open-source Standup & Prosper alternative
+A free, open-source Standup and Prosper alternative
 Same async standups, run on your own infrastructure, with two more team rituals included rather than sold separately.
 Add to Slack Self-host in about 20 minutes
 Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
@@ -746,7 +746,7 @@ Add to Slack Self-host in about 20 minutes
 Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
 Morgenruf is an open-source Slack standup bot under the MIT licence: one public repository, no open-core split and no paid tier. It asks standup questions by DM and posts one summary, and also runs coffee chats and kudos. Use the free hosted instance, or run the same code yourself.
 Last reviewed September 26, 2026
-MIT licence · latest release 1.9.32, 2026-11-12 · Helm chart · every release
+MIT licence · latest release 1.9.40, 2026-11-20 · Helm chart · every release
 git clone https://github.com/morgenruf/morgenruf.git cd morgenruf/app && cp .env.example .env # add your Slack app values docker compose up -d
 View on GitHub
 What the licence actually says
@@ -792,7 +792,7 @@ Add to Slack Self-host in about 20 minutes
 Add to Slack installs Morgenruf on the free hosted instance CloudDrove runs. Self-hosting is the same MIT code.
 Morgenruf is a self-hostable Slack standup bot: a backend, a small frontend and a Postgres database, deployed with Docker Compose or Helm, with every answer stored in a database you control. It is MIT licensed and free, and the same code also runs as a free hosted instance for teams that would rather not run it.
 Last reviewed September 26, 2026
-MIT licence · latest release 1.9.32, 2026-11-12 · Helm chart · every release
+MIT licence · latest release 1.9.40, 2026-11-20 · Helm chart · every release
 git clone https://github.com/morgenruf/morgenruf.git cd morgenruf/app && cp .env.example .env # add your Slack app values docker compose up -d
 View on GitHub
 Why teams self-host a standup bot
@@ -829,7 +829,7 @@ Pull the new image and restart. Migrations run in an init container before the a
 Is there a hosted version?
 Yes. Add to Slack installs Morgenruf on a free hosted instance run by CloudDrove, in about two minutes. This page is about the other route: the same MIT code on your own servers.
 
-## Free Slack standup bot: DMs, summaries, commands
+## Slack standup bot: the morning DM, nudge and summary
 https://morgenruf.dev/slack-standup-bot/
 
 A Slack standup bot, from the morning DM to the summary
@@ -841,7 +841,7 @@ Morgenruf is a free Slack standup bot. It DMs each person your questions at thei
 Last reviewed September 26, 2026
 What a Slack standup bot does, and what this one does
 A standup bot asks each person the same few questions every working morning and puts the answers somewhere the team will actually read them. That is the whole category. Morgenruf does it entirely inside Slack: a direct message at your local hour, a summary in the channel an hour later, and nothing to log into. The dashboard is for whoever sets it up, and most weeks they do not open it either.
-This page is the general one. The two questions that follow it usually are the licence and the hosting, which have pages of their own: what the MIT licence covers and where the container and the database end up.
+This page is the general one, about how the bot behaves in Slack. For the free Slack standup bot as a whole, with coffee chats and kudos, start at the home page. The two questions that follow it usually are the licence and the hosting, which have pages of their own: what the MIT licence covers and where the container and the database end up.
 A direct message at your local hour with your team's questions.
 A summary in the channel, grouped by person or by question, blockers pulled out, optionally in a thread.
 Slash commands: /standup, /skip, /kudos @teammate a reason, /help.
