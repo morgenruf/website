@@ -73,7 +73,7 @@
   </div>
   <div class="proof">
     <div class="wrap proof-in">
-      <div><div class="proof-n">15k+</div><div class="proof-l"><a href="https://hub.docker.com/r/morgenruf/morgenruf" style="color:inherit">Docker pulls</a></div></div>
+      <div><div class="proof-n">50k+</div><div class="proof-l"><a href="https://hub.docker.com/r/morgenruf/morgenruf" style="color:inherit">Docker pulls</a></div></div>
       <div><div class="proof-n">1,131</div><div class="proof-l">tests on every commit</div></div>
       <div><div class="proof-n">MIT</div><div class="proof-l">licence on the whole repository</div></div>
       <div><div class="proof-n">$0</div><div class="proof-l">per person, at any size</div></div>
@@ -98,6 +98,7 @@
           <li>Blockers highlighted, people on leave skipped rather than nagged</li>
           <li>A private nudge for whoever has not filed by report time</li>
         </ul>
+        <p>More on <a href="/standups/">async standups in Slack</a>.</p>
       </div>
       <div>
         <div class="shot"><picture><source srcset="/screenshots/standup-summary.webp?v=ebeb819226" type="image/webp"/><img src="/screenshots/standup-summary.jpg?v=bb3c27a699" width="1035" height="1154" loading="lazy"
@@ -120,6 +121,7 @@
           <li>Zoom books the meeting at the hour they agree</li>
           <li>Asks afterwards whether they actually met</li>
         </ul>
+        <p>More on the <a href="/coffee-chats/">Slack coffee chat bot</a>.</p>
       </div>
       <div>
         <div class="shot"><picture><source srcset="/screenshots/coffee-chat-intro.webp?v=f1f08c3ca5" type="image/webp"/><img src="/screenshots/coffee-chat-intro.jpg?v=f7313e0fed" width="1360" height="980" loading="lazy"
@@ -140,6 +142,7 @@
           <li>Resets at midnight in each person's own timezone</li>
           <li>Leaderboards for giving, not only for receiving</li>
         </ul>
+        <p>More on the <a href="/kudos/">Slack kudos bot</a>.</p>
       </div>
       <div>
         <div class="shot"><picture><source srcset="/screenshots/kudos-slack.webp?v=f85cfe07d8" type="image/webp"/><img src="/screenshots/kudos-slack.jpg?v=b7c8092e25" width="1120" height="406" loading="lazy"
@@ -313,6 +316,10 @@
     </div>
     <p class="shot-cap" style="margin-top:12px">Deliberately not naming per-seat prices here: they
     change, and a stale number in a comparison is worse than none.</p>
+    <p style="margin-top:12px">Named tools, with prices and the date they were checked, are on the
+    <a href="/compare/standup-bots/">best Slack standup bots compared</a> page, and one at a time on the
+    <a href="/geekbot-alternative/">Geekbot alternative</a>, <a href="/donut-alternative/">Donut alternative</a>
+    and <a href="/heytaco-alternative/">HeyTaco alternative</a> pages.</p>
   </div>
 </section>
 
@@ -376,8 +383,8 @@ order follows what people ask for, and asking moves it.</p>
     </div>
     <p style="margin-top:26px">More on running a <a href="/self-hosted-standup-bot/">self-hosted
     standup bot</a>, on what the MIT licence covers for an
-    <a href="/open-source-standup-bot/">open-source standup bot</a>, and on everything the
-    <a href="/slack-standup-bot/">Slack standup bot</a> does inside Slack.</p>
+    <a href="/open-source-standup-bot/">open-source standup bot</a>, and on
+    <a href="/slack-standup-bot/">how the Slack standup bot works</a> inside Slack.</p>
   </div>
 </section>
 
@@ -462,7 +469,7 @@ order follows what people ask for, and asking moves it.</p>
 {"@context":"https://schema.org","@type":"Organization","@id":"https://morgenruf.dev/#organization",
 "name":"Morgenruf","url":"https://morgenruf.dev/","logo":"https://morgenruf.dev/icon-512.png",
 "sameAs":["https://github.com/morgenruf/morgenruf","https://hub.docker.com/r/morgenruf/morgenruf","https://www.linkedin.com/company/morgenruf","https://x.com/morgenruf_dev"],
-"founder":{"@type":"Person","@id":"https://morgenruf.dev/#anmol-nagpal","name":"Anmol Nagpal","url":"https://morgenruf.dev/blog/why-i-built-morgenruf/"},
+"founder":{"@type":"Person","@id":"https://morgenruf.dev/#anmol-nagpal","name":"Anmol Nagpal","url":"https://morgenruf.dev/blog/why-i-built-morgenruf/","jobTitle":"Creator and maintainer","sameAs":["https://github.com/anmolnagpal","https://www.linkedin.com/in/anmolnagpal/"]},
 "sponsor":{"@type":"Organization","@id":"https://clouddrove.com/#organization","name":"CloudDrove","url":"https://clouddrove.com"}}
 </script>
 <script type="application/ld+json">
@@ -473,16 +480,25 @@ order follows what people ask for, and asking moves it.</p>
 {"@context":"https://schema.org","@type":"SoftwareApplication","@id":"https://morgenruf.dev/#software","name":"Morgenruf",
 "alternateName":"Morgenruf Slack standup bot",
 "url":"https://morgenruf.dev/","applicationCategory":"BusinessApplication",
-"operatingSystem":"Docker, Kubernetes, Linux, macOS",
+"applicationSubCategory":"Slack app",
+"operatingSystem":"Web (Slack), Docker, Kubernetes",
+"featureList":["Async standups by Slack DM","Random coffee chat pairing","Peer kudos with a daily allowance","Birthday and work anniversary posts","Standup insights","Self-hosting with Docker Compose or Helm"],
+"screenshot":["https://morgenruf.dev/screenshots/standup-summary.jpg?v=bb3c27a699","https://morgenruf.dev/screenshots/coffee-chat-intro.jpg?v=f7313e0fed","https://morgenruf.dev/screenshots/kudos-slack.jpg?v=b7c8092e25"],
+"image":"https://morgenruf.dev/og-image.png?v=bf05fd1f1a",
+"softwareHelp":{"@type":"CreativeWork","url":"https://docs.morgenruf.dev/"},
+"installUrl":"https://app.morgenruf.dev/install",
 "description":"Open-source Slack app for async standups, random coffee chats and peer recognition. Free on the hosted instance or self-hosted. MIT licensed, no per-seat pricing.",
 "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
 "license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,
-"softwareVersion":"1.9.32",
+"softwareVersion":"1.9.40",
 "downloadUrl":"https://github.com/morgenruf/morgenruf/releases",
 "sameAs":["https://github.com/morgenruf/morgenruf","https://hub.docker.com/r/morgenruf/morgenruf","https://www.linkedin.com/company/morgenruf","https://x.com/morgenruf_dev"],
 "publisher":{"@id":"https://morgenruf.dev/#organization"},
-"creator":{"@type":"Person","@id":"https://morgenruf.dev/#anmol-nagpal","name":"Anmol Nagpal","url":"https://morgenruf.dev/blog/why-i-built-morgenruf/"},
+"creator":{"@type":"Person","@id":"https://morgenruf.dev/#anmol-nagpal","name":"Anmol Nagpal","url":"https://morgenruf.dev/blog/why-i-built-morgenruf/","jobTitle":"Creator and maintainer","sameAs":["https://github.com/anmolnagpal","https://www.linkedin.com/in/anmolnagpal/"]},
 "sponsor":{"@type":"Organization","@id":"https://clouddrove.com/#organization","name":"CloudDrove","url":"https://clouddrove.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareSourceCode","@id":"https://morgenruf.dev/#source","name":"Morgenruf","codeRepository":"https://github.com/morgenruf/morgenruf","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","targetProduct":{"@id":"https://morgenruf.dev/#software"}}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

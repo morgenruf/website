@@ -176,19 +176,15 @@ announcement dressed as an essay. Releases go in the
 rewritten here.</p>
 <p>New posts are announced in <a href="{REPO}/discussions">GitHub discussions</a>, which is also
 where to say that one of them is wrong.</p>'''
-    # Soro posts open at /blog/?post=<slug> and the embed adds its own canonical
-    # for them. A static canonical here would be a second, conflicting one on
-    # every post, so this page carries none (and no og:url) and lets Soro own it.
-    html = _page(path="/blog/", title="Blog: async standups, self-hosting and team rituals",
-                 description="Writing about async standups, self-hosting Slack tools and building "
-                             "an open-source alternative to per-seat team software. Short posts most "
-                             "days, long reads when there is something to say.",
+    # Soro posts open at /blog/?post=<slug>, but the server sends this same page
+    # for every one of them, so Google treated them as duplicates of /blog/.
+    # This page keeps its own canonical, and the ?post= URLs are
+    # left out of the sitemap until each post has a static URL of its own.
+    return _page(path="/blog/", title="Blog: async standups, self-hosting and team rituals",
+                 description="Writing on async standups, self-hosting Slack tools and building an "
+                             "open-source alternative to per-seat team software. Short posts and "
+                             "long reads.",
                  h1="Writing about async standups and self-hosting",
                  lede="On async standups, self-hosting, and what building the alternative actually "
                       "involves.",
                  prose=prose, trail=[("Home", "/"), ("Blog", None)], schema=[_blog_schema()])
-    tags = (f'<link rel="canonical" href="{SITE}/blog/"/>\n', f'<meta property="og:url" content="{SITE}/blog/"/>\n')
-    for tag in tags:
-        assert tag in html, tag
-        html = html.replace(tag, "")
-    return html

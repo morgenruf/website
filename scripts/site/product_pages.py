@@ -340,7 +340,9 @@ the reset, because a budget that disappears at midnight is what gets it spent.</
 <p>There is no points store, no gift card catalogue, no vendor taking a cut of a reward budget.
 Recognition here is a message to a channel and a number in a leaderboard. If your programme needs
 prizes, this is the wrong tool and an honest answer now saves you a migration later.
-<a href="/heytaco-alternative/">The HeyTaco comparison</a> is where that trade is spelled out.</p>
+<a href="/heytaco-alternative/">The HeyTaco comparison</a> is where that trade is spelled out.
+Birthdays and work anniversaries are a separate module, the
+<a href="/celebrations/">Slack birthday bot</a>.</p>
 
 <h2 id="reading-the-room">Reading the room</h2>
 <p>Recognition data is only interesting next to something else, which is why it feeds
@@ -354,10 +356,9 @@ visible in a way neither dataset shows alone.</p>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/kudos/",
-        title="Slack kudos bot: peer recognition with a daily allowance",
-        description="Peer recognition in Slack with a daily allowance that resets at midnight in "
-                    "each person's own timezone, your own emoji as the token, and two "
-                    "leaderboards.",
+        title="Slack kudos bot: free peer recognition, daily allowance",
+        description="Free Slack kudos bot: peers give thanks with any emoji, a daily allowance that "
+                    "resets at local midnight, and leaderboards for giving. Hosted or self-hosted.",
         h1="Praise that means something because it runs out",
         lede="A handful of tokens a day each, given publicly with a reason, gone at midnight if "
              "unspent.",

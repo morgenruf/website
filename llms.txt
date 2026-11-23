@@ -72,7 +72,7 @@ Integration
 ## Licence and source
 
 - Built by Anmol Nagpal (creator and maintainer), sponsored by CloudDrove
-- Current version: 1.9.32, released 2026-11-12
+- Current version: 1.9.40, released 2026-11-20
 
 MIT. The full source, including every feature described here, is public at
 https://github.com/morgenruf/morgenruf
@@ -119,7 +119,7 @@ Documentation (docs.morgenruf.dev)
 - [Configuration](https://docs.morgenruf.dev/configuration.html): every environment variable
 - [MCP integration](https://docs.morgenruf.dev/mcp.html): the tools AI assistants can call
 - [API reference](https://docs.morgenruf.dev/api-reference.html): endpoints and webhook payloads
-- [Migration guide](https://docs.morgenruf.dev/migration.html): moving from another standup tool
+- [Migration guide](https://docs.morgenruf.dev/migration.html): database migrations, upgrades between Morgenruf versions, rollback and backups
 - [Troubleshooting](https://docs.morgenruf.dev/troubleshooting.html): common setup problems
 - [FAQ](https://docs.morgenruf.dev/faq.html)
 
