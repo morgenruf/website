@@ -12,7 +12,16 @@ from __future__ import annotations
 import pathlib
 import sys
 
-TAG = '<script src="/assets/analytics.js" defer></script>'
+POSTHOG = '<script src="/assets/analytics.js" defer></script>'
+# Google Analytics 4. Must match the copy in scripts/site/shell.py.
+GA4 = """<script async src="https://www.googletagmanager.com/gtag/js?id=G-QM8RKPLDF4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QM8RKPLDF4');
+</script>"""
+TAGS = (POSTHOG, GA4)
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 # scripts/ holds the generators and their content fragments, .netlify the build
 # plugins. Neither is a page anyone loads.
@@ -25,12 +34,18 @@ def main() -> int:
         if SKIP & set(path.parts):
             continue
         html = path.read_text()
-        if TAG in html:
+        missing = [t for t in TAGS if t not in html]
+        if not missing:
             continue
         if "</head>" not in html:
             print(f"no head, skipped: {path.relative_to(ROOT)}", file=sys.stderr)
             continue
-        path.write_text(html.replace("</head>", f"{TAG}\n</head>", 1))
+        if missing == [GA4]:
+            # Right after the PostHog tag, where shell.head() puts it.
+            html = html.replace(POSTHOG, f"{POSTHOG}\n{GA4}", 1)
+        else:
+            html = html.replace("</head>", "\n".join(missing) + "\n</head>", 1)
+        path.write_text(html)
         print(f"tagged {path.relative_to(ROOT)}")
         touched += 1
     print(f"{touched} page{'s' if touched != 1 else ''} tagged")
