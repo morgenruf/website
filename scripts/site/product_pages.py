@@ -131,7 +131,7 @@ def standups():
 <h2 id="the-things-that-decide-whether-a-standup-survives">The things that decide whether a standup survives</h2>
 <p>Most async standup tools do the same first ten percent. What separates one that a team still uses
 in six months is the handling of ordinary human situations. The same list is worked through against
-a hosted tool in <a href="/geekbot-alternative/">the comparison with Geekbot</a>.</p>
+a hosted tool in the <a href="/geekbot-alternative/">Geekbot alternative</a> comparison.</p>
 <ul>
   <li><strong>Timezones per person.</strong> Not per workspace. A 9:30 standup in Toronto is 19:00 in
   Kolkata, and a tool that asks at 19:00 gets ignored.</li>
@@ -227,7 +227,7 @@ def coffee_chats():
 <h2 id="the-part-most-pairing-tools-leave-out">The part most pairing tools leave out</h2>
 <p>Two people get introduced, say "we should find a time", and never do. The introduction has to
 carry the meeting or the meeting does not happen. Where a hosted product still wins on this is set
-out in <a href="/donut-alternative/">the comparison with Donut</a>.</p>
+out in <a href="/donut-alternative/">Donut for Slack alternatives</a>.</p>
 <ul>
   <li><strong>Hours that suit both.</strong> Each person's working day comes from their Slack
   timezone. The suggestions are the overlap, not your convenience.</li>
@@ -349,7 +349,7 @@ the reset, because a budget that disappears at midnight is what gets it spent.</
 <p>There is no points store, no gift card catalogue, no vendor taking a cut of a reward budget.
 Recognition here is a message to a channel and a number in a leaderboard. If your programme needs
 prizes, this is the wrong tool and an honest answer now saves you a migration later.
-<a href="/heytaco-alternative/">The HeyTaco comparison</a> is where that trade is spelled out.
+<a href="/heytaco-alternative/">HeyTaco alternatives</a> is where that trade is spelled out.
 Birthdays and work anniversaries are a separate module, the
 <a href="/celebrations/">Slack birthday bot</a>.</p>
 
@@ -493,6 +493,10 @@ CELEBRATIONS_FAQ = [
      "Add Morgenruf to Slack, open the Celebrations page in the dashboard, pick a channel and a "
      "timezone, save, invite @Morgenruf to that channel, and turn Celebrations on. Birthdays and "
      "work anniversaries then post there at 09:00, or whatever time you set."),
+    ("Does Slack show birthdays?",
+     "Not on its own. Slack has no birthday field, and a start date only on some Enterprise Grid "
+     "plans. Morgenruf keeps a short member profile with the birthday (day and month) and start "
+     "date, and posts both in a channel on the day."),
     ("Does it do work anniversaries as well as birthdays?",
      "Yes. Anniversaries are counted from each person's start date, so the post says how many "
      "years it has been. A start date less than a year ago is skipped. Either kind can be switched "
@@ -645,9 +649,9 @@ still gets every post, and gets the reaction once an admin re-authorises Slack.
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/celebrations/",
-        title="Slack birthday bot for birthdays and work anniversaries",
-        description="Birthdays and work anniversaries posted in a Slack channel, around your "
-                    "working days and holidays. Day and month only, no year. Free and open source.",
+        title="Slack birthday and anniversary bot: free, no birth year",
+        description="A free Slack birthday bot and work anniversary app: posts in a channel around "
+                    "your working days and holidays. Day and month only, no birth year. Open source.",
         h1="Birthdays and work anniversaries, without the spreadsheet",
         lede="Morgenruf posts them in a channel on the day, or on the last working day before it, "
              "from dates people add themselves or HR imports once.",

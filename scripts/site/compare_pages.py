@@ -88,7 +88,7 @@ every standup and is thanked by nobody.</p>
 pick, grouped into one message per kind a day, and moved to the last working day before a weekend
 or a company holiday on your own list. Only the day and month of a birthday are kept, and anyone can
 opt out with one checkbox. Donut imports dates straight from an HRIS; here HR uploads a CSV export
-instead. <a href="/celebrations/">Celebrations</a> has the details.</p>
+instead. The <a href="/celebrations/">Slack birthday and work anniversary bot</a> page has the details.</p>
 
 <h3>The introduction carries a meeting</h3>
 <p>Two people being told to meet is the easy part. This proposes hours that fall inside both working
@@ -131,6 +131,13 @@ whether the introductions land, then turn Donut off. Nothing here needs a contra
         ("Does it need Zoom?",
          "No. Without it a pairing uses whatever room link you set on the programme, or none. Zoom "
          "only adds a real meeting at the agreed hour."),
+        ("What is a free alternative to Donut for Slack?",
+         "Morgenruf. It pairs people from a Slack channel on a cadence, avoids repeat matches, "
+         "suggests hours both people can make and can book the Zoom meeting. It is free at any team "
+         "size on the hosted instance, and MIT licensed if you would rather self-host it."),
+        ("Is Donut for Slack free?",
+         "Donut has a free plan, limited to 24 people per intro round, and paid plans from about $74 "
+         "a month (checked 2026-09-26 on Donut's pricing page). Morgenruf has no paid plan at all."),
         ("What does it cost for 200 people?",
          "Nothing per seat. On the hosted instance, nothing at all. Self-hosted, the server and "
          "database you run it on, which for 200 people is a small instance."),
@@ -140,9 +147,9 @@ whether the introductions land, then turn Donut off. Nothing here needs a contra
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/donut-alternative/",
-        title="Donut alternatives for Slack: a free, open-source pick",
-        description="Looking for a Donut alternative? Morgenruf runs random coffee chats in Slack "
-                    "for free at any team size, with standups and kudos included. MIT licensed.",
+        title="Donut for Slack alternatives: free coffee chat bot (2026)",
+        description="Donut for Slack alternatives for coffee chats: Morgenruf pairs people from a "
+                    "channel for free at any team size, plus standups and kudos. MIT licensed.",
         h1="A free, open-source Donut alternative for Slack",
         lede="Random introductions from a channel, a time both people actually pick, and the meeting "
              "booked at that hour. Plus standups and kudos in the same app.",
@@ -212,6 +219,13 @@ month, which means the cost of thanking people grows exactly as you hire them.
         ("Can we keep our taco?",
          "You can use any emoji in your workspace as the token, including a taco, though that is "
          "somebody else's brand. A maple leaf is the default joke here."),
+        ("What are the main HeyTaco competitors?",
+         "For a rewards catalogue and gift cards, Bonusly is the usual comparison. For free peer "
+         "recognition in Slack with a daily allowance and leaderboards, Morgenruf, which also runs "
+         "standups and coffee chats in the same app."),
+        ("Is there a free HeyTaco alternative?",
+         "Yes. Morgenruf kudos are free at any team size on the hosted instance, and the MIT code can "
+         "run on your own servers. HeyTaco is priced per person per month."),
         ("Can I import our recognition history?",
          "No importer today. Leaderboards start fresh, which some teams treat as a feature."),
     ])
@@ -220,9 +234,9 @@ month, which means the cost of thanking people grows exactly as you hire them.
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/heytaco-alternative/",
-        title="HeyTaco alternatives: a free, open-source Slack kudos bot",
-        description="A free HeyTaco alternative for Slack: any emoji as the token, a daily allowance "
-                    "per timezone and leaderboards for giving. MIT licensed, hosted or self-hosted.",
+        title="HeyTaco alternatives 2026: free Slack kudos bot, any emoji",
+        description="The HeyTaco alternatives worth a look: Morgenruf is a free Slack kudos bot with "
+                    "any emoji as the token, a daily allowance and leaderboards. MIT licensed.",
         h1="A free, open-source HeyTaco alternative for Slack",
         lede="A daily allowance, your own emoji, leaderboards for giving as well as receiving, and "
              "no per-seat bill for thanking your colleagues.",
@@ -307,7 +321,7 @@ def hub():
     three days late, the enterprise grid. It is listed in the Slack App Directory, so an IT admin
     can approve it through the process they already have, and it comes with support that somebody is
     paid to answer. Nothing to deploy, patch or back up. The longer
-    <a href="/geekbot-alternative/">Geekbot and Morgenruf comparison</a> goes through the daily
+    <a href="/geekbot-alternative/">Geekbot alternatives comparison</a> goes through the daily
     shape of both.</p>
 
     <h3>Donut</h3>
@@ -315,7 +329,7 @@ def hub():
     prompts, video facilitation, and a Microsoft Teams version that works today rather than one that
     is only planned. If your pairing programme is really an onboarding programme, Donut is built for
     that and this is not. The
-    <a href="/donut-alternative/">Donut alternative page</a> has the feature-by-feature version.</p>
+    <a href="/donut-alternative/">Donut for Slack alternatives page</a> has the feature-by-feature version.</p>
 
     <h3>HeyTaco</h3>
     <p>The taco is good product design and the gamification is thought through, but the real gap is
@@ -329,7 +343,7 @@ def hub():
     are eight people and the free tier fits, self-hosting anything is a worse deal than the zero you
     are already paying. It only starts to bite when you outgrow the tier or the answers cannot sit
     in somebody else's cloud, which is what the
-    <a href="/standup-prosper-alternative/">Standup &amp; Prosper comparison</a> works through.</p>
+    <a href="/standup-prosper-alternative/">Standup and Prosper alternative</a> page works through.</p>
 
     <h3>DailyBot</h3>
     <p>DailyBot runs in Slack, Google Chat, Microsoft Teams and Discord, and does forms, mood

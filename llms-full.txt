@@ -27,7 +27,7 @@ Recent recognition, so the good news is not only in a channel nobody scrolled
 When the next coffee chat round goes out, and whether it is overdue
 Today, for a team of eight.
 The things that decide whether a standup survives
-Most async standup tools do the same first ten percent. What separates one that a team still uses in six months is the handling of ordinary human situations. The same list is worked through against a hosted tool in the comparison with Geekbot.
+Most async standup tools do the same first ten percent. What separates one that a team still uses in six months is the handling of ordinary human situations. The same list is worked through against a hosted tool in the Geekbot alternative comparison.
 Timezones per person. Not per workspace. A 9:30 standup in Toronto is 19:00 in Kolkata, and a tool that asks at 19:00 gets ignored.
 Leave. Somebody on holiday should not receive a message, and should not drag the completion rate down while they are gone.
 Edits. People send too early and remember something a minute later.
@@ -73,7 +73,7 @@ An icebreaker, so the first message is not "hi"
 One quiet nudge on day three if nothing has happened
 The introduction each pair gets, previewed live as you change the settings.
 The part most pairing tools leave out
-Two people get introduced, say "we should find a time", and never do. The introduction has to carry the meeting or the meeting does not happen. Where a hosted product still wins on this is set out in the comparison with Donut.
+Two people get introduced, say "we should find a time", and never do. The introduction has to carry the meeting or the meeting does not happen. Where a hosted product still wins on this is set out in Donut for Slack alternatives.
 Hours that suit both. Each person's working day comes from their Slack timezone. The suggestions are the overlap, not your convenience.
 A button, not a negotiation. They both press an hour. Matching presses make the meeting.
 Zoom books it at that hour, on the account of whoever linked theirs. Linking is per person, from the message, and revoking affects nobody else.
@@ -127,7 +127,7 @@ Schools, shops and teams outside engineering do not want to learn slash commands
 Choosing the daily allowance
 Five a day is a sensible place to start. Fewer makes each one weigh more; more makes it easier to thank the small things. Watch the givers leaderboard for a few weeks: if most people run out before lunch, raise it, and if hardly anyone spends more than one, lower it. The number matters less than the reset, because a budget that disappears at midnight is what gets it spent.
 What it is not
-There is no points store, no gift card catalogue, no vendor taking a cut of a reward budget. Recognition here is a message to a channel and a number in a leaderboard. If your programme needs prizes, this is the wrong tool and an honest answer now saves you a migration later. The HeyTaco comparison is where that trade is spelled out. Birthdays and work anniversaries are a separate module, the Slack birthday bot.
+There is no points store, no gift card catalogue, no vendor taking a cut of a reward budget. Recognition here is a message to a channel and a number in a leaderboard. If your programme needs prizes, this is the wrong tool and an honest answer now saves you a migration later. HeyTaco alternatives is where that trade is spelled out. Birthdays and work anniversaries are a separate module, the Slack birthday bot.
 Reading the room
 Recognition data is only interesting next to something else, which is why it feeds Insights: somebody who answers every standup and has never been thanked is visible in a way neither dataset shows alone.
 QuestionsAbout kudos
@@ -173,7 +173,7 @@ It is the same information already in your channel, counted. It does not read me
 Can I turn it off?
 Yes. Insights is a module like the others and can be switched off per workspace, at which point it stops running and leaves the sidebar.
 
-## Slack birthday bot for birthdays and work anniversaries
+## Slack birthday and anniversary bot: free, no birth year
 https://morgenruf.dev/celebrations/
 
 Birthdays and work anniversaries, without the spreadsheet
@@ -243,6 +243,8 @@ The 🎉 needs the reactions:write scope. A workspace that installed before it e
 QuestionsAbout celebrations
 How do I get a birthday bot in Slack?
 Add Morgenruf to Slack, open the Celebrations page in the dashboard, pick a channel and a timezone, save, invite @Morgenruf to that channel, and turn Celebrations on. Birthdays and work anniversaries then post there at 09:00, or whatever time you set.
+Does Slack show birthdays?
+Not on its own. Slack has no birthday field, and a start date only on some Enterprise Grid plans. Morgenruf keeps a short member profile with the birthday (day and month) and start date, and posts both in a channel on the day.
 Does it do work anniversaries as well as birthdays?
 Yes. Anniversaries are counted from each person's start date, so the post says how many years it has been. A start date less than a year ago is skipped. Either kind can be switched off on its own.
 What happens when a birthday falls on a weekend or a holiday?
@@ -289,13 +291,13 @@ Read →
 Where each of them wins
 This is the part of the page worth reading. Every one of these tools is better than Morgenruf at something, and the something is usually the reason a team bought it.
 Geekbot
-It has been running standups since 2015, which means it has met edge cases a younger project has not: the workspace that renamed a channel mid-quarter, the person who answers in a thread three days late, the enterprise grid. It is listed in the Slack App Directory, so an IT admin can approve it through the process they already have, and it comes with support that somebody is paid to answer. Nothing to deploy, patch or back up. The longer Geekbot and Morgenruf comparison goes through the daily shape of both.
+It has been running standups since 2015, which means it has met edge cases a younger project has not: the workspace that renamed a channel mid-quarter, the person who answers in a thread three days late, the enterprise grid. It is listed in the Slack App Directory, so an IT admin can approve it through the process they already have, and it comes with support that somebody is paid to answer. Nothing to deploy, patch or back up. The longer Geekbot alternatives comparison goes through the daily shape of both.
 Donut
-Donut made this category and still has the widest surface in it: onboarding journeys, channel prompts, video facilitation, and a Microsoft Teams version that works today rather than one that is only planned. If your pairing programme is really an onboarding programme, Donut is built for that and this is not. The Donut alternative page has the feature-by-feature version.
+Donut made this category and still has the widest surface in it: onboarding journeys, channel prompts, video facilitation, and a Microsoft Teams version that works today rather than one that is only planned. If your pairing programme is really an onboarding programme, Donut is built for that and this is not. The Donut for Slack alternatives page has the feature-by-feature version.
 HeyTaco
 The taco is good product design and the gamification is thought through, but the real gap is the rewards catalogue: a recognition programme with a budget behind it, where thanks convert into something people can spend. Morgenruf gives you a message and a leaderboard and stops there. If HR has a recognition budget, read the HeyTaco alternative page before you move anything.
 Standup & Prosper
-A simple, well made standup bot with a free tier that covers a small team properly. If you are eight people and the free tier fits, self-hosting anything is a worse deal than the zero you are already paying. It only starts to bite when you outgrow the tier or the answers cannot sit in somebody else's cloud, which is what the Standup & Prosper comparison works through.
+A simple, well made standup bot with a free tier that covers a small team properly. If you are eight people and the free tier fits, self-hosting anything is a worse deal than the zero you are already paying. It only starts to bite when you outgrow the tier or the answers cannot sit in somebody else's cloud, which is what the Standup and Prosper alternative page works through.
 DailyBot
 DailyBot runs in Slack, Google Chat, Microsoft Teams and Discord, and does forms, mood tracking and workflow automation beside the check-in. If your company is split across chat apps, that alone decides it. The DailyBot comparison has the prices and the report cap on its free plan.
 Standuply
@@ -390,7 +392,7 @@ For teams of up to 10 users. Above that it costs $3 per participant a month, or 
 What happened to Status Hero?
 It was renamed Steady. It now charges for credits rather than seats and has no free plan.
 
-## Geekbot alternative: free, open-source Slack standup bot
+## Geekbot alternatives 2026: free Slack standup bot, no seats
 https://morgenruf.dev/geekbot-alternative/
 
 A free, open-source Geekbot alternative for Slack
@@ -448,6 +450,8 @@ Team sizeGeekbot, billed monthlyGeekbot, billed annuallyMorgenruf, hostedMorgenr
 30 people$1,080$900$0$60 to $240
 100 people$3,600$3,000$0$60 to $240
 At ten people or fewer, both are free and the choice is about everything else on this page.
+Spinach AI vs Geekbot: two different jobs
+Spinach AI is an AI meeting notetaker: it joins your calls and writes transcripts and summaries (spinach.ai). Geekbot and Morgenruf replace the meeting instead, with questions by Slack DM and one written summary in a channel. If the standup call stays and you want notes from it, a notetaker fits. If you want the call gone, an async standup bot fits, and that is the comparison on this page.
 Moving across from Geekbot
 There is no importer, and honestly the history is rarely what you miss. The usual path is to run both for a week: same questions, same channel, and turn the old one off once the new summary looks right. Nothing here has a contract to cancel.
 Write down each Geekbot standup: its channel, questions, schedule, participants and timezone.
@@ -459,6 +463,10 @@ Keep whatever Geekbot history you want, then switch Geekbot off.
 QuestionsMorgenruf and Geekbot
 Is Morgenruf free compared with Geekbot?
 Yes, with no per-seat fee at all. The hosted instance is free. Self-hosted, you pay for the server and database you run it on, roughly $5 to $20 a month regardless of headcount.
+What does Geekbot cost?
+Geekbot is free for up to 10 users, then $3 per user per month, or $2.50 per user per month billed annually (checked 2026-09-26 on Geekbot's pricing page). Morgenruf has no per-seat fee at any team size.
+Is Spinach AI a Geekbot alternative?
+Not quite. Spinach AI is an AI meeting notetaker that records and summarises calls. Geekbot and Morgenruf run the standup without a call, as questions by Slack DM and one channel summary.
 Can I import my Geekbot history?
 No. Run both in parallel for a week and switch over once the summaries look right.
 Does it do everything Geekbot does?
@@ -466,7 +474,7 @@ For async standups, the everyday shape is the same: questions, schedules, timezo
 How long does it take to set up?
 About two minutes on the free hosted instance. Self-hosted, about twenty minutes, most of it creating the Slack app.
 
-## Donut alternatives for Slack: a free, open-source pick
+## Donut for Slack alternatives: free coffee chat bot (2026)
 https://morgenruf.dev/donut-alternative/
 
 A free, open-source Donut alternative for Slack
@@ -496,7 +504,7 @@ Where this is different
 It is one app, not three subscriptions
 Most teams that pay for pairing also pay for standups and recognition. Morgenruf runs all three, with the Slack coffee chat bot as one of them, against one database, which is also what makes the cross-signal questions possible: who answers every standup and is thanked by nobody.
 Birthdays and work anniversaries, too
-Donut celebrates birthdays and anniversaries, and so does Morgenruf: posted in a channel you pick, grouped into one message per kind a day, and moved to the last working day before a weekend or a company holiday on your own list. Only the day and month of a birthday are kept, and anyone can opt out with one checkbox. Donut imports dates straight from an HRIS; here HR uploads a CSV export instead. Celebrations has the details.
+Donut celebrates birthdays and anniversaries, and so does Morgenruf: posted in a channel you pick, grouped into one message per kind a day, and moved to the last working day before a weekend or a company holiday on your own list. Only the day and month of a birthday are kept, and anyone can opt out with one checkbox. Donut imports dates straight from an HRIS; here HR uploads a CSV export instead. The Slack birthday and work anniversary bot page has the details.
 The introduction carries a meeting
 Two people being told to meet is the easy part. This proposes hours that fall inside both working days, each of them presses one, and a matching pair becomes a Zoom meeting at that hour, hosted on the account of whoever connected theirs.
 Your data stays yours
@@ -516,10 +524,14 @@ Does Morgenruf do birthdays and work anniversaries like Donut?
 Yes. Celebrations posts both in a channel, on the last working day before any weekend or company holiday, from dates people add themselves or HR imports as a CSV. Birthdays are day and month only. It has no weekly or monthly roundups.
 Does it need Zoom?
 No. Without it a pairing uses whatever room link you set on the programme, or none. Zoom only adds a real meeting at the agreed hour.
+What is a free alternative to Donut for Slack?
+Morgenruf. It pairs people from a Slack channel on a cadence, avoids repeat matches, suggests hours both people can make and can book the Zoom meeting. It is free at any team size on the hosted instance, and MIT licensed if you would rather self-host it.
+Is Donut for Slack free?
+Donut has a free plan, limited to 24 people per intro round, and paid plans from about $74 a month (checked 2026-09-26 on Donut's pricing page). Morgenruf has no paid plan at all.
 What does it cost for 200 people?
 Nothing per seat. On the hosted instance, nothing at all. Self-hosted, the server and database you run it on, which for 200 people is a small instance.
 
-## HeyTaco alternatives: a free, open-source Slack kudos bot
+## HeyTaco alternatives 2026: free Slack kudos bot, any emoji
 https://morgenruf.dev/heytaco-alternative/
 
 A free, open-source HeyTaco alternative for Slack
@@ -561,10 +573,14 @@ Does Morgenruf do rewards or gift cards?
 No. Recognition here is a public message and a leaderboard. If you need a catalogue, HeyTaco or Bonusly is the right tool.
 Can we keep our taco?
 You can use any emoji in your workspace as the token, including a taco, though that is somebody else's brand. A maple leaf is the default joke here.
+What are the main HeyTaco competitors?
+For a rewards catalogue and gift cards, Bonusly is the usual comparison. For free peer recognition in Slack with a daily allowance and leaderboards, Morgenruf, which also runs standups and coffee chats in the same app.
+Is there a free HeyTaco alternative?
+Yes. Morgenruf kudos are free at any team size on the hosted instance, and the MIT code can run on your own servers. HeyTaco is priced per person per month.
 Can I import our recognition history?
 No importer today. Leaderboards start fresh, which some teams treat as a feature.
 
-## Standup and Prosper alternative: free and open source
+## Standup and Prosper alternative (2026): free, open source
 https://morgenruf.dev/standup-prosper-alternative/
 
 A free, open-source Standup and Prosper alternative
