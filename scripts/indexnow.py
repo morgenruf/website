@@ -55,7 +55,9 @@ def wait_for_key(k, attempts=30, pause=20):
     url = f"{SITE}/{k}.txt"
     for _ in range(attempts):
         try:
-            with urllib.request.urlopen(url, timeout=15) as r:
+            # Cloudflare answers 403 to the default Python-urllib agent.
+            req = urllib.request.Request(url, headers={"User-Agent": "morgenruf-indexnow/1.0"})
+            with urllib.request.urlopen(req, timeout=15) as r:
                 if r.read().decode().strip() == k:
                     return
         except Exception:
