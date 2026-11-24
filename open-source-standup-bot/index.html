@@ -21,17 +21,18 @@
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
 <link rel="preload" href="/assets/fonts/geist-1.9.2.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="/assets/site.css?v=1819c3684a"/>
+<link rel="stylesheet" href="/assets/site.css?v=ae7c46b463"/>
 <script src="/assets/analytics.js" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QM8RKPLDF4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
+  try { if (localStorage.getItem('mr-consent') === 'accept') gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
   gtag('config', 'G-QM8RKPLDF4');
 </script>
-<script src="/assets/nav.js?v=9bd6907975" defer></script>
+<script src="/assets/nav.js?v=0646db8540" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is it really MIT, all of it?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. One repository, one licence, no open-core split and no feature held back for a paid tier."}}, {"@type": "Question", "name": "Can I run it commercially?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, including inside a company, without asking anyone."}}, {"@type": "Question", "name": "Who maintains it?", "acceptedAnswer": {"@type": "Answer", "text": "It is built and maintained by Anmol Nagpal and sponsored by CloudDrove, who also offer paid setup and hosting. Paid work funds it but never gates it."}}, {"@type": "Question", "name": "What if the project stops?", "acceptedAnswer": {"@type": "Answer", "text": "You have the source and your database. That is the point of the arrangement."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Open-source standup bot"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "url": "https://morgenruf.dev/open-source-standup-bot/", "name": "Open-source Slack standup bot, MIT licensed", "dateModified": "2026-09-26", "about": {"@id": "https://morgenruf.dev/#software"}, "publisher": {"@id": "https://morgenruf.dev/#organization"}}</script>
@@ -182,9 +183,13 @@ whole thing takes about twenty minutes, most of it in Slack's settings.</p></div
     </div>
     <div class="foot-bottom">
       <span>MIT licensed. Built by Anmol Nagpal, sponsored by <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
-      <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></span>
+      <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/privacy/#analytics-cookies" data-consent-open>Cookie settings</a></span>
     </div>
   </div>
 </footer>
+<div class="consent" id="consent" role="region" aria-label="Cookie choice" hidden>
+  <p>We use Google Analytics cookies to see which pages help people. Accept to allow them, or decline and we count visits without cookies. <a href="/privacy/#analytics-cookies">Privacy policy</a></p>
+  <div class="consent-actions"><button type="button" class="btn btn-sun btn-sm" data-consent="accept">Accept</button><button type="button" class="btn btn-ghost btn-sm" data-consent="decline">Decline</button></div>
+</div>
 </body>
 </html>

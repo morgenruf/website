@@ -214,6 +214,11 @@ footer a:hover{color:var(--sun)}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.09); margin-top:36px; padding-top:22px; display:flex; justify-content:space-between; align-items:center; gap:10px 22px; flex-wrap:wrap; font-size:14.5px}
 .foot-bottom a{display:inline; margin:0}
 .foot-legal{display:flex; gap:18px}
+.consent{position:fixed; left:16px; right:16px; bottom:16px; z-index:60; max-width:680px; margin:0 auto; background:var(--ink); color:var(--on-ink); border:1px solid rgba(255,255,255,.14); border-radius:var(--radius); box-shadow:var(--shadow-lift); padding:16px 18px; display:flex; flex-wrap:wrap; align-items:center; gap:12px 18px; font-size:14.5px; line-height:1.5}
+.consent[hidden]{display:none}
+.consent p{margin:0; flex:1 1 300px; color:var(--on-ink)}
+.consent a{color:var(--sun)}
+.consent-actions{display:flex; gap:10px}
 
 /* ── Which route the install button takes, and when a page was checked ── */
 .cta-note{font-size:14.5px; color:var(--dim); margin:12px 0 0; max-width:60ch}

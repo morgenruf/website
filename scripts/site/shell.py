@@ -130,7 +130,8 @@ def head(*, title, description, path, og_image="/og-image.png", schema=None, ext
   window.dataLayer = window.dataLayer || [];
   function gtag(){{dataLayer.push(arguments);}}
   gtag('js', new Date());
-  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+  gtag('consent', 'default', {{ analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 }});
+  try {{ if (localStorage.getItem('mr-consent') === 'accept') gtag('consent', 'update', {{ analytics_storage: 'granted' }}); }} catch (e) {{}}
   gtag('config', 'G-QM8RKPLDF4');
 </script>
 <script src="{asset("/assets/nav.js")}" defer></script>{extra_head}{blocks}
@@ -210,10 +211,14 @@ def footer_block():
     </div>
     <div class="foot-bottom">
       <span>MIT licensed. Built by Anmol Nagpal, sponsored by <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
-      <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></span>
+      <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/privacy/#analytics-cookies" data-consent-open>Cookie settings</a></span>
     </div>
   </div>
 </footer>
+<div class="consent" id="consent" role="region" aria-label="Cookie choice" hidden>
+  <p>We use Google Analytics cookies to see which pages help people. Accept to allow them, or decline and we count visits without cookies. <a href="/privacy/#analytics-cookies">Privacy policy</a></p>
+  <div class="consent-actions"><button type="button" class="btn btn-sun btn-sm" data-consent="accept">Accept</button><button type="button" class="btn btn-ghost btn-sm" data-consent="decline">Decline</button></div>
+</div>
 '''
 
 
