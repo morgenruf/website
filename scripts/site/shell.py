@@ -130,6 +130,7 @@ def head(*, title, description, path, og_image="/og-image.png", schema=None, ext
   window.dataLayer = window.dataLayer || [];
   function gtag(){{dataLayer.push(arguments);}}
   gtag('js', new Date());
+  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
   gtag('config', 'G-QM8RKPLDF4');
 </script>
 <script src="{asset("/assets/nav.js")}" defer></script>{extra_head}{blocks}
