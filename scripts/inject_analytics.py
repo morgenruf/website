@@ -19,6 +19,7 @@ GA4 = """<script async src="https://www.googletagmanager.com/gtag/js?id=G-QM8RKP
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
   gtag('config', 'G-QM8RKPLDF4');
 </script>"""
 TAGS = (POSTHOG, GA4)
