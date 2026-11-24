@@ -21,17 +21,18 @@
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
 <link rel="preload" href="/assets/fonts/geist-1.9.2.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="/assets/site.css?v=1819c3684a"/>
+<link rel="stylesheet" href="/assets/site.css?v=ae7c46b463"/>
 <script src="/assets/analytics.js" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QM8RKPLDF4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
+  try { if (localStorage.getItem('mr-consent') === 'accept') gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
   gtag('config', 'G-QM8RKPLDF4');
 </script>
-<script src="/assets/nav.js?v=9bd6907975" defer></script>
+<script src="/assets/nav.js?v=0646db8540" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How long does it take to set up?", "acceptedAnswer": {"@type": "Answer", "text": "About twenty minutes end to end: ten to create the Slack app from the manifest, five to start the containers, and five to point it at a channel. Migrations run as their own step before the app starts (a one-shot service in Compose, an init container in Helm), so an empty database is enough."}}, {"@type": "Question", "name": "What do I actually need?", "acceptedAnswer": {"@type": "Answer", "text": "A machine that can run Docker or a Kubernetes cluster, a Postgres database, and an HTTPS URL Slack can reach. A Cloudflare tunnel covers the last one without opening a port."}}, {"@type": "Question", "name": "Can I try it without a server?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Add to Slack installs it on the free hosted instance CloudDrove runs, in about two minutes. To try the self-hosted route, run it on your laptop with Docker Compose and expose it with a tunnel. Nothing about that is different from the production path except where it runs."}}, {"@type": "Question", "name": "Do I need a paid Slack plan?", "acceptedAnswer": {"@type": "Answer", "text": "No. Morgenruf uses the standard Slack app APIs available on the free plan."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Set up"}]}</script>
 </head>
@@ -168,9 +169,13 @@
     </div>
     <div class="foot-bottom">
       <span>MIT licensed. Built by Anmol Nagpal, sponsored by <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
-      <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></span>
+      <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/privacy/#analytics-cookies" data-consent-open>Cookie settings</a></span>
     </div>
   </div>
 </footer>
+<div class="consent" id="consent" role="region" aria-label="Cookie choice" hidden>
+  <p>We use Google Analytics cookies to see which pages help people. Accept to allow them, or decline and we count visits without cookies. <a href="/privacy/#analytics-cookies">Privacy policy</a></p>
+  <div class="consent-actions"><button type="button" class="btn btn-sun btn-sm" data-consent="accept">Accept</button><button type="button" class="btn btn-ghost btn-sm" data-consent="decline">Decline</button></div>
+</div>
 </body>
 </html>

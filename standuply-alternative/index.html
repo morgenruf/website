@@ -21,17 +21,18 @@
 <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
 <link rel="apple-touch-icon" href="/icon-512.png"/>
 <link rel="preload" href="/assets/fonts/geist-1.9.2.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="stylesheet" href="/assets/site.css?v=1819c3684a"/>
+<link rel="stylesheet" href="/assets/site.css?v=ae7c46b463"/>
 <script src="/assets/analytics.js" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QM8RKPLDF4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
+  try { if (localStorage.getItem('mr-consent') === 'accept') gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
   gtag('config', 'G-QM8RKPLDF4');
 </script>
-<script src="/assets/nav.js?v=9bd6907975" defer></script>
+<script src="/assets/nav.js?v=0646db8540" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Standuply free?", "acceptedAnswer": {"@type": "Answer", "text": "Its free Starter plan covers automation for 3 users, and paid plans have a 30 day trial. Team costs $2 to $3.50 per user a month depending on team size, or $1.50 to $2.50 billed annually (checked 2026-09-29)."}}, {"@type": "Question", "name": "Is Morgenruf free compared with Standuply?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, for every seat. The hosted instance is free. Self-hosted, you pay for the server and database, roughly $5 to $20 a month regardless of headcount."}}, {"@type": "Question", "name": "Can people answer by video or voice?", "acceptedAnswer": {"@type": "Answer", "text": "Not in Morgenruf. Answers are written in Slack. If video or voice answers matter to your team, Standuply does that."}}, {"@type": "Question", "name": "Can I import my Standuply history?", "acceptedAnswer": {"@type": "Answer", "text": "No. Run both in parallel for a week and switch over once the summaries look right."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Compare","item":"https://morgenruf.dev/compare/"},{"@type":"ListItem","position":3,"name":"vs Standuply"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "url": "https://morgenruf.dev/standuply-alternative/", "name": "Free, open-source Standuply alternative for Slack", "dateModified": "2026-09-29", "about": {"@id": "https://morgenruf.dev/#software"}, "publisher": {"@id": "https://morgenruf.dev/#organization"}}</script>
@@ -195,9 +196,13 @@ Standuply off once the new summary looks right.</p>
     </div>
     <div class="foot-bottom">
       <span>MIT licensed. Built by Anmol Nagpal, sponsored by <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
-      <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></span>
+      <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/privacy/#analytics-cookies" data-consent-open>Cookie settings</a></span>
     </div>
   </div>
 </footer>
+<div class="consent" id="consent" role="region" aria-label="Cookie choice" hidden>
+  <p>We use Google Analytics cookies to see which pages help people. Accept to allow them, or decline and we count visits without cookies. <a href="/privacy/#analytics-cookies">Privacy policy</a></p>
+  <div class="consent-actions"><button type="button" class="btn btn-sun btn-sm" data-consent="accept">Accept</button><button type="button" class="btn btn-ghost btn-sm" data-consent="decline">Decline</button></div>
+</div>
 </body>
 </html>
