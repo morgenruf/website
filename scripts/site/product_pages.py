@@ -7,6 +7,8 @@ These pages say everything about one, which is also what somebody searching for
 
 from __future__ import annotations
 
+import pathlib
+
 import diagrams
 
 from shell import (CTA_NOTE, INSTALL, REPO, SLACK_MARK, breadcrumbs, cta_band, definition, faq,
@@ -36,6 +38,9 @@ def page(*, path, title, description, h1, lede, body, hero="", schema=(), trail=
 </main>''' + cta_band() + footer())
 
 
+_ROOT = pathlib.Path(__file__).resolve().parent.parent.parent  # the site root
+
+
 def shot(src, alt, caption, w=None, h=None, lazy=True):
     """Width and height come from the file, so the space is reserved correctly.
 
@@ -54,7 +59,11 @@ def shot(src, alt, caption, w=None, h=None, lazy=True):
     webp = src.rsplit(".", 1)[0] + ".webp"
     # Screenshots sit behind a 30-day cache, so a replaced one needs a new URL.
     from shell import asset
-    return (f'<div class="shot"><picture><source srcset="{asset(webp)}" type="image/webp"/>'
+    small = src.rsplit(".", 1)[0] + "-720.webp"
+    srcset = asset(webp)
+    if w > 720 and (_ROOT / small.lstrip("/")).exists():
+        srcset = f'{asset(small)} 720w, {asset(webp)} {w}w" sizes="(max-width: 980px) 100vw, 700px'
+    return (f'<div class="shot"><picture><source srcset="{srcset}" type="image/webp"/>'
             f'<img src="{asset(src)}" width="{w}" height="{h}" {load} alt="{alt}"/></picture></div>'
             f'<p class="shot-cap">{caption}</p>')
 

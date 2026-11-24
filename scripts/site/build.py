@@ -66,8 +66,8 @@ def refresh_assets(html):
         html = re.sub(re.escape(path) + r'(\?v=[0-9a-f]+)?"', shell.asset(path) + '"', html)
     # Share cards sit behind a 30-day Cloudflare cache, so a redrawn card
     # needs a new URL before LinkedIn or X will pick it up.
-    html = re.sub(r'(/screenshots/[a-z0-9-]+\.(?:jpg|webp))(\?v=[0-9a-f]+)?"',
-                  lambda m: shell.asset(m.group(1)) + '"', html)
+    html = re.sub(r'(/screenshots/[a-z0-9-]+\.(?:jpg|webp))(\?v=[0-9a-f]+)?(?=[" ])',
+                  lambda m: shell.asset(m.group(1)), html)
     html = re.sub(r'(?<=morgenruf\.dev)(/og-image\.png|/og/[a-z0-9-]+\.png)(\?v=[0-9a-f]+)?"',
                   lambda m: shell.asset(m.group(1)) + '"', html)
     return html
@@ -95,15 +95,22 @@ def refresh_home_footer(html):
     return html
 
 
+SHOT_SMALL = 720
+
+
 def refresh_webp():
     """A WebP copy beside each screenshot and the mascot, which pages offer
     first through <picture>. Made again whenever the original is newer, so a
     replaced screenshot cannot keep serving its old WebP."""
     from PIL import Image
-    sources = [(p, None) for p in sorted((ROOT / "screenshots").glob("*.jpg"))]
-    sources.append((ROOT / "mascot.png", 660))  # shown at most 330px wide
-    for src, width in sources:
-        dst = src.with_suffix(".webp")
+    sources = []
+    for p in sorted((ROOT / "screenshots").glob("*.jpg")):
+        sources.append((p, p.with_suffix(".webp"), None))
+        # A phone-sized copy for srcset, so a mobile page does not fetch the
+        # full capture for a 400px wide slot.
+        sources.append((p, p.with_name(f"{p.stem}-{SHOT_SMALL}.webp"), SHOT_SMALL))
+    sources.append((ROOT / "mascot.png", ROOT / "mascot.webp", 660))  # shown at most 330px wide
+    for src, dst, width in sources:
         if dst.exists() and dst.stat().st_mtime >= src.stat().st_mtime:
             continue
         with Image.open(src) as im:
