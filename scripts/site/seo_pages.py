@@ -172,6 +172,13 @@ is the small server and Postgres it runs on, which does not move with headcount.
 </tbody></table></div>
 <p>At ten people or fewer, both are free and the choice is about everything else on this page.</p>
 
+<h2 id="spinach-ai-vs-geekbot">Spinach AI vs Geekbot: two different jobs</h2>
+<p>Spinach AI is an AI meeting notetaker: it joins your calls and writes transcripts and summaries
+(<a href="https://www.spinach.ai/">spinach.ai</a>). Geekbot and Morgenruf replace the meeting
+instead, with questions by Slack DM and one written summary in a channel. If the standup call
+stays and you want notes from it, a notetaker fits. If you want the call gone, an async standup bot
+fits, and that is the comparison on this page.</p>
+
 <h2 id="moving-across">Moving across from Geekbot</h2>
 <p>There is no importer, and honestly the history is rarely what you miss. The usual path is to run
 both for a week: same questions, same channel, and turn the old one off once the new summary looks
@@ -193,11 +200,20 @@ right. Nothing here has a contract to cancel.</p>
                          ("Where this is different", "where-this-is-different"),
                          ("What decides it", "the-things-that-decide-it-in-practice"),
                          ("What Geekbot costs", "what-geekbot-costs"),
+                         ("Spinach AI vs Geekbot", "spinach-ai-vs-geekbot"),
                          ("Moving across", "moving-across")])
     faq_html, faq_schema = faq([
         ("Is Morgenruf free compared with Geekbot?",
          "Yes, with no per-seat fee at all. The hosted instance is free. Self-hosted, you pay for the "
          "server and database you run it on, roughly $5 to $20 a month regardless of headcount."),
+        ("What does Geekbot cost?",
+         "Geekbot is free for up to 10 users, then $3 per user per month, or $2.50 per user per month "
+         "billed annually (checked 2026-09-26 on Geekbot's pricing page). Morgenruf has no per-seat "
+         "fee at any team size."),
+        ("Is Spinach AI a Geekbot alternative?",
+         "Not quite. Spinach AI is an AI meeting notetaker that records and summarises calls. Geekbot "
+         "and Morgenruf run the standup without a call, as questions by Slack DM and one channel "
+         "summary."),
         ("Can I import my Geekbot history?",
          "No. Run both in parallel for a week and switch over once the summaries look right."),
         ("Does it do everything Geekbot does?",
@@ -213,10 +229,10 @@ right. Nothing here has a contract to cancel.</p>
   <span class="eyebrow">Questions</span><h2>Morgenruf and Geekbot</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/geekbot-alternative/",
-                title="Geekbot alternative: free, open-source Slack standup bot",
-                description="Geekbot costs $3 per user a month after 10 users. Morgenruf runs the "
-                            "same async Slack standups free at any size, hosted or on your own "
-                            "servers. MIT licensed.",
+                title="Geekbot alternatives 2026: free Slack standup bot, no seats",
+                description="Geekbot alternatives compared: Geekbot costs $3 per user a month after "
+                            "10 users. Morgenruf runs the same async Slack standups free at any size. "
+                            "MIT licensed.",
                 h1="A free, open-source Geekbot alternative for Slack",
                 lede="The same morning questions and channel summary, free on the hosted instance or "
                      "on your own servers, with coffee chats and kudos included rather than sold "
@@ -314,10 +330,10 @@ option is cheaper than your time.</p>
   <span class="eyebrow">Questions</span><h2>Morgenruf and Standup &amp; Prosper</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/standup-prosper-alternative/",
-                title="Standup and Prosper alternative: free and open source",
-                description="An open-source, self-hosted Standup &amp; Prosper alternative for Slack "
-                            "standups, with coffee chats and kudos in the same app and no per-seat "
-                            "bill as you hire.",
+                title="Standup and Prosper alternative (2026): free, open source",
+                description="A free, open-source Standup and Prosper alternative for Slack standups, "
+                            "hosted or self-hosted, with coffee chats and kudos in one app and no "
+                            "per-seat bill.",
                 h1="A free, open-source Standup and Prosper alternative",
                 lede="Same async standups, run on your own infrastructure, with two more team "
                      "rituals included rather than sold separately.",
