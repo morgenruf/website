@@ -152,3 +152,36 @@
   to = "/blog/:post/"
   status = 301
   force = true
+
+# The site publishes the repository root, so the build scripts, README and
+# licence were served as pages. These answer 404 instead. Netlify already
+# skips dotfiles such as .github and .gitignore; they are listed anyway.
+[[redirects]]
+  from = "/scripts/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.github/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/README.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/LICENSE"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/.gitignore"
+  to = "/404.html"
+  status = 404
+  force = true
