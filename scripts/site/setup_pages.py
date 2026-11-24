@@ -137,7 +137,7 @@ def hub():
         path="/setup/",
         title="Self-host Morgenruf: Docker Compose or Helm",
         description="Run Morgenruf yourself with Docker Compose, or on Kubernetes with Helm: what you "
-                    "need, the Slack app, and about twenty minutes end to end.",
+                    "need, the Slack app, and about twenty minutes from start to finish.",
         h1="Set it up yourself, in about twenty minutes",
         lede="Morgenruf is a backend, a small frontend and a Postgres database. Pick whichever of these you already "
              "have, and the Slack side is the same either way. Would rather not run anything? "
