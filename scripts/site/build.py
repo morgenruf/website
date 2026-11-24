@@ -17,6 +17,7 @@ import product_pages  # noqa: E402
 import seo_pages  # noqa: E402
 import setup_pages  # noqa: E402
 import shell  # noqa: E402
+import soro_posts  # noqa: E402
 import support_page  # noqa: E402
 
 PAGES = {
@@ -169,6 +170,8 @@ def write_sitemap():
             if newest and newest.group(1) > day:
                 day = newest.group(1)
         entries.append((path, day))
+    # Soro posts carry the day their text last changed, kept in the snapshot.
+    entries += [("/blog/" + p["slug"] + "/", p["modified"]) for p in soro_posts.load()]
     entries.sort(key=lambda e: (e[0] != "/", e[0]))
     urls = "".join(f"  <url>\n    <loc>{shell.SITE}{p}</loc>\n    <lastmod>{d}</lastmod>\n  </url>\n"
                    for p, d in entries)
@@ -218,7 +221,8 @@ def refresh_llms():
 
 def main():
     refresh_webp()
-    for rel, render in PAGES.items():
+    soro_posts.refresh()
+    for rel, render in {**PAGES, **soro_posts.pages()}.items():
         out = ROOT / rel
         out.parent.mkdir(parents=True, exist_ok=True)
         html = render()

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>What a Free Slack Standup Bot Should Actually Do</title>
+<meta name="description" content="A free Slack standup bot should remove status calls, surface blockers, respect data ownership, and stay free when your team grows without per-seat costs."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://morgenruf.dev/blog/free-slack-standup-bot/"/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://morgenruf.dev/blog/free-slack-standup-bot/"/>
+<meta property="og:title" content="What a Free Slack Standup Bot Should Actually Do"/>
+<meta property="og:description" content="A free Slack standup bot should remove status calls, surface blockers, respect data ownership, and stay free when your team grows without per-seat costs."/>
+<meta property="og:image" content="https://afocirmbqdxnkyescnev.supabase.co/storage/v1/object/public/featured-images/ce6943f8-36f4-4831-908d-6f0cfa5080d2/383d7059-a31c-484b-9d4a-b61483420b98.webp"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="What a Free Slack Standup Bot Should Actually Do"/>
+<meta name="twitter:description" content="A free Slack standup bot should remove status calls, surface blockers, respect data ownership, and stay free when your team grows without per-seat costs."/>
+<meta name="twitter:image" content="https://afocirmbqdxnkyescnev.supabase.co/storage/v1/object/public/featured-images/ce6943f8-36f4-4831-908d-6f0cfa5080d2/383d7059-a31c-484b-9d4a-b61483420b98.webp"/>
+<meta name="theme-color" content="#12131f"/>
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" href="/icon-512.png"/>
+<link rel="preload" href="/assets/fonts/geist-1.9.2.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=61f30cc0a7"/>
+<script src="/assets/analytics.js" defer></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QM8RKPLDF4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
+  try { if (localStorage.getItem('mr-consent') === 'accept') gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
+  gtag('config', 'G-QM8RKPLDF4');
+</script>
+<script src="/assets/nav.js?v=0646db8540" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"What a Free Slack Standup Bot Should Actually Do","description":"A free Slack standup bot should remove status calls, surface blockers, respect data ownership, and stay free when your team grows without per-seat costs.","url":"https://morgenruf.dev/blog/free-slack-standup-bot/","mainEntityOfPage":"https://morgenruf.dev/blog/free-slack-standup-bot/","datePublished":"2026-11-11","dateModified":"2026-11-11","author":{"@type":"Person","@id":"https://morgenruf.dev/#anmol-nagpal","name":"Anmol Nagpal","url":"https://morgenruf.dev/blog/why-i-built-morgenruf/","jobTitle":"Creator and maintainer","sameAs":["https://github.com/anmolnagpal","https://www.linkedin.com/in/anmolnagpal/"]},"publisher":{"@type":"Organization","@id":"https://morgenruf.dev/#organization","name":"Morgenruf","url":"https://morgenruf.dev/","logo":{"@type":"ImageObject","url":"https://morgenruf.dev/icon-512.png","width":512,"height":512},"founder":{"@id":"https://morgenruf.dev/#anmol-nagpal"},"sponsor":{"@type":"Organization","@id":"https://clouddrove.com/#organization","name":"CloudDrove","url":"https://clouddrove.com"}},"inLanguage":"en","image":"https://afocirmbqdxnkyescnev.supabase.co/storage/v1/object/public/featured-images/ce6943f8-36f4-4831-908d-6f0cfa5080d2/383d7059-a31c-484b-9d4a-b61483420b98.webp"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://morgenruf.dev/blog/"},{"@type":"ListItem","position":3,"name":"What a Free Slack Standup Bot Should Actually Do"}]}</script>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <div class="nav-links"><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/setup/">Set up</a><a href="/compare/">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
+      <a class="btn btn-sun btn-sm" href="https://app.morgenruf.dev/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+    </div>
+    <details class="nav-menu">
+      <summary aria-label="Menu"><span class="burger" aria-hidden="true"></span></summary>
+      <div class="nav-menu-panel"><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/setup/">Set up</a><a href="/compare/">Compare</a><a href="https://docs.morgenruf.dev">Docs</a><a href="https://github.com/morgenruf/morgenruf">GitHub</a></div>
+    </details>
+  </div>
+</nav>
+<div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <a href="/blog/">Blog</a><span aria-hidden="true">›</span> <span>What a Free Slack Standup Bot Should Actually Do</span></div><main>
+<header class="page-head"><div class="wrap">
+  <h1>What a Free Slack Standup Bot Should Actually Do</h1>
+  <p class="lede">A free Slack standup bot should remove status calls, surface blockers, respect data ownership, and stay free when your team grows without per-seat costs.</p>
+</div></header>
+<section class="section"><div class="wrap"><div class="prose"><p class="byline">By <strong>Anmol Nagpal</strong>, creator of Morgenruf &middot; <time datetime="2026-11-11">November 11, 2026</time></p>
+<p><img src="https://afocirmbqdxnkyescnev.supabase.co/storage/v1/object/public/featured-images/ce6943f8-36f4-4831-908d-6f0cfa5080d2/383d7059-a31c-484b-9d4a-b61483420b98.webp" alt="" width="1536" height="1024" style="width:100%;height:auto;border-radius:12px"/></p>
+<p>A free Slack standup bot is only useful if it removes work instead of turning a five-minute status update into another system people have to manage. Your team already has Slack open. The check-in should happen there, on a schedule that respects time zones, without a meeting invite, a separate dashboard, or a per-seat bill waiting for the team to grow.</p>
+<p>That sounds obvious, but plenty of standup tools preserve the worst part of the ritual: reporting activity for its own sake. A good async standup creates a reliable record of progress, makes blockers visible early, and gives managers enough context to help without asking everyone to perform productivity in a call.</p>
+<h2>A free Slack standup bot should replace the status meeting</h2>
+<p>The basic workflow is simple. At the configured time, the bot sends each participant a direct message with a few focused prompts. People reply when their workday allows. The bot gathers those replies and posts a concise summary in the team’s Slack channel.</p>
+<p>That changes the unit of coordination. Instead of waiting for a particular hour when every person can attend, the team gets a written update that can be read when it is relevant. An engineer starting later in California does not need to wake up for a meeting planned around a colleague in New York. A product manager can scan the summary before planning work. A manager can respond directly to a blocker rather than discovering it after a deadline has moved.</p>
+<p>The summary matters as much as the prompt. Private collection is often more comfortable than asking people to post raw updates publicly, while the shared channel summary keeps the team aligned. The right balance depends on your culture. For a small, tightly connected team, full answers in a channel may be fine. For a larger organization, direct-message collection with a short summary can reduce channel noise while preserving visibility.</p>
+<p>The goal is not to recreate a spoken standup word for word. Spoken meetings often include repetition, side conversations, and updates that do not need a live audience. Written check-ins should preserve the useful parts: what moved, what is next, and where someone needs help.</p>
+<h3>Use prompts that produce useful answers</h3>
+<p>A standup prompt should be specific enough to encourage substance and short enough that people answer it. “What did you do?” tends to create long activity logs. “What are you working on?” can invite vague answers. A better <a href="/blog/standup-questions/">set of prompts</a> asks what was completed, what is planned, and whether anything is blocked.</p>
+<p>The difference is operational. Completed work helps a team see delivery moving forward. Planned work signals priorities. Blockers create an explicit request for intervention. If a blocker is buried under a paragraph of status text, it will be missed. If it has its own prompt, it can be acted on.</p>
+<p>Do not overload the check-in with questions about morale, weekly objectives, project forecasts, and retrospective feedback. Those are valid conversations, but they need different rhythms and audiences. A daily standup works because it stays narrow.</p>
+<h2>Free should not mean free until headcount matters</h2>
+<p>Many tools are inexpensive when a team is small and become expensive precisely when the ritual becomes useful across the organization. Per-seat pricing treats routine coordination as a tax on growth. That is a poor fit for a standup, especially when the underlying workflow is direct messages, scheduled prompts, and channel summaries.</p>
+<p>A genuinely <a href="/slack-standup-bot/">free Slack standup bot</a> should remain usable as more people join. That does not mean every organization has identical needs. A small startup may only care about replacing a daily call. A distributed company may need different schedules for different teams, time-zone-aware participation, or separate workflows for engineering and operations.</p>
+<p>The important question is whether growth forces a pricing negotiation before it forces a workflow decision. If adding a department means counting seats and requesting budget, teams will delay adoption or run uneven processes. A free hosted option with no per-user charges removes that friction.</p>
+<p>There is another kind of cost: ownership. A free product that stores important workplace data in an opaque system may be cheap in dollars but costly in control. Teams handling sensitive project information, employee concerns, or regulated data should know where standup responses live, who can administer the feature, and what happens if they need to run the software themselves.</p>
+<h2>Slack-native is not the same as Slack-adjacent</h2>
+<p>A tool can integrate with Slack and still make Slack feel like a notification layer for a separate product. If participants must click out to a web app to answer a check-in, find an old update, or configure basic behavior, the workflow has already become more complicated than it needs to be.</p>
+<p>A Slack-native standup bot keeps the routine where work is already coordinated. Participants receive prompts and respond in Slack. Teams see summaries in Slack. Admins should be able to control which features are enabled and who can manage them without handing every setting to a single all-powerful workspace administrator.</p>
+<p>Granular administration is not bureaucracy. The person responsible for a team’s standup may not be the right person to manage recognition rules or coffee-chat pairings. A useful workplace tool recognizes that these rituals have different owners.</p>
+<p>Slack-native also means being careful with channel noise. A daily summary should be concise enough to scan. Not every answer needs to become an announcement. Teams should decide where summaries belong, whether everyone participates, and what cadence fits the work. Daily check-ins suit fast-moving delivery teams. Three times a week may be better for a research group or a team with long focus cycles.</p>
+<h2>Look for signals, not surveillance</h2>
+<p>Standups can reveal patterns that a single update cannot. Repeated blockers around the same dependency, a project that keeps slipping from planned to unfinished, or a person consistently waiting on decisions are coordination problems worth seeing.</p>
+<p>But that does not justify turning check-ins into employee surveillance. Completion trends should help a manager ask better questions about scope, staffing, handoffs, and priorities. They should not become a simplistic scorecard for individual output. Most meaningful work does not fit a daily count, and the easiest work to report is not always the most valuable work.</p>
+<p>This is where an async format can be fairer than a meeting. People can write a considered update rather than improvising in front of coworkers. Introverted employees are not penalized for being less vocal. People working across time zones do not have to prove engagement by attending outside their normal hours.</p>
+<p>The trade-off is that written routines need follow-through. If someone reports a blocker and nobody responds, the bot has documented failure rather than improved coordination. Team leads need to read summaries, clarify ownership, and protect time for resolving issues. Automation can collect the signal. It cannot make decisions for the team.</p>
+<h2>Open source changes the ownership question</h2>
+<p>For technical teams, source availability is more than a philosophical preference. It lets administrators inspect how the application works, review its deployment approach, and avoid betting a core workflow on a vendor’s undisclosed decisions. It also creates an exit path if hosted software no longer fits.</p>
+<p>Morgenruf takes that position directly: its codebase is MIT-licensed, it offers a permanently free hosted option without seat fees, and it can be <a href="/self-hosted-standup-bot/">self-hosted</a> with organization-controlled Postgres data. That is useful for teams that want Slack convenience now and deployment control later. It is equally useful for teams that already know where their data must live.</p>
+<p>Self-hosting has real responsibilities. Someone must operate the environment, maintain updates, and handle backups. It is not automatically the best choice for a ten-person team with no infrastructure capacity. But it should be available when the organization needs it, not withheld as leverage for an enterprise contract.</p>
+<h2>Choose the smallest ritual that improves coordination</h2>
+<p>Start with one team, three focused prompts, and a schedule that does not interrupt deep work. Let the team use the summaries for a few weeks. Watch whether blockers are surfaced earlier and whether the daily status meeting becomes unnecessary.</p>
+<p>If people write shallow answers, simplify the prompts. If summaries are ignored, move them to a more appropriate channel or reduce the cadence. If the team needs live discussion, use the written update as preparation for a shorter, exception-based conversation rather than restoring a daily meeting by default.</p>
+<p>A standup bot earns its place when nobody sits through a call just to hear that work is moving. The useful outcome is quieter: fewer surprise blockers, clearer ownership, and a written rhythm that respects both people’s time and the team’s need to know what is happening.</p>
+<p><a href="/blog/">More posts on the Morgenruf blog</a></p></div></div></section>
+</main><footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <p style="max-width:34ch;font-size:15.5px">One open-source Slack app for standups, coffee
+        chats and recognition. Free on the hosted instance, or self-host it and keep your own
+        data.</p>
+        <p style="font-size:14.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        Kitchener, Ontario 🇨🇦</p>
+      </div>
+      <div><h3>Product</h3><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/insights/">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog/">Changelog</a></div><div><h3>Set up</h3><a href="/setup/">All the ways</a><a href="/setup/docker/">Docker Compose</a><a href="/setup/kubernetes/">Kubernetes and Helm</a><a href="/setup/slack-app/">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare/">All comparisons</a><a href="/compare/standup-bots/">Standup bots compared</a><a href="/geekbot-alternative/">vs Geekbot</a><a href="/donut-alternative/">vs Donut</a><a href="/heytaco-alternative/">vs HeyTaco</a><a href="/standup-prosper-alternative/">vs Standup &amp; Prosper</a><a href="/dailybot-alternative/">vs DailyBot</a><a href="/standuply-alternative/">vs Standuply</a><a href="/open-source-standup-bot/">Open-source standup bot</a><a href="/self-hosted-standup-bot/">Self-hosted standup bot</a><a href="/slack-standup-bot/">Slack standup bot</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog/">Blog</a><a href="/support/">Support</a><a href="https://www.linkedin.com/company/morgenruf">LinkedIn</a><a href="https://x.com/morgenruf_dev">X</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>MIT licensed. Built by Anmol Nagpal, sponsored by <a style="color:var(--sun); text-decoration:underline" href="https://clouddrove.com">CloudDrove</a>.</span>
+      <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/privacy/#analytics-cookies" data-consent-open>Cookie settings</a></span>
+    </div>
+  </div>
+</footer>
+<div class="consent" id="consent" role="region" aria-label="Cookie choice" hidden>
+  <p>We use Google Analytics cookies to see which pages help people. Accept to allow them, or decline and we count visits without cookies. <a href="/privacy/#analytics-cookies">Privacy policy</a></p>
+  <div class="consent-actions"><button type="button" class="btn btn-sun btn-sm" data-consent="accept">Accept</button><button type="button" class="btn btn-ghost btn-sm" data-consent="decline">Decline</button></div>
+</div>
+</body>
+</html>

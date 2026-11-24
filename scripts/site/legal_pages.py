@@ -5,10 +5,12 @@ Their content was fine. Their stylesheet was a different website.
 
 from __future__ import annotations
 
+import html as html_lib
 import json
 import pathlib
 import re
 
+import soro_posts
 from shell import INSTALL, REPO, SITE, SLACK_MARK, breadcrumbs, cta_band, footer, head, nav
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
@@ -138,6 +140,10 @@ def _blog_schema():
                       "url": SITE + href, "datePublished": post["datePublished"],
                       "dateModified": post["dateModified"],
                       "author": {"@id": post["author"]["@id"]}})
+    for p in soro_posts.load():
+        posts.append({"@type": "BlogPosting", "headline": p["title"],
+                      "url": f"{SITE}/blog/{p['slug']}/", "datePublished": p["published"],
+                      "dateModified": p["modified"], "author": {"@id": SITE + "/#anmol-nagpal"}})
     return json.dumps({
         "@context": "https://schema.org", "@type": "Blog", "@id": SITE + "/blog/#blog",
         "name": "Morgenruf blog", "url": SITE + "/blog/", "inLanguage": "en",
@@ -149,14 +155,17 @@ def blog_index():
     cards = "".join(
         f'<a class="tile" href="{href}"><h3>{title}</h3><p>{blurb}</p>'
         f'<span class="go">Read the post →</span></a>' for href, title, blurb in POSTS)
+    latest = "".join(
+        f'<a class="tile" href="/blog/{p["slug"]}/"><h3>{html_lib.escape(p["title"])}</h3>'
+        f'<p>{html_lib.escape(p["excerpt"])}</p><span class="go">Read the post →</span></a>'
+        for p in soro_posts.load())
     prose = f'''<p>Two kinds of posts live here. Short ones go out most days, on the questions people
 ask when they are picking a standup tool. The long reads below them get written when something is
 concrete enough to be worth a stranger's time: a decision with a number behind it, a cost that
 turned out to be real, or a comparison that is easier to make in long form than in a table.</p>
 
 <h2 id="latest">Latest</h2>
-<div id="soro-blog"></div>
-<script src="https://app.trysoro.com/api/embed/8bb533f4-55ea-4c1e-b09a-843dcf0f3f55" defer></script>
+<div class="tiles tiles-list" style="margin:24px 0 8px">{latest}</div>
 
 <h2 id="the-posts">Long reads</h2>
 <div class="tiles tiles-list" style="margin:24px 0 8px">{cards}</div>
@@ -176,10 +185,8 @@ announcement dressed as an essay. Releases go in the
 rewritten here.</p>
 <p>New posts are announced in <a href="{REPO}/discussions">GitHub discussions</a>, which is also
 where to say that one of them is wrong.</p>'''
-    # Soro posts open at /blog/?post=<slug>, but the server sends this same page
-    # for every one of them, so Google treated them as duplicates of /blog/.
-    # This page keeps its own canonical, and the ?post= URLs are
-    # left out of the sitemap until each post has a static URL of its own.
+    # The short posts come from Soro and are built as pages of their own at
+    # /blog/<slug>/ (soro_posts.py). The old /blog/?post=<slug> URLs redirect there.
     return _page(path="/blog/", title="Blog: async standups, self-hosting and team rituals",
                  description="Writing on async standups, self-hosting Slack tools and building an "
                              "open-source alternative to per-seat team software. Short posts and "
