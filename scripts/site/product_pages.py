@@ -638,7 +638,7 @@ still gets every post, and gets the reaction once an admin re-authorises Slack.
         path="/celebrations/",
         title="Slack birthday bot for birthdays and work anniversaries",
         description="Birthdays and work anniversaries posted in a Slack channel, around your "
-                    "working days and holidays. Day and month only. Free, open source.",
+                    "working days and holidays. Day and month only, no year. Free and open source.",
         h1="Birthdays and work anniversaries, without the spreadsheet",
         lede="Morgenruf posts them in a channel on the day, or on the last working day before it, "
              "from dates people add themselves or HR imports once.",

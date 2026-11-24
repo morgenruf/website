@@ -210,7 +210,7 @@ def footer_block():
       {cols}
     </div>
     <div class="foot-bottom">
-      <span>MIT licensed. Built by Anmol Nagpal, sponsored by <a style="color:var(--sun)" href="https://clouddrove.com">CloudDrove</a>.</span>
+      <span>MIT licensed. Built by Anmol Nagpal, sponsored by <a style="color:var(--sun); text-decoration:underline" href="https://clouddrove.com">CloudDrove</a>.</span>
       <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/privacy/#analytics-cookies" data-consent-open>Cookie settings</a></span>
     </div>
   </div>

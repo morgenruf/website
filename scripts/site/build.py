@@ -113,19 +113,37 @@ def refresh_webp():
         print(f"{dst.relative_to(ROOT)!s:38s} written")
 
 
+def _content_key(page):
+    """What counts as a change for lastmod: the title, the description and
+    <main>. Nav, footer and analytics edits touch every page at once and
+    would otherwise give the whole sitemap one date."""
+    def grab(pattern):
+        m = re.search(pattern, page, re.S)
+        return m.group(1) if m else ""
+    return (grab(r"<title>(.*?)</title>"),
+            grab(r'<meta name="description" content="([^"]*)"'),
+            grab(r"<main>(.*?)</main>"))
+
+
 def _lastmod(rel):
-    """The day this page last changed: today if it has uncommitted edits
-    (the build runs before the commit), otherwise its last commit."""
+    """The day this page's content last changed: today if it differs from the
+    last commit (the build runs before the commit), otherwise the newest
+    commit that changed its content."""
     import datetime
     import subprocess
-    dirty = subprocess.run(["git", "status", "--porcelain", "--", rel], cwd=ROOT,
-                           capture_output=True, text=True).stdout.strip()
-    if not dirty:
-        day = subprocess.run(["git", "log", "-1", "--format=%cs", "--", rel], cwd=ROOT,
-                             capture_output=True, text=True).stdout.strip()
-        if day:
+
+    def git(*args):
+        return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True).stdout
+
+    today = datetime.date.today().isoformat()
+    key, day = _content_key((ROOT / rel).read_text()), today
+    for line in git("log", "--format=%H %cs", "--", rel).splitlines():
+        sha, commit_day = line.split()
+        older = _content_key(git("show", f"{sha}:{rel}"))
+        if older != key:
             return day
-    return datetime.date.today().isoformat()
+        key, day = older, commit_day
+    return day
 
 
 def write_sitemap():

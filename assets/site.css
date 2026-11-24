@@ -17,7 +17,7 @@
   --paper:#FFFDF8; --paper-2:#FFF7EA; --line:#E9E2D6;
   --amber:#FFB23F; --sun:#FFD166; --rooster:#E0322E;
   --sky:#00A3DE; --violet:#4B3BD0; --leaf:#0E8A5F;
-  --text:#191B2A; --muted:#5A5E74; --dim:#82869B;
+  --text:#191B2A; --muted:#5A5E74; --dim:#6B6F84;
   --on-ink:#F6F3EC; --on-ink-muted:#B9BCCD;
   --radius:18px; --radius-s:11px;
   --shadow:0 18px 50px rgba(18,19,31,.14);
@@ -90,7 +90,7 @@ a{color:inherit}
 .btn:focus-visible{outline:3px solid var(--sky); outline-offset:3px}
 .btn-sun{background:var(--sun); color:#26190A; box-shadow:0 10px 26px rgba(255,178,63,.36)}
 .btn-sun:hover{box-shadow:0 14px 34px rgba(255,178,63,.48)}
-.btn-ghost{border-color:rgba(255,255,255,.28); color:var(--on-ink)}
+.btn-ghost{background:transparent; border-color:rgba(255,255,255,.28); color:var(--on-ink)}
 .btn-ghost:hover{border-color:var(--sun); color:var(--sun)}
 .btn-ink{background:var(--ink); color:var(--on-ink)}
 .btn-line{border-color:var(--line); color:var(--text); background:var(--paper)}
@@ -118,7 +118,7 @@ a{color:inherit}
 .hero-note span{display:inline-flex; align-items:center; gap:7px}
 .hero-note span::before{content:""; width:5px; height:5px; border-radius:50%; background:var(--leaf)}
 .badge-os{display:inline-flex; align-items:center; gap:9px; padding:7px 15px; border-radius:999px; background:rgba(255,209,102,.13); border:1px solid rgba(255,209,102,.3); color:var(--sun); font-size:14.5px; font-weight:700; margin-bottom:22px}
-.mascot{width:min(330px,72%); display:block; margin:0 auto; filter:drop-shadow(0 22px 44px rgba(0,0,0,.45))}
+.mascot{width:min(330px,72%); height:auto; display:block; margin:0 auto; filter:drop-shadow(0 22px 44px rgba(0,0,0,.45))}
 @media (prefers-reduced-motion:no-preference){
   .mascot{animation:rise 1.1s cubic-bezier(.2,.8,.2,1) both}
   @keyframes rise{from{opacity:0; transform:translateY(26px) rotate(-3deg)} to{opacity:1; transform:none}}
@@ -145,9 +145,9 @@ a{color:inherit}
 .tag{display:inline-block; font-size:13.5px; font-weight:700; padding:4px 11px; border-radius:999px; margin-bottom:12px}
 .tag-standup{background:rgba(0,163,222,.12); color:#0A6E93}
 .tag-connect{background:rgba(75,59,208,.12); color:var(--violet)}
-.tag-kudos{background:rgba(224,50,46,.10); color:var(--rooster)}
-.tag-people{background:rgba(14,138,95,.12); color:var(--leaf)}
-.tag-soon{background:rgba(255,178,63,.18); color:#8A5B00}
+.tag-kudos{background:rgba(224,50,46,.10); color:#B8231F}
+.tag-people{background:rgba(14,138,95,.12); color:#09704C}
+.tag-soon{background:rgba(255,178,63,.18); color:#7A5000}
 
 /* ── Slack, rebuilt in markup ────────────────────────────────────────── */
 .slack{background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow-lift); overflow:hidden; max-width:520px}
@@ -281,7 +281,7 @@ footer a:hover{color:var(--sun)}
    restyled to match (#id beats the classes in the style tag Soro injects). */
 .tiles-list{grid-template-columns:1fr}
 .prose .tile h3{margin-top:0}
-#soro-blog{font-family:var(--sans); color:var(--text); max-width:none; margin:18px 0 8px}
+#soro-blog{font-family:var(--sans); color:var(--text); max-width:none; margin:18px 0 8px; min-height:100vh}
 #soro-blog .soro-blog{font-family:inherit; color:inherit; max-width:none}
 #soro-blog .soro-blog-list{gap:18px}
 #soro-blog .soro-blog-card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:24px; gap:20px; box-shadow:none; transition:border-color .12s, transform .12s}
