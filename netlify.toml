@@ -144,3 +144,11 @@
 # answers /<name> with a 301 to that, so canonicals, the sitemap and internal
 # links all use the trailing-slash form. The rewrites to flat <name>.html files
 # that used to sit here matched nothing once the site moved to directories.
+
+# Soro posts used to open at /blog/?post=<slug>. Each has its own page now.
+[[redirects]]
+  from = "/blog/"
+  query = {post = ":post"}
+  to = "/blog/:post/"
+  status = 301
+  force = true

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Google Chat Standups Without Status Meetings</title>
+<meta name="description" content="Google Chat standups can replace status calls with written updates, clear blockers, and useful summaries - if the workflow protects focus and follow-through."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://morgenruf.dev/blog/google-chat-standups/"/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://morgenruf.dev/blog/google-chat-standups/"/>
+<meta property="og:title" content="Google Chat Standups Without Status Meetings"/>
+<meta property="og:description" content="Google Chat standups can replace status calls with written updates, clear blockers, and useful summaries - if the workflow protects focus and follow-through."/>
+<meta property="og:image" content="https://afocirmbqdxnkyescnev.supabase.co/storage/v1/object/public/featured-images/1c275b90-e5a8-437a-a705-f4aa401bf201/f33d1c64-cc0c-497c-9edb-bfd301079604.webp"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Google Chat Standups Without Status Meetings"/>
+<meta name="twitter:description" content="Google Chat standups can replace status calls with written updates, clear blockers, and useful summaries - if the workflow protects focus and follow-through."/>
+<meta name="twitter:image" content="https://afocirmbqdxnkyescnev.supabase.co/storage/v1/object/public/featured-images/1c275b90-e5a8-437a-a705-f4aa401bf201/f33d1c64-cc0c-497c-9edb-bfd301079604.webp"/>
+<meta name="theme-color" content="#12131f"/>
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png"/>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" href="/icon-512.png"/>
+<link rel="preload" href="/assets/fonts/geist-1.9.2.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="stylesheet" href="/assets/site.css?v=61f30cc0a7"/>
+<script src="/assets/analytics.js" defer></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QM8RKPLDF4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
+  try { if (localStorage.getItem('mr-consent') === 'accept') gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
+  gtag('config', 'G-QM8RKPLDF4');
+</script>
+<script src="/assets/nav.js?v=0646db8540" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Google Chat Standups Without Status Meetings","description":"Google Chat standups can replace status calls with written updates, clear blockers, and useful summaries - if the workflow protects focus and follow-through.","url":"https://morgenruf.dev/blog/google-chat-standups/","mainEntityOfPage":"https://morgenruf.dev/blog/google-chat-standups/","datePublished":"2026-11-23","dateModified":"2026-11-23","author":{"@type":"Person","@id":"https://morgenruf.dev/#anmol-nagpal","name":"Anmol Nagpal","url":"https://morgenruf.dev/blog/why-i-built-morgenruf/","jobTitle":"Creator and maintainer","sameAs":["https://github.com/anmolnagpal","https://www.linkedin.com/in/anmolnagpal/"]},"publisher":{"@type":"Organization","@id":"https://morgenruf.dev/#organization","name":"Morgenruf","url":"https://morgenruf.dev/","logo":{"@type":"ImageObject","url":"https://morgenruf.dev/icon-512.png","width":512,"height":512},"founder":{"@id":"https://morgenruf.dev/#anmol-nagpal"},"sponsor":{"@type":"Organization","@id":"https://clouddrove.com/#organization","name":"CloudDrove","url":"https://clouddrove.com"}},"inLanguage":"en","image":"https://afocirmbqdxnkyescnev.supabase.co/storage/v1/object/public/featured-images/1c275b90-e5a8-437a-a705-f4aa401bf201/f33d1c64-cc0c-497c-9edb-bfd301079604.webp"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://morgenruf.dev/blog/"},{"@type":"ListItem","position":3,"name":"Google Chat Standups Without Status Meetings"}]}</script>
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+    <div class="nav-links"><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/setup/">Set up</a><a href="/compare/">Compare</a><a href="https://docs.morgenruf.dev">Docs</a></div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://github.com/morgenruf/morgenruf">GitHub</a>
+      <a class="btn btn-sun btn-sm" href="https://app.morgenruf.dev/install"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" style="flex:0 0 17px"><path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/><path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/><path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/><path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></svg>Add to Slack</a>
+    </div>
+    <details class="nav-menu">
+      <summary aria-label="Menu"><span class="burger" aria-hidden="true"></span></summary>
+      <div class="nav-menu-panel"><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/setup/">Set up</a><a href="/compare/">Compare</a><a href="https://docs.morgenruf.dev">Docs</a><a href="https://github.com/morgenruf/morgenruf">GitHub</a></div>
+    </details>
+  </div>
+</nav>
+<div class="crumbs wrap"><a href="/">Home</a><span aria-hidden="true">›</span> <a href="/blog/">Blog</a><span aria-hidden="true">›</span> <span>Google Chat Standups Without Status Meetings</span></div><main>
+<header class="page-head"><div class="wrap">
+  <h1>Google Chat Standups Without Status Meetings</h1>
+  <p class="lede">Google Chat standups can replace status calls with written updates, clear blockers, and useful summaries - if the workflow protects focus and follow-through.</p>
+</div></header>
+<section class="section"><div class="wrap"><div class="prose"><p class="byline">By <strong>Anmol Nagpal</strong>, creator of Morgenruf &middot; <time datetime="2026-11-23">November 23, 2026</time></p>
+<p><img src="https://afocirmbqdxnkyescnev.supabase.co/storage/v1/object/public/featured-images/1c275b90-e5a8-437a-a705-f4aa401bf201/f33d1c64-cc0c-497c-9edb-bfd301079604.webp" alt="" width="1536" height="1024" style="width:100%;height:auto;border-radius:12px"/></p>
+<p>A 9:00 a.m. status call is an expensive way to learn that someone is waiting on a design decision. The rest of the team loses the hour, people in other time zones either miss it or join at a bad time, and the actual blocker often gets buried in conversation. Google Chat standups offer a better default: collect concise written updates where work already happens, then make exceptions visible enough to act on.</p>
+<p>That does not mean copying a meeting agenda into a chat thread. A useful async standup is a small operational system. It asks the right questions, sets a response window, produces a readable record, and assigns responsibility for blockers. Without those mechanics, it becomes another notification people learn to ignore.</p>
+<h2>What Google Chat standups should accomplish</h2>
+<p>A standup is not a diary and it is not a surveillance tool. Its job is to help a team coordinate work that has dependencies. Every prompt should earn its place by answering one of three practical questions: what moved forward, what is next, and what needs help.</p>
+<p>For most product, engineering, and operations teams, that translates to <a href="/blog/standup-questions/">three short prompts</a>:</p>
+<ol><li>What did you complete since your last update?</li><li>What are you planning to do next?</li><li>Are you blocked, waiting, or at risk of missing a commitment?</li></ol>
+<p>The third question is the one that changes outcomes. A list of completed tasks may be useful context, but a blocker needs a response. Ask people to name the dependency, the person or decision they need, and the latest time they can proceed without affecting the plan. “Waiting on feedback” is not actionable. “Need approval on the migration plan by Wednesday to keep Friday’s release” is.</p>
+<p>Written updates also create a record that meetings rarely do. A manager can see when a dependency first appeared. A teammate joining after hours can read the context without asking everyone to repeat it. Over time, the pattern of recurring blockers can point to a process problem rather than an individual performance problem.</p>
+<h2>Design Google Chat standups around time zones</h2>
+<p>A global team should not be forced into a single moment of visibility. The point of async work is that a developer in Portland, a designer in London, and an operations lead in Singapore can contribute during reasonable working hours.</p>
+<p>Set a <a href="/blog/time-zone-friendly-team-check-ins/">response window</a> rather than a universal deadline. For example, ask for updates by late morning in each person’s local time, then publish or review the combined updates at a time that suits the people responsible for coordination. This is more fair than treating one office’s morning as the company’s morning.</p>
+<p>Cadence depends on the work. A team managing releases, incidents, or a tightly coupled sprint may need daily updates on weekdays. A research, design, or leadership group may get better signal from updates two or three times a week. Daily prompts can turn into theater when work naturally moves in longer cycles. Fewer, better check-ins are preferable to a ritual full of “still working on it.”</p>
+<p>Also decide what happens on days off. Automated reminders that arrive during local holidays or approved leave communicate that the system does not understand the people using it. Good administration includes the ability to adjust schedules and participation without making someone explain their absence in public.</p>
+<h3>Keep the response private; make the signal shared</h3>
+<p>People often write more honestly in a direct prompt than in a public channel. A private check-in can make it easier to flag uncertainty, ask for help, or say that a task took longer than expected. The team still needs shared awareness, though.</p>
+<p>The practical pattern is private collection followed by a concise channel summary. The summary should preserve each person’s meaningful update and clearly surface blockers, not dump every response into a noisy feed. If an issue needs discussion, move it into a focused thread or create the relevant ticket. The standup has done its job once the right people know what needs attention.</p>
+<p>This distinction matters for employee experience. Public updates can become performance theater, especially when managers react to volume rather than outcomes. Private collection gives people room to be direct. A shared summary gives the team enough context to coordinate. Neither format is automatically better, but mixing their jobs usually produces the worst of both.</p>
+<h2>The operating rule: blockers get an owner</h2>
+<p>A standup without follow-through is just a report. When someone marks an item as blocked, the team needs a predictable response path.</p>
+<p>For a small team, the manager or project lead may review the summary each day and reply directly with an owner and next step. For a larger organization, a delivery lead might triage blockers, while technical questions move to the appropriate team channel. The exact model varies, but the standard should not: no blocker should sit in a summary with a vague acknowledgment.</p>
+<p>Use three questions when triaging: Is this actually blocking progress? Who can remove or clarify the dependency? When will that person respond? A direct answer is better than a sympathetic emoji. If the answer is “not this week,” say so early and revise the plan.</p>
+<p>That discipline also prevents an async standup from becoming an endless queue of low-priority requests. Not every mention of friction requires escalation. Teams need room to distinguish a temporary inconvenience from a delivery risk. The goal is visibility with judgment, not a channel where every minor obstacle becomes urgent.</p>
+<h2>Avoid turning the ritual into monitoring</h2>
+<p>The fastest way to ruin a standup is to use it as a proxy for hours worked. Long updates do not prove useful work. Quiet contributors may be solving the hardest problems. People doing focused work should not need to narrate every hour to demonstrate value.</p>
+<p>Measure the health of the practice by coordination outcomes instead. Are blockers raised earlier? Are dependencies clearer? Are fewer people attending recurring status calls? Do summaries help someone catch up after being offline? If the answer is no, change the prompts, cadence, or review process.</p>
+<p>Be cautious with completion trends as well. They can reveal where work repeatedly stalls, but they are not a leaderboard. A team working on incident prevention, research, or complex maintenance may show fewer neat task completions than a team handling small requests. Context is not optional.</p>
+<p>Managers should model brevity. If the person with the most authority writes a miniature weekly report every day, everyone else will follow. A useful update is often three or four lines: completed work, next priority, and a clear ask where needed.</p>
+<h2>Choosing automation for Google Chat standups</h2>
+<p>Manual prompts work for a small, disciplined team, but they tend to fail during busy periods. Someone has to remember the questions, chase missing responses, collect updates, and create a summary. That work is real, even when it is invisible.</p>
+<p>Automation is worthwhile when it reduces that administrative burden without taking control away from the team. Look for configurable questions, scheduling that respects time zones, direct collection, concise summaries, and controls over who can manage the ritual. All-or-nothing admin access is a poor default when people operations needs to adjust participation but should not have broad technical permissions.</p>
+<p>Data handling belongs in the evaluation too. Standups can contain project details, staffing concerns, and operational risks. Teams that need stronger ownership should know where that data lives, who can access it, and whether a <a href="/self-hosted-standup-bot/">self-hosted option</a> uses infrastructure they control. Source availability and a clear database model matter more than a polished pricing page when internal communication is sensitive.</p>
+<p>Morgenruf offers Google Chat support in beta alongside its established async-team workflow, so teams should confirm the current integration behavior against their requirements before standardizing on it. Beta is not a reason to avoid a tool automatically. It is a reason to test with a real team, a real schedule, and a real blocker path rather than relying on a feature label.</p>
+<h2>Start with one team, then earn expansion</h2>
+<p>Run the standup with one group for a few weeks. Keep the prompts stable long enough to see the pattern, but ask participants whether the summaries are useful and whether blockers receive timely attention. If the ritual replaces a meeting without reducing coordination, it has not succeeded.</p>
+<p>The best Google Chat standups are almost boring: a brief prompt, an honest update, a visible exception, and a person who follows through. That is enough to return time to the team while making the work that needs help harder to miss.</p>
+<p><a href="/blog/">More posts on the Morgenruf blog</a></p></div></div></section>
+</main><footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="/" style="margin-bottom:12px"><img class="mark" src="/logo-mark-68.png" width="34" height="34" alt="Morgenruf"/> morgenruf</a>
+        <p style="max-width:34ch;font-size:15.5px">One open-source Slack app for standups, coffee
+        chats and recognition. Free on the hosted instance, or self-host it and keep your own
+        data.</p>
+        <p style="font-size:14.5px;color:var(--dim)">Built over a weekend at a Tim Hortons in
+        Kitchener, Ontario 🇨🇦</p>
+      </div>
+      <div><h3>Product</h3><a href="/standups/">Standups</a><a href="/coffee-chats/">Coffee chats</a><a href="/kudos/">Kudos</a><a href="/celebrations/">Celebrations</a><a href="/insights/">Insights</a><a href="/#roadmap">Roadmap</a><a href="/changelog/">Changelog</a></div><div><h3>Set up</h3><a href="/setup/">All the ways</a><a href="/setup/docker/">Docker Compose</a><a href="/setup/kubernetes/">Kubernetes and Helm</a><a href="/setup/slack-app/">The Slack app</a><a href="https://docs.morgenruf.dev">Documentation</a></div><div><h3>Compare</h3><a href="/compare/">All comparisons</a><a href="/compare/standup-bots/">Standup bots compared</a><a href="/geekbot-alternative/">vs Geekbot</a><a href="/donut-alternative/">vs Donut</a><a href="/heytaco-alternative/">vs HeyTaco</a><a href="/standup-prosper-alternative/">vs Standup &amp; Prosper</a><a href="/dailybot-alternative/">vs DailyBot</a><a href="/standuply-alternative/">vs Standuply</a><a href="/open-source-standup-bot/">Open-source standup bot</a><a href="/self-hosted-standup-bot/">Self-hosted standup bot</a><a href="/slack-standup-bot/">Slack standup bot</a></div><div><h3>Project</h3><a href="https://github.com/morgenruf/morgenruf">GitHub</a><a href="https://charts.morgenruf.dev">Helm charts</a><a href="https://status.morgenruf.dev">Status</a><a href="/blog/">Blog</a><a href="/support/">Support</a><a href="https://www.linkedin.com/company/morgenruf">LinkedIn</a><a href="https://x.com/morgenruf_dev">X</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>MIT licensed. Built by Anmol Nagpal, sponsored by <a style="color:var(--sun); text-decoration:underline" href="https://clouddrove.com">CloudDrove</a>.</span>
+      <span class="foot-legal"><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/privacy/#analytics-cookies" data-consent-open>Cookie settings</a></span>
+    </div>
+  </div>
+</footer>
+<div class="consent" id="consent" role="region" aria-label="Cookie choice" hidden>
+  <p>We use Google Analytics cookies to see which pages help people. Accept to allow them, or decline and we count visits without cookies. <a href="/privacy/#analytics-cookies">Privacy policy</a></p>
+  <div class="consent-actions"><button type="button" class="btn btn-sun btn-sm" data-consent="accept">Accept</button><button type="button" class="btn btn-ghost btn-sm" data-consent="decline">Decline</button></div>
+</div>
+</body>
+</html>
