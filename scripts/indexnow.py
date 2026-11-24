@@ -2,7 +2,7 @@
 
 Run by CI after a push to main: python3 scripts/indexnow.py <before-sha> <after-sha>
 
-The key is the one <32 hex>.txt file at the site root. IndexNow fetches it
+The key is KEY below, served from <KEY>.txt at the site root. IndexNow fetches it
 from the live site to check the request is ours, so this waits until the
 deploy that carries it is being served before sending anything.
 """
@@ -21,11 +21,15 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://morgenruf.dev"
 
 
+# The root can hold several key files (other tools, such as OpenSEO, add their
+# own). This script signs with this one.
+KEY = "bda5061c8e88fac3102671a874ce48d0"
+
+
 def key():
-    files = [p for p in ROOT.glob("*.txt") if re.fullmatch(r"[0-9a-f]{32}\.txt", p.name)]
-    if len(files) != 1:
-        sys.exit(f"expected one IndexNow key file at the site root, found {len(files)}")
-    return files[0].stem
+    if not (ROOT / f"{KEY}.txt").is_file():
+        sys.exit(f"IndexNow key file {KEY}.txt is missing from the site root")
+    return KEY
 
 
 def sitemap_urls():
