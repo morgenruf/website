@@ -166,9 +166,9 @@ def refresh():
 GITHUB = "https://github.com/morgenruf/morgenruf"
 CTA = {
     "granular-admin-permissions":
-        "Morgenruf is open source under the MIT license, so your security team can read every line before it runs in your workspace:",
+        "Morgenruf is open source under the MIT license, so your security team can read the source before you add it to your workspace:",
     "google-chat-standups":
-        "Morgenruf is a free, open-source standup bot for Slack that also supports Google Chat for some of its features, so a first trial with one team costs nothing:",
+        "Morgenruf is a free, open-source standup bot for Slack that also supports Google Chat for some of its features, so trying it with one team costs nothing:",
     "zoom-coffee-chat-scheduling":
         "Morgenruf pairs people on a cadence, avoids repeat matches and can add a Zoom link to each pair, free and open source:",
     "cross-team-employee-introductions":
