@@ -160,6 +160,38 @@ def refresh():
     print(f"{'soro posts':38s} {len(posts):5d} fetched")
 
 
+# One closing call to action per post, matched to its topic (owner decision
+# 2026-11-25, every post ends with one). Kept here rather than in Soro so a
+# refresh of the post text from Soro does not drop it.
+GITHUB = "https://github.com/morgenruf/morgenruf"
+CTA = {
+    "granular-admin-permissions":
+        "Morgenruf is open source under the MIT license, so your security team can read every line before it runs in your workspace:",
+    "google-chat-standups":
+        "Morgenruf is a free, open-source standup bot for Slack that also supports Google Chat for some of its features, so a first trial with one team costs nothing:",
+    "zoom-coffee-chat-scheduling":
+        "Morgenruf pairs people on a cadence, avoids repeat matches and can add a Zoom link to each pair, free and open source:",
+    "cross-team-employee-introductions":
+        "Morgenruf runs these introductions as coffee chats in Slack, pairing people on a cadence and avoiding repeat matches, with no seat limit:",
+    "random-coffee-chat-pairing":
+        "To start a modest cadence without a per-seat bill, Morgenruf pairs people in Slack and avoids repeat matches, free and open source:",
+    "time-zone-friendly-team-check-ins":
+        "Morgenruf sends each person the standup questions by Slack DM at their own local time and posts one summary to the channel, free and open source:",
+    "automated-slack-standup-summaries":
+        "Morgenruf collects standup answers by Slack DM and posts the summary to a channel with blockers called out, with no per-seat pricing:",
+    "how-to-replace-daily-standups":
+        "When you are ready to cancel the recurring meeting, Morgenruf runs the async standup in Slack for free, on the hosted instance or on your own servers:",
+    "free-slack-standup-bot":
+        "Morgenruf is a free Slack standup bot with no paid tier and no seat limit, and it works on the free Slack plan:",
+}
+
+
+def cta(slug):
+    if slug not in CTA:
+        return ""
+    return f'<p>{html_lib.escape(CTA[slug], quote=False)} <a href="{GITHUB}">Quick start on GitHub</a>.</p>\n'
+
+
 def load():
     return json.loads(SNAPSHOT.read_text()) if SNAPSHOT.exists() else []
 
@@ -196,6 +228,7 @@ def render(post):
     prose = (f'<p class="byline">By <strong>Anmol Nagpal</strong>, creator of Morgenruf &middot; '
              f'<time datetime="{post["published"]}">{day:%B} {day.day}, {day.year}</time></p>\n'
              f'{img}{post["body"]}\n'
+             f'{cta(post["slug"])}'
              f'<p><a href="/blog/">More posts on the Morgenruf blog</a></p>')
     page = _page(path=path, title=title, description=description, h1=html_lib.escape(post["title"]),
                  lede=html_lib.escape(post["excerpt"]), prose=prose,
