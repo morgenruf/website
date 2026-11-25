@@ -23,16 +23,21 @@
 <link rel="preload" href="/assets/fonts/geist-1.9.2.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="/assets/site.css?v=61f30cc0a7"/>
 <script src="/assets/analytics.js" defer></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QM8RKPLDF4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
   gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
   try { if (localStorage.getItem('mr-consent') === 'accept') gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
+  gtag('js', new Date());
   gtag('config', 'G-QM8RKPLDF4');
 </script>
-<script src="/assets/nav.js?v=0646db8540" defer></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QM8RKPLDF4"></script>
+<script>
+  (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","zixuihjr17");
+  var mrOk = false; try { mrOk = localStorage.getItem('mr-consent') === 'accept'; } catch (e) {}
+  clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: mrOk ? 'granted' : 'denied' });
+</script>
+<script src="/assets/nav.js?v=ce849de985" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Privacy"}]}</script>
 </head>
 <body>
@@ -55,7 +60,7 @@
   <h1>Privacy</h1>
   <p class="lede">This covers the free hosted instance and this website. If you self-host Morgenruf, you are the data controller and this policy does not apply to your deployment.</p>
 </div></header>
-<section class="section"><div class="wrap"><div class="prose"><p>Effective date: April 5, 2026 · Last updated: November 23, 2026</p>
+<section class="section"><div class="wrap"><div class="prose"><p>Effective date: April 5, 2026 · Last updated: November 24, 2026</p>
 
   <p>The hosted Morgenruf Slack app and the website at morgenruf.dev are operated by Anmol Nagpal ("we", "our", "us"). This policy explains what personal data we collect, why, how we protect it, and your rights.</p>
 
@@ -167,10 +172,12 @@
       <tr><td><a href="https://sentry.io/privacy/">Sentry</a></td><td>Error monitoring (no standup content)</td><td>USA</td></tr>
       <tr><td><a href="https://posthog.com/privacy">PostHog</a></td><td>Product and website analytics. PostHog counts site pages without cookies. Product events are counted per workspace and carry no Slack user ID and no standup content</td><td>USA</td></tr>
       <tr><td><a href="https://policies.google.com/privacy">Google LLC</a></td><td>Google Analytics, website analytics (morgenruf.dev only, not the Slack app)</td><td>USA</td></tr>
+      <tr><td><a href="https://privacy.microsoft.com/privacystatement">Microsoft Corporation</a></td><td>Microsoft Clarity, website usage analytics and session replays (morgenruf.dev only, not the Slack app)</td><td>USA</td></tr>
     </tbody>
   </table>
   <h3 id="analytics-cookies">Analytics cookies</h3>
   <p>We use Google Analytics 4 (Google LLC, USA) to measure visits to morgenruf.dev and see which pages help people. It sets the cookies <code>_ga</code> and <code>_ga_QM8RKPLDF4</code> only after you click Accept in the cookie banner. They last up to 2 years. We do not use Google advertising features and do not send names or email addresses to Google. If you decline, or have not chosen yet, Google Analytics sends cookieless pings with no identifier. You can change your choice at any time with "Cookie settings" in the footer, or by clearing this site's data in your browser. Google's own policy is at <a href="https://policies.google.com/privacy">policies.google.com/privacy</a>.</p>
+  <p>We also use <a href="https://privacy.microsoft.com/privacystatement">Microsoft Clarity</a> (Microsoft Corporation, USA) to see how pages on morgenruf.dev are used: clicks, scrolling and anonymized session replays, so we can fix pages that confuse people. Text you type into forms is masked and never recorded. Clarity sets its cookies (<code>_clck</code>, <code>_clsk</code>) only after you click Accept in the cookie banner. If you decline, or have not chosen yet, it runs without cookies and cannot link your visits together.</p>
   <h3>Not used by the hosted service</h3>
   <p>Morgenruf can talk to a few more services, but only on a self-hosted install whose operator configures them with their own account. The hosted service has none of them configured and sends them nothing.</p>
   <table>
@@ -229,7 +236,7 @@
   </ul>
 
   <h2>10. International Data Transfers</h2>
-  <p>The hosted service runs in Canada, on servers CloudDrove operates. Some sub-processors in section 5 (Slack, Resend, Sentry, PostHog, Netlify, Cloudflare and Google) are in the USA, so data they handle is transferred there. For EEA/UK users, Canada has an EU adequacy decision, and for the US sub-processors we rely on Standard Contractual Clauses (SCCs) and the adequacy frameworks of those sub-processors. You can request transfer mechanism details at <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a>.</p>
+  <p>The hosted service runs in Canada, on servers CloudDrove operates. Some sub-processors in section 5 (Slack, Resend, Sentry, PostHog, Netlify, Cloudflare, Google and Microsoft) are in the USA, so data they handle is transferred there. For EEA/UK users, Canada has an EU adequacy decision, and for the US sub-processors we rely on Standard Contractual Clauses (SCCs) and the adequacy frameworks of those sub-processors. You can request transfer mechanism details at <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a>.</p>
 
   <h2>11. Children's Privacy</h2>
   <p>Morgenruf is not directed at children under 13. We do not knowingly collect data from children. If you believe a child has provided us data, please contact <a href="mailto:privacy@morgenruf.dev">privacy@morgenruf.dev</a>.</p>
@@ -267,7 +274,7 @@
   </div>
 </footer>
 <div class="consent" id="consent" role="region" aria-label="Cookie choice" hidden>
-  <p>We use Google Analytics cookies to see which pages help people. Accept to allow them, or decline and we count visits without cookies. <a href="/privacy/#analytics-cookies">Privacy policy</a></p>
+  <p>We use Google Analytics and Microsoft Clarity cookies to see which pages help people. Accept to allow them, or decline and we count visits without cookies. <a href="/privacy/#analytics-cookies">Privacy policy</a></p>
   <div class="consent-actions"><button type="button" class="btn btn-sun btn-sm" data-consent="accept">Accept</button><button type="button" class="btn btn-ghost btn-sm" data-consent="decline">Decline</button></div>
 </div>
 </body>
