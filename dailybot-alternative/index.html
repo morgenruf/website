@@ -23,16 +23,21 @@
 <link rel="preload" href="/assets/fonts/geist-1.9.2.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="/assets/site.css?v=61f30cc0a7"/>
 <script src="/assets/analytics.js" defer></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QM8RKPLDF4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
   gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
   try { if (localStorage.getItem('mr-consent') === 'accept') gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
+  gtag('js', new Date());
   gtag('config', 'G-QM8RKPLDF4');
 </script>
-<script src="/assets/nav.js?v=0646db8540" defer></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QM8RKPLDF4"></script>
+<script>
+  (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","zixuihjr17");
+  var mrOk = false; try { mrOk = localStorage.getItem('mr-consent') === 'accept'; } catch (e) {}
+  clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: mrOk ? 'granted' : 'denied' });
+</script>
+<script src="/assets/nav.js?v=ce849de985" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is DailyBot free?", "acceptedAnswer": {"@type": "Answer", "text": "It has a free Starter plan with unlimited members, capped at 50 compiled check-in reports a month and 14 days of history. Paid plans are $3 or $6.50 per active user a month, or $2.40 or $5 billed annually (checked 2026-09-29)."}}, {"@type": "Question", "name": "Is Morgenruf free compared with DailyBot?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, with no seat price and no report cap. The hosted instance is free. Self-hosted, you pay for the server and database, roughly $5 to $20 a month regardless of headcount."}}, {"@type": "Question", "name": "Does Morgenruf work in Microsoft Teams or Discord?", "acceptedAnswer": {"@type": "Answer", "text": "No. Slack is first class, Google Chat is in beta, and Teams is planned, not started. If you need Teams or Discord today, DailyBot is the better fit."}}, {"@type": "Question", "name": "Can I import my DailyBot history?", "acceptedAnswer": {"@type": "Answer", "text": "No. Run both in parallel for a week and switch over once the summaries look right."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Compare","item":"https://morgenruf.dev/compare/"},{"@type":"ListItem","position":3,"name":"vs DailyBot"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "url": "https://morgenruf.dev/dailybot-alternative/", "name": "Free, open-source DailyBot alternative for Slack", "dateModified": "2026-09-29", "about": {"@id": "https://morgenruf.dev/#software"}, "publisher": {"@id": "https://morgenruf.dev/#organization"}}</script>
@@ -196,7 +201,7 @@ DailyBot off once the new summary looks right.</p>
   </div>
 </footer>
 <div class="consent" id="consent" role="region" aria-label="Cookie choice" hidden>
-  <p>We use Google Analytics cookies to see which pages help people. Accept to allow them, or decline and we count visits without cookies. <a href="/privacy/#analytics-cookies">Privacy policy</a></p>
+  <p>We use Google Analytics and Microsoft Clarity cookies to see which pages help people. Accept to allow them, or decline and we count visits without cookies. <a href="/privacy/#analytics-cookies">Privacy policy</a></p>
   <div class="consent-actions"><button type="button" class="btn btn-sun btn-sm" data-consent="accept">Accept</button><button type="button" class="btn btn-ghost btn-sm" data-consent="decline">Decline</button></div>
 </div>
 </body>

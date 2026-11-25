@@ -23,16 +23,21 @@
 <link rel="preload" href="/assets/fonts/geist-1.9.2.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="/assets/site.css?v=61f30cc0a7"/>
 <script src="/assets/analytics.js" defer></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QM8RKPLDF4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
   gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
   try { if (localStorage.getItem('mr-consent') === 'accept') gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
+  gtag('js', new Date());
   gtag('config', 'G-QM8RKPLDF4');
 </script>
-<script src="/assets/nav.js?v=0646db8540" defer></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QM8RKPLDF4"></script>
+<script>
+  (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","zixuihjr17");
+  var mrOk = false; try { mrOk = localStorage.getItem('mr-consent') === 'accept'; } catch (e) {}
+  clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: mrOk ? 'granted' : 'denied' });
+</script>
+<script src="/assets/nav.js?v=ce849de985" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What does Insights actually look at?", "acceptedAnswer": {"@type": "Answer", "text": "Two datasets at once. Standup answers on their own tell you who is blocked today; kudos on their own tell you who was thanked. Together they answer questions neither can: who is contributing and going unrecognised, and which blocker has been in someone's answers for days."}}, {"@type": "Question", "name": "Is this surveillance?", "acceptedAnswer": {"@type": "Answer", "text": "It is the same information already in your channel, counted. It does not read messages it was not sent, does not score people, and does not produce a ranking of who is 'productive'. If you want a tool that tells you who to performance-manage, this is not it."}}, {"@type": "Question", "name": "Can I turn it off?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Insights is a module like the others and can be switched off per workspace, at which point it stops running and leaves the sidebar."}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://morgenruf.dev/"},{"@type":"ListItem","position":2,"name":"Insights"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "url": "https://morgenruf.dev/insights/", "name": "Standup analytics: stale blockers and unthanked work", "dateModified": "2026-09-26", "about": {"@id": "https://morgenruf.dev/#software"}, "publisher": {"@id": "https://morgenruf.dev/#organization"}}</script>
@@ -152,7 +157,7 @@ place</a>.</p>
   </div>
 </footer>
 <div class="consent" id="consent" role="region" aria-label="Cookie choice" hidden>
-  <p>We use Google Analytics cookies to see which pages help people. Accept to allow them, or decline and we count visits without cookies. <a href="/privacy/#analytics-cookies">Privacy policy</a></p>
+  <p>We use Google Analytics and Microsoft Clarity cookies to see which pages help people. Accept to allow them, or decline and we count visits without cookies. <a href="/privacy/#analytics-cookies">Privacy policy</a></p>
   <div class="consent-actions"><button type="button" class="btn btn-sun btn-sm" data-consent="accept">Accept</button><button type="button" class="btn btn-ghost btn-sm" data-consent="decline">Decline</button></div>
 </div>
 </body>

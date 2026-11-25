@@ -14,20 +14,29 @@ import re
 import sys
 
 POSTHOG = '<script src="/assets/analytics.js" defer></script>'
-# Google Analytics 4. Must match the copy in scripts/site/shell.py.
-GA4 = """<script async src="https://www.googletagmanager.com/gtag/js?id=G-QM8RKPLDF4"></script>
-<script>
+# Google Analytics 4 and Microsoft Clarity, both consent gated. Must match
+# the copy in scripts/site/shell.py.
+GA4 = """<script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
   gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
   try { if (localStorage.getItem('mr-consent') === 'accept') gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
+  gtag('js', new Date());
   gtag('config', 'G-QM8RKPLDF4');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QM8RKPLDF4"></script>
+<script>
+  (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","zixuihjr17");
+  var mrOk = false; try { mrOk = localStorage.getItem('mr-consent') === 'accept'; } catch (e) {}
+  clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: mrOk ? 'granted' : 'denied' });
 </script>"""
 TAGS = (POSTHOG, GA4)
 # Any earlier version of the GA4 block, so a changed snippet replaces the old
 # one instead of landing next to it.
-OLD_GA4 = re.compile(r'<script async src="https://www\.googletagmanager\.com/gtag/js\?id=G-QM8RKPLDF4"></script>\n<script>.*?</script>', re.S)
+OLD_GA4 = re.compile(
+    r'<script async src="https://www\.googletagmanager\.com/gtag/js\?id=G-QM8RKPLDF4"></script>\n<script>.*?</script>'
+    r'|<script>\n  window\.dataLayer.*?</script>\n<script async src="https://www\.googletagmanager\.com/gtag/js\?id=G-QM8RKPLDF4"></script>\n<script>.*?</script>',
+    re.S)
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 # scripts/ holds the generators and their content fragments, .netlify the build
 # plugins, og/ the internal page the share cards are drawn from. None is a

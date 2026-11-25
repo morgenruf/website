@@ -15,7 +15,7 @@
   });
 })();
 
-/* Cookie choice for Google Analytics. Consent defaults to denied in the
+/* Cookie choice for Google Analytics and Microsoft Clarity. Consent defaults to denied in the
  * inline tag in <head>, which also applies a stored "accept". This shows the
  * banner when nothing is stored, records the choice, and lets the footer's
  * "Cookie settings" link ask again. */
@@ -41,6 +41,7 @@
     if (typeof window.gtag === 'function') {
       window.gtag('consent', 'update', { analytics_storage: choice === 'accept' ? 'granted' : 'denied' });
     }
+    if (typeof window.clarity === 'function') window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: choice === 'accept' ? 'granted' : 'denied' });
     box.hidden = true;
   });
 })();
