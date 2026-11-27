@@ -57,7 +57,7 @@ Insights
 Integration
 - Webhooks signed with HMAC on every completed standup; automation rules can also call a webhook
   on a blocker or low participation
-- An MCP server with eighteen tools, so AI assistants can query standup history
+- An MCP server with 25 tools, so AI assistants can query standup history
 
 ## How it is run
 
