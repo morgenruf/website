@@ -147,9 +147,9 @@ whether the introductions land, then turn Donut off. Nothing here needs a contra
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/donut-alternative/",
-        title="Donut for Slack alternatives: free coffee chat bot (2026)",
-        description="Donut for Slack alternatives for coffee chats: Morgenruf pairs people from a "
-                    "channel for free at any team size, plus standups and kudos. MIT licensed.",
+        title="Donut for Slack alternatives: free coffee chats, no seat cap",
+        description="Donut is free for 24 people per intro round, then paid from about $74 a month "
+                    "(checked 2026-09-26). Morgenruf runs Slack coffee chats free at any size.",
         h1="A free, open-source Donut alternative for Slack",
         lede="Random introductions from a channel, a time both people actually pick, and the meeting "
              "booked at that hour. Plus standups and kudos in the same app.",
@@ -234,9 +234,9 @@ month, which means the cost of thanking people grows exactly as you hire them.
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(
         path="/heytaco-alternative/",
-        title="HeyTaco alternatives 2026: free Slack kudos bot, any emoji",
-        description="The HeyTaco alternatives worth a look: Morgenruf is a free Slack kudos bot with "
-                    "any emoji as the token, a daily allowance and leaderboards. MIT licensed.",
+        title="HeyTaco alternatives: a free Slack kudos bot, your own emoji",
+        description="HeyTaco is about $3 per user a month (checked 2026-09-26). Morgenruf is a free, "
+                    "MIT-licensed Slack kudos bot with your own emoji and a daily allowance.",
         h1="A free, open-source HeyTaco alternative for Slack",
         lede="A daily allowance, your own emoji, leaderboards for giving as well as receiving, and "
              "no per-seat bill for thanking your colleagues.",
