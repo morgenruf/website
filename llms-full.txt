@@ -392,7 +392,7 @@ For teams of up to 10 users. Above that it costs $3 per participant a month, or 
 What happened to Status Hero?
 It was renamed Steady. It now charges for credits rather than seats and has no free plan.
 
-## Geekbot alternatives 2026: free Slack standup bot, no seats
+## Geekbot alternative: free async Slack standups at any size
 https://morgenruf.dev/geekbot-alternative/
 
 A free, open-source Geekbot alternative for Slack
@@ -474,7 +474,7 @@ For async standups, the everyday shape is the same: questions, schedules, timezo
 How long does it take to set up?
 About two minutes on the free hosted instance. Self-hosted, about twenty minutes, most of it creating the Slack app.
 
-## Donut for Slack alternatives: free coffee chat bot (2026)
+## Donut for Slack alternatives: free coffee chats, no seat cap
 https://morgenruf.dev/donut-alternative/
 
 A free, open-source Donut alternative for Slack
@@ -531,7 +531,7 @@ Donut has a free plan, limited to 24 people per intro round, and paid plans from
 What does it cost for 200 people?
 Nothing per seat. On the hosted instance, nothing at all. Self-hosted, the server and database you run it on, which for 200 people is a small instance.
 
-## HeyTaco alternatives 2026: free Slack kudos bot, any emoji
+## HeyTaco alternatives: a free Slack kudos bot, your own emoji
 https://morgenruf.dev/heytaco-alternative/
 
 A free, open-source HeyTaco alternative for Slack

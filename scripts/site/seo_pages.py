@@ -229,10 +229,9 @@ right. Nothing here has a contract to cancel.</p>
   <span class="eyebrow">Questions</span><h2>Morgenruf and Geekbot</h2>
   <div style="margin-top:24px">{faq_html}</div></div></section>'''
     return page(path="/geekbot-alternative/",
-                title="Geekbot alternatives 2026: free Slack standup bot, no seats",
-                description="Geekbot alternatives compared: Geekbot costs $3 per user a month after "
-                            "10 users. Morgenruf runs the same async Slack standups free at any size. "
-                            "MIT licensed.",
+                title="Geekbot alternative: free async Slack standups at any size",
+                description="Geekbot is $3 per user a month after 10 users (checked 2026-09-26). "
+                            "Morgenruf runs the same async Slack standups free, hosted or on your servers.",
                 h1="A free, open-source Geekbot alternative for Slack",
                 lede="The same morning questions and channel summary, free on the hosted instance or "
                      "on your own servers, with coffee chats and kudos included rather than sold "
